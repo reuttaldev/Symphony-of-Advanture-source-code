@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         smoothedInput = Vector2.SmoothDamp(smoothedInput, input, ref smoothedInputVelocity, smoothSpeed);
-        rb.velocity = smoothedInput * speed;
+        rb.velocity = input  * speed;
     }
     private void OnMove(InputValue inputValue)
     {
