@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -25,22 +26,11 @@ public class YarnInteractable : MonoBehaviour
         dialogueRunner.StartDialogue(conversationStartNode);
         isCurrentConversation = true;
     }
-    public void OnMouseDown()
-    {
-        // if this character is enabled and no conversation is already running
-        if (interactable && !dialogueRunner.IsDialogueRunning)
-        {
-            // then run this character's conversation
-            StartConversation();
-        }
-
-    }
-    // re-enable scene interaction, deactivate indicator, etc.
     private void EndConversation()
     {
         if (isCurrentConversation)
         {
-            // TODO *stop animation or turn off indicator or whatever* HERE
+            
             isCurrentConversation = false;
         }
     }
@@ -50,5 +40,20 @@ public class YarnInteractable : MonoBehaviour
     public void DisableConversation()
     {
         interactable = false;
-    }  
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // if this character is enabled and no conversation is already running
+        if (interactable && !dialogueRunner.IsDialogueRunning)
+        {
+            // then run this character's conversation
+            StartConversation();
+        }
+        
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
+    }
+    
 }

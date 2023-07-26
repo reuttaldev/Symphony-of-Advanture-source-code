@@ -1,11 +1,38 @@
-﻿title: Start
+﻿title: EXPIntro
+trackIndex: 1
+trackName: First
 ---
-Wow!
-My first ever Yarn script in Unity!
+//<<declare $playerName = "Player">>
+Master: Did this song make you feel something?
+Player: That's a strange question, why are you asking?
+Master: I mean, I am going to be your companion during journey. We might as well be friends, don't you think?
+-> Player: Sure.
+    Master: And friends care about each other's feelings! Also...
+-> Player: I don't want to be your friend.
+    Master: Oh...Okay... Then...
+Master: The game developer cares about your answers. Your input will be collected to study the impact music has on player engagement and emotion in video games.
+-> Player: Agree.
+    <<jump EXP1>>
+-> Player: Disagree and exit game.
+    <<ExitGame>>
+===
+title: EXP1
+trackIndex: 1
+trackName: First
+---
+<<declare $response_track_1 = "">>
+Master: Did this song make you feel something?
+-> Player: Happy.
+    <<set $response_track_1 to "Happy">>
+-> Player: Sad.
+    <<set $response_track_1 to "Sad">>
+-> Player: Relaxed.
+    <<set $response_track_1 to "Relaxed">>
+-> Player: Stressed.
+    <<set $response_track_1 to "Stressed">>
+<<ExpResponse DialogueSystem 1 First {$response_track_1}>>
+// can put the answer in a variable and have the C# script read the variable using bool TryGetValue<T>(string variableName, out T result);
+// but how does the C# script knows at which point to read?
+// better to have a command that sends in the value
 
--> Gosh!
--> Incredible!
--> I'm amazed!
-
-Anyway, time to get writing!
 ===
