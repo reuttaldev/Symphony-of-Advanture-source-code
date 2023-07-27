@@ -1,161 +1,67 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
+using UnityEngine.EventSystems;
 using Yarn.Unity;
 
-public class CustomOptionView : DialogueViewBase
+public class CustomOptionView : UnityEngine.UI.Selectable, ISubmitHandler
 {
-    [SerializeField] CanvasGroup canvasGroup;
+    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] bool showCharacterName = false;
 
-    [SerializeField] OptionView optionViewPrefab;
+    public Action<DialogueOption> OnOptionSelected;
 
-    [SerializeField] TextMeshProUGUI lastLineText;
+    DialogueOption _option;
 
-    [SerializeField] float fadeTime = 0.1f;
+    bool hasSubmittedOptionSelection = false;
 
-    [SerializeField] bool showUnavailableOptions = false;
-
-    // A cached pool of OptionView objects so that we can reuse them
-    List<OptionView> optionViews = new List<OptionView>();
-
-    // The method we should call when an option has been selected.
-    Action<int> OnOptionSelected;
-
-    // The line we saw most recently.
-    LocalizedLine lastSeenLine;
-
-    public void Start()
+    public DialogueOption Option
     {
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-    }
+        get => _option;
 
-    public void Reset()
-    {
-        canvasGroup = GetComponentInParent<CanvasGroup>();
-    }
-
-    public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished)
-    {
-        // Don't do anything with this line except note it and
-        // immediately indicate that we're finished with it. RunOptions
-        // will use it to display the text of the previous line.
-        lastSeenLine = dialogueLine;
-        onDialogueLineFinished();
-    }
-
-    public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected)
-    {
-        // Hide all existing option views
-        foreach (var optionView in optionViews)
+        set
         {
-            optionView.gameObject.SetActive(false);
-        }
+            _option = value;
 
-        // If we don't already have enough option views, create more
-        while (dialogueOptions.Length > optionViews.Count)
-        {
-            var optionView = CreateNewOptionView();
-            optionView.gameObject.SetActive(false);
-        }
+            hasSubmittedOptionSelection = false;
 
-        // Set up all of the option views
-        int optionViewsCreated = 0;
-
-        for (int i = 0; i < dialogueOptions.Length; i++)
-        {
-            var optionView = optionViews[i];
-            var option = dialogueOptions[i];
-
-            if (option.IsAvailable == false && showUnavailableOptions == false)
+            // When we're given an Option, use its text and update our
+            // interactibility.
+            if (showCharacterName)
             {
-                // Don't show this option.
-                continue;
-            }
-
-            optionView.gameObject.SetActive(true);
-
-            optionView.Option = option;
-
-            // The first available option is selected by default
-            if (optionViewsCreated == 0)
-            {
-                optionView.Select();
-            }
-
-            optionViewsCreated += 1;
-        }
-
-        // Update the last line, if one is configured
-        if (lastLineText != null)
-        {
-            if (lastSeenLine != null)
-            {
-                lastLineText.gameObject.SetActive(true);
-                lastLineText.text = lastSeenLine.Text.Text;
+                text.text = value.Line.Text.Text;
             }
             else
             {
-                lastLineText.gameObject.SetActive(false);
+                text.text = value.Line.TextWithoutCharacterName.Text;
             }
-        }
-
-        // Note the delegate to call when an option is selected
-        OnOptionSelected = onOptionSelected;
-
-        // Fade it all in
-        StartCoroutine(Effects.FadeAlpha(canvasGroup, 0, 1, fadeTime));
-
-        /// <summary>
-        /// Creates and configures a new <see cref="OptionView"/>, and adds
-        /// it to <see cref="optionViews"/>.
-        /// </summary>
-        OptionView CreateNewOptionView()
-        {
-            var optionView = Instantiate(optionViewPrefab);
-            optionView.transform.SetParent(transform, false);
-            optionView.transform.SetAsLastSibling();
-
-            optionView.OnOptionSelected = OptionViewWasSelected;
-            optionViews.Add(optionView);
-
-            return optionView;
-        }
-
-        /// <summary>
-        /// Called by <see cref="OptionView"/> objects.
-        /// </summary>
-        void OptionViewWasSelected(DialogueOption option)
-        {
-            StartCoroutine(OptionViewWasSelectedInternal(option));
-
-            IEnumerator OptionViewWasSelectedInternal(DialogueOption selectedOption)
-            {
-                yield return StartCoroutine(Effects.FadeAlpha(canvasGroup, 1, 0, fadeTime));
-                OnOptionSelected(selectedOption.DialogueOptionID);
-            }
+            interactable = value.IsAvailable;
         }
     }
 
-    /// <inheritdoc />
-    /// <remarks>
-    /// If options are still shown dismisses them.
-    /// </remarks>
-    public override void DialogueComplete()
+    // If we receive a submit or click event, invoke our "we just selected
+    // this option" handler.
+    public void OnSubmit(BaseEventData eventData)
     {
-        // do we still have any options being shown?
-        if (canvasGroup.alpha > 0)
-        {
-            StopAllCoroutines();
-            lastSeenLine = null;
-            OnOptionSelected = null;
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
+        InvokeOptionSelected();
+    }
 
-            StartCoroutine(Effects.FadeAlpha(canvasGroup, canvasGroup.alpha, 0, fadeTime));
+    public void InvokeOptionSelected()
+    {
+        // turns out that Selectable subclasses aren't intrinsically interactive/non-interactive
+        // based on their canvasgroup, you still need to check at the moment of interaction
+        if (!IsInteractable())
+        {
+            return;
+        }
+
+        // We only want to invoke this once, because it's an error to
+        // submit an option when the Dialogue Runner isn't expecting it. To
+        // prevent this, we'll only invoke this if the flag hasn't been cleared already.
+        if (hasSubmittedOptionSelection == false)
+        {
+            OnOptionSelected.Invoke(Option);
+            hasSubmittedOptionSelection = true;
         }
     }
 }

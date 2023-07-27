@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using Yarn.Unity;
 
 public class CustomLineView : DialogueViewBase
@@ -178,6 +179,9 @@ public class CustomLineView : DialogueViewBase
     /// A stop token that is used to interrupt the current animation.
     /// </summary>
     Effects.CoroutineInterruptToken currentStopToken = new Effects.CoroutineInterruptToken();
+    [SerializeField]
+    InputActionReference continueAction, interruptAction;
+
 
     private void Awake()
     {
@@ -189,17 +193,28 @@ public class CustomLineView : DialogueViewBase
     {
         canvasGroup = GetComponentInParent<CanvasGroup>();
     }
+    private void OnEnable()
+    {
+        continueAction.action.performed+=context=> UserRequestedViewAdvancement(); ;
+        interruptAction.action.performed += context => UserRequestedViewInterrupt();
+    }
+    private void OnDisable()
+    {
+        continueAction.action.performed -= context => UserRequestedViewAdvancement();
+        interruptAction.action.performed -= context => UserRequestedViewInterrupt();
+    }
 
     /// <inheritdoc/>
     public override void DismissLine(Action onDismissalComplete)
     {
         currentLine = null;
-
+        Debug.Log("dismiss");
         StartCoroutine(DismissLineInternal(onDismissalComplete));
     }
 
     private IEnumerator DismissLineInternal(Action onDismissalComplete)
     {
+
         // disabling interaction temporarily while dismissing the line
         // we don't want people to interrupt a dismissal
         var interactable = canvasGroup.interactable;
@@ -404,32 +419,31 @@ public class CustomLineView : DialogueViewBase
     /// <inheritdoc/>
     public override void UserRequestedViewAdvancement()
     {
-        // We received a request to advance the view. If we're in the middle of
-        // an animation, skip to the end of it. If we're not current in an
-        // animation, interrupt the line so we can skip to the next one.
+        Debug.Log("Requested view advancement");
 
         // we have no line, so the user just mashed randomly
         if (currentLine == null)
         {
             return;
         }
-
-        // we may want to change this later so the interrupted
-        // animation coroutine is what actually interrupts
-        // for now this is fine.
-        // Is an animation running that we can stop?
+        // when line is already finished
+        if (!currentStopToken.CanInterrupt)
+            // move forward
+            requestInterrupt?.Invoke();
+    }
+    public void UserRequestedViewInterrupt()
+    {
+        Debug.Log("Requested view interrupt");
+        // we have no line, so the user just mashed randomly
+        if (currentLine == null)
+            return;
         if (currentStopToken.CanInterrupt)
         {
             // Stop the current animation, and skip to the end of whatever
             // started it.
             currentStopToken.Interrupt();
         }
-        else
-        {
-            // No animation is now running. Signal that we want to
-            // interrupt the line instead.
-            requestInterrupt?.Invoke();
-        }
+
     }
 
 
@@ -445,10 +459,6 @@ public class CustomLineView : DialogueViewBase
             currentLine = null;
             StartCoroutine(DismissLineInternal(null));
         }
-    }
-public void UserRequestedViewInterrupt()
-    {
-
     }
 
 }

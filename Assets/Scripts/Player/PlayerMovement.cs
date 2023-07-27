@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     Vector2 input;
     Vector2 smoothedInput;
     Vector2 smoothedInputVelocity;
+    [SerializeField]
+    InputActionReference moveAction;
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -21,11 +24,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        smoothedInput = Vector2.SmoothDamp(smoothedInput, input, ref smoothedInputVelocity, smoothSpeed);
-        rb.velocity = input  * speed;
-    }
-    private void OnMove(InputValue inputValue)
-    {
-        input = inputValue.Get<Vector2>();
+        input = moveAction.action.ReadValue<Vector2>();
+        //smoothedInput = Vector2.SmoothDamp(smoothedInput, input, ref smoothedInputVelocity, smoothSpeed);
+        rb.velocity = input * speed;
     }
 }
