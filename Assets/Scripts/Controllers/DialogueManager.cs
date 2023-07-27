@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueRunner.onDialogueStart.AddListener(()=>InputManager.Instance.ActivateDialogueMap());
         dialogueRunner.onDialogueComplete.AddListener(()=>InputManager.Instance.ActivatePlayerMap());
+        ExportUserResponse.Instance.SetPlayerInfo(2, "Reut");
     }
     void MyAction()
     {
@@ -30,6 +31,7 @@ public class DialogueManager : MonoBehaviour
     public void SetExpResponse(int trackIndex, string trackName, string response)
     {
         Debug.Log("answer is "+response);
+        ExportUserResponse.Instance.Export(1, "First", response);
         // export response to Google sheets
         // save to scriptable object for later use in the game
     }

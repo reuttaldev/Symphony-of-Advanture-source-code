@@ -5,14 +5,15 @@ using UnityEngine.Networking;
 
 
 // this script is in charge of sending user's responses to Google spreadsheets for data collection
-public class ExportUserResponse : MonoBehaviour
+public class ExportUserResponse : SimpleSingleton<ExportUserResponse>
 
 {
-    string playerID,playerName;
+    string playerName;
+    int playerIndex;
     string spreadsheetURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSf2Kf3ArIg6J9ln6p_IVUcXidNdS4Cx7nNHMVL0Yvap2xVCTw/formResponse";
-    public void SetPlayerInfo(string playerID, string playerName)
+    public void SetPlayerInfo(int playerIndex, string playerName)
     {
-        this.playerID = playerID;
+        this.playerIndex = playerIndex;
         this.playerName = playerName;
     }
     public void Export( int trackIndex, string trackName, string response)
@@ -22,10 +23,10 @@ public class ExportUserResponse : MonoBehaviour
     IEnumerator Publish( int trackIndex, string trackName,string response)
     {
         WWWForm form = new WWWForm();
-        form.AddField("entry.837397244", playerID);
-        form.AddField("entry.1661633331", playerName);
-        form.AddField("entry.575476485", trackIndex);
-        form.AddField("entry.1064789443", trackName);
+        form.AddField("entry.1661633331", trackIndex);
+        form.AddField("entry.837397244", trackName);
+        form.AddField("entry.1064789443", playerIndex);
+        form.AddField("entry.575476485", playerName);
         form.AddField("entry.2040363894", response);
         //UnityWebRequest handles the flow of HTTP communication with web servers
         using (UnityWebRequest www = UnityWebRequest.Post(spreadsheetURL, form))
