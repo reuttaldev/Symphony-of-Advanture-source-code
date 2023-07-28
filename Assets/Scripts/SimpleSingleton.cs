@@ -23,7 +23,7 @@ public class SimpleSingleton<T> : MonoBehaviour where T : MonoBehaviour
                         // create new
                         GameObject go = new GameObject(typeof(T).ToString());
                         instance = go.AddComponent<T>();
-                        Debug.LogError("Instantiating new singleton of type " + typeof(T).ToString());
+                        Debug.Log("Instantiating new singleton of type " + typeof(T).ToString());
                         Instantiate(go);
                     }
                 }

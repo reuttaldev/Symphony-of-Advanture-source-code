@@ -208,7 +208,6 @@ public class CustomLineView : DialogueViewBase
     public override void DismissLine(Action onDismissalComplete)
     {
         currentLine = null;
-        Debug.Log("dismiss");
         StartCoroutine(DismissLineInternal(onDismissalComplete));
     }
 
@@ -419,7 +418,6 @@ public class CustomLineView : DialogueViewBase
     /// <inheritdoc/>
     public override void UserRequestedViewAdvancement()
     {
-        Debug.Log("Requested view advancement");
 
         // we have no line, so the user just mashed randomly
         if (currentLine == null)
@@ -433,7 +431,6 @@ public class CustomLineView : DialogueViewBase
     }
     public void UserRequestedViewInterrupt()
     {
-        Debug.Log("Requested view interrupt");
         // we have no line, so the user just mashed randomly
         if (currentLine == null)
             return;
