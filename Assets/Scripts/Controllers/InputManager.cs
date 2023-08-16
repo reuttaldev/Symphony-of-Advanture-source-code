@@ -8,8 +8,10 @@ public class InputManager : SimpleSingleton<InputManager>
     PlayerInput playerInput;
     [SerializeField]
     DialogueManager dialogueManager;
-    private void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
         playerInput = GetComponent<PlayerInput>();
     }
     private void Start()

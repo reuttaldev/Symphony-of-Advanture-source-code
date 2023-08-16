@@ -1,4 +1,3 @@
-// Ignore Spelling: Dialogue
 using Yarn.Unity;
 using System.Collections;
 using System.Collections.Generic;

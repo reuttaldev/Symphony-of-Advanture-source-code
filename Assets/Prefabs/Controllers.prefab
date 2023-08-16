@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c96b6f695b8462438e21b58245ee79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 4288899563989318241}
+  dialogueManager: {fileID: 0}
 --- !u!114 &7569115639876857724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 7884407284842392435}
   - component: {fileID: 5286965376502303072}
   - component: {fileID: 6327977437687444402}
-  - component: {fileID: 4288899563989318241}
+  - component: {fileID: 2403905072649011170}
   m_Layer: 0
   m_Name: DialogueSystem
   m_TagString: Untagged
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showDebug: 0
   debugTextView: {fileID: 0}
---- !u!114 &4288899563989318241
+--- !u!114 &2403905072649011170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -737,7 +737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3fcc0e7dadc714e9184604991b83fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueRunner: {fileID: 5286965376502303072}
 --- !u!1001 &3485728997702655637
 PrefabInstance:
   m_ObjectHideFlags: 0

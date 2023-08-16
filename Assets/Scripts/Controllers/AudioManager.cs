@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
     }
 
     // when the user has categorized/ labeled a track to a certain emotion, use this method to add this new information to the track's data
-    public void SetTrackEmotion(string trackID,string emotion)
+    public void SetTrackEmotion(string trackID,Emotions emotion)
     {
         if(!TrackAvilable(trackID))
         {

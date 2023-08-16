@@ -10,7 +10,7 @@ public class MusicDialogueManager : MonoBehaviour
     {
         dialogueRunner = gameObject.GetComponent<DialogueRunner>();
         // making it possible for commands to be called from yarn scripts
-        dialogueRunner.AddCommandHandler("ExportTrackData", PlayerChoseTrackInDialogue);
+        //dialogueRunner.AddCommandHandler("ExportTrackData", PlayerChoseTrackInDialogue);
     }
     void Start()
     {

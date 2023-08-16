@@ -9,7 +9,7 @@ public class CustomDialogueListView : DialogueViewBase
 {
     [SerializeField] CanvasGroup canvasGroup;
 
-    [SerializeField] CustomOptionView optionViewPrefab;
+    [SerializeField] CustomDilogueOptionView optionViewPrefab;
 
     [SerializeField] TextMeshProUGUI lastLineText;
 
@@ -18,7 +18,7 @@ public class CustomDialogueListView : DialogueViewBase
     [SerializeField] bool showUnavailableOptions = false;
 
     // A cached pool of OptionView objects so that we can reuse them
-    List<CustomOptionView> optionViews = new List<CustomOptionView>();
+    List<CustomDilogueOptionView> optionViews = new List<CustomDilogueOptionView>();
 
     // The method we should call when an option has been selected.
     Action<int> OnOptionSelected;
@@ -113,7 +113,7 @@ public class CustomDialogueListView : DialogueViewBase
         /// Creates and configures a new <see cref="OptionView"/>, and adds
         /// it to <see cref="optionViews"/>.
         /// </summary>
-        CustomOptionView CreateNewOptionView()
+        CustomDilogueOptionView CreateNewOptionView()
         {
             var optionView = Instantiate(optionViewPrefab);
             optionView.transform.SetParent(transform, false);

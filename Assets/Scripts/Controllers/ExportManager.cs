@@ -20,8 +20,8 @@ public class ExportManager :MonoBehaviour, IRegistrableService
         {
             Debug.LogError("Trying to export track data with one or more empty attributes");
         }
-        string eventID;
-        StartCoroutine(Publish(eventID, interactionID, playerData.playerName, playerData.playerID,track.GetTrackId(), track.GetUserResponse()));
+        string eventID = "";
+        StartCoroutine(Publish(eventID, interactionID, playerData.playerName, playerData.playerID,trackID, response));
     }
     IEnumerator Publish(string eventID, string interactionID, string playerName,string playerID, string trackId, string response)
     {
