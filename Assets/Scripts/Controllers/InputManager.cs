@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 public class InputManager : SimpleSingleton<InputManager>
 {
     PlayerInput playerInput;
-    [SerializeField]
-    DialogueManager dialogueManager;
 
     protected override void Awake()
     {
