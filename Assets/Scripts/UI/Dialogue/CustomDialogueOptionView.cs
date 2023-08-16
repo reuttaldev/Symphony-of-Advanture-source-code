@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using Yarn.Unity;
 
-public class CustomOptionView : UnityEngine.UI.Selectable, ISubmitHandler
+public class CustomDilogueOptionView : UnityEngine.UI.Selectable, ISubmitHandler
 {
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] bool showCharacterName = false;

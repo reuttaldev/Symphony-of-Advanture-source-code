@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Yarn.Unity;
 
-public class CustomLineView : DialogueViewBase
+public class CustomDialogueLineView : DialogueViewBase
 {
     /// <summary>
     /// The canvas group that contains the UI elements used by this Line

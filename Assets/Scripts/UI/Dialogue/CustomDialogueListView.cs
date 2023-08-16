@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using Yarn.Unity;
 
-public class CustomListView : DialogueViewBase
+public class CustomDialogueListView : DialogueViewBase
 {
     [SerializeField] CanvasGroup canvasGroup;
 

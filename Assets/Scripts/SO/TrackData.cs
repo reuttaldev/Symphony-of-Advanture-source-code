@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum Emotions
+public enum Emotions
 {
     Happy,
     Sad,
@@ -29,8 +29,7 @@ public class TrackData : ScriptableObject
     [SerializeField]
     private string artistName;
     [SerializeField]
-    private string source;
-    [SerializeField] 
+    private string license;
     private Emotions? userResponse = null;
 
     public string GetTrackId()
@@ -40,6 +39,10 @@ public class TrackData : ScriptableObject
     public string GetUserResponse()
     {
         return userResponse.ToString();
+    }
+    public void SetUserResponse(Emotions emotion)
+    {
+        this.userResponse = emotion;
     }
 }
 

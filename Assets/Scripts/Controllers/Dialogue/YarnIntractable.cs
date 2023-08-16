@@ -4,7 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Yarn.Unity;
 
-public class YarnInteractable : MonoBehaviour
+// this script will be added to every game object that allows the start of a dialogue
+public class YarnIntractable : MonoBehaviour
 {
     private DialogueRunner dialogueRunner;
     [SerializeField]

@@ -14,9 +14,9 @@ public class ExportManager :MonoBehaviour, IRegistrableService
         ManagerLocator.Instance.Register<ExportManager>(this);
     }
 
-    public void ExportTrackData(string interactionID, TrackData track)
+    public void ExportTrackData(string interactionID, string trackID, string response)
     {
-        if (string.IsNullOrEmpty(playerData.playerID) || string.IsNullOrEmpty(playerData.playerName) || string.IsNullOrEmpty(track.GetTrackId()) || string.IsNullOrEmpty(track.GetUserResponse())) 
+        if (string.IsNullOrEmpty(playerData.playerID) || string.IsNullOrEmpty(playerData.playerName) || string.IsNullOrEmpty(trackID) || string.IsNullOrEmpty(response)) 
         {
             Debug.LogError("Trying to export track data with one or more empty attributes");
         }
