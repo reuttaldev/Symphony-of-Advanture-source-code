@@ -9,41 +9,38 @@ using UnityEngine.Events;
 public class MainInterfaceUI : MonoBehaviour
 {
     [SerializeField]
-    private InputActionReference openCloseMenuAction;
+    private InputActionReference openMenuAction;
+    [SerializeField]
+    private InputActionReference closeMenuAction;
     private CanvasGroup canvasGroup;
-    private bool visible;
-    private UnityEvent makeVisible;
-
     private void Awake()
     {
         canvasGroup = GetComponentInParent<CanvasGroup>();
+    }
+    private void Start()
+    {   
         MakeInvisible();
     }
     private void OnEnable()
     {
-        openCloseMenuAction.action.performed += context => ControlVisibility();
+        openMenuAction.action.performed += context => MakeVisible();
+        closeMenuAction.action.performed += context => MakeInvisible();
     }
     private void OnDisable()
     {
-        openCloseMenuAction.action.performed -= context => ControlVisibility();
-    }
-    void ControlVisibility()
-    {
-        if(visible) 
-            MakeInvisible();
-        else 
-            MakeVisible();
+        openMenuAction.action.performed -= context => MakeVisible();
+        closeMenuAction.action.performed -= context => MakeInvisible();
     }
      void MakeVisible()
     {
         canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
-        visible = true;
+        ServiceLocator.Instance.Get<InputManager>().ActivateUIMap();
     }
     void MakeInvisible()
     {
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
-        visible = false;
+        ServiceLocator.Instance.Get<InputManager>().ActivatePlayerMap();
     }
 }
