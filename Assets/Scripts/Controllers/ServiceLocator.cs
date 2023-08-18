@@ -23,7 +23,7 @@ public interface IRegistrableService
 }
 
 
-public class ManagerLocator : SimpleSingleton<ManagerLocator>
+public class ServiceLocator : SimpleSingleton<ServiceLocator>
 {
     private Dictionary<Type, object> services = new Dictionary<Type, object>();
     public void Register<T>(T service) where T : MonoBehaviour, IRegistrableService

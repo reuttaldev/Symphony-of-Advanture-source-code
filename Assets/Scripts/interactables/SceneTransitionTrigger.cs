@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SceneTransitionTrigger : MonoBehaviour
 {
@@ -16,6 +17,6 @@ public class SceneTransitionTrigger : MonoBehaviour
             Debug.LogError("SceneTransitionTrigger: Scene to transition to name is Null");
             return;
         }
-        SceneManager.Instance.LoadScene(transitionTo);
+        ServiceLocator.Instance.Get<SceneManager>().LoadScene(transitionTo);
     }
 }

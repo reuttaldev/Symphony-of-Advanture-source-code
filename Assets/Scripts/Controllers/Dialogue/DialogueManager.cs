@@ -13,8 +13,8 @@ public class DialogueManager : MonoBehaviour
     }
     private void Start()
     {
-        dialogueRunner.onDialogueStart.AddListener(()=>InputManager.Instance.ActivateDialogueMap());
-        dialogueRunner.onDialogueComplete.AddListener(()=>InputManager.Instance.ActivatePlayerMap());
+        dialogueRunner.onDialogueStart.AddListener(()=>ServiceLocator.Instance.Get<InputManager>().ActivateUIMap());
+        dialogueRunner.onDialogueComplete.AddListener(()=>ServiceLocator.Instance.Get<InputManager>().ActivatePlayerMap());
     }
 
 

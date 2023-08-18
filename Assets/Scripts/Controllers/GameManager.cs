@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : SimpleSingleton<GameManager>
+public class GameManager : MonoBehaviour
 {
 
 

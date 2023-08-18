@@ -99,6 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7079516389571481887}
+  - component: {fileID: 4671343277068662628}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -126,6 +127,18 @@ Transform:
   - {fileID: 6886627688756341852}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4671343277068662628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084552899641636349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ba7e29efd3bf64baeb55abdeb78ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2731820401996898929
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c96b6f695b8462438e21b58245ee79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 0}
+  openCloseMenuAction: {fileID: 0}
+  menu: {fileID: 0}
 --- !u!114 &7569115639876857724
 MonoBehaviour:
   m_ObjectHideFlags: 0

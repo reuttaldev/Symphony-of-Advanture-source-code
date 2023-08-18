@@ -5,13 +5,13 @@ using UnityEngine.Networking;
 
 
 // this script is in charge of sending user's responses to Google spreadsheets for data collection of the user's response 
-public class ExportManager :MonoBehaviour, IRegistrableService
+public class ExportManager :MonoBehaviour
 {
     PlayerData playerData;
     string spreadsheetURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSf2Kf3ArIg6J9ln6p_IVUcXidNdS4Cx7nNHMVL0Yvap2xVCTw/formResponse";
     void Awake()
     {
-        ManagerLocator.Instance.Register<ExportManager>(this);
+       // ServiceManager.Instance.Register<ExportManager>(this);
     }
 
     public void ExportTrackData(string interactionID, string trackID, string response)

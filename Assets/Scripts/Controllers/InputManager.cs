@@ -3,19 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : SimpleSingleton<InputManager>
+public class InputManager : MonoBehaviour, IRegistrableService
 {
     PlayerInput playerInput;
-
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
+        ServiceLocator.Instance.Register<InputManager>(this);
         playerInput = GetComponent<PlayerInput>();
     }
-    private void Start()
-    {
-    }
-
     public void ActivatePlayerMap()
     {
         playerInput.SwitchCurrentActionMap("Player");
@@ -23,10 +18,6 @@ public class InputManager : SimpleSingleton<InputManager>
     public void ActivateUIMap()
     {
         playerInput.SwitchCurrentActionMap("UI");
-    }
-    public void ActivateDialogueMap()
-    {
-        playerInput.SwitchCurrentActionMap("Dialogue Box");
     }
 
 }
