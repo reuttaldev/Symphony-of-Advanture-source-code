@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class SimpleSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     // thread safety
