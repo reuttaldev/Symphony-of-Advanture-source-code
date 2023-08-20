@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,8 @@ public enum Emotions
 
 }
 
-[CreateAssetMenu(fileName = "Track Data", menuName = "Scriptable Objects/ Tracks")]
+[CreateAssetMenu(fileName = "Track Data", menuName = "Scriptable Objects/ Track Data")]
+[Serializable]
 public class TrackData : ScriptableObject
 {
     [SerializeField]
