@@ -13,6 +13,8 @@ public class MainInterfaceUI : MonoBehaviour
     [SerializeField]
     private InputActionReference closeMenuAction;
     private CanvasGroup canvasGroup;
+    [SerializeField]
+    WalkmanUI walkmanUI;
     private void Awake()
     {
         canvasGroup = GetComponentInParent<CanvasGroup>();
@@ -36,11 +38,13 @@ public class MainInterfaceUI : MonoBehaviour
         canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         ServiceLocator.Instance.Get<InputManager>().ActivateUIMap();
+        walkmanUI.gameObject.SetActive(true);
     }
     void MakeInvisible()
     {
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         ServiceLocator.Instance.Get<InputManager>().ActivatePlayerMap();
+        walkmanUI.gameObject.SetActive(false);
     }
 }

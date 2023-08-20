@@ -34,7 +34,7 @@ public class SimpleSingleton<T> : MonoBehaviour where T : MonoBehaviour
             instance = gameObject.GetComponent<T>();
             //DontDestroyOnLoad(instance.gameObject);
         }
-        else
+        else if(instance!=this)
         {
             Debug.LogError("Duplicate instances for " + GetType().FullName + ", extra one deleted");
             Destroy(gameObject);

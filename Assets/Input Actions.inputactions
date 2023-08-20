@@ -220,6 +220,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Next Song",
+                    "type": "Button",
+                    "id": "6c01ec73-f46c-462b-85aa-7d67c578aba8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Last Song",
+                    "type": "Button",
+                    "id": "5e18a7cd-8b5e-40bc-81f8-fdebbf202e55",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -550,6 +568,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Close Main Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c083454-253e-41f4-9f02-9b016ab758e7",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Next Song",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "493367fd-dc1d-4116-b5e7-8566dcd03de6",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Last Song",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

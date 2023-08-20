@@ -29,12 +29,30 @@ public class TrackData : ScriptableObject
     [SerializeField]
     private string artistName;
     [SerializeField]
-    private string license;
+    private string license = null;
+    [SerializeField]
+    private string source = null;
     private Emotions? userResponse = null;
 
     public string GetTrackId()
     {
         return trackID;
+    }
+    public string GetTrackName()
+    {
+        return trackName;
+    }
+    public string GetArtist()
+    {
+        return artistName;
+    }
+    public string GetLicense()
+    {
+        return license;
+    }
+    public string GetSource()
+    {
+        return source;
     }
     public string GetUserResponse()
     {

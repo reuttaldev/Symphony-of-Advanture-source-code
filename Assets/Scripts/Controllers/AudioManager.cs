@@ -1,39 +1,77 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour, IRegistrableService
 {
-    private TrackData currentlyPlayingTrack;
     // a dictionary of all currently available songs for the player to hear. key is track id and value is it's data container 
-    private Dictionary<string,TrackData> library = new Dictionary<string,TrackData>();
+    private List<TrackData> library = new List<TrackData>();
     // all possible tracks that can be used in the game
     private Dictionary<string,TrackData> allTracks = new Dictionary<string,TrackData>();
-    TrackData GetCurrentlyPlaying()
+    // whenever the track we are currently playing has changed, invoke this events with the following parameters: track name, artist name, source (optional), license (optional)
+    public UnityEvent<TrackData> OnTrackChanged;
+    // the index in the library list we are currently playing
+    private int current;
+    void Awake()
     {
-        return currentlyPlayingTrack;
+        ServiceLocator.Instance.Register<AudioManager>(this);
+        current = 0;
+        // make sure there is at least something in the library
     }
-    void playSound(int soundID)
+    void PlayTrack(TrackData data)
     {
-        // Play sound using console audio api...
+        OnTrackChanged.Invoke(data);
     }
-
-    void stopSound(int soundID)
+    public void PlayNextTrack()
     {
-        // Stop sound using console audio api...
+        int nextPos = (current+1)%library.Count;
+        if (!TrackAvilable(nextPos))
+        {
+            Debug.LogError("Index out of range for audio library");
+            return;
+        }
+        PlayTrack(library[nextPos]);
     }
-
-    void stopAllSounds()
+    public void PlayLastTrack()
     {
-        // Stop all sounds using console audio api...
+        int lastPos = (current - 1) % library.Count;
+        if (!TrackAvilable(lastPos))
+        {
+            Debug.LogError("Index out of range for audio library");
+            return;
+        }
+        PlayTrack(library[lastPos]);
+    }
+    public TrackData GetCurrentTrack()
+    {
+        if(!TrackAvilable(current))
+        {
+            Debug.LogError("Index out of range for audio library");
+            return null;
+        }
+        return library[current];
     }
     // check if track id is found in the currently available tracks library
     bool TrackAvilable(string trackID)
     {
-        if(library.ContainsKey(trackID))
+        if(!TrackExists(trackID)) 
+        {
+            Debug.LogError("Track " + trackID + " does not exist");
+            return false;
+        }
+        if (library.Contains(allTracks[trackID]))
             return true;
         return false;
     }
+    // check if library contains this index
+    bool TrackAvilable(int index)
+    {
+        if (index < library.Count && index >= 0)
+            return true;
+        return false;
+    }
+
 
     // check if a track id is found in all possible game tracks
     bool TrackExists(string trackID)
@@ -48,10 +86,10 @@ public class AudioManager : MonoBehaviour
     {
         if(!TrackAvilable(trackID))
         {
-            Debug.LogError("Track is not found in the current available tracks library");
+            Debug.LogError("Track "+trackID+ " is not found in the current available tracks library");
             return;
         }
-        library[trackID].SetUserResponse(emotion);
+        allTracks[trackID].SetUserResponse(emotion);
     }
     public void AddTrackToLibrary(string trackID)
     {
@@ -65,7 +103,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("Track does not exist");
             return;
         }
-        library.Add(trackID, allTracks[trackID]);
+        library.Add(allTracks[trackID]);
     }
     public void RemoveTrackFromLibrary(string trackID)
     {
@@ -74,6 +112,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("Track is not found in the current available tracks library");
             return;
         }
-        library.Remove(trackID);
+        library.Remove(allTracks[trackID]);
     }
 }
