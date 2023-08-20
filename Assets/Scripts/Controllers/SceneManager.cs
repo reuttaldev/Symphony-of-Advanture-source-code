@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SceneManager :MonoBehaviour, IRegistrableService
+public class SceneManager : SimpleSingleton<SceneManager>
 {
     bool changingScene = false;
     [SerializeField]
@@ -13,9 +13,10 @@ public class SceneManager :MonoBehaviour, IRegistrableService
     Image loadingImage;
     Color imageColor;
     float alpha;
-    void Awake()
+    protected override void  Awake()
     {
-        ServiceLocator.Instance.Register<SceneManager>(this);
+        base.Awake();
+        DontDestroyOnLoad(this);
     }
     void Start()
     {

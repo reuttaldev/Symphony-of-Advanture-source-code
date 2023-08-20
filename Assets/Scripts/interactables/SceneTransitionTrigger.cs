@@ -17,6 +17,6 @@ public class SceneTransitionTrigger : MonoBehaviour
             Debug.LogError("SceneTransitionTrigger: Scene to transition to name is Null");
             return;
         }
-        ServiceLocator.Instance.Get<SceneManager>().LoadScene(transitionTo);
+        SceneManager.Instance.LoadScene(transitionTo);
     }
 }
