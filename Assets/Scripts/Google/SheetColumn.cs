@@ -45,7 +45,7 @@ public abstract class SheetColumn
 
     /// <summary>
     /// Sets the column title and optional note. 
-    public abstract void PushHeader(out string header);
+  /*  public abstract void PushHeader(out string header);
 
     /// <summary>
     /// Extracts the data that should populate the columns cell for the row associated with the Key.
@@ -80,7 +80,7 @@ public abstract class SheetColumn
     /// Called after all calls to <see cref="PullCellData"/> to provide an opurtunity to deinitialize, cleanup etc.
     /// </summary>
     public virtual void PullEnd() { }
-
+  */
     /// <summary>
     /// Converts a column id value into its name. Column ids start at 0.
     /// E.G 0 = 'A', 1 = 'B', 26 = 'AA', 27 = 'AB'
