@@ -17,8 +17,14 @@ public class DataMigrationSettingsEditor : Editor
     public SerializedProperty spreadsheetID;
     public SerializedProperty importSheetID;
     public SerializedProperty exportSheetID;
+    /// <summary>
+    /// The column mappings. Each <see cref="SheetColumn"/> represents a column in a Google sheet. The column mappings are responsible for converting to and from cell data.
+    /// </summary>
     public Task pushTask;
     string exportSheetName = "Collected Data";
+    public IList<Dictionary<string, string>> pulledData = null;
+    //public ReordableList columnsList;
+
     public SheetsServiceProvider Provider => sheetServiceProvider.objectReferenceValue as SheetsServiceProvider;
     public void OnEnable()
     {
@@ -38,10 +44,7 @@ public class DataMigrationSettingsEditor : Editor
         {
             EditorGUILayout.PropertyField(spreadsheetID, new GUIContent("Spreadsheet ID"));
             EditorGUILayout.PropertyField(importSheetID, new GUIContent("Import Sheet ID"));
-            using (new EditorGUI.DisabledGroupScope(true))
-            {
-                EditorGUILayout.PropertyField(exportSheetID, new GUIContent("Export Sheet ID"));
-            }
+            EditorGUILayout.PropertyField(exportSheetID, new GUIContent("Export Sheet ID"));
             using (new EditorGUI.DisabledGroupScope(importSheetID.intValue == 0))
             {
                 if (GUILayout.Button(new GUIContent("Create Collected Data Table")))
@@ -68,13 +71,20 @@ public class DataMigrationSettingsEditor : Editor
                     {
                         if (GUILayout.Button(new GUIContent("Import data and save")))
                         {
-
+                          
                             var google = GetGoogleSheets();
-                            //google.Pull(importSheetID, target.Colums);
-                            // Exit GUI to prevent erros due to GUI state changes. (LOC-698)
-                            GUIUtility.ExitGUI();
+                            pulledData = google.PullData(importSheetID.intValue,true,5);
+                            if (pulledData == null)
+                            {
+                                Debug.LogError("Data was pulled incorrectly");
+                            }
+                            else
+                            {
+                                GenerateTracksData.GenerateData(pulledData);
+                            }
                         }
                     }
+                    
                 }
             }
         }

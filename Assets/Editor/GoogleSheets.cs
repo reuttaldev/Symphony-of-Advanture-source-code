@@ -12,9 +12,12 @@ using static Google.Apis.Sheets.v4.SpreadsheetsResource;
 using Data = Google.Apis.Sheets.v4.Data;
 using Object = UnityEngine.Object;
 using UnityEditor;
+using UnityEngine.Profiling;
+using System.Data;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class GoogleSheets : MonoBehaviour
-{   
+{
     /// <summary>
     /// The sheets provider is responsible for providing the SheetsService and configuring the type of access.
     /// <seealso cref="SheetsServiceProvider"/>.
@@ -79,175 +82,56 @@ public class GoogleSheets : MonoBehaviour
         SetupSheet(SpreadSheetId, sheetId, newSheetProperties);
         return sheetId;
     }
-    public void Pull(int sheetId, IList<SheetColumn> columnMapping, ITaskReporter reporter = null)
+    public IList<Dictionary<string, string>> PullData(int sheetId, bool skipFirstRow, int amountOfColumnsToRead)
     {
-        VerifyPushPullArguments(sheetId, columnMapping);
 
-        try
+        string sheetName = GetSheetNameByID(sheetId);
+        if (string.IsNullOrEmpty(sheetName))
         {
-            if (reporter != null && reporter.Started != true)
-                reporter.Start($"Pulling from Google sheets", "Preparing columns");
+            Debug.LogError("Problem with sheet ID, could not get sheet name");
+        }
+        Debug.Log($"Pulling from Google sheet " + sheetName);
+        string range = $"{sheetName}!{(skipFirstRow ? "A2" : "A1")}:{IndexToColumnName(amountOfColumnsToRead)}";
+        var request = SheetsService.Service.Spreadsheets.Values.Get(SpreadSheetId, range);
+        int rowCount = 0, columnCount = 0;
+        ValueRange response = request.Execute();
 
-            // The response columns will be in the same order we request them, we need the key
-            // before we can process any values so ensure the first column is the key column.
-            //var sortedColumns = columnMapping.OrderByDescending(c => c is IPullKeyColumn).ToList();
+        IList<IList<object>> values = response.Values;
+        IList<string> columnTitles = GetColumnTitles(sheetId);
+        if (columnTitles.Count < amountOfColumnsToRead)
+        {
+            Debug.LogError("Too little columns in sheet " + sheetName + ". Please check that you have set it up correctly");
+            return null;
+        }
+        // keep all rows 
+        // each row is a dictionary with the column name as key and cell content as value 
+        IList<Dictionary<string, string>> table = new List<Dictionary<string, string>>();
 
-            // We can only use public API. No data filters.
-            // We use a data filter when possible as it allows us to remove a lot of unnecessary information,
-            // such as unneeded sheets and columns, which reduces the size of the response. A Data filter can only be used with OAuth authentication.
-            reporter?.ReportProgress("Generating request", 0.1f);
-            ClientServiceRequest<Spreadsheet> pullReq = GenerateFilteredPullRequest(sheetId, columnMapping);
-
-            reporter?.ReportProgress("Sending request", 0.2f);
-            var response = ExecuteRequest<Spreadsheet, ClientServiceRequest<Spreadsheet>>(pullReq);
-
-            reporter?.ReportProgress("Validating response", 0.5f);
-
-            // When using an API key we get all the sheets so we need to extract the one we are pulling from.
-            var sheet = response.Sheets[0];
-            if (sheet == null)
-                throw new Exception($"No sheet data available for {sheetId} in Spreadsheet {SpreadSheetId}.");
-
-            // The data will be structured differently if we used a filter or not so we need to extract the parts we need.
-            var pulledColumns = new List<(IList<RowData> rowData, int valueIndex)>();
-                if (sheet.Data.Count != columnMapping.Count)
-                    throw new Exception($"Column mismatch. Expected a response with {columnMapping.Count} columns but only got {sheet.Data.Count}");
-
-                // When using a filter each Data represents a single column.
-                foreach (var d in sheet.Data)
+        if (values != null && values.Count > 0)
+        {
+            foreach (IList<object> row in values)
+            {
+                //  create a dictionary for each row, with the column name as key and cell content as value 
+                Dictionary<string, string> rowDic = new Dictionary<string, string>();
+                columnCount = 0;
+                foreach (object cell in row)
                 {
-                    pulledColumns.Add((d.RowData, 0));
+                    rowDic[columnTitles[columnCount]] = cell.ToString();
+                    columnCount++;
                 }
-
-            MergePull(pulledColumns, columnMapping,true,true, reporter);
-            // Flush changes to disk.
-        }
-        catch (Exception e)
-        {
-            reporter?.Fail(e.Message);
-            throw;
-        }
-    }
-    void MergePull(List<(IList<RowData> rowData, int valueIndex)> columns, IList<SheetColumn> columnMapping, bool skipFirstRow, bool removeMissingEntries, ITaskReporter reporter)
-    {
-       /* reporter?.ReportProgress("Preparing to merge", 0.55f);
-
-        // Keep track of any issues for a single report instead of filling the console.
-        var messages = new StringBuilder();
-
-        //var keyColumn = columnMapping[0] as IPullKeyColumn;
-        //Debug.Assert(keyColumn != null, "Expected the first column to be a Key column");
-
-        var rowCount = columns[0].rowData != null ? columns[0].rowData.Count : 0;
-
-        // Send the start message
-        foreach (var col in columnMapping)
-        {
-            //col.PullBegin(collection);
-        }
-
-        reporter?.ReportProgress("Merging response into collection", 0.6f);
-        var keysProcessed = new HashSet<long>();
-
-        // We want to keep track of the order the entries are pulled in so we can match it
-        var sortedEntries = new List<SharedTableEntry>(rowCount);
-        var addedIds = new Dictionary<long, int>(); // So we dont add duplicates. (id,row)
-        var addedKeys = new Dictionary<string, int>(); // So we dont add duplicate names. (name, row)
-
-        long totalCellsProcessed = 0;
-
-        var keyValueIndex = columns[0].valueIndex;
-        for (int row = skipFirstRow ? 1 : 0; row < rowCount; row++)
-        {
-            var keyRowData = columns[0].rowData[row];
-            var keyData = keyRowData?.Values?[keyValueIndex];
-            var keyValue = keyData?.FormattedValue;
-            var keyNote = keyData?.Note;
-
-            // Skip rows with no key data
-            if (string.IsNullOrEmpty(keyValue) && string.IsNullOrEmpty(keyNote))
-                continue;
-
-            var rowKeyEntry = keyColumn.PullKey(keyValue, keyNote);
-
-            // Ignore duplicate ids (LOC-464)
-            if (addedIds.TryGetValue(rowKeyEntry.Id, out int duplicateRowId))
-            {
-                messages.AppendLine($"An entry with the Id {rowKeyEntry.Id} has already been processed at row {duplicateRowId}, The entry {keyValue} at row {row} will be ignored.");
-                continue;
+                table.Add(rowDic);
+                rowCount++;
             }
 
-            // Rename duplicate names with unique ids.
-            if (addedKeys.TryGetValue(rowKeyEntry.Key, out int duplicateRowKey))
-            {
-                string newName = $"{rowKeyEntry.Key}_{rowKeyEntry.Id}";
-                messages.AppendLine($"An entry with the name `{rowKeyEntry.Key}` has already been processed at row {duplicateRowKey}, The entry {keyValue} at row {row} has been renamed to {newName}.");
-                rowKeyEntry.Key = newName;
-            }
-
-            addedIds.Add(rowKeyEntry.Id, row);
-            addedKeys.Add(rowKeyEntry.Key, row);
-            sortedEntries.Add(rowKeyEntry);
-
-            if (rowKeyEntry == null)
-            {
-                messages.AppendLine($"No key data was found for row {row} with Value '{keyValue}' and Note '{keyNote}'.");
-                continue;
-            }
-
-            // Record the id so we can check what key ids were missing later.
-            keysProcessed.Add(rowKeyEntry.Id);
-            totalCellsProcessed++;
-
-            for (int col = 1; col < columnMapping.Count; ++col)
-            {
-                string value = null;
-                string note = null;
-
-                var colRowData = columns[col].rowData;
-                var valueIndex = columns[col].valueIndex;
-
-                // Do we have data in this column for this row?
-                if (colRowData != null && colRowData.Count > row && colRowData[row]?.Values?.Count > valueIndex)
-                {
-                    var cellData = colRowData[row].Values[valueIndex];
-                    if (cellData != null)
-                    {
-                        value = cellData.FormattedValue;
-                        note = cellData.Note;
-                        totalCellsProcessed++;
-                    }
-                }
-
-                // We always call PullCellData as its possible that data may have existed
-                // in a previous Pull and has now been removed. We call Pull so that the column
-                // is aware it is now null and can remove any metadata it may have added in the past. (LOC-134)
-                //columnMapping[col].PullCellData(rowKeyEntry, value, note);
-            }
+            Debug.Log($"Imported successfully.");
+            return table;
         }
-
-        // Send the end message
-        foreach (var col in columnMapping)
+        else
         {
-            //col.PullEnd();
+            Debug.LogError($"No sheet data available for {sheetId} in Spreadsheet {SpreadSheetId}. Add some data in the Meta Data google sheet");
+            return null;
         }
 
-        reporter?.ReportProgress("Removing missing entries and matching sheet row order", 0.9f);
-        reporter?.Completed($"Completed merge of {rowCount} rows and {totalCellsProcessed} cells from {columnMapping.Count} columns successfully.\n{messages.ToString()}");
-    */}
-    void VerifyPushPullArguments(int sheetId, IList<SheetColumn> columnMapping)
-    {
-        if (string.IsNullOrEmpty(SpreadSheetId))
-            throw new Exception($"{nameof(SpreadSheetId)} is required.");
-
-        if (columnMapping == null)
-            throw new ArgumentNullException(nameof(columnMapping));
-
-        if (columnMapping.Count == 0)
-            throw new ArgumentException("Must include at least 1 column.", nameof(columnMapping));
-
-
-        ThrowIfDuplicateColumnIds(columnMapping);
     }
     /// <summary>
     /// Returns a list of all the sheets in the Spreadsheet with the id <see cref="SpreadSheetId"/>.
@@ -268,6 +152,20 @@ public class GoogleSheets : MonoBehaviour
         }
 
         return sheets;
+    }
+    public string GetSheetNameByID(int sheetId)
+    {
+        if (string.IsNullOrEmpty(SpreadSheetId) || string.IsNullOrEmpty(sheetId.ToString()))
+            throw new Exception($"The {nameof(SpreadSheetId)} is required. Please assign a valid Spreadsheet Id to the property.");
+        var spreadsheetInfoRequest = SheetsService.Service.Spreadsheets.Get(SpreadSheetId);
+        var sheetInfoReq = ExecuteRequest<Spreadsheet, GetRequest>(spreadsheetInfoRequest);
+
+        foreach (var sheet in sheetInfoReq.Sheets)
+        {
+            if (sheet.Properties.SheetId.Value == sheetId)
+                return sheet.Properties.Title;
+        }
+        return null;
     }
     /// <summary>
     /// Returns all the column titles(values from the first row) for the selected sheet inside of the Spreadsheet with id <see cref="SpreadSheetId"/>.
@@ -364,46 +262,7 @@ public class GoogleSheets : MonoBehaviour
             },
         }, SpreadSheetId);
     }
-    ClientServiceRequest<Spreadsheet> GeneratePullRequest()
-    {
-        var request = SheetsService.Service.Spreadsheets.Get(SpreadSheetId);
-        request.IncludeGridData = true;
-        request.Fields = "sheets.properties.sheetId,sheets.properties.gridProperties.rowCount,sheets.data.rowData.values.formattedValue,sheets.data.rowData.values.note";
-        return request;
-    }
-
-    ClientServiceRequest<Spreadsheet> GenerateFilteredPullRequest(int sheetId, IList<SheetColumn> columnMapping)
-    {
-        var getRequest = new GetSpreadsheetByDataFilterRequest { DataFilters = new List<DataFilter>() };
-
-        foreach (var col in columnMapping)
-        {
-            getRequest.DataFilters.Add(new DataFilter
-            {
-                GridRange = new GridRange
-                {
-                    SheetId = sheetId,
-                    StartRowIndex = 1, // Ignore header
-                    StartColumnIndex = col.ColumnIndex,
-                    EndColumnIndex = col.ColumnIndex + 1
-                }
-            });
-        }
-
-        var request = SheetsService.Service.Spreadsheets.GetByDataFilter(getRequest, SpreadSheetId);
-        request.Fields = "sheets.properties.gridProperties.rowCount,sheets.data.rowData.values.formattedValue,sheets.data.rowData.values.note";
-        return request;
-    }
-    void ThrowIfDuplicateColumnIds(IList<SheetColumn> columnMapping)
-    {
-        var ids = new HashSet<string>();
-        foreach (var col in columnMapping)
-        {
-            if (ids.Contains(col.Column))
-                throw new Exception($"Duplicate column found. The Column {col.Column} is already in use");
-            ids.Add(col.Column);
-        }
-    }
+  
 
     void SetupSheet(string spreadSheetId, int sheetId, NewSheetProperties newSheetProperties)
     {
@@ -548,4 +407,47 @@ public class GoogleSheets : MonoBehaviour
 
     internal protected virtual Task<TResponse> ExecuteRequestAsync<TResponse, TClientServiceRequest>(TClientServiceRequest req) where TClientServiceRequest : ClientServiceRequest<TResponse> => req.ExecuteAsync();
     internal protected virtual TResponse ExecuteRequest<TResponse, TClientServiceRequest>(TClientServiceRequest req) where TClientServiceRequest : ClientServiceRequest<TResponse> => req.Execute();
+    /// <summary>
+    /// Converts a column id value into its name. Column ids start at 0.
+    /// E.G 0 = 'A', 1 = 'B', 26 = 'AA', 27 = 'AB'
+    /// </summary>
+    /// <param name="index">Id of the column starting at 0('A').</param>
+    /// <returns>The column name or null.</returns>
+    public static string IndexToColumnName(int index)
+    {
+        index++;
+        string result = null;
+        while (--index >= 0)
+        {
+            result = (char)('A' + index % 26) + result;
+            index /= 26;
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// Convert a column name to its id value.
+    /// E.G 'A' = 0, 'B' = 1, 'AA' = 26, 'AB' = 27
+    /// </summary>
+    /// <param name="name">The name of the column, case insensitive.</param>
+    /// <returns>The column index or 0.</returns>
+    /// <exception cref="ArgumentException"></exception>
+    public static int ColumnNameToIndex(string name)
+    {
+        int power = 1;
+        int index = 0;
+        for (int i = name.Length - 1; i >= 0; --i)
+        {
+            char c = name[i];
+            char a = char.IsUpper(c) ? 'A' : 'a';
+            int charId = c - a + 1;
+
+            if (charId < 1 || charId > 26)
+                throw new ArgumentException($"Invalid Column Name '{name}'. Must only contain values 'A-Z'. Item at Index {i} was invalid '{c}'", nameof(name));
+
+            index += charId * power;
+            power *= 26;
+        }
+        return index - 1;
+    }
 }
