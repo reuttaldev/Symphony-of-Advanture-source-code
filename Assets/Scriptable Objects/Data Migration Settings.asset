@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b242b1ab33ca76644a0debdf04c86148, type: 3}
   m_Name: Data Migration Settings
   m_EditorClassIdentifier: 
-  m_SheetsServiceProvider: {fileID: 0}
-  documentID: 
+  sheetServiceProvider: {fileID: 11400000, guid: 2ff8045537d2db648bb055bc931d0566, type: 2}
+  spreadsheetID: 1qHmvEGfXoCBZQWwDBrjASd-an27MBgBMTmAK-BSrNbI
+  importSheetID: 2040123043
+  exportSheetID: 

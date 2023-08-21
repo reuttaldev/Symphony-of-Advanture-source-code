@@ -2,22 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Google.Apis.Requests;
 using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Sheets.v4;
-using UnityEngine;
 using static Google.Apis.Sheets.v4.SpreadsheetsResource;
 using Data = Google.Apis.Sheets.v4.Data;
 using Object = UnityEngine.Object;
-using Google.Apis.Sheets.v4;
 using UnityEditor;
 
 public class GoogleSheets : MonoBehaviour
-{
+{   
     /// <summary>
     /// The sheets provider is responsible for providing the SheetsService and configuring the type of access.
     /// <seealso cref="SheetsServiceProvider"/>.
@@ -38,8 +35,7 @@ public class GoogleSheets : MonoBehaviour
     public GoogleSheets(IGoogleSheetsService provider)
     {
         if (provider == null)
-            throw new ArgumentNullException(nameof(provider));
-
+            Debug.LogError("No provider");
         SheetsService = provider;
     }
 
@@ -83,32 +79,24 @@ public class GoogleSheets : MonoBehaviour
         SetupSheet(SpreadSheetId, sheetId, newSheetProperties);
         return sheetId;
     }
-    public void PullIntoStringTableCollection(int sheetId, IList<SheetColumn> columnMapping, ITaskReporter reporter = null, bool createUndo = false)
+    public void Pull(int sheetId, IList<SheetColumn> columnMapping, ITaskReporter reporter = null)
     {
-        VerifyPushPullArguments(sheetId, collection, columnMapping, typeof(IPullKeyColumn));
+        VerifyPushPullArguments(sheetId, columnMapping);
 
         try
         {
-            var modifiedAssets = collection.StringTables.Select(t => t as Object).ToList();
-            modifiedAssets.Add(collection.SharedData);
-
-            if (createUndo)
-            {
-                Undo.RegisterCompleteObjectUndo(modifiedAssets.ToArray(), $"Pull `{collection.TableCollectionName}` from Google sheets");
-            }
-
             if (reporter != null && reporter.Started != true)
-                reporter.Start($"Pull `{collection.TableCollectionName}` from Google sheets", "Preparing columns");
+                reporter.Start($"Pulling from Google sheets", "Preparing columns");
 
             // The response columns will be in the same order we request them, we need the key
             // before we can process any values so ensure the first column is the key column.
-            var sortedColumns = columnMapping.OrderByDescending(c => c is IPullKeyColumn).ToList();
+            //var sortedColumns = columnMapping.OrderByDescending(c => c is IPullKeyColumn).ToList();
 
             // We can only use public API. No data filters.
             // We use a data filter when possible as it allows us to remove a lot of unnecessary information,
             // such as unneeded sheets and columns, which reduces the size of the response. A Data filter can only be used with OAuth authentication.
             reporter?.ReportProgress("Generating request", 0.1f);
-            ClientServiceRequest<Spreadsheet> pullReq = UsingApiKey ? GeneratePullRequest() : GenerateFilteredPullRequest(sheetId, columnMapping);
+            ClientServiceRequest<Spreadsheet> pullReq = GenerateFilteredPullRequest(sheetId, columnMapping);
 
             reporter?.ReportProgress("Sending request", 0.2f);
             var response = ExecuteRequest<Spreadsheet, ClientServiceRequest<Spreadsheet>>(pullReq);
@@ -116,23 +104,12 @@ public class GoogleSheets : MonoBehaviour
             reporter?.ReportProgress("Validating response", 0.5f);
 
             // When using an API key we get all the sheets so we need to extract the one we are pulling from.
-            var sheet = UsingApiKey ? response.Sheets?.FirstOrDefault(s => s?.Properties?.SheetId == sheetId) : response.Sheets[0];
+            var sheet = response.Sheets[0];
             if (sheet == null)
                 throw new Exception($"No sheet data available for {sheetId} in Spreadsheet {SpreadSheetId}.");
 
             // The data will be structured differently if we used a filter or not so we need to extract the parts we need.
             var pulledColumns = new List<(IList<RowData> rowData, int valueIndex)>();
-
-            if (UsingApiKey)
-            {
-                // When getting the whole sheet all the columns are stored in a single Data. We need to extract the correct value index for each column.
-                foreach (var sortedCol in sortedColumns)
-                {
-                    pulledColumns.Add((sheet.Data[0].RowData, sortedCol.ColumnIndex));
-                }
-            }
-            else
-            {
                 if (sheet.Data.Count != columnMapping.Count)
                     throw new Exception($"Column mismatch. Expected a response with {columnMapping.Count} columns but only got {sheet.Data.Count}");
 
@@ -141,17 +118,9 @@ public class GoogleSheets : MonoBehaviour
                 {
                     pulledColumns.Add((d.RowData, 0));
                 }
-            }
 
-            MergePull(pulledColumns, collection, columnMapping, UsingApiKey, removeMissingEntries, reporter);
-
-            // There is a bug that causes Undo to not set assets dirty (case 1240528) so we always set the asset dirty.
-            modifiedAssets.ForEach(EditorUtility.SetDirty);
-
-            LocalizationEditorSettings.EditorEvents.RaiseCollectionModified(this, collection);
-
+            MergePull(pulledColumns, columnMapping,true,true, reporter);
             // Flush changes to disk.
-            collection.SaveChangesToDisk();
         }
         catch (Exception e)
         {
@@ -159,7 +128,113 @@ public class GoogleSheets : MonoBehaviour
             throw;
         }
     }
+    void MergePull(List<(IList<RowData> rowData, int valueIndex)> columns, IList<SheetColumn> columnMapping, bool skipFirstRow, bool removeMissingEntries, ITaskReporter reporter)
+    {
+       /* reporter?.ReportProgress("Preparing to merge", 0.55f);
 
+        // Keep track of any issues for a single report instead of filling the console.
+        var messages = new StringBuilder();
+
+        //var keyColumn = columnMapping[0] as IPullKeyColumn;
+        //Debug.Assert(keyColumn != null, "Expected the first column to be a Key column");
+
+        var rowCount = columns[0].rowData != null ? columns[0].rowData.Count : 0;
+
+        // Send the start message
+        foreach (var col in columnMapping)
+        {
+            //col.PullBegin(collection);
+        }
+
+        reporter?.ReportProgress("Merging response into collection", 0.6f);
+        var keysProcessed = new HashSet<long>();
+
+        // We want to keep track of the order the entries are pulled in so we can match it
+        var sortedEntries = new List<SharedTableEntry>(rowCount);
+        var addedIds = new Dictionary<long, int>(); // So we dont add duplicates. (id,row)
+        var addedKeys = new Dictionary<string, int>(); // So we dont add duplicate names. (name, row)
+
+        long totalCellsProcessed = 0;
+
+        var keyValueIndex = columns[0].valueIndex;
+        for (int row = skipFirstRow ? 1 : 0; row < rowCount; row++)
+        {
+            var keyRowData = columns[0].rowData[row];
+            var keyData = keyRowData?.Values?[keyValueIndex];
+            var keyValue = keyData?.FormattedValue;
+            var keyNote = keyData?.Note;
+
+            // Skip rows with no key data
+            if (string.IsNullOrEmpty(keyValue) && string.IsNullOrEmpty(keyNote))
+                continue;
+
+            var rowKeyEntry = keyColumn.PullKey(keyValue, keyNote);
+
+            // Ignore duplicate ids (LOC-464)
+            if (addedIds.TryGetValue(rowKeyEntry.Id, out int duplicateRowId))
+            {
+                messages.AppendLine($"An entry with the Id {rowKeyEntry.Id} has already been processed at row {duplicateRowId}, The entry {keyValue} at row {row} will be ignored.");
+                continue;
+            }
+
+            // Rename duplicate names with unique ids.
+            if (addedKeys.TryGetValue(rowKeyEntry.Key, out int duplicateRowKey))
+            {
+                string newName = $"{rowKeyEntry.Key}_{rowKeyEntry.Id}";
+                messages.AppendLine($"An entry with the name `{rowKeyEntry.Key}` has already been processed at row {duplicateRowKey}, The entry {keyValue} at row {row} has been renamed to {newName}.");
+                rowKeyEntry.Key = newName;
+            }
+
+            addedIds.Add(rowKeyEntry.Id, row);
+            addedKeys.Add(rowKeyEntry.Key, row);
+            sortedEntries.Add(rowKeyEntry);
+
+            if (rowKeyEntry == null)
+            {
+                messages.AppendLine($"No key data was found for row {row} with Value '{keyValue}' and Note '{keyNote}'.");
+                continue;
+            }
+
+            // Record the id so we can check what key ids were missing later.
+            keysProcessed.Add(rowKeyEntry.Id);
+            totalCellsProcessed++;
+
+            for (int col = 1; col < columnMapping.Count; ++col)
+            {
+                string value = null;
+                string note = null;
+
+                var colRowData = columns[col].rowData;
+                var valueIndex = columns[col].valueIndex;
+
+                // Do we have data in this column for this row?
+                if (colRowData != null && colRowData.Count > row && colRowData[row]?.Values?.Count > valueIndex)
+                {
+                    var cellData = colRowData[row].Values[valueIndex];
+                    if (cellData != null)
+                    {
+                        value = cellData.FormattedValue;
+                        note = cellData.Note;
+                        totalCellsProcessed++;
+                    }
+                }
+
+                // We always call PullCellData as its possible that data may have existed
+                // in a previous Pull and has now been removed. We call Pull so that the column
+                // is aware it is now null and can remove any metadata it may have added in the past. (LOC-134)
+                //columnMapping[col].PullCellData(rowKeyEntry, value, note);
+            }
+        }
+
+        // Send the end message
+        foreach (var col in columnMapping)
+        {
+            //col.PullEnd();
+        }
+
+        reporter?.ReportProgress("Removing missing entries and matching sheet row order", 0.9f);
+        reporter?.Completed($"Completed merge of {rowCount} rows and {totalCellsProcessed} cells from {columnMapping.Count} columns successfully.\n{messages.ToString()}");
+    */}
     void VerifyPushPullArguments(int sheetId, IList<SheetColumn> columnMapping)
     {
         if (string.IsNullOrEmpty(SpreadSheetId))
@@ -171,8 +246,6 @@ public class GoogleSheets : MonoBehaviour
         if (columnMapping.Count == 0)
             throw new ArgumentException("Must include at least 1 column.", nameof(columnMapping));
 
-        if (columnMapping.Count(c => requiredKeyType.IsAssignableFrom(c.GetType())) != 1)
-            throw new ArgumentException($"Must include 1 {requiredKeyType.Name}.", nameof(columnMapping));
 
         ThrowIfDuplicateColumnIds(columnMapping);
     }
