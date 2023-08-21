@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
-  m_Name: 890518
+  m_Name: 682419
   m_EditorClassIdentifier: 
-  mp3: {fileID: 0}
-  trackID: 890518
-  trackName: The darkest hour
+  audioClip: {fileID: 8300000, guid: bbdf61f8dd3543a43ac54cacb5a85283, type: 3}
+  trackID: 682419
+  trackName: Homecoming
   artistName: Zero-project
-  license: 'Available under a Creative Commons Attribution-Non-Commercial license
-
-'
-  source: 'Jamendo: http://www.jamendo.com/track/890518'
+  license: Available under a Creative Commons Attribution-Non-Commercial license
+  source: 'Jamendo: http://www.jamendo.com/track/682419'

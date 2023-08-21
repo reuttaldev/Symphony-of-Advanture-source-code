@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
-  m_Name: 682419
+  m_Name: 1250230
   m_EditorClassIdentifier: 
-  mp3: {fileID: 0}
-  trackID: 682419
-  trackName: Homecoming
-  artistName: Zero-project
-  license: Available under a Creative Commons Attribution-Non-Commercial license
-  source: 'Jamendo: http://www.jamendo.com/track/682419'
+  audioClip: {fileID: 8300000, guid: 18dffd7573e98a94da4fc53ad0783e0f, type: 3}
+  trackID: 1250230
+  trackName: Chimes
+  artistName: Christoph Schade
+  license: 'Available under a Creative Commons Attribution-Non-Commercial license
+
+'
+  source: http://www.jamendo.com/track/1250230

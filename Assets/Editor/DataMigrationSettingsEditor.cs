@@ -14,6 +14,7 @@ public class DataMigrationSettingsEditor : Editor
     public SerializedProperty exportSheetID;
     public SerializedProperty columnsToRead;
     public SerializedProperty saveSOToPath;
+    public SerializedProperty loadAudioPath;
     /// <summary>
     /// The column mappings. Each <see cref="SheetColumn"/> represents a column in a Google sheet. The column mappings are responsible for converting to and from cell data.
     /// </summary>
@@ -31,6 +32,7 @@ public class DataMigrationSettingsEditor : Editor
         exportSheetID = serializedObject.FindProperty("exportSheetID");
         columnsToRead = serializedObject.FindProperty("columnsToRead");
         saveSOToPath = serializedObject.FindProperty("saveSOToPath");
+        loadAudioPath = serializedObject.FindProperty("loadAudioPath");
     }
     public override void OnInspectorGUI()
     {
@@ -69,13 +71,13 @@ public class DataMigrationSettingsEditor : Editor
                     {
                         pushTask = null;
                     }
+                    EditorGUILayout.PropertyField(loadAudioPath, new GUIContent("Path to load audio tracks from"));
                     using (new EditorGUI.DisabledGroupScope(pushTask != null))
                     {
                         if (GUILayout.Button(new GUIContent("Import data and save")))
                         {
-                          
                             var google = GetGoogleSheets();
-                            pulledData = google.PullData(importSheetID.intValue,true, columnsToRead.intValue);
+                            pulledData = google.PullData(importSheetID.intValue, true, columnsToRead.intValue);
                             if (pulledData == null)
                             {
                                 Debug.LogError("Data was pulled incorrectly");
@@ -83,11 +85,12 @@ public class DataMigrationSettingsEditor : Editor
                             else
                             {
                                 GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target);
-                            }
+                            }                            
                         }
                     }
                     EditorGUILayout.PropertyField(columnsToRead, new GUIContent("Max Columns to Read"));
                     EditorGUILayout.PropertyField(saveSOToPath, new GUIContent("Saved Data Path"));
+
 
                 }
             }

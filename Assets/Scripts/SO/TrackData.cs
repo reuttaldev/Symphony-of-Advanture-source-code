@@ -22,10 +22,11 @@ public enum Emotions
 [Serializable]
 public class TrackData : ScriptableObject
 {
-    public AudioClip mp3;
+    public AudioClip audioClip;
     public string trackID;
     public string trackName;
     public string artistName;
+    [TextAreaAttribute]
     public string license = null;
     public string source = null;
     private Emotions? userResponse = null;
@@ -37,13 +38,6 @@ public class TrackData : ScriptableObject
     public void SetUserResponse(Emotions emotion)
     {
         this.userResponse = emotion;
-    }
-    private void OnEnable()
-    {
-        if(string.IsNullOrEmpty(trackID)|| string.IsNullOrEmpty(trackName) || string.IsNullOrEmpty(artistName))
-        {
-            Debug.LogError("Track Data scriptable object is missing data");
-        }
     }
 }
 

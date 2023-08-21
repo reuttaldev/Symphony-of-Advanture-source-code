@@ -21,7 +21,10 @@ public class DataMigrationSettings : ScriptableObject
     int exportSheetID; // the id at the end of the URL of the sheet we need to import to
     [ReadOnly]
     [SerializeField]
-    string saveSOToPath = "Assets/Scriptable Objects/Tracks Data";
+    string saveSOToPath = @"Assets\Resources\Tracks Data";
+    [ReadOnly]
+    [SerializeField]
+    string loadAudioPath = @"Assets\Resources\Audio Tracks";
     [ReadOnly]
     [SerializeField]
     public int columnsToRead=5;
@@ -30,5 +33,7 @@ public class DataMigrationSettings : ScriptableObject
     {
         return saveSOToPath;
     }
+    public string GetLoadAudioPath()
+    { return loadAudioPath; }
 
 }

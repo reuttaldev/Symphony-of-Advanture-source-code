@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using System;
+using System.IO;
+using Unity.VisualScripting;
 
 #if UNITY_EDITOR
 public static class GenerateTracksData 
@@ -11,7 +13,7 @@ public static class GenerateTracksData
 
     public static void GenerateData( IList<Dictionary<string, string>> table,DataMigrationSettings settings)
     {
-        //  print table values 
+        ClearFolder(settings.GetSOSaveToPath());
         // keep a dictionary with all of the track keys we have created a scriptable object for to detect duplicates and possible mistakes 
         //(id,row)
         Dictionary<string, int > allKeys = new Dictionary<string, int>();
@@ -60,11 +62,45 @@ public static class GenerateTracksData
             {
                 track.license = row[optionalColumnTitles[1]];
             }
-            string path = settings.GetSOSaveToPath()+ "/"+track.trackID+".asset";
-            AssetDatabase.CreateAsset(track, path);
+
+            // load the suitable audio clip for this ID
+            string loadAudioPath = Path.Combine("Audio Tracks", track.trackID);
+            //AudioClip clip = (AudioClip)AssetDatabase.LoadAssetAtPath(loadAudioPath, typeof(AudioClip));
+            AudioClip clip = Resources.Load<AudioClip>(loadAudioPath);
+            if(clip  == null)
+            {
+                Debug.LogError($"There is no audio file that matches track id {track.trackID} in {settings.GetLoadAudioPath()}. Please make sure there is an audio file for every entry in the metadata spreadsheed. The name of the audio file should be the track id.");
+                Debug.LogError("Saving track data failed.");
+                return;
+            }
+            track.audioClip = clip;
+
+            string saveToPath = Path.Combine(settings.GetSOSaveToPath(), track.trackID+ ".asset");
+            AssetDatabase.CreateAsset(track, saveToPath);
             rowNumber++;  
         }
         Debug.Log("Saved track data successfully.");
+    }
+
+    // I am deleting everything where our asset will be placed to ensure no old  data remains 
+    public static void ClearFolder(string folderPath)
+    {
+        if (Directory.Exists(folderPath))
+        {
+            DirectoryInfo directory = new DirectoryInfo(folderPath);
+
+            // Delete all files in the folder
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                file.Delete();
+            }
+            // make changes appear in the editor
+            AssetDatabase.Refresh();
+        }
+        else
+        {
+            Debug.LogError("Cannot clear directory, path doesnt exist " +folderPath);
+        }
     }
 }
 #endif

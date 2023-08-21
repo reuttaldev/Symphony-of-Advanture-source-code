@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
-  m_Name: 623052
+  m_Name: 783250
   m_EditorClassIdentifier: 
-  mp3: {fileID: 0}
-  trackID: 623052
-  trackName: Rola Z (overture)
-  artistName: Renich
-  license: Available under a Creative Commons Attribution-Non-Commercial license
-  source: 'Jamendo: http://www.jamendo.com/track/623052'
+  audioClip: {fileID: 8300000, guid: 7d3c7f66d03575d48844c6b1f697ce5b, type: 3}
+  trackID: 783250
+  trackName: Carsten Jessen-Traveler
+  artistName: Music4Games
+  license: 'Available under a Creative Commons Attribution-Non-Commercial license
+
+'
+  source: 'Jamendo: http://www.jamendo.com/track/783250'

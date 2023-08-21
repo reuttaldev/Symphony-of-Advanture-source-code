@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
-  m_Name: 95723
+  m_Name: 623052
   m_EditorClassIdentifier: 
-  mp3: {fileID: 0}
-  trackID: 95723
-  trackName: To be free
+  audioClip: {fileID: 8300000, guid: 0376ac4f459a0a1419a50515bd226456, type: 3}
+  trackID: 623052
+  trackName: Rola Z (overture)
   artistName: Renich
-  license: 'Available under a Creative Commons Attribution-Non-Commercial license
-
-'
-  source: http://www.jamendo.com/track/95723
+  license: Available under a Creative Commons Attribution-Non-Commercial license
+  source: 'Jamendo: http://www.jamendo.com/track/623052'

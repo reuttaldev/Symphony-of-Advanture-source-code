@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
-  m_Name: 1277709
+  m_Name: 95587
   m_EditorClassIdentifier: 
-  mp3: {fileID: 0}
-  trackID: 1277709
-  trackName: Ofelia s Clock Ticks Backwards
-  artistName: Pablo Samonta
+  audioClip: {fileID: 8300000, guid: bf809c537f47bca4dad659755aeab52d, type: 3}
+  trackID: 95587
+  trackName: Misa de gallinas
+  artistName: Renich
   license: 'Available under a Creative Commons Attribution-Non-Commercial license
 
 '
-  source: http://www.jamendo.com/track/1277709
+  source: 'Jamendo: http://www.jamendo.com/track/95587'
