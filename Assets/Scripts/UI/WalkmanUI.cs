@@ -18,7 +18,7 @@ public class WalkmanUI : MonoBehaviour
     private void OnEnable()
     {
         if (audioManager == null)
-            audioManager = ServiceLocator.Instance.Get<AudioManager>();
+            audioManager = AudioManager.Instance;
 
         audioManager.OnTrackChanged.AddListener(UpdateDisplay);
         UpdateDisplay(audioManager.GetCurrentTrack());
@@ -43,7 +43,7 @@ public class WalkmanUI : MonoBehaviour
     {
         if (trackData == null)
         {
-            Debug.LogError("track data is null");
+            Debug.LogError("Walkman UI got empty track data");
             return;
         }
         // do some animation to indicate we are switching songs 

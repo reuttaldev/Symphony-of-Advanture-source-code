@@ -2,30 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
 
-public class AudioManager : MonoBehaviour, IRegistrableService
+// this is a singleton because the current available library must be persistent between scenes
+public class AudioManager : SimpleSingleton<AudioManager>
 {
     // a dictionary of all currently available songs for the player to hear. key is track id and value is it's data container 
+    [SerializeField]
     private List<TrackData> library = new List<TrackData>();
+    [SerializeField]
+    int startingSongIndex;
     // all possible tracks that can be used in the game
     private Dictionary<string,TrackData> allTracks = new Dictionary<string,TrackData>();
     // whenever the track we are currently playing has changed, invoke this events with the following parameters: track name, artist name, source (optional), license (optional)
     public UnityEvent<TrackData> OnTrackChanged;
     // the index in the library list we are currently playing
     private int current;
+    private AudioSource audioSource;
     void Awake()
     {
-        ServiceLocator.Instance.Register<AudioManager>(this);
+        DontDestroyOnLoad(this);
+        audioSource = GetComponent<AudioSource>();
+        // load all of the track data scriptable objects from resources folder into all tracks
+        var loadedObjects = Resources.LoadAll("Tracks Data", typeof(TrackData)).Cast<TrackData>();
+        foreach (TrackData data in loadedObjects)
+        {
+            allTracks[data.trackID] = data;
+            AddTrackToLibrary(data.trackID);
+        }
         current = 0;
-        // make sure there is at least something in the library
+    }
+    private void Start()
+    {
+        // play the fist song in the library on start game 
+        PlayTrack(library[startingSongIndex]);  
     }
     void PlayTrack(TrackData data)
     {
+        audioSource.clip = data.audioClip;
+        audioSource.Play();
         OnTrackChanged.Invoke(data);
+    }
+    void StopPlayingTrack()
+    {
+        audioSource.Stop();
     }
     public void PlayNextTrack()
     {
+        Debug.Log("current pos " + current);
         int nextPos = (current+1)%library.Count;
+        Debug.Log("next pos " + nextPos);
         if (!TrackAvilable(nextPos))
         {
             Debug.LogError("Index out of range for audio library");
@@ -35,7 +61,9 @@ public class AudioManager : MonoBehaviour, IRegistrableService
     }
     public void PlayLastTrack()
     {
+        Debug.Log("current pos " + current);
         int lastPos = (current - 1) % library.Count;
+        Debug.Log("last pos " + lastPos);
         if (!TrackAvilable(lastPos))
         {
             Debug.LogError("Index out of range for audio library");
