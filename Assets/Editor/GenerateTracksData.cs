@@ -11,7 +11,7 @@ public static class GenerateTracksData
     public static void GenerateData()
     {
         TrackData track = ScriptableObject.CreateInstance<TrackData>();
-        AssetDatabase.CreateAsset(track, settings.GetSaveToPath() +track.GetTrackId()+".asset");
+        //AssetDatabase.CreateAsset(track, settings.GetSaveToPath() +track.GetTrackId()+".asset");
     }
 }
 #endif
