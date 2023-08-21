@@ -1,21 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Google.Apis.Requests;
 using Google.Apis.Sheets.v4.Data;
-using Google.Apis.Sheets.v4;
 using static Google.Apis.Sheets.v4.SpreadsheetsResource;
 using Data = Google.Apis.Sheets.v4.Data;
-using Object = UnityEngine.Object;
-using UnityEditor;
-using UnityEngine.Profiling;
-using System.Data;
-using Unity.Collections.LowLevel.Unsafe;
-
 public class GoogleSheets : MonoBehaviour
 {
     /// <summary>
