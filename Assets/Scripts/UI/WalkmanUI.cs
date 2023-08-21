@@ -47,11 +47,11 @@ public class WalkmanUI : MonoBehaviour
             return;
         }
         // do some animation to indicate we are switching songs 
-        trackNameTxt.text = trackData.GetTrackName();
-        artistNameTxt.text = trackData.GetArtist();
-        if(!string.IsNullOrEmpty(trackData.GetLicense()))
-            sourceTxt.text = trackData.GetLicense();
-        if (!string.IsNullOrEmpty(trackData.GetSource()))
-            sourceTxt.text = trackData.GetSource();
+        trackNameTxt.text = trackData.trackName;
+        artistNameTxt.text = trackData.artistName;
+        if(!string.IsNullOrEmpty(trackData.license))
+            sourceTxt.text = trackData.license;
+        if (!string.IsNullOrEmpty(trackData.source))
+            sourceTxt.text = trackData.source;
     }
 }

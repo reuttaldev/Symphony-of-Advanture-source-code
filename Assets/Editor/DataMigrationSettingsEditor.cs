@@ -82,7 +82,7 @@ public class DataMigrationSettingsEditor : Editor
                             }
                             else
                             {
-                                GenerateTracksData.GenerateData(pulledData);
+                                GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target);
                             }
                         }
                     }

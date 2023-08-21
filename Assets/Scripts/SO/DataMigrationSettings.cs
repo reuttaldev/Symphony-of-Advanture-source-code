@@ -24,7 +24,7 @@ public class DataMigrationSettings : ScriptableObject
     string saveSOToPath = "Assets/Scriptable Objects/Tracks Data";
     [ReadOnly]
     [SerializeField]
-    int columnsToRead=5;
+    public int columnsToRead=5;
 
     public string GetSOSaveToPath()
     {

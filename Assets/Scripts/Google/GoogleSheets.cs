@@ -106,7 +106,8 @@ public class GoogleSheets : MonoBehaviour
                 columnCount = 0;
                 foreach (object cell in row)
                 {
-                    rowDic[columnTitles[columnCount]] = cell.ToString();
+                    if(!string.IsNullOrWhiteSpace(cell.ToString()))
+                        rowDic[columnTitles[columnCount]] = cell.ToString();
                     columnCount++;
                 }
                 table.Add(rowDic);
