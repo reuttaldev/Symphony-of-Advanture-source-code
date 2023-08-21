@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.Callbacks;
 using System.Threading.Tasks;
-using Google.Apis.Auth.OAuth2;
 using System;
-using System.Reflection;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 
 [CustomEditor(typeof(DataMigrationSettings))]
 public class DataMigrationSettingsEditor : Editor
@@ -17,6 +12,8 @@ public class DataMigrationSettingsEditor : Editor
     public SerializedProperty spreadsheetID;
     public SerializedProperty importSheetID;
     public SerializedProperty exportSheetID;
+    public SerializedProperty columnsToRead;
+    public SerializedProperty saveSOToPath;
     /// <summary>
     /// The column mappings. Each <see cref="SheetColumn"/> represents a column in a Google sheet. The column mappings are responsible for converting to and from cell data.
     /// </summary>
@@ -32,6 +29,8 @@ public class DataMigrationSettingsEditor : Editor
         spreadsheetID = serializedObject.FindProperty("spreadsheetID");
         importSheetID = serializedObject.FindProperty("importSheetID");
         exportSheetID = serializedObject.FindProperty("exportSheetID");
+        columnsToRead = serializedObject.FindProperty("columnsToRead");
+        saveSOToPath = serializedObject.FindProperty("saveSOToPath");
     }
     public override void OnInspectorGUI()
     {
@@ -47,6 +46,10 @@ public class DataMigrationSettingsEditor : Editor
             EditorGUILayout.PropertyField(exportSheetID, new GUIContent("Export Sheet ID"));
             using (new EditorGUI.DisabledGroupScope(importSheetID.intValue == 0))
             {
+                if (GUILayout.Button(new GUIContent("Open Meta Data Table")))
+                {
+                    GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, importSheetID.intValue);
+                }
                 if (GUILayout.Button(new GUIContent("Create Collected Data Table")))
                 {
                     int newSheetID = CreateNewSheet(exportSheetName);
@@ -60,7 +63,6 @@ public class DataMigrationSettingsEditor : Editor
                 {
                     if (GUILayout.Button(new GUIContent("Open Collected Data Table")))
                     {
-
                         GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, exportSheetID.intValue);
                     }
                     if (pushTask != null && pushTask.IsCompleted)
@@ -73,7 +75,7 @@ public class DataMigrationSettingsEditor : Editor
                         {
                           
                             var google = GetGoogleSheets();
-                            pulledData = google.PullData(importSheetID.intValue,true,5);
+                            pulledData = google.PullData(importSheetID.intValue,true, columnsToRead.intValue);
                             if (pulledData == null)
                             {
                                 Debug.LogError("Data was pulled incorrectly");
@@ -84,7 +86,9 @@ public class DataMigrationSettingsEditor : Editor
                             }
                         }
                     }
-                    
+                    EditorGUILayout.PropertyField(columnsToRead, new GUIContent("Max Columns to Read"));
+                    EditorGUILayout.PropertyField(saveSOToPath, new GUIContent("Saved Data Path"));
+
                 }
             }
         }

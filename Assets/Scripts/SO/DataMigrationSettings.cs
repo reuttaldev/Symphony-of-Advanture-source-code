@@ -17,12 +17,14 @@ public class DataMigrationSettings : ScriptableObject
     [SerializeField]
     int importSheetID; // the id at the end of the URL of the sheet we need to export from
     [SerializeField]
+    [ReadOnly]
     int exportSheetID; // the id at the end of the URL of the sheet we need to import to
-    private string saveSOToPath = "Assets/Scriptable Objects/Tracks Data";
-    /// <summary>
-    /// The column mappings. Each <see cref="SheetColumn"/> represents a column in a Google sheet. The column mappings are responsible for converting to and from cell data.
-    /// </summary>
-
+    [ReadOnly]
+    [SerializeField]
+    string saveSOToPath = "Assets/Scriptable Objects/Tracks Data";
+    [ReadOnly]
+    [SerializeField]
+    int columnsToRead=5;
 
     public string GetSOSaveToPath()
     {
