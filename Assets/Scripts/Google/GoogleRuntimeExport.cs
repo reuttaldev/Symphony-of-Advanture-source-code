@@ -25,11 +25,14 @@ public class GoogleRuntimeExport : MonoBehaviour, IRegistrableService
     [SerializeField]
     DataMigrationSettings dataMigrationSettings;
     [SerializeField]
+    PlayerData playerData;
+    [SerializeField]
     public SheetsServiceProvider sheetServiceProvider;
-    static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
-
-
-    IEnumerator Update(IList<IList<object>> values, string range)
+    void Awake()
+    {
+        ServiceLocator.Instance.Register<GoogleRuntimeExport>(this);
+    }
+    IEnumerator UpdateSheet(IList<IList<object>> values, string range)
     {
         // Call the UpdateValues Coroutine
         ValueRange body = new ValueRange
@@ -40,20 +43,37 @@ public class GoogleRuntimeExport : MonoBehaviour, IRegistrableService
         };
 
         var google = GetGoogleSheets();
-        var update = google.SheetsService.Service.Spreadsheets.Values.Update(body, google.SpreadSheetId, range);
-        update.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
+        var update = google.SheetsService.Service.Spreadsheets.Values.Append(body, google.SpreadSheetId, range);
+        update.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW;
         yield return update.Execute();
         //Debug.Log($"{update.UpdatedCells} cells updated.");
+    }
+
+    public void ExportToCollectedData(TrackData trackData,string interactionId, Emotions response)
+    {
+        string exportEventId = GetExportEventID();
+        string timestamp = GetTime();
+         List<object> dataToImpot= new List<object>();
+        dataToImpot.Add(trackData.trackID);
+        dataToImpot.Add(response.ToString());
+        dataToImpot.Add(exportEventId);
+        dataToImpot.Add(interactionId);
+        dataToImpot.Add(playerData.playerName);
+        dataToImpot.Add(playerData.playerID);
+        dataToImpot.Add(timestamp);
+        var values = new List<IList<object>> { dataToImpot };
+        StartCoroutine(UpdateSheet(values, "Collected Data!A1"));
 
     }
-    void Start()
+    string GetExportEventID()
     {
-        var values = new List<IList<object>> { new List<object> { "Hello, Google Sheets!" , "I am trying"} };
-        StartCoroutine(Update(values, "Collected Data!A1"));
+        return "";
     }
-    void Awake()
+    string GetTime()
     {
+        return "";
     }
+
     GoogleSheets GetGoogleSheets()
     {
         var google = new GoogleSheets(sheetServiceProvider);

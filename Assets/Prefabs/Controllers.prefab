@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6886627688756341852}
-  - component: {fileID: 2154627010375046597}
+  - component: {fileID: 6627939883608254248}
   m_Layer: 0
   m_Name: Export Manager
   m_TagString: Untagged
@@ -156,7 +156,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7079516389571481887}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2154627010375046597
+--- !u!114 &6627939883608254248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,9 +165,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2731820401996898929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d08220ce31a1cf40aead47808ca5568, type: 3}
+  m_Script: {fileID: 11500000, guid: 15d0cc92458feb04db859fb38d62d8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataMigrationSettings: {fileID: 11400000, guid: 1a56585e2136e29478ed44fe5cd631b1, type: 2}
+  playerData: {fileID: 11400000, guid: f21117a3cd1d5e8458c50329e91d64d5, type: 2}
+  sheetServiceProvider: {fileID: 11400000, guid: 2ff8045537d2db648bb055bc931d0566, type: 2}
 --- !u!1 &5406340251933612632
 GameObject:
   m_ObjectHideFlags: 0

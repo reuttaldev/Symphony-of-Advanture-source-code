@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
     [SerializeField]
     private MusicDialogueUI musicDialogueUI;
     // / keep a reference to the interaction that called to open the interface so that we can have it's id and the associated label
+    [HideInInspector]
     public MusicDialogueInteractable currentMusicInteraction;  
     [SerializeField]
     private WalkmanUI walkmanUI;
@@ -135,6 +136,8 @@ public class UIManager : MonoBehaviour, IRegistrableService
             Debug.LogError("No interaction id");
             return;
         }
+
+        ServiceLocator.Instance.Get<GoogleRuntimeExport>().ExportToCollectedData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction.GetInteractionId(), currentMusicInteraction.GetEmotion());
         CloseMusicDialogueUI();
     }
 }
