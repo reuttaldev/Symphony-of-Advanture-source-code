@@ -21,14 +21,10 @@ public class WalkmanUI : MonoBehaviour
             audioManager = AudioManager.Instance;
 
         audioManager.OnTrackChanged.AddListener(UpdateDisplay);
-        UpdateDisplay(audioManager.GetCurrentTrack());
+        UpdateDisplay();
 
         nextSongAction.action.performed += context => audioManager.PlayNextTrack();
         lastSongAction.action.performed += context => audioManager.PlayLastTrack();
-    }
-    private void Start()
-    {
-       gameObject.SetActive(false);
     }
     private void OnDisable()
     {
@@ -39,19 +35,20 @@ public class WalkmanUI : MonoBehaviour
     }
 
     // this method will be called when a new song is being played 
-    void UpdateDisplay(TrackData trackData)
+    void UpdateDisplay()
     {
-        if (trackData == null)
-        {
-            Debug.LogError("Walkman UI got empty track data");
-            return;
-        }
+        TrackData currentTrack = audioManager.GetCurrentTrack();
         // do some animation to indicate we are switching songs 
-        trackNameTxt.text = trackData.trackName;
-        artistNameTxt.text = trackData.artistName;
-        if(!string.IsNullOrEmpty(trackData.license))
-            sourceTxt.text = trackData.license;
-        if (!string.IsNullOrEmpty(trackData.source))
-            sourceTxt.text = trackData.source;
+        trackNameTxt.text = "Track Name: "+currentTrack.trackName;
+        artistNameTxt.text = "Artist: "+currentTrack.artistName;
+        if (!string.IsNullOrEmpty(currentTrack.source))
+            sourceTxt.text = "Source: "+ currentTrack.source;
+        else
+            sourceTxt.text = "";
+        if (!string.IsNullOrEmpty(currentTrack.license))
+            licenseTxt.text = currentTrack.license;
+        else
+            licenseTxt.text = "";
+
     }
 }

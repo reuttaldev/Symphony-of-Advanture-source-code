@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openMenuAction: {fileID: -8543449753884876791, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   closeMenuAction: {fileID: -3578849911565193649, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
+  walkmanUI: {fileID: 0}
 --- !u!114 &1399358512899212388
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class AudioManager : SimpleSingleton<AudioManager>
     // all possible tracks that can be used in the game
     private Dictionary<string,TrackData> allTracks = new Dictionary<string,TrackData>();
     // whenever the track we are currently playing has changed, invoke this events with the following parameters: track name, artist name, source (optional), license (optional)
-    public UnityEvent<TrackData> OnTrackChanged;
+    public UnityEvent OnTrackChanged;
     // the index in the library list we are currently playing
     private int current;
     private AudioSource audioSource;
@@ -35,13 +35,23 @@ public class AudioManager : SimpleSingleton<AudioManager>
     private void Start()
     {
         // play the fist song in the library on start game 
-        PlayTrack(library[startingSongIndex]);  
+        current = startingSongIndex;
+        PlayTrack(library[current]);  
     }
     void PlayTrack(TrackData data)
     {
+        OnTrackChanged.Invoke();
         audioSource.clip = data.audioClip;
         audioSource.Play();
-        OnTrackChanged.Invoke(data);
+    }
+    void PlayCurrent()
+    {
+        PlayTrack(library[current]);
+        if(!TrackAvilable(current))
+        {
+            Debug.LogError("Index out of range for audio library");
+            return;
+        }
     }
     void StopPlayingTrack()
     {
@@ -49,27 +59,18 @@ public class AudioManager : SimpleSingleton<AudioManager>
     }
     public void PlayNextTrack()
     {
+        current = (current+1)%library.Count;
         Debug.Log("current pos " + current);
-        int nextPos = (current+1)%library.Count;
-        Debug.Log("next pos " + nextPos);
-        if (!TrackAvilable(nextPos))
-        {
-            Debug.LogError("Index out of range for audio library");
-            return;
-        }
-        PlayTrack(library[nextPos]);
+        PlayCurrent();
     }
     public void PlayLastTrack()
     {
+        if (current == 0)
+            current = library.Count - 1;
+        else
+            current--;
+        PlayCurrent();
         Debug.Log("current pos " + current);
-        int lastPos = (current - 1) % library.Count;
-        Debug.Log("last pos " + lastPos);
-        if (!TrackAvilable(lastPos))
-        {
-            Debug.LogError("Index out of range for audio library");
-            return;
-        }
-        PlayTrack(library[lastPos]);
     }
     public TrackData GetCurrentTrack()
     {
