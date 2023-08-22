@@ -16,7 +16,7 @@ MonoBehaviour:
   clientSecret: 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
   newSheetProperties:
     m_HeaderForegroundColor: {r: 0.8941177, g: 0.8941177, b: 0.8941177, a: 1}
-    m_HeaderBackgroundColor: {r: 1, g: 0.9386792, b: 0.9386792, a: 1}
+    m_HeaderBackgroundColor: {r: 0.3301887, g: 0.31928623, b: 0.31928623, a: 1}
     m_DuplicateKeyColor: {r: 0.8745098, g: 0.2240707, b: 0.1921569, a: 1}
     m_HighlightDuplicateKeys: 1
     m_FreezeTitleRowAndKeyColumn: 1

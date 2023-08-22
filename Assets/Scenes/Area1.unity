@@ -414,25 +414,6 @@ Transform:
   - {fileID: 2569739198993217897}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1578294926 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2731820401996898929, guid: 3efcf8d0117dbe14a80d5c7d8b878666, type: 3}
-  m_PrefabInstance: {fileID: 6517167331857484625}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1578294929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578294926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15d0cc92458feb04db859fb38d62d8a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dataMigrationSettings: {fileID: 11400000, guid: 1a56585e2136e29478ed44fe5cd631b1, type: 2}
-  sheetServiceProvider: {fileID: 11400000, guid: 2ff8045537d2db648bb055bc931d0566, type: 2}
 --- !u!1 &1788992119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,10 +1605,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1370421374530411661, guid: 3efcf8d0117dbe14a80d5c7d8b878666, type: 3}
-      propertyPath: startingSongIndex
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 2021724359669792731, guid: 3efcf8d0117dbe14a80d5c7d8b878666, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1751,10 +1728,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2731820401996898929, guid: 3efcf8d0117dbe14a80d5c7d8b878666, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1578294929}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3efcf8d0117dbe14a80d5c7d8b878666, type: 3}
 --- !u!1001 &7037469604088186324
 PrefabInstance:
@@ -1867,7 +1841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5362597450345913021, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_ShowDebugText
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6881568093397326668, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_Follow
