@@ -11,6 +11,7 @@ using UnityEngine.Events;
 public class UIInterface : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
+    public bool active;
     protected virtual void Awake()
     {
         canvasGroup = GetComponentInParent<CanvasGroup>();
@@ -23,12 +24,12 @@ public class UIInterface : MonoBehaviour
     {
         canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
-        ServiceLocator.Instance.Get<InputManager>().ActivateUIMap();
+        active = true;
     }
     public virtual void MakeInvisible()
     {
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
-        ServiceLocator.Instance.Get<InputManager>().ActivatePlayerMap();
+        active = false;
     }
 }

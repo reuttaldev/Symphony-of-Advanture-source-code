@@ -9,33 +9,18 @@ using Yarn.Unity;
 
 public class YarnIntractable : MonoBehaviour
 {
-    private DialogueRunner dialogueRunner;
     [SerializeField]
     private bool interactable = true; // whether this character should be enabled right now
-    private bool isCurrentConversation;
     [SerializeField]
     string conversationStartNode;
 
-    public void Start()
-    {
-        dialogueRunner = FindObjectOfType<DialogueRunner>();
-        dialogueRunner.onDialogueComplete.AddListener(EndConversation);
-    }
-
     // then we need a function to tell Yarn Spinner to start from {specifiedNodeName}
-
     private void StartConversation()
     {
-        dialogueRunner.StartDialogue(conversationStartNode);
-        isCurrentConversation = true;
-    }
-    private void EndConversation()
-    {
-        if (isCurrentConversation)
-        {
-            
-            isCurrentConversation = false;
-        }
+        if (interactable)
+            ServiceLocator.Instance.Get<UIManager>().OpenDialogueUI(conversationStartNode);
+        else
+            Debug.Log("marked as not intractable");
     }
 
     // make character not able to be clicked on
@@ -46,17 +31,9 @@ public class YarnIntractable : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // if this character is enabled and no conversation is already running
-        if (interactable && !dialogueRunner.IsDialogueRunning)
-        {
-            // then run this character's conversation
-            StartConversation();
-        }
-        
+
+        // then run this character's conversation
+        StartConversation();
+
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
-    }
-    
 }
