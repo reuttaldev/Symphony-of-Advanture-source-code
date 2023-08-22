@@ -16,7 +16,16 @@ Master: The game developer cares about your answers. Your input will be collecte
 -> Player: Disagree and exit game.
     <<ExitGame>>
 ===
-
+title: EXP2
+interactionID: 2
+emotion: Calm
+---
+Master: Hey, can you play a song that will make me feel Calm?
+-> Player: Yes
+    <<SMD>>
+-> Player: No
+    Master: Okay. I will leave you alone.
+===
 
 title: Example
 ---

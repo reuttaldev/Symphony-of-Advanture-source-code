@@ -14,7 +14,6 @@ public class MusicDialogueUI : UIInterface
     {
         if (active && confirm.action.WasPressedThisFrame())
         {
-        Debug.Log("Ac");
             PlayerMadeSongSelection();
         }
     }

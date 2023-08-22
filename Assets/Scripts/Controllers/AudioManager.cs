@@ -60,7 +60,6 @@ public class AudioManager : SimpleSingleton<AudioManager>
     public void PlayNextTrack()
     {
         current = (current+1)%library.Count;
-        Debug.Log("current pos " + current);
         PlayCurrent();
     }
     public void PlayLastTrack()
@@ -70,7 +69,6 @@ public class AudioManager : SimpleSingleton<AudioManager>
         else
             current--;
         PlayCurrent();
-        Debug.Log("current pos " + current);
     }
     public TrackData GetCurrentTrack()
     {

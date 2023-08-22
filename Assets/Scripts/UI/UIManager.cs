@@ -10,9 +10,8 @@ public class UIManager : MonoBehaviour, IRegistrableService
     private MainMenuUI mainInterfaceUI;
     [SerializeField]
     private MusicDialogueUI musicDialogueUI;
-    [HideInInspector]
     // / keep a reference to the interaction that called to open the interface so that we can have it's id and the associated label
-    public MusicDialogueInteractable currentMusicInteraction = null;  
+    public MusicDialogueInteractable currentMusicInteraction;  
     [SerializeField]
     private WalkmanUI walkmanUI;
     [SerializeField]
@@ -50,11 +49,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
         dialogueRunner.onDialogueComplete.RemoveListener(CloseDialogueUI);
         musicDialogueUI.OnPlayerLabeledTrack.RemoveListener(PlayerLabeledTrack);
     }
-    void Update()
-    {
-        if (uiPanalOpen)
-        Debug.Log("Opens");
-    }
+
     bool CanOpen()
     {
         // if no other menu is already open
@@ -90,19 +85,16 @@ public class UIManager : MonoBehaviour, IRegistrableService
     }
     public void OpenMusicDialogueUI()
     {
-        // close the dialogue window first, because we will often start the music dialogue from the regular dialogue
-        CloseDialogueUI();
-        // open menu only if nothing else is open
-        if (!CanOpen())
-            return;
+        //  we will often start the music dialogue from the regular dialogue, so no need to check if another UI window is open
+
         walkmanUI.gameObject.SetActive(true);
         musicDialogueUI.MakeVisible();
     }
     public void CloseMusicDialogueUI()
     {
         musicDialogueUI.MakeInvisible();
-        currentMusicInteraction = null;
         walkmanUI.gameObject.SetActive(false);
+        currentMusicInteraction = null;
         Close();
     }
 
@@ -124,11 +116,14 @@ public class UIManager : MonoBehaviour, IRegistrableService
     }
     public void CloseDialogueUI()
     {
-        Close();
+        // if we have opened the music dialogue UI though a yarn script, don't close
+        if(!musicDialogueUI.active)
+            Close();
     }
 
     public void PlayerLabeledTrack()
     {
+
         Debug.Log("Player labeled track");
         if(currentMusicInteraction == null)
         {
@@ -140,5 +135,6 @@ public class UIManager : MonoBehaviour, IRegistrableService
             Debug.LogError("No interaction id");
             return;
         }
+        CloseMusicDialogueUI();
     }
 }

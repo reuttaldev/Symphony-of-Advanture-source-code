@@ -10,7 +10,9 @@ using Yarn.Unity;
 public class YarnIntractable : MonoBehaviour
 {
     [SerializeField]
-    private bool interactable = true; // whether this character should be enabled right now
+    private bool interactable = true;
+    [SerializeField]
+    private bool interactableMoreThanOnce= true; // whether this character should be enabled right now
     [SerializeField]
     string conversationStartNode;
 
@@ -34,6 +36,7 @@ public class YarnIntractable : MonoBehaviour
 
         // then run this character's conversation
         StartConversation();
-
+        if(!interactableMoreThanOnce)
+            interactable = false;
     }
 }
