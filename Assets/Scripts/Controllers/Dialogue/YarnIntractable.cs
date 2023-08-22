@@ -5,6 +5,8 @@ using UnityEngine;
 using Yarn.Unity;
 
 // this script will be added to every game object that allows the start of a dialogue
+[RequireComponent(typeof(Collider2D))]
+
 public class YarnIntractable : MonoBehaviour
 {
     private DialogueRunner dialogueRunner;
@@ -16,7 +18,7 @@ public class YarnIntractable : MonoBehaviour
 
     public void Start()
     {
-        dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
         dialogueRunner.onDialogueComplete.AddListener(EndConversation);
     }
 

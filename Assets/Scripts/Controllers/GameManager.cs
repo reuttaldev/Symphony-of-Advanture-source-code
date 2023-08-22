@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IRegistrableService
 {
 
-
-    void Start()
+    private void Awake()
     {
         
+    }
+    void Start()
+    {
+        ServiceLocator.Instance.Register<GameManager>(this);
     }
 
     // Update is called once per frame
@@ -16,7 +19,6 @@ public class GameManager : MonoBehaviour
     {
         
     }
-
     public void ExitGame()
     {
         Application.Quit();

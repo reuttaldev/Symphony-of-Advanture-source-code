@@ -1,28 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
-public class MusicDialogueUI : MonoBehaviour
+public class MusicDialogueUI : UIInterface
 {
-    private void Awake()
+    [SerializeField]
+    private TMP_Text emotionTxt; // this is the emotion we are asking the player get the character to feel in this specific dialogue
+    [SerializeField]
+    private InputActionReference confirm; // this input will let us know the player has made their choice 
+    public UnityEvent<TrackData,Emotions> OnPlayerLabeledTrack; // parameters are the chosen track ID and the emotion invoked (the label)
+    private void Update()
     {
+        if (confirm.action.WasPressedThisFrame())
+        {
+            PlayerMadeSongSelection();
+        }
     }
-    public void OpenMenu()
+    void PlayerMadeSongSelection()
     {
-        this.gameObject.SetActive(true);
-    }
-    public void CloseMenu()
-    {
-        this.gameObject.SetActive(false);
-    }
-    void Start()
-    {
-        
-    }
+        OnPlayerLabeledTrack.Invoke(AudioManager.Instance.GetCurrentTrack(), emotionTxt.text);
+        // once player has made their choice, music dialogue is over. close the panel
+        MakeInvisible();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

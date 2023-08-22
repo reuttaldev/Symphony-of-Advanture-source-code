@@ -1,9 +1,8 @@
 using Yarn.Unity;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.VisualScripting;
+using UnityEngine.Events;
 
+    // In this script I will connect to yarn all of the commands it needs to have access to
 public class DialogueManager : MonoBehaviour
 {
     DialogueRunner dialogueRunner;
@@ -13,8 +12,9 @@ public class DialogueManager : MonoBehaviour
     }
     private void Start()
     {
-        dialogueRunner.onDialogueStart.AddListener(()=>ServiceLocator.Instance.Get<InputManager>().ActivateUIMap());
-        dialogueRunner.onDialogueComplete.AddListener(()=>ServiceLocator.Instance.Get<InputManager>().ActivatePlayerMap());
+        dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
+        dialogueRunner.AddCommandHandler("SMD", ServiceLocator.Instance.Get<UIManager>().OpenMusicDialogueUI);
+        dialogueRunner.AddCommandHandler("EMD", ServiceLocator.Instance.Get<UIManager>().CloseMusicDialogueUI);
     }
 
 

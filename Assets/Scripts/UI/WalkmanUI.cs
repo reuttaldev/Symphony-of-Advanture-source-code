@@ -22,16 +22,21 @@ public class WalkmanUI : MonoBehaviour
 
         audioManager.OnTrackChanged.AddListener(UpdateDisplay);
         UpdateDisplay();
-
-        nextSongAction.action.performed += context => audioManager.PlayNextTrack();
-        lastSongAction.action.performed += context => audioManager.PlayLastTrack();
     }
     private void OnDisable()
     {
         audioManager.OnTrackChanged.RemoveListener(UpdateDisplay);
-
-        nextSongAction.action.performed -= context => audioManager.PlayNextTrack();
-        lastSongAction.action.performed -= context => audioManager.PlayLastTrack();
+    }
+    private void Update()
+    {
+        if(lastSongAction.action.WasPressedThisFrame())
+        {
+            audioManager.PlayLastTrack();
+        }
+        if (nextSongAction.action.WasPressedThisFrame())
+        {
+            audioManager.PlayNextTrack();
+        }
     }
 
     // this method will be called when a new song is being played 

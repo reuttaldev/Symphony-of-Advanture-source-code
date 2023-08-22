@@ -44,7 +44,6 @@ public class CustomDilogueOptionView : UnityEngine.UI.Selectable, ISubmitHandler
     public void OnSubmit(BaseEventData eventData)
     {
         InvokeOptionSelected();
-        Debug.Log("a");
     }
 
     public void InvokeOptionSelected()
