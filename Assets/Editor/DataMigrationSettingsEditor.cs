@@ -76,8 +76,8 @@ public class DataMigrationSettingsEditor : Editor
                     {
                         if (GUILayout.Button(new GUIContent("Import data and save")))
                         {
-                            var google = GetGoogleSheets();
-                            pulledData = google.PullData(importSheetID.intValue, true, columnsToRead.intValue);
+                            GoogleSheets.SetSettings(Provider, spreadsheetID.stringValue);
+                            pulledData = GoogleSheets.PullData(importSheetID.intValue, true, columnsToRead.intValue);
                             if (pulledData == null)
                             {
                                 Debug.LogError("Data was pulled incorrectly");
@@ -97,20 +97,14 @@ public class DataMigrationSettingsEditor : Editor
         }
         serializedObject.ApplyModifiedProperties();
     }
-    GoogleSheets GetGoogleSheets()
-    {
-        var google = new GoogleSheets(Provider);
-        google.SpreadSheetId = spreadsheetID.stringValue;
-        return google;
-    }
+
     int CreateNewSheet(string sheetName)
     {
         try
         {
             EditorUtility.DisplayProgressBar("Add Sheet", string.Empty, 0);
-            var google = GetGoogleSheets();
             // return the id of the created sheet
-            return google.AddSheet(sheetName, Provider.NewSheetProperties);
+            return GoogleSheets.AddSheet(sheetName, Provider.NewSheetProperties);
         }
         catch (Exception e)
         {

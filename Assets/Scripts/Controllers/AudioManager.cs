@@ -19,8 +19,9 @@ public class AudioManager : SimpleSingleton<AudioManager>
     // the index in the library list we are currently playing
     private int current;
     private AudioSource audioSource;
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         DontDestroyOnLoad(this);
         audioSource = GetComponent<AudioSource>();
         // load all of the track data scriptable objects from resources folder into all tracks

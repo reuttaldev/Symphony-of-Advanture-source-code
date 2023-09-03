@@ -7,35 +7,11 @@ using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Util.Store;
 using UnityEngine;
-using UnityEditor;
 
-    /// <summary>
-    /// See https://cloud.google.com/docs/authentication
-    /// </summary>
-
-    /// <summary>
-    /// Configuration for connecting to a Google Sheet.
-    /// </summary>
-    public interface IGoogleSheetsService
-    {
-        /// <summary>
-        /// The Google Sheet service that will be created using the Authorization API.
-        /// </summary>
-        SheetsService Service { get; }
-    }
-
-/// <summary>
-/// The Sheets service provider performs the authentication to Google and keeps track of the authentication tokens
-/// so that you do not need to authenticate each time.
-/// The Sheets service provider also includes general sheet properties, such as default sheet styles, that are used when creating a new sheet.
-/// </summary>
-/// <example>
-/// Unity recommends to have a <see cref="SheetsServiceProvider"/> asset pre-configured for use, however this example does create a new one.
-/// <code source="../../../DocCodeSamples.Tests/GoogleSheetsSamples.cs" region="sheets-service-provider"/>
-/// </example>
+// this is the scriptable object that will be set up with correct credentials in order to connect to google sheets using the API
 [CreateAssetMenu(fileName = "Google Sheets Service", menuName = "Data Migration/Google Sheets Service")]
 [HelpURL("https://developers.google.com/sheets/api/guides/authorizing#AboutAuthorization")]
-public class SheetsServiceProvider : ScriptableObject, IGoogleSheetsService, ISerializationCallbackReceiver
+public class SheetsServiceProvider : ScriptableObject, ISerializationCallbackReceiver
 {
 
     [SerializeField]
@@ -47,8 +23,7 @@ public class SheetsServiceProvider : ScriptableObject, IGoogleSheetsService, ISe
     NewSheetProperties newSheetProperties = new NewSheetProperties();
     string applicationName;
 
-    SheetsService sheetService;
-
+    public SheetsService sheetService;
     // The Google API access application we are requesting.
     static readonly string[] k_Scopes = { SheetsService.Scope.Spreadsheets };
 
@@ -190,7 +165,7 @@ public class SheetsServiceProvider : ScriptableObject, IGoogleSheetsService, ISe
      void ISerializationCallbackReceiver.OnBeforeSerialize()
     {
         if (string.IsNullOrEmpty(applicationName))
-            applicationName = PlayerSettings.productName;
+            applicationName = "ISP";
     }
     void ISerializationCallbackReceiver.OnAfterDeserialize()
     {
