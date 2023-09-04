@@ -28,6 +28,10 @@ public class DataMigrationSettings : ScriptableObject
     [ReadOnly]
     [SerializeField]
     public int columnsToRead=5;
+    [SerializeField]
+    bool sentResultByEmail = false;
+    [SerializeField]
+    string researchersMail;
 
     public string GetSOSaveToPath()
     {

@@ -15,14 +15,9 @@ public class DataMigrationSettingsEditor : Editor
     public SerializedProperty columnsToRead;
     public SerializedProperty saveSOToPath;
     public SerializedProperty loadAudioPath;
-    /// <summary>
-    /// The column mappings. Each <see cref="SheetColumn"/> represents a column in a Google sheet. The column mappings are responsible for converting to and from cell data.
-    /// </summary>
-    public Task pushTask;
+
     string exportSheetName = "Collected Data";
     public IList<Dictionary<string, string>> pulledData = null;
-    //public ReordableList columnsList;
-
     public SheetsServiceProvider Provider => sheetServiceProvider.objectReferenceValue as SheetsServiceProvider;
     public void OnEnable()
     {
@@ -39,64 +34,76 @@ public class DataMigrationSettingsEditor : Editor
         serializedObject.Update();
         EditorGUILayout.PropertyField(sheetServiceProvider);
 
-        //EditorGUI.BeginDisabledGroup(sheetServiceProvider.objectReferenceValue == null);
         // display only if google sheet porvided is plugged in
         using (new EditorGUI.DisabledGroupScope(sheetServiceProvider.objectReferenceValue == null))
         {
             EditorGUILayout.PropertyField(spreadsheetID, new GUIContent("Spreadsheet ID"));
-            EditorGUILayout.PropertyField(importSheetID, new GUIContent("Import Sheet ID"));
-            EditorGUILayout.PropertyField(exportSheetID, new GUIContent("Export Sheet ID"));
-            using (new EditorGUI.DisabledGroupScope(importSheetID.intValue == 0))
+            EditorGUILayout.Space();
+            // display only is spreadsheet string id is there
+            using (new EditorGUI.DisabledGroupScope(string.IsNullOrEmpty(spreadsheetID.stringValue)))
             {
-                if (GUILayout.Button(new GUIContent("Open Meta Data Table")))
+                #region IMPORT SETTINGS
+                EditorGUILayout.LabelField("Import Settings", EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(importSheetID, new GUIContent("Import Sheet ID"));
+                using (new EditorGUI.DisabledGroupScope(importSheetID.intValue == 0))
                 {
-                    GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, importSheetID.intValue);
-                }
-                if (GUILayout.Button(new GUIContent("Create Collected Data Table")))
-                {
-                    int newSheetID = CreateNewSheet(exportSheetName);
-                    if (newSheetID != 0)
-                        exportSheetID.intValue = newSheetID;
-                    exportSheetID.serializedObject.ApplyModifiedProperties();
-                    serializedObject.Update();
-
-                }
-                using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue == 0))
-                {
-                    if (GUILayout.Button(new GUIContent("Open Collected Data Table")))
+                    if (GUILayout.Button(new GUIContent("Open Meta Data Table")))
                     {
-                        GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, exportSheetID.intValue);
+                        GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, importSheetID.intValue);
                     }
-                    if (pushTask != null && pushTask.IsCompleted)
+                    if (GUILayout.Button(new GUIContent("Import and save data")))
                     {
-                        pushTask = null;
-                    }
-                    EditorGUILayout.PropertyField(loadAudioPath, new GUIContent("Path to load audio tracks from"));
-                    using (new EditorGUI.DisabledGroupScope(pushTask != null))
-                    {
-                        if (GUILayout.Button(new GUIContent("Import data and save")))
+                        pulledData = GoogleSheets.PullData(spreadsheetID.stringValue, importSheetID.intValue, true, columnsToRead.intValue);
+                        if (pulledData == null)
                         {
-                            GoogleSheets.SetSettings(Provider, spreadsheetID.stringValue);
-                            pulledData = GoogleSheets.PullData(importSheetID.intValue, true, columnsToRead.intValue);
-                            if (pulledData == null)
-                            {
-                                Debug.LogError("Data was pulled incorrectly");
-                            }
-                            else
-                            {
-                                GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target);
-                            }                            
+                            Debug.LogError("Data was pulled incorrectly");
+                        }
+                        else
+                        {
+                            GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target);
                         }
                     }
-                    EditorGUILayout.PropertyField(columnsToRead, new GUIContent("Max Columns to Read"));
+                    EditorGUILayout.PropertyField(columnsToRead, new GUIContent("Columns to Read"));
+                    EditorGUILayout.PropertyField(loadAudioPath, new GUIContent("Path to load audio tracks from"));
                     EditorGUILayout.PropertyField(saveSOToPath, new GUIContent("Saved Data Path"));
 
-
                 }
+                #endregion
+
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
+
+                #region EXPORT SETTINGS
+                EditorGUILayout.LabelField("Export Settings", EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(exportSheetID, new GUIContent("Export Sheet ID"));
+                using (new EditorGUI.DisabledGroupScope(importSheetID.intValue == 0))
+                {
+                    using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue != 0))
+                    {
+                        if (GUILayout.Button(new GUIContent("Create Collected Data Table")))
+                        {
+                            int newSheetID = CreateNewSheet(exportSheetName);
+                            if (newSheetID != 0)
+                                exportSheetID.intValue = newSheetID;
+                            exportSheetID.serializedObject.ApplyModifiedProperties();
+                            serializedObject.Update();
+
+                        }
+                    }
+                    using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue == 0))
+                    {
+                        if (GUILayout.Button(new GUIContent("Open Collected Data Table")))
+                        {
+                            GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, exportSheetID.intValue);
+                        }
+                    }
+                }
+                #endregion
             }
         }
         serializedObject.ApplyModifiedProperties();
     }
+
 
     int CreateNewSheet(string sheetName)
     {
@@ -104,7 +111,7 @@ public class DataMigrationSettingsEditor : Editor
         {
             EditorUtility.DisplayProgressBar("Add Sheet", string.Empty, 0);
             // return the id of the created sheet
-            return GoogleSheets.AddSheet(sheetName, Provider.NewSheetProperties);
+            return GoogleSheets.AddSheet(spreadsheetID.stringValue, sheetName, Provider.newSheetProperties);
         }
         catch (Exception e)
         {
@@ -113,19 +120,8 @@ public class DataMigrationSettingsEditor : Editor
         finally
         {
             EditorUtility.ClearProgressBar();
-            // Exit GUI to prevent erros due to GUI state changes. (LOC-698)
         }
         return 0;
-}
-/*void Push()
-{
-    var google = GetGoogleSheets(data);
-                var target = property.GetActualObjectForSerializedProperty<GoogleSheetsExtension>(fieldInfo);
-                var collection = target.TargetCollection as StringTableCollection;
-                data.pushTask = google.PushStringTableCollectionAsync(data.m_SheetId.intValue, collection, target.Columns, TaskReporter.CreateDefaultReporter());
-                s_PushRequests.Add((collection, data.pushTask));
 
-                // Exit GUI to prevent erros due to GUI state changes. (LOC-698)
-                GUIUtility.ExitGUI();
-}*/
+    }
 }

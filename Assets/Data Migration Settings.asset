@@ -15,7 +15,9 @@ MonoBehaviour:
   sheetServiceProvider: {fileID: 11400000, guid: 2ff8045537d2db648bb055bc931d0566, type: 2}
   spreadsheetID: 1qHmvEGfXoCBZQWwDBrjASd-an27MBgBMTmAK-BSrNbI
   importSheetID: 2040123043
-  exportSheetID: 0
+  exportSheetID: 1283873170
   saveSOToPath: Assets\Resources\Tracks Data
   loadAudioPath: Assets\Resources\Audio Tracks
   columnsToRead: 5
+  sentResultByEmail: 0
+  researchersMail: 

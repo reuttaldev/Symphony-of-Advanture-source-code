@@ -1,176 +1,137 @@
 using System;
 using System.IO;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Util.Store;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // this is the scriptable object that will be set up with correct credentials in order to connect to google sheets using the API
 [CreateAssetMenu(fileName = "Google Sheets Service", menuName = "Data Migration/Google Sheets Service")]
 [HelpURL("https://developers.google.com/sheets/api/guides/authorizing#AboutAuthorization")]
-public class SheetsServiceProvider : ScriptableObject, ISerializationCallbackReceiver
+public class SheetsServiceProvider : ScriptableObject
 {
+    // this part is contains data of the credentials needed in order to authenticate and authorize a call to the Google API using a service account
 
-    [SerializeField]
-    string clientID;
-    [SerializeField]
-    string clientSecret;
 
-    [SerializeField]
-    NewSheetProperties newSheetProperties = new NewSheetProperties();
-    string applicationName;
-
-    public SheetsService sheetService;
-    // The Google API access application we are requesting.
-    static readonly string[] k_Scopes = { SheetsService.Scope.Spreadsheets };
-
-    /// <summary>
-    /// Used to make sure the access and refresh tokens persist. Uses a FileDataStore by default with "Library/Google/{name}" as the path.
-    /// </summary>
-    public IDataStore DataStore { get; set; }
-
-    /// <summary>
-    /// The Google Sheet service that will be created using the Authorization API.
-    /// </summary>
-    public virtual SheetsService Service
+    private static SheetsService sheetService;
+    public static SheetsService Service
     {
         get
         {
+            return ConnectWithServiceAccountKey();
             if (sheetService == null)
-                sheetService = ConnectWithOAuth2();
+                sheetService = ConnectWithServiceAccountKey();
             return sheetService;
         }
     }
 
+    private static string keyFileName=  "credentials.json";
+    // call the combine method rather than + to ensure the path uses the correct system slash and the path will be readable on every operating system.
+    private static string savedKeyPath = Path.Combine(Application.streamingAssetsPath, keyFileName);
     /// <summary>
-    /// <para>Client Id when using OAuth authentication.</para>
-    /// See also <seealso cref="SetOAuthCredentials"/>
+    /// Credential:
+    ///A form of identification used in software security.In terms of authentication, 
+    ///a credential is often a username and password combination. In terms of authorization for Google Workspace APIs,
+    ///a credential is usually some form of identification, such as a unique secret string, 
+    ///known only between the app developer and the authentication server. 
+    ///Google supports these authentication credentials: API key, OAuth 2.0 Client ID, and service accounts.
+    ///https://cloud.google.com/iam/docs/service-account-creds
     /// </summary>
-    public string ClientId => clientID;
-
-    /// <summary>
-    /// <para>Client secret when using OAuth authentication.</para>
-    /// See also <seealso cref="SetOAuthCredentials"/>
-    /// </summary>
-    public string ClientSecret => clientSecret;
-
-    /// <summary>
-    /// Properties to use when creating a new Google Spreadsheet sheet.
-    /// </summary>
-    public NewSheetProperties NewSheetProperties
+    private static GoogleCredential credential;
+    public static GoogleCredential Credential
     {
-        get => newSheetProperties;
-        set => newSheetProperties = value;
-    }
-
-    /// <summary>
-    /// Enable OAuth 2.0 authentication and extract the <see cref="ClientId"/> and <see cref="ClientSecret"/> from the supplied json.
-    /// </summary>
-    /// <param name="credentialsJson"></param>
-    public void SetOAuthCredentials(string credentialsJson)
-    {
-        var secrets = LoadSecrets(credentialsJson);
-        clientID = secrets.ClientId;
-        clientSecret = secrets.ClientSecret;
-    }
-
-    /// <summary>
-    /// Enable OAuth 2.0 authentication with the provided client Id and client secret.
-    /// </summary>
-    /// <param name="clientId"></param>
-    /// <param name="clientSecret"></param>
-    public void SetOAuthCredentials(string clientId, string clientSecret)
-    {
-        clientID = clientId;
-        this.clientSecret = clientSecret;
-    }
-
-    /// <summary>
-    /// Call to preauthorize when using OAuth authorization. This will cause a browser to open a Google authorization
-    /// page after which the token will be stored in IDataStore so that this does not need to be done each time.
-    /// If this is not called then the first time <see cref="Service"/> is called it will be performed then.
-    /// </summary>
-    /// <returns></returns>
-    public UserCredential AuthorizeOAuth()
-    {
-        // Prevents Unity locking up if the user canceled the auth request.
-        // Auto cancel after 60 secs
-        var cts = new CancellationTokenSource(TimeSpan.FromSeconds(60));
-
-        var connectTask = AuthorizeOAuthAsync(cts.Token);
-        if (!connectTask.IsCompleted)
-            connectTask.RunSynchronously();
-
-        if (connectTask.Status == TaskStatus.Faulted)
+        get
         {
-            throw new Exception($"Failed to connect to Google Sheets.\n{connectTask.Exception}");
+            if (credential == null)
+                credential= GetCredentialFromJson();
+            // check if getting credentials was successful 
+            if (credential == null)
+                Debug.LogError("Problem retrieving credential.");
+            return credential;
         }
-        return connectTask.Result;
     }
 
-    /// <summary>
-    /// Call to preauthorize when using OAuth authorization. This will cause a browser to open a Google authorization
-    /// page after which the token will be stored in IDataStore so that this does not need to be done each time.
-    /// If this is not called then the first time <see cref="Service"/> is called it will be performed then.
-    /// </summary>
-    /// <param name="cancellationToken">Token that can be used to cancel the task prematurely.</param>
-    /// <returns>The authorization Task that can be monitored.</returns>
-    public Task<UserCredential> AuthorizeOAuthAsync(CancellationToken cancellationToken)
+    [SerializeField]
+    private static string applicationName = "Reut's App";
+    // The Google API access application we are requesting.
+    private  readonly string[] scopes = { SheetsService.Scope.Spreadsheets };
+    [SerializeField]
+    public NewSheetProperties newSheetProperties = new NewSheetProperties();
+    private static string instructionLocation = "";
+
+    // load the json file with the service account key from the researcher's machine
+    // service account key is a credential 
+    public void LoadServiceAccountKey(string originalKeyPAth)
     {
-        if (string.IsNullOrEmpty(ClientSecret))
-            throw new Exception($"{nameof(ClientSecret)} is empty");
-
-        if (string.IsNullOrEmpty(ClientId))
-            throw new Exception($"{nameof(ClientId)} is empty");
-
-        // We create a separate area for each so that multiple providers don't clash.
-        var dataStore = DataStore ?? new FileDataStore($"Library/Google/{name}", true);
-
-        var secrets = new ClientSecrets { ClientId = clientID, ClientSecret = clientSecret };
-
-        // We use the client Id for the user so that we can generate a unique token file and prevent conflicts when using multiple OAuth authentications. (LOC-188)
-        var user = clientID;
-        var connectTask = GoogleWebAuthorizationBroker.AuthorizeAsync(secrets, k_Scopes, user, cancellationToken, dataStore);
-        return connectTask;
-    }
-
-    /// <summary>
-    /// When calling an API that will access private user data, O Auth 2.0 credentials must be used.
-    /// </summary>
-    public SheetsService ConnectWithOAuth2()
-    {
-        var userCredentials = AuthorizeOAuth();
-        var sheetsService = new SheetsService(new BaseClientService.Initializer
+        // encrypt it 
+        // save it to streaming assets folder so we can access it in runtime in builds
+        try
         {
-            HttpClientInitializer = userCredentials,
-            ApplicationName = applicationName,
+            File.Copy(originalKeyPAth, savedKeyPath, true);// true for override if file already exists 
+            Debug.Log("Saving of service account key was successful.");
+        }
+        catch (IOException e)
+        {
+            Debug.LogError($"Service account credential file is not found. Please follow instructions on {instructionLocation} and try again.");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+        // extract credentials 
+        GetCredentialFromJson();
+
+    }
+    private static GoogleCredential GetCredentialFromJson()
+    {
+        try
+        {
+            GoogleCredential c = null;
+            //The streamingAssets path is read-only. Don’t modify or write new files to the streamingAssets directory at runtime.
+            //On Android and WebGL platforms, it’s not possible to access the streaming asset files directly via file system APIs and streamingAssets path because these platforms return a URL. Use the UnityWebRequest class to access the content instead.
+            using (var stream = new FileStream(savedKeyPath, FileMode.Open, FileAccess.Read))
+            {
+                // getting service account credentials 
+                //The CreateScoped method returns a copy of the credentials. 
+                c = GoogleCredential.FromStream(stream).CreateScoped(new string[] { SheetsService.Scope.Spreadsheets });
+            }
+            Debug.Log("Extraction of credential from json file was successful.");
+            return c;
+
+        }
+        catch (IOException e)
+        {
+            Debug.LogError("Could not read file.");
+            Debug.LogError(e.Message);
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"The file that was selected is not a service account key file. Please follow instructions on {instructionLocation} and try again.");
+            Debug.LogError(e.Message);
+        }
+            return null;
+    }
+
+    public static SheetsService ConnectWithServiceAccountKey()
+    {
+        var service = new SheetsService(new BaseClientService.Initializer()
+        {
+            HttpClientInitializer = Credential,
+            ApplicationName = applicationName
         });
-        return sheetsService;
+        return service;
     }
-
-    public static ClientSecrets LoadSecrets(string credentials)
-    {
-        if (string.IsNullOrEmpty(credentials))
-            throw new ArgumentException(nameof(credentials));
-        using (var stream = new MemoryStream(System.Text.Encoding.ASCII.GetBytes(credentials)))
-        {
-            var gcs = GoogleClientSecrets.FromStream(stream);
-            return gcs.Secrets;
-        }
-    }
-
-     void ISerializationCallbackReceiver.OnBeforeSerialize()
-    {
-        if (string.IsNullOrEmpty(applicationName))
-            applicationName = "ISP";
-    }
-    void ISerializationCallbackReceiver.OnAfterDeserialize()
-    {
-        
-    }
-
-
+   
 }
+
+
+
+
+
+    
