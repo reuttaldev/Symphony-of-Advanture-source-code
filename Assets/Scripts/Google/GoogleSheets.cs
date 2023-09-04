@@ -6,10 +6,8 @@ using Google.Apis.Requests;
 using Google.Apis.Sheets.v4.Data;
 using static Google.Apis.Sheets.v4.SpreadsheetsResource;
 using Data = Google.Apis.Sheets.v4.Data;
-using Google.Apis.Sheets.v4;
 using Google;
 using Newtonsoft.Json;
-using UnityEditor.PackageManager.Requests;
 using Request = Google.Apis.Sheets.v4.Data.Request;
 
 public static class GoogleSheets 
