@@ -8,6 +8,9 @@ using static Google.Apis.Sheets.v4.SpreadsheetsResource;
 using Data = Google.Apis.Sheets.v4.Data;
 using Google.Apis.Sheets.v4;
 using Google;
+using Newtonsoft.Json;
+using UnityEditor.PackageManager.Requests;
+using Request = Google.Apis.Sheets.v4.Data.Request;
 
 public static class GoogleSheets 
 {
@@ -119,25 +122,26 @@ public static class GoogleSheets
         }
 
     }
-    /// <summary>
-    /// Returns a list of all the sheets in the Spreadsheet with the id <see cref="spreadSheetId"/>.
-    /// </summary>
-    /// <returns>The sheets names and id's.</returns>
-    public static List<(string name, int id)> GetSheets(string spreadSheetId)
+    public static void PushData(string spreadSheetId, int sheetId, List<IList<object>> data,string range)
     {
-        if (string.IsNullOrEmpty(spreadSheetId))
-            throw new Exception($"The {nameof(spreadSheetId)} is required. Please assign a valid Spreadsheet Id to the property.");
+        // The new values to apply to the spreadsheet.
 
-        var sheets = new List<(string name, int id)>();
-        var spreadsheetInfoRequest = SheetsServiceProvider.Service.Spreadsheets.Get(spreadSheetId);
-        var sheetInfoReq = ExecuteRequest<Spreadsheet, GetRequest>(spreadsheetInfoRequest);
-
-        foreach (var sheet in sheetInfoReq.Sheets)
+        UpdateValuesResponse result = null;
+        var dataValueRange = new ValueRange();
+        dataValueRange.Range = range;
+        dataValueRange.Values = data;
+        var request = SheetsServiceProvider.Service.Spreadsheets.Values.Append(dataValueRange, spreadSheetId, range);
+        request.ValueInputOption =ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
+        try
         {
-            sheets.Add((sheet.Properties.Title, sheet.Properties.SheetId.Value));
+            // Data.BatchUpdateValuesResponse response = await request.ExecuteAsync(); // For async 
+            AppendValuesResponse response = request.Execute();
+            Debug.Log(JsonConvert.SerializeObject(response));
         }
-
-        return sheets;
+        catch (Exception ex) 
+        {
+            Debug.LogError(ex.Message);
+        }
     }
     public static string GetSheetNameByID(string spreadSheetId,int sheetId)
     {

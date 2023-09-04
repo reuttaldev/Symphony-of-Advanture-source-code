@@ -11,14 +11,14 @@ using UnityEngine;
 public class DataMigrationSettings : ScriptableObject
 {
     [SerializeField]
-    public SheetsServiceProvider sheetServiceProvider;
+    SheetsServiceProvider sheetServiceProvider;
     [SerializeField]
     public string spreadsheetID;// the ID where both import/export tables are found
     [SerializeField]
     int importSheetID; // the id at the end of the URL of the sheet we need to export from
     [SerializeField]
     [ReadOnly]
-    int exportSheetID; // the id at the end of the URL of the sheet we need to import to
+    public int exportSheetID; // the id at the end of the URL of the sheet we need to import to
     [ReadOnly]
     [SerializeField]
     string saveSOToPath = @"Assets\Resources\Tracks Data";

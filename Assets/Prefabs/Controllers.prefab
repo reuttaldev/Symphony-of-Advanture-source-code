@@ -168,9 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d0cc92458feb04db859fb38d62d8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataMigrationSettings: {fileID: 11400000, guid: 1a56585e2136e29478ed44fe5cd631b1, type: 2}
+  settings: {fileID: 11400000, guid: 1a56585e2136e29478ed44fe5cd631b1, type: 2}
   playerData: {fileID: 11400000, guid: f21117a3cd1d5e8458c50329e91d64d5, type: 2}
-  sheetServiceProvider: {fileID: 11400000, guid: 2ff8045537d2db648bb055bc931d0566, type: 2}
 --- !u!1 &5406340251933612632
 GameObject:
   m_ObjectHideFlags: 0
