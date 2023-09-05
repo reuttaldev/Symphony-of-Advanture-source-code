@@ -31,7 +31,9 @@ public class DataMigrationSettings : ScriptableObject
     [SerializeField]
     bool sentResultByEmail = false;
     [SerializeField]
-    string researchersMail;
+    string researchersEmail;
+
+    public string[] columnTitles = { "CET Time stamp", "Data ID", "Track ID","Annotation","Interaction ID", "User Name", "User ID", "Game Session Index", "Configuration ID", "Time of Day" };
 
     public string GetSOSaveToPath()
     {

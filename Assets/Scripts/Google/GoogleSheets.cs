@@ -120,11 +120,11 @@ public static class GoogleSheets
         }
 
     }
-    public static void PushData(string spreadSheetId, int sheetId, List<IList<object>> data,string range)
+
+
+    public static bool PushData(string spreadSheetId, int sheetId, List<IList<object>> data,string range)
     {
         // The new values to apply to the spreadsheet.
-
-        UpdateValuesResponse result = null;
         var dataValueRange = new ValueRange();
         dataValueRange.Range = range;
         dataValueRange.Values = data;
@@ -135,10 +135,12 @@ public static class GoogleSheets
             // Data.BatchUpdateValuesResponse response = await request.ExecuteAsync(); // For async 
             AppendValuesResponse response = request.Execute();
             Debug.Log(JsonConvert.SerializeObject(response));
+            return true;
         }
         catch (Exception ex) 
         {
             Debug.LogError(ex.Message);
+            return false;
         }
     }
     public static string GetSheetNameByID(string spreadSheetId,int sheetId)

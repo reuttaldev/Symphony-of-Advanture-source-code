@@ -15,6 +15,8 @@ public class DataMigrationSettingsEditor : Editor
     public SerializedProperty columnsToRead;
     public SerializedProperty saveSOToPath;
     public SerializedProperty loadAudioPath;
+    public SerializedProperty sentResultByEmail;
+    public SerializedProperty researchersEmail;
 
     string exportSheetName = "Collected Data";
     public IList<Dictionary<string, string>> pulledData = null;
@@ -28,6 +30,8 @@ public class DataMigrationSettingsEditor : Editor
         columnsToRead = serializedObject.FindProperty("columnsToRead");
         saveSOToPath = serializedObject.FindProperty("saveSOToPath");
         loadAudioPath = serializedObject.FindProperty("loadAudioPath");
+        sentResultByEmail = serializedObject.FindProperty("sentResultByEmail");
+        researchersEmail = serializedObject.FindProperty("researchersEmail");
     }
     public override void OnInspectorGUI()
     {
@@ -97,6 +101,12 @@ public class DataMigrationSettingsEditor : Editor
                             GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, exportSheetID.intValue);
                         }
                     }
+                    EditorGUILayout.PropertyField(sentResultByEmail, new GUIContent("Send Collected Data to Email"));
+                    using (new EditorGUI.DisabledGroupScope(!sentResultByEmail.boolValue))
+                    {
+                        EditorGUILayout.PropertyField(researchersEmail, new GUIContent("Email to send to"));
+                    }
+
                 }
                 #endregion
             }

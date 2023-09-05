@@ -137,7 +137,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
             return;
         }
 
-        ServiceLocator.Instance.Get<RuntimeExportManager>().ExportToCollectedData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction.GetInteractionId(), currentMusicInteraction.GetEmotion());
+        ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction.GetInteractionId(), currentMusicInteraction.GetEmotion());
         CloseMusicDialogueUI();
     }
 }

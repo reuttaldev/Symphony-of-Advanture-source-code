@@ -23,7 +23,7 @@ public class SheetsServiceProvider : ScriptableObject
     {
         get
         {
-            return ConnectWithServiceAccountKey();
+            //return ConnectWithServiceAccountKey();
             if (sheetService == null)
                 sheetService = ConnectWithServiceAccountKey();
             return sheetService;
@@ -78,6 +78,7 @@ public class SheetsServiceProvider : ScriptableObject
         catch (IOException e)
         {
             Debug.LogError($"Service account credential file is not found. Please follow instructions on {instructionLocation} and try again.");
+            Debug.LogError(e.Message);
         }
         catch (Exception e)
         {

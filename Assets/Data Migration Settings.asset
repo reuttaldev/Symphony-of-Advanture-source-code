@@ -19,5 +19,5 @@ MonoBehaviour:
   saveSOToPath: Assets\Resources\Tracks Data
   loadAudioPath: Assets\Resources\Audio Tracks
   columnsToRead: 5
-  sentResultByEmail: 0
-  researchersMail: 
+  sentResultByEmail: 1
+  researchersEmail: reutgaming@gmail.com

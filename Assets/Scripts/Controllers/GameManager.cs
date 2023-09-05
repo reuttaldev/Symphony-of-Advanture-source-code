@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour, IRegistrableService
 {
-
+    public  UnityEvent gameOverEvent;
     private void Awake()
-    {
-        
+    {     
+        ServiceLocator.Instance.Register<GameManager>(this);
     }
     void Start()
     {
-        ServiceLocator.Instance.Register<GameManager>(this);
     }
 
     // Update is called once per frame
@@ -24,5 +24,11 @@ public class GameManager : MonoBehaviour, IRegistrableService
         Application.Quit();
         Debug.Log("exiting game");
 
+    }
+    public void GameOver()
+    {
+        ExportManager exportManager = ServiceLocator.Instance.Get<ExportManager>();
+        exportManager.SendCSVByEmail();
+        gameOverEvent.Invoke();
     }
 }
