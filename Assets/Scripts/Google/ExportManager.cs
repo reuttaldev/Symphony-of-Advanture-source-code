@@ -114,7 +114,9 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     {
         return  "CVSExport"+".csv";
     }
-    public void SendCSVByEmail()
+
+    // returns true for success and false for failure 
+    public bool SendCSVByEmail()
     {
         VerifyFile();
         try 
@@ -123,12 +125,15 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
             {
                 Debug.LogError("Email to send to is unknown. Please set it up in the Data Migration Settings window.");
             }
-            EmailSender.SendEmail("Collected Data", "Hello,\n the data you have requested is attached to this email.", settings.researchersEmail,CSVPath);
+            string emailBody = "Hello,\n the data you have requested is attached to this email.";
+            EmailSender.SendEmail("Collected Data", emailBody, settings.researchersEmail,CSVPath);
             Debug.Log("Successfully send collected data CSV to email");
+            return true;
         }
         catch (Exception e) 
         {
             Debug.LogError("Could not send CSV by email. Error is: " + e.Message);
+            return false;
 
         }
     }

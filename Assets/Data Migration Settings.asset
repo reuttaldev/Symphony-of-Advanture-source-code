@@ -21,3 +21,14 @@ MonoBehaviour:
   columnsToRead: 5
   sentResultByEmail: 1
   researchersEmail: reutgaming@gmail.com
+  columnTitles:
+  - Time stamp
+  - Data ID
+  - Track ID
+  - Annotation
+  - Interaction ID
+  - User Name
+  - User ID
+  - Game Session Index
+  - Configuration ID
+  - Time of Day
