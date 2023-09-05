@@ -119,6 +119,11 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         VerifyFile();
         try 
         {
+            if(string.IsNullOrEmpty(settings.researchersEmail))
+            {
+                Debug.LogError("Email to send to is unknown. Please set it up in the Data Migration Settings window.");
+            }
+            EmailSender.SendEmail("Collected Data", "Hello,\n the data you have requested is attached to this email.", settings.researchersEmail,CSVPath);
             Debug.Log("Successfully send collected data CSV to email");
         }
         catch (Exception e) 
