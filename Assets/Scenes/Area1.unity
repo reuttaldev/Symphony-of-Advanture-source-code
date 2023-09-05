@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 528353431}
   - component: {fileID: 528353435}
   m_Layer: 0
-  m_Name: Send CVS trigger
+  m_Name: Send CSV trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
