@@ -118,6 +118,8 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     // returns true for success and false for failure 
     public bool SendCSVByEmail()
     {
+        // add configuration name to the email 
+
         VerifyFile();
         try 
         {
@@ -152,6 +154,9 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     {
         return 1;
     }
+    //UUID
+    // YYYY:MM:DD:HH:MM:SS_PlayerID_GameSessionIndex_cc867280-68a7-4737-8676-0f14d2ae1b1f for data point id
+    // build version 
     string GetConfigurationID()
     {
         return "00001";

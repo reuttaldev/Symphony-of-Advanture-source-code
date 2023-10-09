@@ -25,6 +25,7 @@ public class AudioManager : SimpleSingleton<AudioManager>
         DontDestroyOnLoad(this);
         audioSource = GetComponent<AudioSource>();
         // load all of the track data scriptable objects from resources folder into all tracks
+        // Resources folder contains stuff that will be accessible to load in builds.
         var loadedObjects = Resources.LoadAll("Tracks Data", typeof(TrackData)).Cast<TrackData>();
         foreach (TrackData data in loadedObjects)
         {

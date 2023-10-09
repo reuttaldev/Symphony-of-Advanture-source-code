@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using Unity.VisualScripting;
+using System.Text.RegularExpressions;
 
 #if UNITY_EDITOR
 public static class GenerateTracksData 
@@ -18,7 +19,7 @@ public static class GenerateTracksData
         //(id,row)
         Dictionary<string, int > allKeys = new Dictionary<string, int>();
         // need to check and notify for duplicate keys or missing value
-        int rowNumber = 1;
+        int rowNumber = 2;
         foreach (Dictionary<string, string> row in table)
         {
             // run a syntax check
@@ -101,6 +102,14 @@ public static class GenerateTracksData
         {
             Debug.LogError("Cannot clear directory, path doesnt exist " +folderPath);
         }
+    }
+    public static string RemoveForbiddenPathCharacters(string inputPath)
+    {
+        // Define a regular expression pattern to match forbidden characters
+        string pattern = "[" + Regex.Escape(new string(Path.GetInvalidFileNameChars())) + "]";
+
+        // Use Regex.Replace to remove forbidden characters
+        return Regex.Replace(inputPath, pattern, " ");
     }
 }
 #endif

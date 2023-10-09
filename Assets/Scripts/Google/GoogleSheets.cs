@@ -103,7 +103,7 @@ public static class GoogleSheets
                 foreach (object cell in row)
                 {
                     if(!string.IsNullOrWhiteSpace(cell.ToString()))
-                        rowDic[columnTitles[columnCount]] = cell.ToString();
+                        rowDic[columnTitles[columnCount]] = cell.ToString().Trim();
                     columnCount++;
                 }
                 table.Add(rowDic);
@@ -194,7 +194,7 @@ public static class GoogleSheets
             {
                 foreach (var col in row)
                 {
-                    titles.Add(col.ToString());
+                    titles.Add(col.ToString().Trim()); // trim to remove leading or ending white spaces 
                 }
             }
         }
