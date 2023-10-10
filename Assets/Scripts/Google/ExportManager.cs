@@ -11,7 +11,7 @@ using System.Linq;
 // I am making it a singleton because otherwise each time we load a scene and we reach start, the csv file will be reset.
 // I need the CSV file to be created and reset only ONCE at the very start of the game
 public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
-{    
+{
     [Header("Google")]
     [SerializeField]
     DataMigrationSettings settings;
@@ -19,9 +19,8 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
 
     [Header("CSV")]
     string CSVDirectory = Application.dataPath;
-    string CSVPath;
-    string CSVName = "CVSExport.csv";
-    char CSVseparator = ',';
+    const char CSVseparator = ',';
+    const string CSVExtension = ".csv";
 
     GameManager gameManager;
 
@@ -30,7 +29,6 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         base.Awake();
         DontDestroyOnLoad(this);
         ServiceLocator.Instance.Register<ExportManager>(this);
-        CreateCSVWithTitles();
     }
     void Start()
     {
@@ -80,7 +78,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
                     data.Add(GetTimeOfDay(exportTime));
                     break;
                 default: // if it doesn't match any case
-                    Debug.LogError("a column title in the export sheet does not match any data. Please ensure that the list of column titles under Data Migration Settings -> New Spreadsheet properties are correct.");
+                    Debug.LogError($"a column title {item} in the export sheet does not match any data. Please ensure that the list of column titles under Data Migration Settings -> New Spreadsheet properties are correct.");
                     break;
             }
         }
@@ -89,11 +87,11 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
 
     public void ExportData(TrackData trackData, string interactionId, Emotions response)
     {
-        List<object> dataToExport = CollectAndCheckData( trackData, interactionId, response);
+        List<object> dataToExport = CollectAndCheckData(trackData, interactionId, response);
         if (dataToExport.Count != settings.newSheetProperties.columnTitles.Length) // the data we have collected does not match what we require for the spreadsheet
             return;
         ExportToGoogleSheets(dataToExport);
-        ExportToCSV(dataToExport);
+        WriteToCSV(dataToExport);
     }
 
 
@@ -103,21 +101,21 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     {
         var values = new List<IList<object>> { dataToExport };
         bool success = GoogleSheets.PushData(settings.spreadsheetID, settings.exportSheetID, values, settings.exportSheetName + rangeEnd);
-        if (success) 
+        if (success)
             Debug.Log("Recorded the following data to Google Sheets: " + string.Join(" ,", dataToExport));
-    }
-
-    void AddTitlesToGoogleSheets()
-    {
-
     }
 
     #endregion
     #region CSV EXPORT
-    void ExportToCSV(List<object> dataToExport)
+
+    string GetCSVPath()
+    {
+        return Path.Combine(CSVDirectory, GetExperimentID() + CSVExtension);
+    }
+    void WriteToCSV(List<object> dataToExport)
     {
         VerifyFile();
-        using (var writer = new StreamWriter(CSVPath, true))
+        using (var writer = new StreamWriter(GetCSVPath(), true))
         {
             writer.WriteLine(string.Join(CSVseparator, dataToExport));
         }
@@ -125,33 +123,26 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     }
     void VerifyFile() // check that the CSV file exists, if it doesn't then create one
     {
-        if(!File.Exists(CSVPath))
+        if (!File.Exists(GetCSVPath()))
         {
-            CreateCSVWithTitles();
+            CreateCSVWithTitles(GetCSVPath());
         }
     }
-    void CreateCSVWithTitles()
+    void CreateCSVWithTitles(string path)
     {
         try
         {
             // add the titles first, remove everything that's already there is something is there 
-            CSVName = ChooseNameForCSV();
-            CSVPath = Path.Combine(CSVDirectory, CSVName);
-            using (var writer = new StreamWriter(CSVPath, false))
+            using (var writer = new StreamWriter(path, false))
             {
                 writer.WriteLine(string.Join(CSVseparator, settings.newSheetProperties.columnTitles));
             }
-            Debug.Log("Created CSV in path: " + CSVPath);
+            Debug.Log("Created CSV in path: " + path);
         }
         catch (Exception e)
         {
             Debug.LogError("Could not write and save CSV. Error is: " + e.Message);
         }
-    }
-
-    string  ChooseNameForCSV()
-    {
-        return  "CVSExport"+".csv";
     }
 
     // returns true for success and false for failure 
@@ -160,23 +151,32 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         // add configuration name to the email 
 
         VerifyFile();
-        try 
+        try
         {
-            if(string.IsNullOrEmpty(settings.researchersEmail))
+            if (string.IsNullOrEmpty(settings.researchersEmail))
             {
                 Debug.LogError("Email to send to is unknown. Please set it up in the Data Migration Settings window.");
             }
-            string emailBody = "Hello,\n the data you have requested is attached to this email.";
-            EmailSender.SendEmail("Collected Data", emailBody, settings.researchersEmail,CSVPath);
+            EmailSender.SendEmail("Collected Data for experiment " + GetExperimentID(), BuildEmailBody(), settings.researchersEmail, GetCSVPath()); ;
             Debug.Log("Successfully send collected data CSV to email");
             return true;
         }
-        catch (Exception e) 
+        catch (Exception e)
         {
             Debug.LogError("Could not send CSV by email. Error is: " + e.Message);
             return false;
 
         }
+    }
+    string BuildEmailBody()
+    {
+        string body = "Enclosed within this email, you will find the data gathered during experiment with the following parameters:"+ Environment.NewLine;
+        foreach (var item in GetExperimentData())
+        {
+            body+= $"- {item.Key}: {item.Value}";
+            body += Environment.NewLine;
+        }
+        return body;
     }
     #endregion
     #region VALUES
@@ -186,9 +186,18 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         // YYYY:MM:DD:HH:MM:SS_PlayerID_GameSessionIndex_cc867280-68a7-4737-8676-0f14d2ae1b1f for data point id
         Guid randomGuid = Guid.NewGuid();
         string randomGuidString = randomGuid.ToString();
-        return exportTime+"_"+gameManager.GetPlayerID()+"_"+gameManager.GetGameSessionIndex()+"_"+ randomGuidString;
+        return exportTime + "_" + gameManager.GetPlayerID() + "_" + gameManager.GetGameSessionIndex() + "_" + randomGuidString;
+    }
+    string GetExperimentID()
+    {
+        return gameManager.GetConfigurationFileID() + "_" + gameManager.GetPlayerID() + "_" + gameManager.GetGameSessionIndex() + "_" + Application.version;
     }
 
+    Dictionary<string, string> GetExperimentData()
+    {
+        Dictionary<string, string> data = new Dictionary<string, string> { { "Configuration ID" , gameManager.GetConfigurationFileID() }, {"Application Version" , Application.version },{ "User Name", gameManager.GetPlayerName()} ,{ "User ID", gameManager.GetPlayerID() }, { "Game Session Index" , gameManager.GetGameSessionIndex().ToString() } };
+        return data;
+    }
     DateTime GetCETTime()
     {
         // Define the CET time zone
