@@ -7,7 +7,7 @@ using Yarn.Unity;
 // this script will be added to every game object that allows the start of a dialogue
 [RequireComponent(typeof(Collider2D))]
 
-public class YarnIntractable : MonoBehaviour
+public class DialogueIntractable : MonoBehaviour
 {
     [SerializeField]
     private bool interactable = true;

@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-
+[RequireComponent(typeof(GetGlobalObjectId))]
 public class MusicDialogueInteractable : MonoBehaviour
 {
     [SerializeField]
     bool interactable = true;
     [SerializeField]
-    [ReadOnly]
-    string interactionID;
-    [SerializeField]
     Emotions emotionToEnvoke;
+    string callingNode = null; // the name of the yarn node (dialogue name) that called to start this music interaction
     [SerializeField]
     // call this node once the music dialogue finished (player made a choice) if the onCompletionNode is not null
     string onCompletionNode = null;
@@ -24,8 +21,7 @@ public class MusicDialogueInteractable : MonoBehaviour
     }
     public string GetInteractionId()
     {
-        interactionID = GlobalObjectId.GetGlobalObjectIdSlow(this).ToString();
-        return interactionID;
+        return GetComponent<GetGlobalObjectId>().UniqueId;
     }
     public Emotions GetEmotion()
     {

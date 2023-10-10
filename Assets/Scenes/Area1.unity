@@ -1044,6 +1044,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1940388065}
   - component: {fileID: 1940388066}
+  - component: {fileID: 1940388069}
   - component: {fileID: 1940388067}
   - component: {fileID: 1940388068}
   m_Layer: 0
@@ -1131,9 +1132,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: 1
-  interactionID: 2
   emotionToEnvoke: 2
   onCompletionNode: 
+--- !u!114 &1940388069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940388064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fd4bd51d920cd4989d9d40c75b5461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-1940388069-0
 --- !u!224 &1984471933 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3686296642899235951, guid: 77d108bfe19045e4297946e03998b673, type: 3}
@@ -1160,6 +1173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999927386}
   - component: {fileID: 1999927384}
+  - component: {fileID: 1999927388}
   - component: {fileID: 1999927385}
   - component: {fileID: 1999927387}
   m_Layer: 0
@@ -1247,9 +1261,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: 1
-  interactionID: 1
   emotionToEnvoke: 0
   onCompletionNode: 
+--- !u!114 &1999927388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999927383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fd4bd51d920cd4989d9d40c75b5461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-1999927388-0
 --- !u!20 &2096950332 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6743865315843182017, guid: 38e057931c138444ebcca8e807047df0, type: 3}
