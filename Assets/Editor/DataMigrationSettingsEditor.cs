@@ -76,23 +76,23 @@ public class DataMigrationSettingsEditor : Editor
                 }
                 #endregion
 
-                    EditorGUILayout.Space();
-                    EditorGUILayout.Space();
-                    EditorGUILayout.Space();
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
                 #region EXPORT
                 EditorGUILayout.LabelField("Export Settings", EditorStyles.boldLabel);
                 using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue != 0))
                 {
                     EditorGUILayout.PropertyField(newSheetProperties, new GUIContent("New spreadsheet properties"));
-                }
-                if (GUILayout.Button(new GUIContent("Create Collected Data Table")))
-                {
-                    int newSheetID = CreateNewSheet(((DataMigrationSettings)target).exportSheetName);
-                    if (newSheetID != 0)
-                        exportSheetID.intValue = newSheetID;
-                    exportSheetID.serializedObject.ApplyModifiedProperties();
-                    serializedObject.Update();
+                    if (GUILayout.Button(new GUIContent("Create Collected Data Table")))
+                    {
+                        int newSheetID = CreateNewSheet(((DataMigrationSettings)target).exportSheetName);
+                        if (newSheetID != 0)
+                            exportSheetID.intValue = newSheetID;
+                        exportSheetID.serializedObject.ApplyModifiedProperties();
+                        serializedObject.Update();
 
+                    }
                 }
                 using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue == 0))
                 {

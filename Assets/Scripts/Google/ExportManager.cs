@@ -48,7 +48,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
                     data.Add(exportTime.ToString());
                     break;
                 case ("Export Event ID"):
-                    data.Add(GetExportEventID(exportTime.ToString()));
+                    data.Add(GetExportEventID(exportTime));
                     break;
                 case ("Track ID"):
                     data.Add(trackData.trackID);
@@ -148,8 +148,12 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     // returns true for success and false for failure 
     public bool SendCSVByEmail()
     {
+        if(!settings.sentResultByEmail)
+        {
+            Debug.LogWarning("Send CSV by email is set to false in the data migration settings.");
+            return false;
+        }
         // add configuration name to the email 
-
         VerifyFile();
         try
         {
@@ -180,13 +184,14 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     }
     #endregion
     #region VALUES
-    string GetExportEventID(string exportTime)
+    string GetExportEventID(DateTime exportTime)
     {
         // in UUID format 
         // YYYY:MM:DD:HH:MM:SS_PlayerID_GameSessionIndex_cc867280-68a7-4737-8676-0f14d2ae1b1f for data point id
         Guid randomGuid = Guid.NewGuid();
         string randomGuidString = randomGuid.ToString();
-        return exportTime + "_" + gameManager.GetPlayerID() + "_" + gameManager.GetGameSessionIndex() + "_" + randomGuidString;
+        string formattedDateTime = exportTime.ToString("yyyy:MM:dd:HH:mm:ss");
+        return formattedDateTime + "_" + gameManager.GetPlayerID() + "_" + gameManager.GetGameSessionIndex() + "_" + randomGuidString;
     }
     string GetExperimentID()
     {

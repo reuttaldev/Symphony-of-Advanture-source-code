@@ -9,8 +9,6 @@ using Data = Google.Apis.Sheets.v4.Data;
 using Google;
 using Newtonsoft.Json;
 using Request = Google.Apis.Sheets.v4.Data.Request;
-using System.Linq;
-using UnityEngine.UIElements;
 
 public static class GoogleSheets 
 {

@@ -15,7 +15,7 @@ MonoBehaviour:
   sheetServiceProvider: {fileID: 11400000, guid: 2ff8045537d2db648bb055bc931d0566, type: 2}
   spreadsheetID: 1qHmvEGfXoCBZQWwDBrjASd-an27MBgBMTmAK-BSrNbI
   importSheetID: 2040123043
-  exportSheetID: 401115182
+  exportSheetID: 489025491
   exportSheetName: Collected Data
   saveSOToPath: Assets\Resources\Tracks Data
   loadAudioPath: Assets\Resources\Audio Tracks
@@ -25,7 +25,7 @@ MonoBehaviour:
   newSheetProperties:
     columnTitles:
     - CET Time stamp
-    - Data ID
+    - Export Event ID
     - Track ID
     - Annotation
     - Interaction ID
@@ -33,10 +33,10 @@ MonoBehaviour:
     - User ID
     - Game Session Index
     - Configuration ID
-    - Build Index
+    - Application Version
     - Time of Day
-    m_HeaderForegroundColor: {r: 0.14150941, g: 0, b: 0, a: 1}
-    m_HeaderBackgroundColor: {r: 0.88377005, g: 0.63834995, b: 0.8962264, a: 1}
+    m_HeaderForegroundColor: {r: 0, g: 0, b: 0, a: 1}
+    m_HeaderBackgroundColor: {r: 0.8962264, g: 0.629895, b: 0.8876073, a: 1}
     m_DuplicateKeyColor: {r: 0.8745098, g: 0.2240707, b: 0.1921569, a: 1}
     m_HighlightDuplicateKeys: 1
     m_FreezeTitleRowAndKeyColumn: 1

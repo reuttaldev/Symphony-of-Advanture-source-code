@@ -32,7 +32,7 @@ public class DataMigrationSettings : ScriptableObject
     [SerializeField]
     public int columnsToRead=5;
     [SerializeField]
-    bool sentResultByEmail = false;
+    public bool sentResultByEmail = false;
     [SerializeField]
     public string researchersEmail;
     [SerializeField]
