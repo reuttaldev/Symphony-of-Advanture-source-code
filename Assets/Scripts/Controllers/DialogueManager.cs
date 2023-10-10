@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     //[HideInInspector]
     public MusicDialogueData currentMusicInteraction;
     UIManager uiManager;
-    string lastSeenDialogueNode = null;
+    string lastReadDialogueNode = null;
     void Awake()
     {
         dialogueRunner = gameObject.GetComponent<DialogueRunner>();
@@ -46,8 +46,9 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         }
         dialogueRunner.StartDialogue(nodeToStart);
         uiManager.OpenDialogueUI();
-        lastSeenDialogueNode = dialogueRunner.CurrentNodeName;
+        lastReadDialogueNode = dialogueRunner.CurrentNodeName;
     }
+
     public void FinishDialogue() 
     {
         uiManager.CloseDialogueUI();
@@ -60,7 +61,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     public void FinishMusicDialogue()
     {
         currentMusicInteraction = null;
-        lastSeenDialogueNode = null;
+        lastReadDialogueNode = null;
         uiManager.CloseMusicDialogueUI();
     }
     public void PlayerLabeledTrack() // this will be called by a unity event on Music Dialogue UI, don't forget to set that this will be called on the inspector or music dialogue UI
@@ -81,13 +82,13 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("No interaction name");
             return;
         }
-        if (string.IsNullOrEmpty(lastSeenDialogueNode))
+        if (string.IsNullOrEmpty(lastReadDialogueNode))
         {
             Debug.LogError("last seen dialogue node is undefined ");
             return;
         }
 
-        ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction,lastSeenDialogueNode);
+        ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction,lastReadDialogueNode);
         FinishMusicDialogue();
     }
 
