@@ -9,6 +9,7 @@ public class MusicDialogueData : ScriptableObject
     public Emotions emotionToEnvoke;
     [SerializeField]
     string onCompletionNode = null;
+    [SerializeField]
     string uniqueId; // for this gameobject, persistent throughout the project 
     public string InteractionID { get { return uniqueId; } }
     public string interactionName;
