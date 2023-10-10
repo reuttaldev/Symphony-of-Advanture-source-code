@@ -43,12 +43,6 @@ public class ServiceLocator : SimpleSingleton<ServiceLocator>
         }
         return (T)services[typeof(T)];
     }
-    private void SearchOrCreateService<T>()
-    {
-        //var go = new GameObject();
-        //go.name = typeof(T).Name;
-        //go.AddComponent(typeof(T));
-        //service = go.GetComponent(typeof(T));
-    }
+
 }
 

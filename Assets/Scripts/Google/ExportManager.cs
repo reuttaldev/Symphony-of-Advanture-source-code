@@ -36,7 +36,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     }
 
     //this function will collect the data we need to export and do a syntax check to make sure the data we are exporting matches the title columns on the spreadsheets
-    List<object> CollectAndCheckData(TrackData trackData, string interactionId, Emotions response)
+    List<object> CollectAndCheckData(TrackData trackData, string interactionId,string interactionName,string response, string lastDialogueNode)
     {
         List<object> data = new List<object>();
         DateTime exportTime = GetCETTime();
@@ -54,10 +54,16 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
                     data.Add(trackData.trackID);
                     break;
                 case ("Annotation"):
-                    data.Add(response.ToString());
+                    data.Add(response);
                     break;
                 case ("Interaction ID"):
                     data.Add(interactionId);
+                    break;
+                case ("Interaction Name"):
+                    data.Add(interactionName);
+                    break;
+                case ("Dialogue Node"):
+                    data.Add(lastDialogueNode);
                     break;
                 case ("User Name"):
                     data.Add(gameManager.GetPlayerName());
@@ -85,9 +91,9 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         return data;
     }
 
-    public void ExportData(TrackData trackData, string interactionId, Emotions response)
+    public void ExportData(TrackData trackData, MusicDialogueData dialogueData,string lastDialogueNode)
     {
-        List<object> dataToExport = CollectAndCheckData(trackData, interactionId, response);
+        List<object> dataToExport = CollectAndCheckData(trackData, dialogueData.InteractionID,dialogueData.interactionName, dialogueData.emotionToEnvoke.ToString(), lastDialogueNode);
         if (dataToExport.Count != settings.newSheetProperties.columnTitles.Length) // the data we have collected does not match what we require for the spreadsheet
             return;
         ExportToGoogleSheets(dataToExport);

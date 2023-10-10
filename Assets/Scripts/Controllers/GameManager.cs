@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
 {
     public  UnityEvent gameOverEvent;
     public  UnityEvent startGameEvent;
-    string playerName;
+    string playerName = "Reut";
 
     private void Awake()
     {     

@@ -10,9 +10,6 @@ public class UIManager : MonoBehaviour, IRegistrableService
     private MainMenuUI mainInterfaceUI;
     [SerializeField]
     private MusicDialogueUI musicDialogueUI;
-    // / keep a reference to the interaction that called to open the interface so that we can have it's id and the associated label
-    [HideInInspector]
-    public MusicDialogueInteractable currentMusicInteraction;  
     [SerializeField]
     private WalkmanUI walkmanUI;
     [SerializeField]
@@ -20,8 +17,8 @@ public class UIManager : MonoBehaviour, IRegistrableService
     [SerializeField]
     private InputActionReference closeMainMenuAction;
     private InputManager inputManager;
-    private DialogueRunner dialogueRunner;
     bool uiPanalOpen; // this will be true if any of our UI menus are currently open
+    DialogueManager dialogueManager;
 
     private void Awake()
     {
@@ -32,26 +29,21 @@ public class UIManager : MonoBehaviour, IRegistrableService
     {
         openMainMenuAction.action.performed += context => OpenMainMenu();
         closeMainMenuAction.action.performed += context => CloseMainMenu();
-        if(dialogueRunner == null)
-            dialogueRunner = FindObjectOfType<DialogueRunner>();
-        dialogueRunner.onDialogueComplete.AddListener(CloseDialogueUI);
         // listen to when the player has made a choce in a music dialogue
-        musicDialogueUI.OnPlayerLabeledTrack.AddListener(PlayerLabeledTrack);
     }
     private void Start()
     {
         inputManager = ServiceLocator.Instance.Get<InputManager>();
+        dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
         walkmanUI.gameObject.SetActive(false);
     }
     private void OnDisable()
     {
         openMainMenuAction.action.performed -= context => OpenMainMenu();
         closeMainMenuAction.action.performed -= context => CloseMainMenu();
-        dialogueRunner.onDialogueComplete.RemoveListener(CloseDialogueUI);
-        musicDialogueUI.OnPlayerLabeledTrack.RemoveListener(PlayerLabeledTrack);
     }
 
-    bool CanOpen()
+    bool OpenAndSwitchUIMap()
     {
         // if no other menu is already open
         if (uiPanalOpen)
@@ -61,15 +53,17 @@ public class UIManager : MonoBehaviour, IRegistrableService
         return true;
     }
     // call this when closing any UI interface
-    void Close()
+    void CloseAndSwitchUIMap()
     {
         uiPanalOpen = false;
         inputManager.ActivatePlayerMap();
     }
+
+    // main menu contains the walkman UI inside of it, but not just that
     void OpenMainMenu()
     {
         // open menu only if nothing else is open
-        if (!CanOpen())
+        if (!OpenAndSwitchUIMap())
             return;
         // only make visible if we are not in the middle of a dialogue and no other menu is open
         mainInterfaceUI.MakeVisible();
@@ -82,12 +76,11 @@ public class UIManager : MonoBehaviour, IRegistrableService
             return;
         mainInterfaceUI.MakeInvisible();
         walkmanUI.gameObject.SetActive(false);
-        Close();
+        CloseAndSwitchUIMap();
     }
     public void OpenMusicDialogueUI()
     {
         //  we will often start the music dialogue from the regular dialogue, so no need to check if another UI window is open
-
         walkmanUI.gameObject.SetActive(true);
         musicDialogueUI.MakeVisible();
     }
@@ -95,49 +88,17 @@ public class UIManager : MonoBehaviour, IRegistrableService
     {
         musicDialogueUI.MakeInvisible();
         walkmanUI.gameObject.SetActive(false);
-        currentMusicInteraction = null;
-        Close();
+        CloseAndSwitchUIMap();
     }
 
-    public void OpenDialogueUI(string conversationStartNode)
+    public void OpenDialogueUI()
     {
-        if (!CanOpen())
-            return;
-        if (string.IsNullOrEmpty(conversationStartNode))
-        {
-            Debug.LogError("conversationStartNode is null");
-            return;
-        }
-        if(dialogueRunner.IsDialogueRunning)
-        {
-            Debug.LogError("Dialogue already running");
-            return;
-        }
-        dialogueRunner.StartDialogue(conversationStartNode);
+        OpenAndSwitchUIMap();
     }
     public void CloseDialogueUI()
     {
         // if we have opened the music dialogue UI though a yarn script, don't close
         if(!musicDialogueUI.active)
-            Close();
-    }
-
-    public void PlayerLabeledTrack()
-    {
-
-        Debug.Log("Player labeled track");
-        if(currentMusicInteraction == null)
-        {
-            Debug.LogError("Current interaction is null. Who is calling open music dialogue? Need interaction ID");
-            return;
-        }
-        if(string.IsNullOrEmpty(currentMusicInteraction.GetInteractionId()))
-        {
-            Debug.LogError("No interaction id");
-            return;
-        }
-
-        ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction.GetInteractionId(), currentMusicInteraction.GetEmotion());
-        CloseMusicDialogueUI();
+            CloseAndSwitchUIMap();
     }
 }

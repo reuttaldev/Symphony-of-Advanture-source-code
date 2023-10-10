@@ -12,7 +12,7 @@ Master: We might as well be friends.
     Master: Oh...Okay... Then...
 Master: The game developer cares about your answers. Your input will be collected to study the impact music has on players' emotions.
 -> Player: Agree.
-    <<SMD>>
+    <<OMD>>
 -> Player: Disagree and exit game.
     <<ExitGame>>
 ===
@@ -22,7 +22,7 @@ emotion: Calm
 ---
 Master: Hey, can you play a song that will make me feel Calm?
 -> Player: Yes
-    <<SMD>>
+    <<OMD>>
 -> Player: No
     Master: Okay. I will leave you alone.
 ===

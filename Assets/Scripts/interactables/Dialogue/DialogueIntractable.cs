@@ -12,15 +12,19 @@ public class DialogueIntractable : MonoBehaviour
     [SerializeField]
     private bool interactable = true;
     [SerializeField]
-    private bool interactableMoreThanOnce= true; // whether this character should be enabled right now
+    private bool interactableMoreThanOnce = true; // whether this character should be enabled right now
     [SerializeField]
     string conversationStartNode;
-
+    private void Awake()
+    {
+        if (!GetComponent<Collider2D>().isTrigger)
+            Debug.LogWarning(gameObject.name + "'s collider is not set to trigger. Interaction will not happen.");
+    }
     // then we need a function to tell Yarn Spinner to start from {specifiedNodeName}
     private void StartConversation()
     {
         if (interactable)
-            ServiceLocator.Instance.Get<UIManager>().OpenDialogueUI(conversationStartNode);
+            ServiceLocator.Instance.Get<DialogueManager>().StartDialogue(conversationStartNode);
         else
             Debug.Log("marked as not intractable");
     }
@@ -36,7 +40,7 @@ public class DialogueIntractable : MonoBehaviour
 
         // then run this character's conversation
         StartConversation();
-        if(!interactableMoreThanOnce)
-            interactable = false;
+        if (!interactableMoreThanOnce)
+            DisableConversation();
     }
 }
