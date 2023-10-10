@@ -21,6 +21,9 @@ public class DataMigrationSettings : ScriptableObject
     public int exportSheetID; // the id at the end of the URL of the sheet we need to import to
     [ReadOnly]
     [SerializeField]
+    public string exportSheetName = "Collected Data";
+    [ReadOnly]
+    [SerializeField]
     string saveSOToPath = @"Assets\Resources\Tracks Data";
     [ReadOnly]
     [SerializeField]
@@ -32,8 +35,8 @@ public class DataMigrationSettings : ScriptableObject
     bool sentResultByEmail = false;
     [SerializeField]
     public string researchersEmail;
-
-    public string[] columnTitles = { "CET Time stamp", "Data ID", "Track ID","Annotation","Interaction ID", "User Name", "User ID", "Game Session Index", "Configuration ID", "Time of Day" };
+    [SerializeField]
+    public NewSheetProperties newSheetProperties = new NewSheetProperties();
 
     public string GetSOSaveToPath()
     {

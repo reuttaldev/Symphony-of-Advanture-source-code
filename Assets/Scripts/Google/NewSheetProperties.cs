@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -7,6 +8,9 @@ using UnityEngine;
 [Serializable]
 public class NewSheetProperties
 {
+    [SerializeField]
+    public string[] columnTitles = { "CET Time stamp", "Export Event ID", "Track ID", "Annotation", "Interaction ID", "User Name", "User ID", "Game Session Index", "Configuration ID", "Application Version", "Time of Day" };
+    
     [SerializeField]
     Color m_HeaderForegroundColor = new Color(0.8941177f, 0.8941177f, 0.8941177f);
 
@@ -42,8 +46,8 @@ public class NewSheetProperties
     /// </summary>
     public bool HighlightDuplicateKeys { get => m_HighlightDuplicateKeys; set => m_HighlightDuplicateKeys = value; }
 
-    /// <summary>
+   /* /// <summary>
     /// Freeze the top row and first column which are typically the column title row and key column.
     /// </summary>
-    public bool FreezeTitleRowAndKeyColumn { get => m_FreezeTitleRowAndKeyColumn; set => m_FreezeTitleRowAndKeyColumn = value; }
+    public bool FreezeTitleRowAndKeyColumn { get => m_FreezeTitleRowAndKeyColumn; set => m_FreezeTitleRowAndKeyColumn = value; }*/
 }

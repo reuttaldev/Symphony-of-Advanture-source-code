@@ -9,6 +9,8 @@ using Data = Google.Apis.Sheets.v4.Data;
 using Google;
 using Newtonsoft.Json;
 using Request = Google.Apis.Sheets.v4.Data.Request;
+using System.Linq;
+using UnityEngine.UIElements;
 
 public static class GoogleSheets 
 {
@@ -23,7 +25,7 @@ public static class GoogleSheets
     }
 
     // Creates a new sheet within the Spreadsheet
-    public static int AddSheet(string spreadSheetId, string title, NewSheetProperties newSheetProperties)
+    public static int AddSheet(string spreadSheetId, string sheetName, NewSheetProperties newSheetProperties)
     {
         if (string.IsNullOrEmpty(spreadSheetId))
             throw new Exception($"{nameof(spreadSheetId)} is required. Please assign a valid Spreadsheet Id to the property.");
@@ -35,14 +37,14 @@ public static class GoogleSheets
         {
             AddSheet = new AddSheetRequest
             {
-                Properties = new SheetProperties { Title = title }
+                Properties = new SheetProperties { Title = sheetName }
             }
         };
         try
         {
             var batchUpdateReqTask = SendBatchUpdateRequest(spreadSheetId, createRequest);
             var sheetId = batchUpdateReqTask.Replies[0].AddSheet.Properties.SheetId.Value;
-            SetupSheet(spreadSheetId, sheetId, newSheetProperties);
+            SetupSheet(spreadSheetId, sheetId,sheetName, newSheetProperties);
             return sheetId;
         }
         catch (GoogleApiException ex)
@@ -53,20 +55,20 @@ public static class GoogleSheets
 
     }
 
-    static void SetupSheet(string spreadSheetId, int sheetId, NewSheetProperties newSheetProperties)
+    static void SetupSheet(string spreadSheetId, int sheetId,string sheetName, NewSheetProperties newSheetProperties)
     {
         var requests = new List<Request>();
 
         requests.Add(SetTitleStyle(sheetId, newSheetProperties));
-
-        if (newSheetProperties.FreezeTitleRowAndKeyColumn)
-            requests.Add(FreezeTitleRowAndKeyColumn(sheetId));
 
         if (newSheetProperties.HighlightDuplicateKeys)
             requests.Add(HighlightDuplicateKeys(sheetId, newSheetProperties));
 
         if (requests.Count > 0)
             SendBatchUpdateRequest(spreadSheetId, requests);
+        // add titles 
+        List<IList<object>> titiles = new List<IList<object>>();  titiles.Add(newSheetProperties.columnTitles);
+        PushData(spreadSheetId, sheetId,titiles, sheetName+"!A1");
     }
     public static IList<Dictionary<string, string>> PullData(string spreadSheetId,int sheetId, bool skipFirstRow, int amountOfColumnsToRead)
     {
@@ -203,7 +205,7 @@ public static class GoogleSheets
 
 
 
-    static Request FreezeTitleRowAndKeyColumn(int sheetId)
+    static Request FreezeTitleRowAndColumn(int sheetId,int columnToFreeze)
     {
         return new Request()
         {

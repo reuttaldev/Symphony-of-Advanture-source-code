@@ -4,6 +4,8 @@ using System.IO;
 using System.Text;
 using System;
 using CsvHelper;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Linq;
 
 
 // I am making it a singleton because otherwise each time we load a scene and we reach start, the csv file will be reset.
@@ -13,9 +15,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     [Header("Google")]
     [SerializeField]
     DataMigrationSettings settings;
-    [SerializeField]
-    PlayerData playerData;
-    string range = "Collected Data!A2";
+    string rangeEnd = "!A2";
 
     [Header("CSV")]
     string CSVDirectory = Application.dataPath;
@@ -23,30 +23,75 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     string CSVName = "CVSExport.csv";
     char CSVseparator = ',';
 
-    void Awake()
+    GameManager gameManager;
+
+    protected override void Awake()
     {
+        base.Awake();
+        DontDestroyOnLoad(this);
         ServiceLocator.Instance.Register<ExportManager>(this);
+        CreateCSVWithTitles();
+    }
+    void Start()
+    {
+        gameManager = ServiceLocator.Instance.Get<GameManager>();
     }
 
+    //this function will collect the data we need to export and do a syntax check to make sure the data we are exporting matches the title columns on the spreadsheets
+    List<object> CollectAndCheckData(TrackData trackData, string interactionId, Emotions response)
+    {
+        List<object> data = new List<object>();
+        DateTime exportTime = GetCETTime();
+        foreach (var item in settings.newSheetProperties.columnTitles)
+        {
+            switch (item)
+            {
+                case ("CET Time stamp"):
+                    data.Add(exportTime.ToString());
+                    break;
+                case ("Export Event ID"):
+                    data.Add(GetExportEventID(exportTime.ToString()));
+                    break;
+                case ("Track ID"):
+                    data.Add(trackData.trackID);
+                    break;
+                case ("Annotation"):
+                    data.Add(response.ToString());
+                    break;
+                case ("Interaction ID"):
+                    data.Add(interactionId);
+                    break;
+                case ("User Name"):
+                    data.Add(gameManager.GetPlayerName());
+                    break;
+                case ("User ID"):
+                    data.Add(gameManager.GetPlayerID());
+                    break;
+                case ("Game Session Index"):
+                    data.Add(gameManager.GetGameSessionIndex().ToString());
+                    break;
+                case ("Application Version"):
+                    data.Add(Application.version);
+                    break;
+                case ("Configuration ID"):
+                    data.Add(gameManager.GetConfigurationFileID());
+                    break;
+                case ("Time of Day"):
+                    data.Add(GetTimeOfDay(exportTime));
+                    break;
+                default: // if it doesn't match any case
+                    Debug.LogError("a column title in the export sheet does not match any data. Please ensure that the list of column titles under Data Migration Settings -> New Spreadsheet properties are correct.");
+                    break;
+            }
+        }
+        return data;
+    }
 
     public void ExportData(TrackData trackData, string interactionId, Emotions response)
     {
-        DateTime time = GetCETTime();
-
-        // store all data we want to export in an array so we can send it later to where ever we need to
-        string[] dataToExport = {
-            time.ToString(),
-            GenerateDataPointID(),
-            trackData.trackID,
-            response.ToString(),
-            interactionId,
-            playerData.playerName,
-            playerData.playerID,
-            GetSessionIndex().ToString(),
-            GetConfigurationID(),
-            GetTimeOfDay(time)
-        };
-
+        List<object> dataToExport = CollectAndCheckData( trackData, interactionId, response);
+        if (dataToExport.Count != settings.newSheetProperties.columnTitles.Length) // the data we have collected does not match what we require for the spreadsheet
+            return;
         ExportToGoogleSheets(dataToExport);
         ExportToCSV(dataToExport);
     }
@@ -57,8 +102,8 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     void ExportToGoogleSheets(IList<object> dataToExport)
     {
         var values = new List<IList<object>> { dataToExport };
-        bool success = GoogleSheets.PushData(settings.spreadsheetID, settings.exportSheetID, values,range);
-        if(success) 
+        bool success = GoogleSheets.PushData(settings.spreadsheetID, settings.exportSheetID, values, settings.exportSheetName + rangeEnd);
+        if (success) 
             Debug.Log("Recorded the following data to Google Sheets: " + string.Join(" ,", dataToExport));
     }
 
@@ -69,13 +114,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
 
     #endregion
     #region CSV EXPORT
-
-    void Start()
-    {
-        CreateCSVWithTitles();
-        DontDestroyOnLoad(this);
-    }
-    void ExportToCSV(string[] dataToExport)
+    void ExportToCSV(List<object> dataToExport)
     {
         VerifyFile();
         using (var writer = new StreamWriter(CSVPath, true))
@@ -100,7 +139,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
             CSVPath = Path.Combine(CSVDirectory, CSVName);
             using (var writer = new StreamWriter(CSVPath, false))
             {
-                writer.WriteLine(string.Join(CSVseparator, settings.columnTitles));
+                writer.WriteLine(string.Join(CSVseparator, settings.newSheetProperties.columnTitles));
             }
             Debug.Log("Created CSV in path: " + CSVPath);
         }
@@ -141,25 +180,13 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     }
     #endregion
     #region VALUES
-
-    
-    // Generate some method that will return a unique ID for every time you export data
-    string GenerateDataPointID()
+    string GetExportEventID(string exportTime)
     {
-        return "";
-    }
-
-    // return the amount of times player has replayed the game 
-    int GetSessionIndex()
-    {
-        return 1;
-    }
-    //UUID
-    // YYYY:MM:DD:HH:MM:SS_PlayerID_GameSessionIndex_cc867280-68a7-4737-8676-0f14d2ae1b1f for data point id
-    // build version 
-    string GetConfigurationID()
-    {
-        return "00001";
+        // in UUID format 
+        // YYYY:MM:DD:HH:MM:SS_PlayerID_GameSessionIndex_cc867280-68a7-4737-8676-0f14d2ae1b1f for data point id
+        Guid randomGuid = Guid.NewGuid();
+        string randomGuidString = randomGuid.ToString();
+        return exportTime+"_"+gameManager.GetPlayerID()+"_"+gameManager.GetGameSessionIndex()+"_"+ randomGuidString;
     }
 
     DateTime GetCETTime()

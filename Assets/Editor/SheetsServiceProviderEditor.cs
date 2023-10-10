@@ -22,11 +22,6 @@ class SheetsServiceProviderEditor : Editor
     }
    public SerializedProperty newSheetProperties;
 
-    private void OnEnable()
-    {
-        newSheetProperties = serializedObject.FindProperty("newSheetProperties");
-
-    }
 
     static Task<UserCredential> authorizeTask;
 
@@ -47,7 +42,6 @@ class SheetsServiceProviderEditor : Editor
             else
                 Debug.LogError("No credential json file was selected");
         }
-        EditorGUILayout.PropertyField(newSheetProperties, true);
 
         /* if (authorizeTask != null)
          {

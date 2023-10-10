@@ -1,13 +1,8 @@
 using System;
 using System.IO;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
-using Google.Apis.Util.Store;
-using Unity.VisualScripting;
 using UnityEngine;
 
 // this is the scriptable object that will be set up with correct credentials in order to connect to google sheets using the API
@@ -23,7 +18,6 @@ public class SheetsServiceProvider : ScriptableObject
     {
         get
         {
-            //return ConnectWithServiceAccountKey();
             if (sheetService == null)
                 sheetService = ConnectWithServiceAccountKey();
             return sheetService;
@@ -60,8 +54,7 @@ public class SheetsServiceProvider : ScriptableObject
     private static string applicationName = "Reut's App";
     // The Google API access application we are requesting.
     private  readonly string[] scopes = { SheetsService.Scope.Spreadsheets };
-    [SerializeField]
-    public NewSheetProperties newSheetProperties = new NewSheetProperties();
+
     private static string instructionLocation = "";
 
     // load the json file with the service account key from the researcher's machine
@@ -95,6 +88,7 @@ public class SheetsServiceProvider : ScriptableObject
             GoogleCredential c = null;
             //The streamingAssets path is read-only. Don’t modify or write new files to the streamingAssets directory at runtime.
             //On Android and WebGL platforms, it’s not possible to access the streaming asset files directly via file system APIs and streamingAssets path because these platforms return a URL. Use the UnityWebRequest class to access the content instead.
+            // dycript 
             using (var stream = new FileStream(savedKeyPath, FileMode.Open, FileAccess.Read))
             {
                 // getting service account credentials 
