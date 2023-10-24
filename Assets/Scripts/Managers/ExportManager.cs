@@ -211,12 +211,30 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     }
     DateTime GetCETTime()
     {
-        // Define the CET time zone
-        TimeZoneInfo cetTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
-        // Get the current UTC time
-        DateTime utcNow = DateTime.UtcNow;
-        // Convert UTC time to CET time
-        return TimeZoneInfo.ConvertTimeFromUtc(utcNow, cetTimeZone);
+        try
+        {
+            TimeZoneInfo cetTimeZone;
+            // Define the CET time zone
+            try
+            {
+                cetTimeZone = TimeZoneInfo.FindSystemTimeZoneById("CET");
+
+            }
+            catch
+            {
+                cetTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
+
+            }
+            // Get the current UTC time
+            DateTime utcNow = DateTime.UtcNow;
+            // Convert UTC time to CET time
+            return TimeZoneInfo.ConvertTimeFromUtc(utcNow, cetTimeZone);
+        }
+        catch
+        {
+            Debug.LogError("CET time could not be found. returned local time zone");
+            return DateTime.Now;
+        }
     }
 
     string GetTimeOfDay(DateTime time)
