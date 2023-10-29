@@ -35,6 +35,8 @@ public class DataMigrationSettings : ScriptableObject
     public string researchersEmail;
     [SerializeField]
     public NewSheetProperties newSheetProperties = new NewSheetProperties();
+    public ResearcherData researcherData;
+    public ClientData clientData;
 
     public string GetSOSaveToPath()
     {

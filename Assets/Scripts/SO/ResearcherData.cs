@@ -3,18 +3,6 @@ using UnityEngine;
 
 public class ResearcherData : ScriptableObject
 {
-    public string projectType, projectId, clientEmail, clientId;
-    public string privateKey, privateKeyId;
+    public string projectType, projectId, clientEmail, clientId, researchersId, researchersData;  
 
-#if UNITY_EDITOR
-    public void LoadData(JsonCredentialParameters parms)
-    {
-       /* this.projectType = type;
-        this.projectId = projectId;
-        this.clientEmail = clientEmail;
-        this.clientId = clientId;   
-        this.privateKey = key;
-        this.privateKeyId = keyID;*/
-    }
-#endif
 }

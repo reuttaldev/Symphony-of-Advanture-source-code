@@ -28,14 +28,14 @@ public static class SheetsServiceProvider
     // The Google API access application we are requesting.
     static  readonly string[] scopes = { SheetsService.Scope.Spreadsheets };
     public static string instructionLocation = "";
-    public static string savePath = "Assets/Scriptable Objects/Researcher Data";
 
-    private static GoogleCredential GetCredential(JsonCredentialParameters parms)
+    private static GoogleCredential GetCredential(DataMigrationSettings settings)
     {
         if (credential == null)
         {
             try
             {
+                JsonCredentialParameters parms = AppDataManager.GetJsonParameters(settings);
                 credential = GoogleCredential.FromJsonParameters(parms).CreateScoped(new string[] { SheetsService.Scope.Spreadsheets });
                 Debug.Log("Extraction of credential from json file was successful.");
             }
@@ -47,7 +47,7 @@ public static class SheetsServiceProvider
         return credential;
 
     }
-    public static SheetsService ConnectWithServiceAccountKey(JsonCredentialParameters parms)
+    public static SheetsService ConnectWithServiceAccountKey(DataMigrationSettings settings)
     {
         if (sheetService == null)
         {
@@ -55,7 +55,7 @@ public static class SheetsServiceProvider
             {
                 var service = new SheetsService(new BaseClientService.Initializer()
                 {
-                    HttpClientInitializer = GetCredential(parms),
+                    HttpClientInitializer = GetCredential(settings),
                     ApplicationName = "App"
                 });
                 sheetService = service;

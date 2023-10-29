@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using System.IO;
-using Google.Apis.Auth.OAuth2;
 using Google.Apis.Sheets.v4;
+using System.Security.Cryptography;
+
 #if UNITY_EDITOR
 [CustomEditor(typeof(DataMigrationSettings))]
 public class DataMigrationSettingsEditor : Editor
@@ -18,8 +19,6 @@ public class DataMigrationSettingsEditor : Editor
     public SerializedProperty sentResultByEmail;
     public SerializedProperty researchersEmail;
     public SerializedProperty newSheetProperties;
-
-    JsonCredentialParameters jsonParmameters = null;
     public IList<Dictionary<string, string>> pulledData = null;
     public void OnEnable()
     {
@@ -36,23 +35,22 @@ public class DataMigrationSettingsEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-            if (GUILayout.Button(new GUIContent("Load Credentials")))
-            {
-                // open file explorer and enable to choose a json file 
-                var file = EditorUtility.OpenFilePanel("Load the credentials from a json file", "", "json");
-
-                if (!string.IsNullOrEmpty(file))
-                {
-                    ProcessServiceAccountKey(file);
-                }
-                else
-                    Debug.LogError("No credential json file was selected");
-            }
-        using (new EditorGUI.DisabledGroupScope(jsonParmameters == null))
+        if (GUILayout.Button(new GUIContent("Load Credentials")))
         {
+            // open file explorer and enable to choose a json file 
+            var file = EditorUtility.OpenFilePanel("Load the credentials from a json file", "", "json");
 
+            if (!string.IsNullOrEmpty(file))
+            {
+                ProcessServiceAccountKey(file);
+            }
+            else
+                Debug.LogError("No credential json file was selected");
+        }
+        // display only if json credentials were already loaded
+        using (new EditorGUI.DisabledGroupScope(((DataMigrationSettings)target).researcherData == null))
+        {
             #region IMPORT
-            // display only if google sheet porvided is plugged in
             EditorGUILayout.PropertyField(spreadsheetID, new GUIContent("Spreadsheet ID"));
             using (new EditorGUI.DisabledGroupScope(string.IsNullOrEmpty(spreadsheetID.stringValue)))
             {
@@ -70,8 +68,8 @@ public class DataMigrationSettingsEditor : Editor
                     }
                     if (GUILayout.Button(new GUIContent("Import and save data")))
                     {
-                        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(jsonParmameters);
-                        pulledData = GoogleSheets.PullData(service,spreadsheetID.stringValue, importSheetID.intValue, true, columnsToRead.intValue);
+                        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey((DataMigrationSettings)target);
+                        pulledData = GoogleSheets.PullData(service, spreadsheetID.stringValue, importSheetID.intValue, true, columnsToRead.intValue);
                         if (pulledData == null)
                         {
                             Debug.LogError("Data was pulled incorrectly");
@@ -133,8 +131,8 @@ public class DataMigrationSettingsEditor : Editor
         {
             EditorUtility.DisplayProgressBar("Add Sheet", string.Empty, 0);
             // return the id of the created sheet
-            SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(jsonParmameters);
-            return GoogleSheets.AddSheet(service,spreadsheetID.stringValue, sheetName, ((DataMigrationSettings)target).newSheetProperties);
+            SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey((DataMigrationSettings)target);
+            return GoogleSheets.AddSheet(service, spreadsheetID.stringValue, sheetName, ((DataMigrationSettings)target).newSheetProperties);
         }
         catch (Exception e)
         {
@@ -147,35 +145,13 @@ public class DataMigrationSettingsEditor : Editor
         return 0;
 
     }
-    public void CreateAssetFolder(string folderPath) // create a place to save our scriptable object
-    {
-        if (!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-            Console.WriteLine("Directory created: " + folderPath);
-        }
-        else // I am deleting everything where our asset will be placed to ensure no old  data remains 
-        {
-
-            DirectoryInfo directory = new DirectoryInfo(folderPath);
-
-            // Delete all files in the folder
-            foreach (FileInfo file in directory.GetFiles())
-            {
-                file.Delete();
-            }
-            // make changes appear in the editor
-            AssetDatabase.Refresh();
-        }
-    }
     public void ProcessServiceAccountKey(string path)
     {
         // encrypt it 
         // save it to streaming assets folder so we can access it in runtime in builds
         try
         {
-            jsonParmameters = LoadJsonCredentials(path);
-            SaveResearcherData(jsonParmameters);
+            AppDataManager.LoadJsonCredentials((DataMigrationSettings)target, path);
             Debug.Log("Processing of service account key was successful.");
         }
         catch (IOException e)
@@ -188,47 +164,5 @@ public class DataMigrationSettingsEditor : Editor
             Debug.LogError("Processing of service account key was not successful. " + e.Message);
         }
     }
-    private  JsonCredentialParameters LoadJsonCredentials(string path)
-    {
-        // load into a json credential first so we can do actions from the editor
-        string jsonString = File.ReadAllText(path);
-        Template temp = JsonUtility.FromJson<Template>(jsonString);
-        JsonCredentialParameters parms = new JsonCredentialParameters();
-        parms.ProjectId = temp.project_id;
-        parms.ClientId = temp.client_id;
-        parms.ClientEmail = temp.client_email;
-        parms.PrivateKey = temp.private_key;
-        parms.PrivateKeyId = temp.private_key_id;
-        parms.Type = temp.type;
-        return parms;
-
-
-    }
-    private void SaveResearcherData(JsonCredentialParameters parms)
-    {
-        // save the encrypted data somewhere 
-        ResearcherData researcherData = ScriptableObject.CreateInstance<ResearcherData>();
-        researcherData.LoadData(parms);
-        string saveName = "Data1.asset";
-        CreateAssetFolder(SheetsServiceProvider.savePath);
-        AssetDatabase.CreateAsset(researcherData, Path.Combine(SheetsServiceProvider.savePath, saveName));
-        AssetDatabase.SaveAssets();
-    }
-}
-
-[Serializable]
-public class Template // this class is used as a deserialize template for the json key (data shall not be saved here, it is temporary). 
-{
-    public string type;
-    public string project_id;
-    public string private_key_id;
-    public string private_key;
-    public string client_email;
-    public string client_id;
-    public string auth_uri;
-    public string token_uri;
-    public string auth_provider_x509_cert_url;
-    public string client_x509_cert_url;
-    public string universe_domain;
 }
 #endif
