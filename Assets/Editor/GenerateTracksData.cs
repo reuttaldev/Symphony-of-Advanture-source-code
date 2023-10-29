@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-using System;
 using System.IO;
-using Unity.VisualScripting;
 using System.Text.RegularExpressions;
+using System;
 
 #if UNITY_EDITOR
 public static class GenerateTracksData 
@@ -14,7 +13,7 @@ public static class GenerateTracksData
 
     public static void GenerateData( IList<Dictionary<string, string>> table,DataMigrationSettings settings)
     {
-        ClearFolder(settings.GetSOSaveToPath());
+        CreateFolder(settings.GetSOSaveToPath());
         // keep a dictionary with all of the track keys we have created a scriptable object for to detect duplicates and possible mistakes 
         //(id,row)
         Dictionary<string, int > allKeys = new Dictionary<string, int>();
@@ -83,11 +82,16 @@ public static class GenerateTracksData
         Debug.Log("Saved track data successfully.");
     }
 
-    // I am deleting everything where our asset will be placed to ensure no old  data remains 
-    public static void ClearFolder(string folderPath)
+    public static void CreateFolder(string folderPath)
     {
-        if (Directory.Exists(folderPath))
+        if (!Directory.Exists(folderPath))
         {
+            Directory.CreateDirectory(folderPath);
+            Console.WriteLine("Directory created: " + folderPath);
+        }
+        else // I am deleting everything where our asset will be placed to ensure no old  data remains 
+        {
+    
             DirectoryInfo directory = new DirectoryInfo(folderPath);
 
             // Delete all files in the folder
@@ -98,11 +102,8 @@ public static class GenerateTracksData
             // make changes appear in the editor
             AssetDatabase.Refresh();
         }
-        else
-        {
-            Debug.LogError("Cannot clear directory, path doesnt exist " +folderPath);
-        }
     }
+    
     public static string RemoveForbiddenPathCharacters(string inputPath)
     {
         // Define a regular expression pattern to match forbidden characters
