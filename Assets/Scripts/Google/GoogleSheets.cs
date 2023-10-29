@@ -9,6 +9,7 @@ using Data = Google.Apis.Sheets.v4.Data;
 using Google;
 using Newtonsoft.Json;
 using Request = Google.Apis.Sheets.v4.Data.Request;
+using Google.Apis.Sheets.v4;
 
 public static class GoogleSheets 
 {
@@ -23,7 +24,7 @@ public static class GoogleSheets
     }
 
     // Creates a new sheet within the Spreadsheet
-    public static int AddSheet(string spreadSheetId, string sheetName, NewSheetProperties newSheetProperties)
+    public static int AddSheet(SheetsService service, string spreadSheetId, string sheetName, NewSheetProperties newSheetProperties)
     {
         if (string.IsNullOrEmpty(spreadSheetId))
             throw new Exception($"{nameof(spreadSheetId)} is required. Please assign a valid Spreadsheet Id to the property.");
@@ -40,9 +41,9 @@ public static class GoogleSheets
         };
         try
         {
-            var batchUpdateReqTask = SendBatchUpdateRequest(spreadSheetId, createRequest);
+            var batchUpdateReqTask = SendBatchUpdateRequest(service,spreadSheetId, createRequest);
             var sheetId = batchUpdateReqTask.Replies[0].AddSheet.Properties.SheetId.Value;
-            SetupSheet(spreadSheetId, sheetId,sheetName, newSheetProperties);
+            SetupSheet(service, spreadSheetId, sheetId,sheetName, newSheetProperties);
             return sheetId;
         }
         catch (GoogleApiException ex)
@@ -53,7 +54,7 @@ public static class GoogleSheets
 
     }
 
-    static void SetupSheet(string spreadSheetId, int sheetId,string sheetName, NewSheetProperties newSheetProperties)
+    static void SetupSheet(SheetsService service, string spreadSheetId, int sheetId,string sheetName, NewSheetProperties newSheetProperties)
     {
         var requests = new List<Request>();
 
@@ -63,27 +64,27 @@ public static class GoogleSheets
             requests.Add(HighlightDuplicateKeys(sheetId, newSheetProperties));
 
         if (requests.Count > 0)
-            SendBatchUpdateRequest(spreadSheetId, requests);
+            SendBatchUpdateRequest(service,spreadSheetId, requests);
         // add titles 
         List<IList<object>> titiles = new List<IList<object>>();  titiles.Add(newSheetProperties.columnTitles);
-        PushData(spreadSheetId, sheetId,titiles, sheetName+"!A1");
+        PushData(service, spreadSheetId, sheetId,titiles, sheetName+"!A1");
     }
-    public static IList<Dictionary<string, string>> PullData(string spreadSheetId,int sheetId, bool skipFirstRow, int amountOfColumnsToRead)
+    public static IList<Dictionary<string, string>> PullData(SheetsService service, string spreadSheetId,int sheetId, bool skipFirstRow, int amountOfColumnsToRead)
     {
 
-        string sheetName = GetSheetNameByID(spreadSheetId, sheetId);
+        string sheetName = GetSheetNameByID(service,spreadSheetId, sheetId);
         if (string.IsNullOrEmpty(sheetName))
         {
             Debug.LogError("Problem with sheet ID, could not get sheet name");
         }
         Debug.Log($"Pulling from Google sheet " + sheetName);
         string range = $"{sheetName}!{(skipFirstRow ? "A2" : "A1")}:{IndexToColumnName(amountOfColumnsToRead)}";
-        var request = SheetsServiceProvider.Service.Spreadsheets.Values.Get(spreadSheetId, range);
+        var request = service.Spreadsheets.Values.Get(spreadSheetId, range);
         int rowCount = 0, columnCount = 0;
         ValueRange response = request.Execute();
 
         IList<IList<object>> values = response.Values;
-        IList<string> columnTitles = GetColumnTitles(spreadSheetId,sheetId);
+        IList<string> columnTitles = GetColumnTitles(service,spreadSheetId,sheetId);
         if (columnTitles.Count < amountOfColumnsToRead)
         {
             Debug.LogError("Too little columns in sheet " + sheetName + ". Please check that you have set it up correctly");
@@ -122,13 +123,13 @@ public static class GoogleSheets
     }
 
 
-    public static bool PushData(string spreadSheetId, int sheetId, List<IList<object>> data,string range)
+    public static bool PushData(SheetsService service, string spreadSheetId, int sheetId, List<IList<object>> data,string range)
     {
         // The new values to apply to the spreadsheet.
         var dataValueRange = new ValueRange();
         dataValueRange.Range = range;
         dataValueRange.Values = data;
-        var request = SheetsServiceProvider.Service.Spreadsheets.Values.Append(dataValueRange, spreadSheetId, range);
+        var request = service.Spreadsheets.Values.Append(dataValueRange, spreadSheetId, range);
         request.ValueInputOption =ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
         try
         {
@@ -143,11 +144,11 @@ public static class GoogleSheets
             return false;
         }
     }
-    public static string GetSheetNameByID(string spreadSheetId,int sheetId)
+    public static string GetSheetNameByID(SheetsService sheetService,string spreadSheetId,int sheetId)
     {
         if (string.IsNullOrEmpty(spreadSheetId) || string.IsNullOrEmpty(sheetId.ToString()))
             throw new Exception($"The {nameof(spreadSheetId)} is required. Please assign a valid Spreadsheet Id to the property.");
-        var spreadsheetInfoRequest = SheetsServiceProvider.Service.Spreadsheets.Get(spreadSheetId);
+        var spreadsheetInfoRequest = sheetService.Spreadsheets.Get(spreadSheetId);
         var sheetInfoReq = ExecuteRequest<Spreadsheet, GetRequest>(spreadsheetInfoRequest);
 
         foreach (var sheet in sheetInfoReq.Sheets)
@@ -163,7 +164,7 @@ public static class GoogleSheets
     /// </summary>
     /// <param name="sheetId">The sheet id.</param>
     /// <returns>All the </returns>
-    public static IList<string> GetColumnTitles(string spreadSheetId, int sheetId)
+    public static IList<string> GetColumnTitles(SheetsService service,string spreadSheetId, int sheetId)
     {
         if (string.IsNullOrEmpty(spreadSheetId))
             throw new Exception($"{nameof(spreadSheetId)} is required.");
@@ -184,7 +185,7 @@ public static class GoogleSheets
             }
         };
 
-        var request = SheetsServiceProvider.Service.Spreadsheets.Values.BatchGetByDataFilter(batchGetValuesByDataFilterRequest, spreadSheetId);
+        var request = service.Spreadsheets.Values.BatchGetByDataFilter(batchGetValuesByDataFilterRequest, spreadSheetId);
         var result = ExecuteRequest<BatchGetValuesByDataFilterResponse, ValuesResource.BatchGetByDataFilterRequest>(request);
 
         var titles = new List<string>();
@@ -285,27 +286,18 @@ public static class GoogleSheets
     }
     static Data.Color UnityColorToDataColor(UnityEngine.Color color) => new Data.Color() { Red = color.r, Green = color.g, Blue = color.b, Alpha = color.a };
 
-    internal static   Task<BatchUpdateSpreadsheetResponse> SendBatchUpdateRequestAsync(string spreadsheetId, IList<Request> requests)
-    {
-        var service = SheetsServiceProvider.Service;
-        var requestBody = new BatchUpdateSpreadsheetRequest { Requests = requests };
-        var batchUpdateReq = service.Spreadsheets.BatchUpdate(requestBody, spreadsheetId);
-        return batchUpdateReq.ExecuteAsync();
-    }
 
-    internal static   BatchUpdateSpreadsheetResponse SendBatchUpdateRequest(string spreadsheetId, IList<Request> requests)
+    internal static   BatchUpdateSpreadsheetResponse SendBatchUpdateRequest(SheetsService sheetsService, string spreadsheetId, IList<Request> requests)
     {
-        var service = SheetsServiceProvider.Service;
         var requestBody = new BatchUpdateSpreadsheetRequest { Requests = requests };
-        var batchUpdateReq = service.Spreadsheets.BatchUpdate(requestBody, spreadsheetId);
+        var batchUpdateReq = sheetsService.Spreadsheets.BatchUpdate(requestBody, spreadsheetId);
         return batchUpdateReq.Execute();
     }
 
-    internal static   BatchUpdateSpreadsheetResponse SendBatchUpdateRequest(string spreadsheetId, params Request[] requests)
+    internal static   BatchUpdateSpreadsheetResponse SendBatchUpdateRequest(SheetsService sheetsService,string spreadsheetId, params Request[] requests)
     {
-        var service = SheetsServiceProvider.Service;
         var requestBody = new BatchUpdateSpreadsheetRequest { Requests = requests };
-        var batchUpdateReq = service.Spreadsheets.BatchUpdate(requestBody, spreadsheetId);
+        var batchUpdateReq = sheetsService.Spreadsheets.BatchUpdate(requestBody, spreadsheetId);
         return batchUpdateReq.Execute();
     }
 

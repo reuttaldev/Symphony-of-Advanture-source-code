@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using System.IO;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Sheets.v4;
 #if UNITY_EDITOR
 [CustomEditor(typeof(DataMigrationSettings))]
 public class DataMigrationSettingsEditor : Editor
@@ -17,6 +19,7 @@ public class DataMigrationSettingsEditor : Editor
     public SerializedProperty researchersEmail;
     public SerializedProperty newSheetProperties;
 
+    JsonCredentialParameters jsonParmameters = null;
     public IList<Dictionary<string, string>> pulledData = null;
     public void OnEnable()
     {
@@ -33,89 +36,92 @@ public class DataMigrationSettingsEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
+            if (GUILayout.Button(new GUIContent("Load Credentials")))
+            {
+                // open file explorer and enable to choose a json file 
+                var file = EditorUtility.OpenFilePanel("Load the credentials from a json file", "", "json");
 
-        if (GUILayout.Button(new GUIContent("Load Credentials")))
+                if (!string.IsNullOrEmpty(file))
+                {
+                    ProcessServiceAccountKey(file);
+                }
+                else
+                    Debug.LogError("No credential json file was selected");
+            }
+        using (new EditorGUI.DisabledGroupScope(jsonParmameters == null))
         {
-            // open file explorer and enable to choose a json file 
-            var file = EditorUtility.OpenFilePanel("Load the credentials from a json file", "", "json");
 
-            if (!string.IsNullOrEmpty(file))
+            #region IMPORT
+            // display only if google sheet porvided is plugged in
+            EditorGUILayout.PropertyField(spreadsheetID, new GUIContent("Spreadsheet ID"));
+            using (new EditorGUI.DisabledGroupScope(string.IsNullOrEmpty(spreadsheetID.stringValue)))
             {
-                ProcessServiceAccountKey(file);
-            }
-            else
-                Debug.LogError("No credential json file was selected");
-        }
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
+                // display only is spreadsheet string id is there
 
-        #region IMPORT
-        // display only if google sheet porvided is plugged in
-        EditorGUILayout.PropertyField(spreadsheetID, new GUIContent("Spreadsheet ID"));
-        using (new EditorGUI.DisabledGroupScope(string.IsNullOrEmpty(spreadsheetID.stringValue)))
-        {
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
-            // display only is spreadsheet string id is there
-
-            EditorGUILayout.LabelField("Import Settings", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(importSheetID, new GUIContent("Import Sheet ID"));
-            using (new EditorGUI.DisabledGroupScope(importSheetID.intValue == 0))
-            {
-                if (GUILayout.Button(new GUIContent("Open Meta Data Table")))
+                EditorGUILayout.LabelField("Import Settings", EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(importSheetID, new GUIContent("Import Sheet ID"));
+                using (new EditorGUI.DisabledGroupScope(importSheetID.intValue == 0))
                 {
-                    GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, importSheetID.intValue);
-                }
-                if (GUILayout.Button(new GUIContent("Import and save data")))
-                {
-                    pulledData = GoogleSheets.PullData(spreadsheetID.stringValue, importSheetID.intValue, true, columnsToRead.intValue);
-                    if (pulledData == null)
+                    if (GUILayout.Button(new GUIContent("Open Meta Data Table")))
                     {
-                        Debug.LogError("Data was pulled incorrectly");
+                        GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, importSheetID.intValue);
                     }
-                    else
+                    if (GUILayout.Button(new GUIContent("Import and save data")))
                     {
-                        GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target);
+                        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(jsonParmameters);
+                        pulledData = GoogleSheets.PullData(service,spreadsheetID.stringValue, importSheetID.intValue, true, columnsToRead.intValue);
+                        if (pulledData == null)
+                        {
+                            Debug.LogError("Data was pulled incorrectly");
+                        }
+                        else
+                        {
+                            GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target);
+                        }
+                    }
+                    EditorGUILayout.PropertyField(columnsToRead, new GUIContent("Columns to Read"));
+                    EditorGUILayout.PropertyField(loadAudioPath, new GUIContent("Path to load audio tracks from"));
+                    EditorGUILayout.PropertyField(saveSOToPath, new GUIContent("Saved Data Path"));
+                }
+                #endregion
+
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
+                #region EXPORT
+                EditorGUILayout.LabelField("Export Settings", EditorStyles.boldLabel);
+                using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue != 0))
+                {
+                    EditorGUILayout.PropertyField(newSheetProperties, new GUIContent("New spreadsheet properties"));
+                    if (GUILayout.Button(new GUIContent("Create Collected Data Table")))
+                    {
+                        int newSheetID = CreateNewSheet(((DataMigrationSettings)target).exportSheetName);
+                        if (newSheetID != 0)
+                            exportSheetID.intValue = newSheetID;
+                        exportSheetID.serializedObject.ApplyModifiedProperties();
+                        serializedObject.Update();
+
                     }
                 }
-                EditorGUILayout.PropertyField(columnsToRead, new GUIContent("Columns to Read"));
-                EditorGUILayout.PropertyField(loadAudioPath, new GUIContent("Path to load audio tracks from"));
-                EditorGUILayout.PropertyField(saveSOToPath, new GUIContent("Saved Data Path"));
-            }
-            #endregion
-
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
-            #region EXPORT
-            EditorGUILayout.LabelField("Export Settings", EditorStyles.boldLabel);
-            using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue != 0))
-            {
-                EditorGUILayout.PropertyField(newSheetProperties, new GUIContent("New spreadsheet properties"));
-                if (GUILayout.Button(new GUIContent("Create Collected Data Table")))
+                using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue == 0))
                 {
-                    int newSheetID = CreateNewSheet(((DataMigrationSettings)target).exportSheetName);
-                    if (newSheetID != 0)
-                        exportSheetID.intValue = newSheetID;
-                    exportSheetID.serializedObject.ApplyModifiedProperties();
-                    serializedObject.Update();
-
+                    if (GUILayout.Button(new GUIContent("Open Collected Data Table")))
+                    {
+                        GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, exportSheetID.intValue);
+                    }
+                    EditorGUILayout.PropertyField(exportSheetID, new GUIContent("Export Sheet ID"));
                 }
-            }
-            using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue == 0))
-            {
-                if (GUILayout.Button(new GUIContent("Open Collected Data Table")))
+
+                EditorGUILayout.Space();
+                EditorGUILayout.PropertyField(sentResultByEmail, new GUIContent("Send Collected Data to Email"));
+                using (new EditorGUI.DisabledGroupScope(!sentResultByEmail.boolValue))
                 {
-                    GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, exportSheetID.intValue);
+                    EditorGUILayout.PropertyField(researchersEmail, new GUIContent("Email to send to"));
                 }
-                EditorGUILayout.PropertyField(exportSheetID, new GUIContent("Export Sheet ID"));
+                #endregion
             }
-
-            EditorGUILayout.Space();
-            EditorGUILayout.PropertyField(sentResultByEmail, new GUIContent("Send Collected Data to Email"));
-            using (new EditorGUI.DisabledGroupScope(!sentResultByEmail.boolValue))
-            {
-                EditorGUILayout.PropertyField(researchersEmail, new GUIContent("Email to send to"));
-            }
-            #endregion
         }
         serializedObject.ApplyModifiedProperties();
     }
@@ -127,7 +133,8 @@ public class DataMigrationSettingsEditor : Editor
         {
             EditorUtility.DisplayProgressBar("Add Sheet", string.Empty, 0);
             // return the id of the created sheet
-            return GoogleSheets.AddSheet(spreadsheetID.stringValue, sheetName, ((DataMigrationSettings)target).newSheetProperties);
+            SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(jsonParmameters);
+            return GoogleSheets.AddSheet(service,spreadsheetID.stringValue, sheetName, ((DataMigrationSettings)target).newSheetProperties);
         }
         catch (Exception e)
         {
@@ -167,7 +174,8 @@ public class DataMigrationSettingsEditor : Editor
         // save it to streaming assets folder so we can access it in runtime in builds
         try
         {
-            SaveJsonCredentials(path);
+            jsonParmameters = LoadJsonCredentials(path);
+            SaveResearcherData(jsonParmameters);
             Debug.Log("Processing of service account key was successful.");
         }
         catch (IOException e)
@@ -180,17 +188,31 @@ public class DataMigrationSettingsEditor : Editor
             Debug.LogError("Processing of service account key was not successful. " + e.Message);
         }
     }
-    private void SaveJsonCredentials(string path)
+    private  JsonCredentialParameters LoadJsonCredentials(string path)
     {
+        // load into a json credential first so we can do actions from the editor
         string jsonString = File.ReadAllText(path);
         Template temp = JsonUtility.FromJson<Template>(jsonString);
+        JsonCredentialParameters parms = new JsonCredentialParameters();
+        parms.ProjectId = temp.project_id;
+        parms.ClientId = temp.client_id;
+        parms.ClientEmail = temp.client_email;
+        parms.PrivateKey = temp.private_key;
+        parms.PrivateKeyId = temp.private_key_id;
+        parms.Type = temp.type;
+        return parms;
+
+
+    }
+    private void SaveResearcherData(JsonCredentialParameters parms)
+    {
+        // save the encrypted data somewhere 
         ResearcherData researcherData = ScriptableObject.CreateInstance<ResearcherData>();
-        researcherData.LoadData(temp.type, temp.project_id, temp.client_email, temp.client_id, temp.private_key, temp.private_key_id);
+        researcherData.LoadData(parms);
         string saveName = "Data1.asset";
         CreateAssetFolder(SheetsServiceProvider.savePath);
         AssetDatabase.CreateAsset(researcherData, Path.Combine(SheetsServiceProvider.savePath, saveName));
         AssetDatabase.SaveAssets();
-
     }
 }
 

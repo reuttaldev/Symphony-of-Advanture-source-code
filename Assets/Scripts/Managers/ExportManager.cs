@@ -105,10 +105,10 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     #region GOOGLE EXPORT
     void ExportToGoogleSheets(IList<object> dataToExport)
     {
-        var values = new List<IList<object>> { dataToExport };
-        bool success = GoogleSheets.PushData(settings.spreadsheetID, settings.exportSheetID, values, settings.exportSheetName + rangeEnd);
-        if (success)
-            Debug.Log("Recorded the following data to Google Sheets: " + string.Join(" ,", dataToExport));
+       // var values = new List<IList<object>> { dataToExport };
+        //bool success = GoogleSheets.PushData(settings.spreadsheetID, settings.exportSheetID, values, settings.exportSheetName + rangeEnd);
+        //if (success)
+         //   Debug.Log("Recorded the following data to Google Sheets: " + string.Join(" ,", dataToExport));
     }
 
     #endregion

@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Text.Json;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
@@ -14,15 +12,7 @@ public static class SheetsServiceProvider
 
 
     private static SheetsService sheetService;
-    public static SheetsService Service
-    {
-        get
-        {
-            if (sheetService == null)
-                sheetService = ConnectWithServiceAccountKey();
-            return sheetService;
-        }
-    }
+    
 
        // call the combine method rather than + to ensure the path uses the correct system slash and the path will be readable on every operating system.
     /// <summary>
@@ -35,52 +25,47 @@ public static class SheetsServiceProvider
     ///https://cloud.google.com/iam/docs/service-account-creds
     /// </summary>
     private static GoogleCredential credential;
-    public static GoogleCredential Credential
-    {
-        get
-        {
-            if (credential == null)
-                credential= GetCredential();
-            // check if getting credentials was successful 
-            if (credential == null)
-                Debug.LogError("Problem retrieving credential.");
-            return credential;
-        }
-    }
     // The Google API access application we are requesting.
-    private static  readonly string[] scopes = { SheetsService.Scope.Spreadsheets };
-    public  static string instructionLocation = "";
+    static  readonly string[] scopes = { SheetsService.Scope.Spreadsheets };
+    public static string instructionLocation = "";
     public static string savePath = "Assets/Scriptable Objects/Researcher Data";
 
-    private static GoogleCredential GetCredential()
+    private static GoogleCredential GetCredential(JsonCredentialParameters parms)
     {
-        GoogleCredential c = null;
-        try
+        if (credential == null)
         {
-
-            c = GoogleCredential.FromJsonParameters(LoadJsonCredentials()).CreateScoped(new string[] { SheetsService.Scope.Spreadsheets });
-            Debug.Log("Extraction of credential from json file was successful.");
+            try
+            {
+                credential = GoogleCredential.FromJsonParameters(parms).CreateScoped(new string[] { SheetsService.Scope.Spreadsheets });
+                Debug.Log("Extraction of credential from json file was successful.");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Could not get a Google Credential. " + e.Message);
+            }
         }
-        catch (Exception e)
-        {
-            Debug.LogError(e.Message);
-        }
-        return c;
+        return credential;
 
     }
-    private static JsonCredentialParameters LoadJsonCredentials()
+    public static SheetsService ConnectWithServiceAccountKey(JsonCredentialParameters parms)
     {
-        JsonCredentialParameters parms = new JsonCredentialParameters();
-        return parms;
-    }
-    public static SheetsService ConnectWithServiceAccountKey()
-    {
-        var service = new SheetsService(new BaseClientService.Initializer()
+        if (sheetService == null)
         {
-            HttpClientInitializer = Credential,
-            ApplicationName = "App"
-        });
-        return service;
+            try
+            {
+                var service = new SheetsService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = GetCredential(parms),
+                    ApplicationName = "App"
+                });
+                sheetService = service;
+            }
+            catch (Exception e) 
+            {
+                Debug.LogError("Could not get a SheetsService. "+ e.Message);
+            }
+        }
+        return sheetService;
     }
    
 }

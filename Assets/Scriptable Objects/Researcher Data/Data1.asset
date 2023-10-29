@@ -12,66 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9967dbfff451f44a9e48be47b14e44, type: 3}
   m_Name: Data1
   m_EditorClassIdentifier: 
-  projectType: service_account
-  projectId: isp-data-393723
-  clientEmail: isp-service-account@isp-data-393723.iam.gserviceaccount.com
-  clientId: 114474635821142540626
-  privateKey: '-----BEGIN PRIVATE KEY-----
-
-    MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC56bdjXhNgDdzo
-
-    bdE3TRxCSFADXpNHTyTtdoHTiZCmXW2y8Bmdgk1MSvoCjGbQTImc8SR9ndD4CnRi
-
-    Zh0X2FnLgiY7vjctNzAmNB+v+H88XUfUfIg6XinLjPugVGUmWnbdfCrQDwZqI9Uk
-
-    au333zTfqTV9qGJIg0b3wWTsSoNK3QYlVmxExSdJVrnocY/91LTx2wnlG4kP2vXJ
-
-    fKxXQCedqBlN7heNKNsuWllOyvZwz4Bfjj8Zi7weGVOeYoF+qr+yl9ADYsEP/CK5
-
-    udZJp/IT9x9GJtHjOl/5i3zS8rkArhdNv056LvKfxt+ygE91VATvhNoZWzrBFS5z
-
-    lMQZHmVDAgMBAAECggEASSZzQHdjIz/BJHkVQW+nR1NBnFnJlFzJOGARLCUsE7Ge
-
-    OLJtOcLr3DGCFp+c0qfS27wsMfr3Hqmqao8oMlov1rnChm5NMo7M9LM8ppYdpihD
-
-    25EWXvTu+AbkeQzL8d/VdkdlZxEKYpfvxREHyih6muhuwh8PcN2qflCLf8e/yiPp
-
-    QAgiLwnB7+QjEQ0Vk+TtixApEkhfajFkrvr8KDgcsAZmLpaCzZToD8+sS7PsNR/1
-
-    d0YtS7aonPjZIE9lvxQgFBrG6t/CplRh9bARubJ+YHUqKd/JQBb94AkuUmI+9sF2
-
-    PkioSX7PNvrzcnLKjWY4qXRQV2fsiF6xjDJTTJnmIQKBgQD3S9aQ759Pg1EpDaPi
-
-    Nqvy6/x26NQFva9en+tCY8N0LqrHL5+QzqcD5sJe1Aj048p1Xfq+x5y5NElvWPKm
-
-    VaWOID4Nu+YvBaKk8Mpm5Fu2g1NtEvYKpfRYYYpiw3J6THYLwsBE3gSWYmI8/Ylt
-
-    cShQmLnkvR0DtFqrbsl0/EQ2YwKBgQDAdM8kWpqJuH1Vb4nSZsBiR8/etFQ+Rfnd
-
-    LbYOOOspgIVc1JoNXhPdncdIYhrxq8s5KuOHDVa8ybOOn6T/lcoHMXAmitRH/7oF
-
-    LYb1B4xvKNwtq4oOfxi64ya6pmVfSqOKvmrpNF7j+RvhnpwfwnOmUwpWuAbWzY53
-
-    7jwbeYFboQKBgQDIGUhb7FiG+SWhx1S1RTGrFUIqYUi2AH83XMT66kiL6Prsw18k
-
-    x+IiaQUbwAwjQ3Jdt5ad6lypC2LkQx/McX7NWs97Q3AE2lV5ixDrYpnHO8o0duQ5
-
-    R4FIRly4f5dQ2C+oYoQ69T7XBHKjES+zK53IYVwBdvhUOAoprzI5g6oaKwKBgQCG
-
-    obA+iDtPWIYk/C/3xfWTSxU5gADmx2DxvwZ6kIrBr6ybsgZKj6NqBvPfyPF8WmeC
-
-    CGS+lzA0RQ2dGkT8nraDrav86mVyMIzbDmw4gR1WrcjJEhUz6ulL45e2PqzvqnEZ
-
-    n/d+SCqRZDSC8sfY19i7Y5/55iayoX2mnDvkJG2/wQKBgQC5E07wLFMCn4hrmJgj
-
-    Vi5FVSYKo6kL5fvymiB1RmcGImxoE+2dedKpDSPRkXRIKESvz1PVmZQ0J2nJBuU6
-
-    s8Hw8mkNjZ8RDI+P7cXIK0v33Aiah69y+oAtE7mHEgZUqBAPUMG1BRs7G5m5fWzY
-
-    eLEa+bt+kJ1CKRmFkLA+ETnJPw==
-
-    -----END
-    PRIVATE KEY-----
-
-'
-  privateKeyId: 14f122f570ad70c1b9d2016f4a4c16ae90009771
+  projectType: 
+  projectId: 
+  clientEmail: 
+  clientId: 
+  privateKey: 
+  privateKeyId: 

@@ -1,3 +1,4 @@
+using Google.Apis.Auth.OAuth2;
 using UnityEngine;
 
 public class ResearcherData : ScriptableObject
@@ -5,13 +6,15 @@ public class ResearcherData : ScriptableObject
     public string projectType, projectId, clientEmail, clientId;
     public string privateKey, privateKeyId;
 
-    public void LoadData(string type,string  projectId, string clientEmail, string clientId, string key, string keyID)
+#if UNITY_EDITOR
+    public void LoadData(JsonCredentialParameters parms)
     {
-        this.projectType = type;
+       /* this.projectType = type;
         this.projectId = projectId;
         this.clientEmail = clientEmail;
         this.clientId = clientId;   
         this.privateKey = key;
-        this.privateKeyId = keyID;
+        this.privateKeyId = keyID;*/
     }
+#endif
 }
