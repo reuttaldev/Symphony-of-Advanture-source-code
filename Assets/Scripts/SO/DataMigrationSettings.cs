@@ -11,8 +11,6 @@ using UnityEngine;
 public class DataMigrationSettings : ScriptableObject
 {
     [SerializeField]
-    SheetsServiceProvider sheetServiceProvider;
-    [SerializeField]
     public string spreadsheetID;// the ID where both import/export tables are found
     [SerializeField]
     int importSheetID; // the id at the end of the URL of the sheet we need to export from

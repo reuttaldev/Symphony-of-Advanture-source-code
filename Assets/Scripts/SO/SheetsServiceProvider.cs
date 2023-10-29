@@ -6,10 +6,9 @@ using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using UnityEngine;
 
-// this is the scriptable object that will be set up with correct credentials in order to connect to google sheets using the API
-[CreateAssetMenu(fileName = "Google Sheets Service", menuName = "Data Migration/Google Sheets Service")]
+// this class is in charge of setting up the correct credentials in order to connect to google sheets using the API
 [HelpURL("https://developers.google.com/sheets/api/guides/authorizing#AboutAuthorization")]
-public class SheetsServiceProvider : ScriptableObject // change it to be a static clsss later and move the opening of file explorer to the data migration editor
+public static class SheetsServiceProvider  
 {
     // this part is contains data of the credentials needed in order to authenticate and authorize a call to the Google API using a service account
 
@@ -49,7 +48,7 @@ public class SheetsServiceProvider : ScriptableObject // change it to be a stati
         }
     }
     // The Google API access application we are requesting.
-    private  readonly string[] scopes = { SheetsService.Scope.Spreadsheets };
+    private static  readonly string[] scopes = { SheetsService.Scope.Spreadsheets };
     public  static string instructionLocation = "";
     public static string savePath = "Assets/Scriptable Objects/Researcher Data";
 
