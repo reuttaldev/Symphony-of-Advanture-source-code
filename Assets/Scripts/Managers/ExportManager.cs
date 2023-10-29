@@ -101,8 +101,6 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         WriteToCSV(dataToExport);
     }
 
-
-
     #region GOOGLE EXPORT
     void ExportToGoogleSheets(IList<object> dataToExport)
     {

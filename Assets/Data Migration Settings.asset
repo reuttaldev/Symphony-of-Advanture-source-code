@@ -19,7 +19,7 @@ MonoBehaviour:
   saveSOToPath: Assets\Resources\Tracks Data
   loadAudioPath: Assets\Resources\Audio Tracks
   columnsToRead: 5
-  sentResultByEmail: 0
+  sentResultByEmail: 1
   researchersEmail: 
   newSheetProperties:
     columnTitles:

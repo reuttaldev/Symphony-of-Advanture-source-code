@@ -1,0 +1,5 @@
+check how it works when export sheet id is set to 0 - make sure that the name "Collected data" is not hard coded 
+make it possible to set up any sheet you like
+add panel to block everything when there is no internet 
+alternative to resources folder
+check why switching songs is so slow

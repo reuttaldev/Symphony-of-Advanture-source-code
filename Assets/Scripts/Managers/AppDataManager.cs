@@ -79,6 +79,7 @@ public static class AppDataManager
             AssetDatabase.Refresh();
         }
     }
+#endif
 }
 
 [Serializable]
@@ -96,4 +97,3 @@ public class JsonDataTemplate // this class is used as a deserialize template fo
     public string client_x509_cert_url;
     public string universe_domain;
 }
-#endif
