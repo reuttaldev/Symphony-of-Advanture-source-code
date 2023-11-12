@@ -7,6 +7,7 @@ using CsvHelper;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Linq;
 using Google.Apis.Sheets.v4;
+using Google;
 
 
 // I am making it a singleton because otherwise each time we load a scene and we reach start, the csv file will be reset.
@@ -19,7 +20,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     string rangeEnd = "!A2";
 
     [Header("CSV")]
-    string CSVDirectory = Application.dataPath;
+    string CSVDirectory = Path.Combine(Application.dataPath,"CVSData");
     const char CSVseparator = ',';
     const string CSVExtension = ".csv";
 
@@ -106,9 +107,19 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     {
          var values = new List<IList<object>> { dataToExport };
         SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(settings);
-        bool success = GoogleSheets.PushData(service,settings.spreadsheetID, settings.exportSheetID, values, settings.exportSheetName + rangeEnd);
-        if (success)
+        try
+        {
+            GoogleSheets.PushData(service,settings.spreadsheetID, values,  GoogleSheets.GetSheetNameByID(service, settings.spreadsheetID, settings.exportSheetID) + rangeEnd);
             Debug.Log("Recorded the following data to Google Sheets: " + string.Join(" ,", dataToExport));
+        }
+        catch(GoogleApiException e)
+        {
+            GoogleSheets.HandleGoogleSheetExceptions(e);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
     }
 
     #endregion
@@ -138,7 +149,16 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     {
         try
         {
-            // add the titles first, remove everything that's already there is something is there 
+            //create the folder
+            if (!Directory.Exists(CSVDirectory))
+            {
+                Directory.CreateDirectory(CSVDirectory);
+            }
+            else // I am deleting everything where our asset will be placed to ensure no old  data remains 
+            {
+                DirectoryInfo directory = new DirectoryInfo(path);
+            }
+            // add the titles first, false to remove everything that's already there is something is there 
             using (var writer = new StreamWriter(path, false))
             {
                 writer.WriteLine(string.Join(CSVseparator, settings.newSheetProperties.columnTitles));

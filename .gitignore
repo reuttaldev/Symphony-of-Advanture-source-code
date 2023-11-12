@@ -72,5 +72,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 
-*.csv
-*.csv.meta
+/[Aa]ssets/CVSData

@@ -12,6 +12,8 @@ using Request = Google.Apis.Sheets.v4.Data.Request;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Auth.OAuth2;
 
+
+// always wrap with try/catch when calling methods for this class. Many conditions have to be satisfied for everything to be completed properly and therefore there are many potential errors.
 public static class GoogleSheets 
 {
     public static void OpenSheetInBrowser(string spreadSheetId)
@@ -25,14 +27,9 @@ public static class GoogleSheets
     }
 
     // Creates a new sheet within the Spreadsheet
+    // return any possible error message so we can show it as a helpbox in the data migration settings editor
     public static int AddSheet(SheetsService service, string spreadSheetId, string sheetName, NewSheetProperties newSheetProperties)
     {
-        if (string.IsNullOrEmpty(spreadSheetId))
-            throw new Exception($"{nameof(spreadSheetId)} is required. Please assign a valid Spreadsheet Id to the property.");
-
-        if (newSheetProperties == null)
-            throw new ArgumentNullException(nameof(newSheetProperties));
-
         var createRequest = new Request()
         {
             AddSheet = new AddSheetRequest
@@ -40,21 +37,11 @@ public static class GoogleSheets
                 Properties = new SheetProperties { Title = sheetName }
             }
         };
-        try
-        {
-            var batchUpdateReqTask = SendBatchUpdateRequest(service,spreadSheetId, createRequest);
-            var sheetId = batchUpdateReqTask.Replies[0].AddSheet.Properties.SheetId.Value;
-            SetupSheet(service, spreadSheetId, sheetId,sheetName, newSheetProperties);
-            return sheetId;
-        }
-        catch (GoogleApiException ex)
-        {
-            Debug.LogError(ex.Message);
-        }
-        return 0;
-
+        var batchUpdateReqTask = SendBatchUpdateRequest(service, spreadSheetId, createRequest);
+        var sheetId = batchUpdateReqTask.Replies[0].AddSheet.Properties.SheetId.Value;
+        SetupSheet(service, spreadSheetId, sheetId, sheetName, newSheetProperties);
+        return sheetId;
     }
-
     static void SetupSheet(SheetsService service, string spreadSheetId, int sheetId,string sheetName, NewSheetProperties newSheetProperties)
     {
         var requests = new List<Request>();
@@ -68,7 +55,7 @@ public static class GoogleSheets
             SendBatchUpdateRequest(service,spreadSheetId, requests);
         // add titles 
         List<IList<object>> titiles = new List<IList<object>>();  titiles.Add(newSheetProperties.columnTitles);
-        PushData(service, spreadSheetId, sheetId,titiles, sheetName+"!A1");
+        PushData(service, spreadSheetId,titiles, sheetName+"!A1");
     }
     public static IList<Dictionary<string, string>> PullData(SheetsService service, string spreadSheetId,int sheetId, bool skipFirstRow, int amountOfColumnsToRead)
     {
@@ -124,26 +111,15 @@ public static class GoogleSheets
     }
 
 
-    public static bool PushData(SheetsService service, string spreadSheetId, int sheetId, List<IList<object>> data,string range)
+    public static void PushData(SheetsService service, string spreadSheetId, List<IList<object>> data, string range)
     {
         // The new values to apply to the spreadsheet.
         var dataValueRange = new ValueRange();
         dataValueRange.Range = range;
         dataValueRange.Values = data;
         var request = service.Spreadsheets.Values.Append(dataValueRange, spreadSheetId, range);
-        request.ValueInputOption =ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
-        try
-        {
-            // Data.BatchUpdateValuesResponse response = await request.ExecuteAsync(); // For async 
-            AppendValuesResponse response = request.Execute();
-            Debug.Log(JsonConvert.SerializeObject(response));
-            return true;
-        }
-        catch (Exception ex) 
-        {
-            Debug.LogError(ex.Message);
-            return false;
-        }
+        request.ValueInputOption = ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
+        AppendValuesResponse response = request.Execute();
     }
     public static string GetSheetNameByID(SheetsService sheetService,string spreadSheetId,int sheetId)
     {
@@ -159,6 +135,21 @@ public static class GoogleSheets
         }
         return null;
     }
+    public static string HandleGoogleSheetExceptions(GoogleApiException ex)
+    {
+        if (ex == null)
+            return "";
+        string errorMessage = ex.Error.Message;
+        switch (errorMessage)
+        {
+            case "Requested entity was not found.":
+                errorMessage = "Spreadsheet Id is not correct. Please enter the correct spreadsheet ID and try again.";
+                break;
+        }
+        Debug.LogError(errorMessage);
+        return errorMessage;
+    }
+
     /// <summary>
     /// Returns all the column titles(values from the first row) for the selected sheet inside of the Spreadsheet with id <see cref="spreadSheetId"/>.
     /// This method requires the <see cref="sheetsService"/> to use OAuth authorization as it uses a data filter which reuires elevated authorization.

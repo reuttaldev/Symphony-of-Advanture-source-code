@@ -37,7 +37,6 @@ public static class SheetsServiceProvider
             {
                 JsonCredentialParameters parms = AppDataManager.GetJsonParameters(settings);
                 credential = GoogleCredential.FromJsonParameters(parms).CreateScoped(new string[] { SheetsService.Scope.Spreadsheets });
-                Debug.Log("Extraction of credential from json file was successful.");
             }
             catch (Exception e)
             {
@@ -59,6 +58,8 @@ public static class SheetsServiceProvider
                     ApplicationName = "App"
                 });
                 sheetService = service;
+                Debug.Log("Connected With Service Account Key ");
+                Debug.Log(sheetService);
             }
             catch (Exception e) 
             {

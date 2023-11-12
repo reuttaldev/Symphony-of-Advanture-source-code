@@ -14,10 +14,9 @@ public class DataMigrationSettings : ScriptableObject
     public string spreadsheetID;// the ID where both import/export tables are found
     [SerializeField]
     int importSheetID; // the id at the end of the URL of the sheet we need to export from
+    [ReadOnly]
     [SerializeField]
-    [ReadOnly]
     public int exportSheetID; // the id at the end of the URL of the sheet we need to import to
-    [ReadOnly]
     [SerializeField]
     public string exportSheetName = "Collected Data";
     [ReadOnly]
@@ -38,6 +37,11 @@ public class DataMigrationSettings : ScriptableObject
     public ResearcherData researcherData;
     public ClientData clientData;
 
+    // these values are here so we can know when to display the helper boxes in the editor
+    [SerializeField]
+    private string tempExportName;
+    [SerializeField]
+    private string errorMessage;
     public string GetSOSaveToPath()
     {
         return saveSOToPath;

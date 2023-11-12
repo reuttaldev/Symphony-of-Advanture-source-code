@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spreadsheetID: 1qHmvEGfXoCBZQWwDBrjASd-an27MBgBMTmAK-BSrNbI
   importSheetID: 2040123043
-  exportSheetID: 0
+  exportSheetID: 4776736
   exportSheetName: Collected Data
   saveSOToPath: Assets\Resources\Tracks Data
   loadAudioPath: Assets\Resources\Audio Tracks
   columnsToRead: 5
   sentResultByEmail: 1
-  researchersEmail: 
+  researchersEmail: reutgaming@gmail.com
   newSheetProperties:
     columnTitles:
     - CET Time stamp
@@ -41,5 +41,7 @@ MonoBehaviour:
     m_DuplicateKeyColor: {r: 0.8745098, g: 0.2240707, b: 0.1921569, a: 1}
     m_HighlightDuplicateKeys: 1
     m_FreezeTitleRowAndKeyColumn: 1
-  researcherData: {fileID: 11400000, guid: 1d8d1f2e0d10f7746bec7d5689902f64, type: 2}
-  clientData: {fileID: 11400000, guid: 67e7a479c554dbd40a0b880e86e6eebe, type: 2}
+  researcherData: {fileID: 11400000, guid: 757cc73399aa645489ba121671bb121d, type: 2}
+  clientData: {fileID: 11400000, guid: 4911fc5992993744db913b7207cf5f50, type: 2}
+  tempExportName: Collected Data
+  errorMessage: 

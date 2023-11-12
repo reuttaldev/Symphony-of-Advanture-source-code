@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e6eeda0ad45ad4398655e8890a78b8, type: 3}
-  m_Name: AppData
+  m_Script: {fileID: 11500000, guid: 131dbd8b8ec8a604eb3d09384eaf4008, type: 3}
+  m_Name: Data2
   m_EditorClassIdentifier: 
+  clientPreference: 4d1a4026611b9d9d19c4f339dadf7b2fcf80c54688874b2b86fea255e321b911

@@ -7,7 +7,7 @@ using UnityEngine;
 public static class AppDataManager
 { 
 
-    public static string savePath = "Assets/Scriptable Objects/Researcher Data";
+    public static string savePath = "Assets/AppData/Researcher Data";
     static byte[] iv = EncryptionManager.GenerateRandomBytes(16); // Generate a 16-byte IV
 
     public static JsonCredentialParameters GetJsonParameters(DataMigrationSettings settings)
@@ -29,7 +29,7 @@ public static class AppDataManager
     {
         // load the json file into a string
         string jsonString = File.ReadAllText(path);
-        // deserialize it 
+        // deserialize it, since the credentials original format is json
         JsonDataTemplate temp = JsonUtility.FromJson<JsonDataTemplate>(jsonString);
         // create scriptable objects to save the data in 
         ResearcherData researcherData = ScriptableObject.CreateInstance<ResearcherData>();

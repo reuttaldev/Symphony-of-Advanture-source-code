@@ -5,6 +5,15 @@ using System;
 using System.IO;
 using Google.Apis.Sheets.v4;
 using System.Security.Cryptography;
+using Codice.Client.Common;
+using Codice.CM.Common;
+using static Codice.Client.Common.Servers.RecentlyUsedServers;
+using System.Buffers.Text;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using Unity.VisualScripting.YamlDotNet.Core;
+using Unity.VisualScripting;
+using Google;
+using UnityEngine.UIElements;
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(DataMigrationSettings))]
@@ -19,7 +28,13 @@ public class DataMigrationSettingsEditor : Editor
     public SerializedProperty sentResultByEmail;
     public SerializedProperty researchersEmail;
     public SerializedProperty newSheetProperties;
+    public SerializedProperty exportSheetName;
+    public SerializedProperty tempExportName;
+    public SerializedProperty errorMessage;
     public IList<Dictionary<string, string>> pulledData = null;
+
+    // local success messages - local because we want the message to disappear if exiting the scriptable object and coming back. with the error messages- I want them to still pear after re-entering 
+    string sucessMessage = "";
     public void OnEnable()
     {
         spreadsheetID = serializedObject.FindProperty("spreadsheetID");
@@ -31,6 +46,12 @@ public class DataMigrationSettingsEditor : Editor
         sentResultByEmail = serializedObject.FindProperty("sentResultByEmail");
         researchersEmail = serializedObject.FindProperty("researchersEmail");
         newSheetProperties = serializedObject.FindProperty("newSheetProperties");
+        exportSheetName = serializedObject.FindProperty("exportSheetName");
+        tempExportName = serializedObject.FindProperty("tempExportName");
+        errorMessage = serializedObject.FindProperty("errorMessage");
+    }
+    void ProgressBar(float value, string label)
+    {
     }
     public override void OnInspectorGUI()
     {
@@ -39,13 +60,7 @@ public class DataMigrationSettingsEditor : Editor
         {
             // open file explorer and enable to choose a json file 
             var file = EditorUtility.OpenFilePanel("Load the credentials from a json file", "", "json");
-
-            if (!string.IsNullOrEmpty(file))
-            {
-                ProcessServiceAccountKey(file);
-            }
-            else
-                Debug.LogError("No credential json file was selected");
+            ProcessServiceAccountKey(file);
         }
         // display only if json credentials were already loaded
         using (new EditorGUI.DisabledGroupScope(((DataMigrationSettings)target).researcherData == null))
@@ -63,22 +78,10 @@ public class DataMigrationSettingsEditor : Editor
                 using (new EditorGUI.DisabledGroupScope(importSheetID.intValue == 0))
                 {
                     if (GUILayout.Button(new GUIContent("Open Meta Data Table")))
-                    {
                         GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, importSheetID.intValue);
-                    }
                     if (GUILayout.Button(new GUIContent("Import and save data")))
-                    {
-                        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey((DataMigrationSettings)target);
-                        pulledData = GoogleSheets.PullData(service, spreadsheetID.stringValue, importSheetID.intValue, true, columnsToRead.intValue);
-                        if (pulledData == null)
-                        {
-                            Debug.LogError("Data was pulled incorrectly");
-                        }
-                        else
-                        {
-                            GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target);
-                        }
-                    }
+                        ImportAndSaveData();
+
                     EditorGUILayout.PropertyField(columnsToRead, new GUIContent("Columns to Read"));
                     EditorGUILayout.PropertyField(loadAudioPath, new GUIContent("Path to load audio tracks from"));
                     EditorGUILayout.PropertyField(saveSOToPath, new GUIContent("Saved Data Path"));
@@ -87,29 +90,32 @@ public class DataMigrationSettingsEditor : Editor
 
                 EditorGUILayout.Space();
                 EditorGUILayout.Space();
+                HandleHelpBoxes();
+                EditorGUILayout.Space();
                 EditorGUILayout.Space();
                 #region EXPORT
                 EditorGUILayout.LabelField("Export Settings", EditorStyles.boldLabel);
-                using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue != 0))
+                EditorGUILayout.PropertyField(newSheetProperties, new GUIContent("New spreadsheet properties"));
+                EditorGUILayout.PropertyField(exportSheetName, new GUIContent("Table Name"));
+               
+                
+                if (GUILayout.Button(new GUIContent("Create Collected Data Table")))
                 {
-                    EditorGUILayout.PropertyField(newSheetProperties, new GUIContent("New spreadsheet properties"));
-                    if (GUILayout.Button(new GUIContent("Create Collected Data Table")))
+                    int newSheetID = CreateNewSheet(exportSheetName.stringValue);
+                    if (newSheetID != 0)
                     {
-                        int newSheetID = CreateNewSheet(((DataMigrationSettings)target).exportSheetName);
-                        if (newSheetID != 0)
-                            exportSheetID.intValue = newSheetID;
-                        exportSheetID.serializedObject.ApplyModifiedProperties();
-                        serializedObject.Update();
-
+                        exportSheetID.intValue = newSheetID;
+                        tempExportName.stringValue = exportSheetName.stringValue;
                     }
                 }
+                EditorGUILayout.PropertyField(exportSheetID, new GUIContent("Export Sheet ID"));
                 using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue == 0))
                 {
+                    SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey((DataMigrationSettings)target);
                     if (GUILayout.Button(new GUIContent("Open Collected Data Table")))
                     {
                         GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, exportSheetID.intValue);
                     }
-                    EditorGUILayout.PropertyField(exportSheetID, new GUIContent("Export Sheet ID"));
                 }
 
                 EditorGUILayout.Space();
@@ -123,8 +129,6 @@ public class DataMigrationSettingsEditor : Editor
         }
         serializedObject.ApplyModifiedProperties();
     }
-
-
     int CreateNewSheet(string sheetName)
     {
         try
@@ -132,7 +136,13 @@ public class DataMigrationSettingsEditor : Editor
             EditorUtility.DisplayProgressBar("Add Sheet", string.Empty, 0);
             // return the id of the created sheet
             SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey((DataMigrationSettings)target);
-            return GoogleSheets.AddSheet(service, spreadsheetID.stringValue, sheetName, ((DataMigrationSettings)target).newSheetProperties);
+            int id= GoogleSheets.AddSheet(service, spreadsheetID.stringValue, sheetName, ((DataMigrationSettings)target).newSheetProperties);
+            UpdateHelpBoxMessage("Created new export sheet successfully");
+            return id;
+        }
+        catch (GoogleApiException e)
+        {
+            UpdateHelpBoxMessage(GoogleSheets.HandleGoogleSheetExceptions(e),true);
         }
         catch (Exception e)
         {
@@ -142,9 +152,9 @@ public class DataMigrationSettingsEditor : Editor
         {
             EditorUtility.ClearProgressBar();
         }
-        return 0;
-
+            return 0;
     }
+
     public void ProcessServiceAccountKey(string path)
     {
         // encrypt it 
@@ -152,16 +162,68 @@ public class DataMigrationSettingsEditor : Editor
         try
         {
             AppDataManager.LoadJsonCredentials((DataMigrationSettings)target, path);
-            Debug.Log("Processing of service account key was successful.");
+            UpdateHelpBoxMessage("Processing of service account key was successful.");
         }
         catch (IOException e)
         {
-            Debug.LogError($"Service account credential file is not found. Please follow instructions on {SheetsServiceProvider.instructionLocation} and try again.");
-            Debug.LogError(e.Message);
+            UpdateHelpBoxMessage($"Service account credential file is not found. Please follow instructions on {SheetsServiceProvider.instructionLocation} and try again.",true);
         }
         catch (Exception e)
         {
-            Debug.LogError("Processing of service account key was not successful. " + e.Message);
+            UpdateHelpBoxMessage("Processing of service account key was not successful. " + e.Message,true);
+        }
+    }
+
+    // this method must be called in every oninspector gui and not just when a button is clicked etc bc then the help box is showen only for the half second when the button is actually being pressed 
+    void HandleHelpBoxes()
+    {
+
+        if (sucessMessage != "")
+        {
+            EditorGUILayout.HelpBox(sucessMessage, MessageType.Info);
+        }
+        if (errorMessage.stringValue != "")
+        {
+            EditorGUILayout.HelpBox(errorMessage.stringValue, MessageType.Error);
+        }
+        // only show warning and sucess if there are no errors
+        else if (tempExportName.stringValue!=""&& tempExportName.stringValue != exportSheetName.stringValue)
+                EditorGUILayout.HelpBox("Data will be exported to a sheet with name " + tempExportName.stringValue + ". Please click \"Create Collected Data Table\" to export to a table with the new name.", MessageType.Warning);
+    }
+
+    // must have this method so the messages are updates and we are not presenting an error message and success message at the same time- only the one happened the most recently
+    void UpdateHelpBoxMessage(string m, bool error=false)
+    {
+        if(error)
+        {
+            errorMessage.stringValue = m;
+            sucessMessage = "";
+        }
+        else
+        {
+            sucessMessage = m;
+            errorMessage.stringValue = "";
+        }
+    }
+
+    void ImportAndSaveData()
+    {
+        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey((DataMigrationSettings)target);
+        try
+        {
+
+            pulledData = GoogleSheets.PullData(service, spreadsheetID.stringValue, importSheetID.intValue, true, columnsToRead.intValue);
+            GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target);
+            UpdateHelpBoxMessage("Data was imported successfully.");
+        }
+        catch(GoogleApiException ex)
+        {
+            UpdateHelpBoxMessage(GoogleSheets.HandleGoogleSheetExceptions(ex),true);
+        }
+        catch (Exception ex) 
+        {
+            UpdateHelpBoxMessage("Data was pulled incorrectly",true);
+            Debug.LogError(ex.Message);
         }
     }
 }

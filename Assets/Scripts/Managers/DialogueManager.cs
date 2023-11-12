@@ -66,7 +66,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     }
     public void PlayerLabeledTrack() // this will be called by a unity event on Music Dialogue UI, don't forget to set that this will be called on the inspector or music dialogue UI
     {
-        Debug.Log("Player labeled track");
         if (currentMusicInteraction == null)
         {
             Debug.LogError("Current interaction is null. Who is calling open music dialogue? Need interaction ID");
