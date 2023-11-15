@@ -14,7 +14,7 @@ public class InternetConnectionManager : MonoBehaviour, IRegistrableService
     }
     public  IEnumerator CheckInternetConnection(Action<bool> action)
     {
-        Debug.Log("Checking for Internet connection");  
+        //Debug.Log("Checking for Internet connection");  
         //Yielding the WebRequestAsyncOperation inside a coroutine will cause the coroutine to pause until the UnityWebRequest
         ////encounters a system error or finishes communicating.
         UnityWebRequest request = UnityWebRequest.Get("https://google.com");
@@ -46,6 +46,8 @@ public class InternetConnectionManager : MonoBehaviour, IRegistrableService
         Debug.Log("Internet connection found.");
         noInternetPanel.SetActive(false);
         ServiceLocator.Instance.Get<GameManager>().UnpauseGame();
+        // if some data was left unpushed due to lack of connection, re-push it now the connection is renewed 
+        ServiceLocator.Instance.Get<ExportManager>().ExportPendingData();
     }
     public void NoConnectionDetected()
     {

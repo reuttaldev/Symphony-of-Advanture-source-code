@@ -58,11 +58,10 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     {
         uiManager.OpenMusicDialogueUI();
     }
-    public void FinishMusicDialogue()
+    public void ResetMusicDialogue()
     {
         currentMusicInteraction = null;
         lastReadDialogueNode = null;
-        uiManager.CloseMusicDialogueUI();
     }
     public void PlayerLabeledTrack() // this will be called by a unity event on Music Dialogue UI, don't forget to set that this will be called on the inspector or music dialogue UI
     {
@@ -86,10 +85,16 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("last seen dialogue node is undefined ");
             return;
         }
-        // the player can move on from this only if there was an active internet connection and the data was sent. otherwise, player will need to make a choice again and PlayerLabeledTrack method will be called again
-        EnsureConnectionAndExportData();
+        // keep this order because
+        uiManager.CloseMusicDialogueUI();
+        // Unity's execution continues to process the next lines of code, even though the in-game time is paused.
+        ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
+        ResetMusicDialogue();
+        //EnsureInternetConnectionAndExportData();
     }
-    public void EnsureConnectionAndExportData()
+    // the player can move on from this only if there was an active internet connection and the data was sent. otherwise, player will need to make a choice again and PlayerLabeledTrack method will be called again
+    // but when I use this, each time I want to send something I need to wait and see if there is a connection. better just to catch a problem when it occurs
+    /*public void EnsureInternetConnectionAndExportData()
     {
         InternetConnectionManager it = ServiceLocator.Instance.Get<InternetConnectionManager>();
         StartCoroutine(it.CheckInternetConnection(isConnected =>
@@ -97,7 +102,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             if (isConnected)
             {
                 ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
-                // once player has made their choice, music dialogue is over. close the panel etc
+                // once player has made their choice, music dialogue is over. close the panel
                 FinishMusicDialogue();
             }
             else
@@ -106,6 +111,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
                 it.NoConnectionDetected();
             }
         }));
-    }
+    }*/
 
 }

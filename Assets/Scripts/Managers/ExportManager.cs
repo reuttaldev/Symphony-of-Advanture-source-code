@@ -8,6 +8,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Linq;
 using Google.Apis.Sheets.v4;
 using Google;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 
 // I am making it a singleton because otherwise each time we load a scene and we reach start, the csv file will be reset.
@@ -18,13 +20,15 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     [SerializeField]
     DataMigrationSettings settings;
     string rangeEnd = "!A2";
-
+    // I want to save my latest export data so I can execute it again in the case it failed the first time
+    List<object> pendingPushData = null;
     [Header("CSV")]
     string CSVDirectory = Path.Combine(Application.dataPath,"CVSData");
     const char CSVseparator = ',';
     const string CSVExtension = ".csv";
 
     GameManager gameManager;
+
 
     protected override void Awake()
     {
@@ -35,6 +39,10 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     void Start()
     {
         gameManager = ServiceLocator.Instance.Get<GameManager>();
+        // do these at start to avoid delay on the first export call
+        if(settings.sentResultByEmail)
+            VerifyCVSFile();
+        // also, do a check at start that we have an Internet connection
     }
 
     //this function will collect the data we need to export and do a syntax check to make sure the data we are exporting matches the title columns on the spreadsheets
@@ -98,8 +106,18 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         List<object> dataToExport = CollectAndCheckData(trackData, dialogueData.InteractionID,dialogueData.interactionName, dialogueData.emotionToEnvoke.ToString(), lastDialogueNode);
         if (dataToExport.Count != settings.newSheetProperties.columnTitles.Length) // the data we have collected does not match what we require for the spreadsheet
             return;
+        pendingPushData = dataToExport;
+        if (settings.sentResultByEmail)
+            WriteToCSV(dataToExport);
         ExportToGoogleSheets(dataToExport);
-        WriteToCSV(dataToExport);
+
+    }
+
+    // this will be called if a push to google sheets was failed bc of no internet connection and we want to resume the last call.
+    public void ExportPendingData()
+    {
+        if(pendingPushData != null)
+            ExportToGoogleSheets(pendingPushData);
     }
 
     #region GOOGLE EXPORT
@@ -112,14 +130,17 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         {
             GoogleSheets.PushData(service,settings.spreadsheetID, values,  GoogleSheets.GetSheetNameByID(service, settings.spreadsheetID, settings.exportSheetID) + rangeEnd);
             Debug.Log("Recorded the following data to Google Sheets: " + string.Join(" ,", dataToExport));
+            // mark that nothing is pending
+            pendingPushData = null;
+        }
+        // first, catch any HTTP exception i.e. check that we are connected to the Internet 
+        catch(HttpRequestException e)
+        {
+            ServiceLocator.Instance.Get<InternetConnectionManager>().NoConnectionDetected();
         }
         catch(GoogleApiException e)
         {
             GoogleSheets.HandleGoogleSheetExceptions(e);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e.Message);
         }
     }
 
@@ -132,14 +153,13 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     }
     void WriteToCSV(List<object> dataToExport)
     {
-        VerifyFile();
         using (var writer = new StreamWriter(GetCSVPath(), true))
         {
             writer.WriteLine(string.Join(CSVseparator, dataToExport));
         }
         Debug.Log("Recorded the following data to CSV: " + string.Join(" ,", dataToExport));
     }
-    void VerifyFile() // check that the CSV file exists, if it doesn't then create one
+    void VerifyCVSFile() // check that the CSV file exists, if it doesn't then create one
     {
         if (!File.Exists(GetCSVPath()))
         {
@@ -181,7 +201,6 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
             return false;
         }
         // add configuration name to the email 
-        VerifyFile();
         try
         {
             if (string.IsNullOrEmpty(settings.researchersEmail))

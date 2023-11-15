@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
     public  UnityEvent gameOverEvent;
     public  UnityEvent startGameEvent;
     string playerName = "Reut";
+    public static bool paused = false;
 
     private void Awake()
     {     
@@ -28,24 +29,25 @@ public class GameManager : MonoBehaviour, IRegistrableService
         SetGameSessionIndex(GetGameSessionIndex()+1);
         startGameEvent.Invoke();
     }
-    public bool IsGamePaused()
-    { return Time.timeScale == 0; }
+
     public void UnpauseGame()
     {
-        if (IsGamePaused())
+        if (paused)
         {
             Debug.Log("Game Unpaused");
             Time.timeScale = 1;
             ServiceLocator.Instance.Get<InputManager>().ActionMapGoBack();
+            paused = false;
         }
     }
     public void PauseGame()
     {
-        if (!IsGamePaused())
+        if (!paused)
         {
             Debug.Log("Game paused");
             Time.timeScale = 0;
             ServiceLocator.Instance.Get<InputManager>().ActivatePausedUIMap();
+            paused = true;
         }
     }
     public void ExitGame()

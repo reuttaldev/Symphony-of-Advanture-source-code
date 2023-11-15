@@ -1,2 +1,4 @@
 alternative to resources folder
 check why switching songs is so slow
+Do async to the export so it won't take so long 
+ look at email what do I need for the configuration files 

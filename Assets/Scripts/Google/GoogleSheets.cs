@@ -121,7 +121,7 @@ public static class GoogleSheets
         dataValueRange.Values = data;
         var request = service.Spreadsheets.Values.Append(dataValueRange, spreadSheetId, range);
         request.ValueInputOption = ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
-        AppendValuesResponse response = request.Execute();
+        request.Execute();
     }
     public static string GetSheetNameByID(SheetsService sheetService,string spreadSheetId,int sheetId)
     {
