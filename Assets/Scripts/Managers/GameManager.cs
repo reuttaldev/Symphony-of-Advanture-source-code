@@ -28,6 +28,26 @@ public class GameManager : MonoBehaviour, IRegistrableService
         SetGameSessionIndex(GetGameSessionIndex()+1);
         startGameEvent.Invoke();
     }
+    public bool IsGamePaused()
+    { return Time.timeScale == 0; }
+    public void UnpauseGame()
+    {
+        if (IsGamePaused())
+        {
+            Debug.Log("Game Unpaused");
+            Time.timeScale = 1;
+            ServiceLocator.Instance.Get<InputManager>().ActionMapGoBack();
+        }
+    }
+    public void PauseGame()
+    {
+        if (!IsGamePaused())
+        {
+            Debug.Log("Game paused");
+            Time.timeScale = 0;
+            ServiceLocator.Instance.Get<InputManager>().ActivatePausedUIMap();
+        }
+    }
     public void ExitGame()
     {
         GameOver();

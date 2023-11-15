@@ -594,6 +594,56 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Paused UI",
+            "id": "d9207db2-128e-4ea5-91c4-90bf405d1f72",
+            "actions": [
+                {
+                    "name": "Submit",
+                    "type": "Button",
+                    "id": "21940bd0-819c-4b54-a01b-c03f3f51c87e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "03131a02-490f-4133-b6c0-558844969d55",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "991989fc-4ef1-4993-a853-7038faa8fb42",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b75dd32-90d7-4216-a27f-91bec2ed5763",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

@@ -58,8 +58,6 @@ public static class SheetsServiceProvider
                     ApplicationName = "App"
                 });
                 sheetService = service;
-                Debug.Log("Connected With Service Account Key ");
-                Debug.Log(sheetService);
             }
             catch (Exception e) 
             {

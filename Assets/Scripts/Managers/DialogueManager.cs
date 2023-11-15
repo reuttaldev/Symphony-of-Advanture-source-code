@@ -86,9 +86,26 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("last seen dialogue node is undefined ");
             return;
         }
-
-        ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction,lastReadDialogueNode);
-        FinishMusicDialogue();
+        // the player can move on from this only if there was an active internet connection and the data was sent. otherwise, player will need to make a choice again and PlayerLabeledTrack method will be called again
+        EnsureConnectionAndExportData();
+    }
+    public void EnsureConnectionAndExportData()
+    {
+        InternetConnectionManager it = ServiceLocator.Instance.Get<InternetConnectionManager>();
+        StartCoroutine(it.CheckInternetConnection(isConnected =>
+        {
+            if (isConnected)
+            {
+                ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
+                // once player has made their choice, music dialogue is over. close the panel etc
+                FinishMusicDialogue();
+            }
+            else
+            {
+                // pause the game if there is no connection.
+                it.NoConnectionDetected();
+            }
+        }));
     }
 
 }

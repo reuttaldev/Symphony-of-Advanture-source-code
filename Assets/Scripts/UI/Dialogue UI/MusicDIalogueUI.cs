@@ -20,8 +20,6 @@ public class MusicDialogueUI : UIInterface
     void PlayerMadeSongSelection()
     {
         OnPlayerLabeledTrack.Invoke();
-        // once player has made their choice, music dialogue is over. close the panel
-        MakeInvisible();
 
     }
 }

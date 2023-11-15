@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 using Request = Google.Apis.Sheets.v4.Data.Request;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Auth.OAuth2;
+using System.Collections;
+using UnityEngine.Networking;
 
 
 // always wrap with try/catch when calling methods for this class. Many conditions have to be satisfied for everything to be completed properly and therefore there are many potential errors.
@@ -139,6 +141,7 @@ public static class GoogleSheets
     {
         if (ex == null)
             return "";
+        Debug.Log(ex.GetType());
         string errorMessage = ex.Error.Message;
         switch (errorMessage)
         {
@@ -308,5 +311,4 @@ public static class GoogleSheets
         }
         return result;
     }
-
 }

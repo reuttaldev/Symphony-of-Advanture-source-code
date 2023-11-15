@@ -105,7 +105,8 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     #region GOOGLE EXPORT
     void ExportToGoogleSheets(IList<object> dataToExport)
     {
-         var values = new List<IList<object>> { dataToExport };
+
+        var values = new List<IList<object>> { dataToExport };
         SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(settings);
         try
         {
