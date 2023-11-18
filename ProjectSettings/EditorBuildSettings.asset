@@ -17,4 +17,5 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Area4.unity
     guid: d2e8b544be70d69419a746c0732056e5
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: eb22aafd18cfdbf43af9db33a24f6eba, type: 2}

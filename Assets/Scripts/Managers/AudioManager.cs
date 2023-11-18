@@ -1,8 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using System.Linq;
+using System;
 
 // this is a singleton because the current available library must be persistent between scenes
 public class AudioManager : SimpleSingleton<AudioManager>
@@ -18,20 +19,25 @@ public class AudioManager : SimpleSingleton<AudioManager>
     public UnityEvent OnTrackChanged;
     // the index in the library list we are currently playing
     private int current;
-    private AudioSource audioSource;
+
+
+    //making an asset "Addressable" allows you to use that asset's unique address to call it from anywhere
+    // Addressable assets are not loaded to memeory when the scene is loaded like hard-referenced objects, it will be loaded to memory only when you instantiate the needed asset
+    // making it Addressable ensured an asset is loaded and we are investing memory to it only when an if it is used, rather than loading the entire resources folder to the build
+    // bundle mode of is set to pack individually so not everything that is in a group (e.g. all audio tracks) must all be loaded at once. I want to choose which ones I will need to use for this build 
+    [SerializeField]
+    AssetReference reference;
+    //You only need to make sure that any time you explicitly load an asset, you release it when your application no longer needs that instance.
+
+    [Serializable]
+    public class AudioReferenceAudioClip: AssetReferenceT<AudioClip>
+    {
+        public AudioReferenceAudioClip(string guid) : base(guid) { }
+    }
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
-        audioSource = GetComponent<AudioSource>();
-        // load all of the track data scriptable objects from resources folder into all tracks
-        // Resources folder contains stuff that will be accessible to load in builds.
-        var loadedObjects = Resources.LoadAll("Tracks Data", typeof(TrackData)).Cast<TrackData>();
-        foreach (TrackData data in loadedObjects)
-        {
-            allTracks[data.trackID] = data;
-            AddTrackToLibrary(data.trackID);
-        }
         current = 0;
     }
     private void Start()
@@ -40,11 +46,24 @@ public class AudioManager : SimpleSingleton<AudioManager>
         current = startingSongIndex;
         PlayTrack(library[current]);  
     }
+
+    // this will load the track data scriptable object from a location that is accessible in build thorugh adressables
+    // so we can choose what to load for different builds
+    private void LoadTracks()
+    {
+        //Addressables.LoadAssetAsync();
+        var loadedObjects = Resources.LoadAll("Tracks Data", typeof(TrackData)).Cast<TrackData>();
+        foreach (TrackData data in loadedObjects)
+        {
+            allTracks[data.trackID] = data;
+            AddTrackToLibrary(data.trackID);
+        }
+    }
     void PlayTrack(TrackData data)
     {
         OnTrackChanged.Invoke();
-        audioSource.clip = data.audioClip;
-        audioSource.Play();
+        //audioSource.clip = data.audioClip;
+        //audioSource.Play();
     }
     void PlayCurrent()
     {
@@ -57,7 +76,7 @@ public class AudioManager : SimpleSingleton<AudioManager>
     }
     void StopPlayingTrack()
     {
-        audioSource.Stop();
+        //audioSource.Stop();
     }
     public void PlayNextTrack()
     {

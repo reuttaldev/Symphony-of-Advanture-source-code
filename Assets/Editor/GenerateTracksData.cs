@@ -65,7 +65,7 @@ public static class GenerateTracksData
 
             // load the suitable audio clip for this ID
             string loadAudioPath = Path.Combine("Audio Tracks", track.trackID);
-            //AudioClip clip = (AudioClip)AssetDatabase.LoadAssetAtPath(loadAudioPath, typeof(AudioClip));
+            // this is done in the editor, not in runtime
             AudioClip clip = Resources.Load<AudioClip>(loadAudioPath);
             if(clip  == null)
             {
