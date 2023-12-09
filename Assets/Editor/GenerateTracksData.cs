@@ -13,7 +13,7 @@ public static class GenerateTracksData
 
     public static void GenerateData( IList<Dictionary<string, string>> table,DataMigrationSettings settings)
     {
-        CreateFolder(settings.GetSOSaveToPath());
+        CreateFolder(settings.GetTracksDataLocation());
         // keep a dictionary with all of the track keys we have created a scriptable object for to detect duplicates and possible mistakes 
         //(id,row)
         Dictionary<string, int > allKeys = new Dictionary<string, int>();
@@ -69,13 +69,13 @@ public static class GenerateTracksData
             AudioClip clip = Resources.Load<AudioClip>(loadAudioPath);
             if(clip  == null)
             {
-                Debug.LogError($"There is no audio file that matches track id {track.trackID} in {settings.GetLoadAudioPath()}. Please make sure there is an audio file for every entry in the metadata spreadsheed. The name of the audio file should be the track id.");
+                Debug.LogError($"There is no audio file that matches track id {track.trackID} in {settings.GetTracksLocation()}. Please make sure there is an audio file for every entry in the metadata spreadsheed. The name of the audio file should be the track id.");
                 Debug.LogError("Saving track data failed.");
                 return;
             }
             track.audioClip = clip;
 
-            string saveToPath = Path.Combine(settings.GetSOSaveToPath(), track.trackID+ ".asset");
+            string saveToPath = Path.Combine(settings.GetTracksDataLocation(), track.trackID+ ".asset");
             AssetDatabase.CreateAsset(track, saveToPath);
             rowNumber++;  
         }

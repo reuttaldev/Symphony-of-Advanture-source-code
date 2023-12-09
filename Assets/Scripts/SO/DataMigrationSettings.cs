@@ -42,11 +42,11 @@ public class DataMigrationSettings : ScriptableObject
     private string tempExportName;
     [SerializeField]
     private string errorMessage;
-    public string GetSOSaveToPath()
+    public string GetTracksDataLocation()
     {
         return saveSOToPath;
     }
-    public string GetLoadAudioPath()
+    public string GetTracksLocation()
     { return loadAudioPath; }
 
 }

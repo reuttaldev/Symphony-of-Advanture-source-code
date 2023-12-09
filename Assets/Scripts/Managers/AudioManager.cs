@@ -46,11 +46,12 @@ public class AudioManager : SimpleSingleton<AudioManager>
         current = startingSongIndex;
         PlayTrack(library[current]);  
     }
-
+    #region TRACK MEMORY MANAGMENT 
     // this will load the track data scriptable object from a location that is accessible in build thorugh adressables
     // so we can choose what to load for different builds
     private void LoadTracks()
     {
+    //Use the LoadAssetsAsync method to load more than one Addressable asset in a single operation. spesify a list of keys
         //Addressables.LoadAssetAsync();
         var loadedObjects = Resources.LoadAll("Tracks Data", typeof(TrackData)).Cast<TrackData>();
         foreach (TrackData data in loadedObjects)
@@ -59,6 +60,30 @@ public class AudioManager : SimpleSingleton<AudioManager>
             AddTrackToLibrary(data.trackID);
         }
     }
+    public void AddTrackToLibrary(string trackID)
+    {
+        if (TrackAvilable(trackID))
+        {
+            Debug.LogError("Track is already in library");
+            return;
+        }
+        if (!TrackExists(trackID))
+        {
+            Debug.LogError("Track does not exist");
+            return;
+        }
+        library.Add(allTracks[trackID]);
+    }
+    public void RemoveTrackFromLibrary(string trackID)
+    {
+        if (!TrackAvilable(trackID))
+        {
+            Debug.LogError("Track is not found in the current available tracks library");
+            return;
+        }
+        library.Remove(allTracks[trackID]);
+    }
+    #endregion
     void PlayTrack(TrackData data)
     {
         OnTrackChanged.Invoke();
@@ -138,28 +163,5 @@ public class AudioManager : SimpleSingleton<AudioManager>
             return;
         }
         allTracks[trackID].SetUserResponse(emotion);
-    }
-    public void AddTrackToLibrary(string trackID)
-    {
-        if (TrackAvilable(trackID))
-        {
-            Debug.LogError("Track is already in library");
-            return;
-        }
-        if(!TrackExists(trackID))
-        {
-            Debug.LogError("Track does not exist");
-            return;
-        }
-        library.Add(allTracks[trackID]);
-    }
-    public void RemoveTrackFromLibrary(string trackID)
-    {
-        if (!TrackAvilable(trackID))
-        {
-            Debug.LogError("Track is not found in the current available tracks library");
-            return;
-        }
-        library.Remove(allTracks[trackID]);
     }
 }
