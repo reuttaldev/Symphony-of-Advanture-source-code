@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ConfigurationFileManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region SYNTAX CHECKS
 
-    // Update is called once per frame
-    void Update()
+    // return an error message, if any
+    public static string CheckSyntax(string text)
     {
-        
+        if(string.IsNullOrEmpty(text))
+        {
+            return "Text file is empty.";
+        }
+        return null;
     }
+    #endregion
 }

@@ -7,7 +7,7 @@ using Yarn.Unity;
 public class UIManager : MonoBehaviour, IRegistrableService
 {
     [SerializeField]
-    private MainMenuUI mainInterfaceUI;
+    private UIInterface mainInterfaceUI;
     [SerializeField]
     private MusicDialogueUI musicDialogueUI;
     [SerializeField]
