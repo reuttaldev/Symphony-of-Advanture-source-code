@@ -43,6 +43,5 @@ public class TrackData : MyScriptableObject
     {
         this.userResponse = emotion;
     }
-
 }
 

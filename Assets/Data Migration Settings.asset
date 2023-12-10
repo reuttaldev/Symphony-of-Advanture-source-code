@@ -34,7 +34,7 @@ MonoBehaviour:
     - User ID
     - Game Session Index
     - Configuration ID
-    - Application Version
+    - Build ID
     - Time of Day
     m_HeaderForegroundColor: {r: 0.8941177, g: 0.8941177, b: 0.8941177, a: 1}
     m_HeaderBackgroundColor: {r: 0.2196079, g: 0.2196079, b: 0.2196079, a: 1}

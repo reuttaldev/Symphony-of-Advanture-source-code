@@ -102,6 +102,11 @@ public class ConfigurationFileManager : MonoBehaviour
     }
     bool ValidateTrackIdList()
     {
+        if(config.TracksIDs.Count < GameSettings.minNumberOfTracks)
+        {
+            errorText.text = "Not enough tracks specified in Track ID. You need a minimum of " + GameSettings.minNumberOfTracks + " tracks.";
+            return false;
+        }
         tracksToLoad = new List<TrackData>();
         return true;
     }
@@ -111,11 +116,9 @@ public class ConfigurationFileManager : MonoBehaviour
         gameSettings.exportSettings.exportSheetID = int.Parse(config.ExportSheetID);
         gameSettings.configurationID = config.ConfigurationID;
         if (config.TracksIDs.Count != 0)
-            gameSettings.usedTracks = tracksToLoad;
-        if(startingTrackData!= null)
+            gameSettings.usedTracks = tracksToLoad.ToArray();
+        if (startingTrackData != null)
             gameSettings.startingTrack = startingTrackData;
-            
+
     }
-
-
 }

@@ -8,16 +8,20 @@ public class GameManager : MonoBehaviour, IRegistrableService
     [SerializeField]
     GameSettings gameSetings;
     public  UnityEvent gameOverEvent;
-    public  UnityEvent startGameEvent;
+    public  UnityEvent startedGameEvent;
     public static bool paused = false;
     private void Awake()
     {     
         ServiceLocator.Instance.Register<GameManager>(this);
     }
-    void Start()
+    void OnEnable()
     {
+        startedGameEvent.AddListener(gameSetings.IncreaseGameSessionIndex);
     }
-
+    void OnDisable()
+    {
+        startedGameEvent.RemoveListener(gameSetings.IncreaseGameSessionIndex);
+    }
     public void UnpauseGame()
     {
         if (paused)

@@ -81,8 +81,8 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
                 case ("Game Session Index"):
                     data.Add(settings.gameSessionIndex.ToString());
                     break;
-                case ("Application Version"):
-                    data.Add(Application.version);
+                case ("Build ID"):
+                    data.Add(settings.buildID);
                     break;
                 case ("Configuration ID"):
                     data.Add(settings.configurationID);
