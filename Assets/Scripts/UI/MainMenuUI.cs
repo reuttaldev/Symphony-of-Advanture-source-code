@@ -3,34 +3,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using SimpleFileBrowser;
 using UnityEngine.UIElements;
+using System;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [SerializeField]
-    TMP_Text errorText;
+    [SerializeField] ConfigurationFileManager configManager;
 
+    private void Start()
+    {
+        FileBrowser.SetFilters(false, new FileBrowser.Filter("Text Files", ".txt"));       
+    }
     void OpenFileExplorerRuntime()
     {
-        FileBrowser.SetFilters(false, new FileBrowser.Filter("Text Files", ".txt"));
-        //FileBrowser.AddQuickLink("Users", "C:\\Users", null);
-        FileBrowser.ShowLoadDialog(LoadConfigurationFile,null, FileBrowser.PickMode.Files);
+        FileBrowser.ShowLoadDialog(OpenConfigurationFile, null, FileBrowser.PickMode.Files);
     }
-    void LoadConfigurationFile(string[] paths)
+    void OpenConfigurationFile(string[] paths)
     {
-        string errorMessage = ConfigurationFileManager.CheckSyntax(FileBrowserHelpers.ReadTextFromFile(paths[0]));
-        if (errorMessage != null)
-        {
-            errorText.gameObject.SetActive(true);
-            errorText.text = "Configuration file is incorrect: "+errorMessage;
-            return;
-        }
-        errorText.gameObject.SetActive(false);
-        StartGame();
+        configManager.LoadConfigurationFile(FileBrowserHelpers.ReadTextFromFile(paths[0]));
     }
 
     public void StartWithConfigurationFile()
     {
         OpenFileExplorerRuntime();
+        // ConfigurationFileManager will call start game if the configuration file was loaded successfully
     }
 
     public void StartGame()

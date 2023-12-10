@@ -35,7 +35,7 @@ public class SimpleSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
         else if(instance!=this)
         {
-            Debug.LogError("Duplicate instances for " + GetType().FullName + ", extra one deleted");
+            Debug.Log("Duplicate instances for " + GetType().FullName + ", extra one deleted");
             Destroy(gameObject);
         }
     }

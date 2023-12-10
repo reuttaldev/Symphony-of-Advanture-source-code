@@ -111,7 +111,7 @@ public class DataMigrationSettingsEditor : Editor
                 EditorGUILayout.PropertyField(exportSheetID, new GUIContent("Export Sheet ID"));
                 using (new EditorGUI.DisabledGroupScope(exportSheetID.intValue == 0))
                 {
-                    SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey((DataMigrationSettings)target);
+                   // SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey((DataMigrationSettings)target);
                     if (GUILayout.Button(new GUIContent("Open Collected Data Table")))
                     {
                         GoogleSheets.OpenSheetInBrowser(spreadsheetID.stringValue, exportSheetID.intValue);
@@ -187,8 +187,11 @@ public class DataMigrationSettingsEditor : Editor
             EditorGUILayout.HelpBox(errorMessage.stringValue, MessageType.Error);
         }
         // only show warning and sucess if there are no errors
-        else if (tempExportName.stringValue!=""&& tempExportName.stringValue != exportSheetName.stringValue)
+        else if (tempExportName.stringValue != "")
+        {
+            if (tempExportName.stringValue != exportSheetName.stringValue)
                 EditorGUILayout.HelpBox("Data will be exported to a sheet with name " + tempExportName.stringValue + ". Please click \"Create Collected Data Table\" to export to a table with the new name.", MessageType.Warning);
+        }
     }
 
     // must have this method so the messages are updates and we are not presenting an error message and success message at the same time- only the one happened the most recently
@@ -205,7 +208,6 @@ public class DataMigrationSettingsEditor : Editor
             errorMessage.stringValue = "";
         }
     }
-
     void ImportAndSaveData()
     {
         SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey((DataMigrationSettings)target);

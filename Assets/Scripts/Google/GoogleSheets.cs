@@ -59,6 +59,22 @@ public static class GoogleSheets
         List<IList<object>> titiles = new List<IList<object>>();  titiles.Add(newSheetProperties.columnTitles);
         PushData(service, spreadSheetId,titiles, sheetName+"!A1");
     }
+    // make a simple request to verify we have a connection with a sheet
+    public static bool ValidateSheetConnection(SheetsService service, string spreadSheetId, int sheetId)
+    {
+        try
+        {
+            string sheetName = GetSheetNameByID(service, spreadSheetId, sheetId);
+            Debug.Log("name "+sheetName); 
+            if (sheetName == null)
+                return false;
+        }
+        catch
+        {
+            return false;
+        }
+        return true;
+    }
     public static IList<Dictionary<string, string>> PullData(SheetsService service, string spreadSheetId,int sheetId, bool skipFirstRow, int amountOfColumnsToRead)
     {
 
@@ -196,9 +212,6 @@ public static class GoogleSheets
         }
         return titles;
     }
-
-
-
     static Request FreezeTitleRowAndColumn(int sheetId,int columnToFreeze)
     {
         return new Request()

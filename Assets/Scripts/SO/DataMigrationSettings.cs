@@ -8,7 +8,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName ="Data Migration Settings", menuName ="Data Migration/Data Migration Settings")]
 [Serializable]
-public class DataMigrationSettings : ScriptableObject
+public class DataMigrationSettings : MyScriptableObject
 {
     [SerializeField]
     public string spreadsheetID;// the ID where both import/export tables are found
@@ -48,5 +48,4 @@ public class DataMigrationSettings : ScriptableObject
     }
     public string GetTracksLocation()
     { return loadAudioPath; }
-
 }

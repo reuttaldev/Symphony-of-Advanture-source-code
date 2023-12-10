@@ -5,29 +5,17 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour, IRegistrableService
 {
+    [SerializeField]
+    GameSettings gameSetings;
     public  UnityEvent gameOverEvent;
     public  UnityEvent startGameEvent;
-    string playerName = "Reut";
     public static bool paused = false;
-
     private void Awake()
     {     
         ServiceLocator.Instance.Register<GameManager>(this);
     }
     void Start()
     {
-        StartGame();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void StartGame()
-    {
-        SetGameSessionIndex(GetGameSessionIndex()+1);
-        startGameEvent.Invoke();
     }
 
     public void UnpauseGame()
@@ -65,30 +53,4 @@ public class GameManager : MonoBehaviour, IRegistrableService
         gameOverEvent.Invoke();
     }
 
-    #region DATA 
-    public int GetGameSessionIndex()
-    {
-        return PlayerPrefs.GetInt("GameSessionIndex");
-    }
-    void SetGameSessionIndex(int i)
-    {
-        PlayerPrefs.SetInt("GameSessionIndex",i);
-    }
-    public void SetPlayerName(string n)
-    {
-        playerName = n;
-    }
-    public string GetPlayerName()
-    {
-        return playerName;
-    }
-    public string  GetPlayerID()
-    {
-        return SystemInfo.deviceUniqueIdentifier.ToString();
-    }
-    public string GetConfigurationFileID()
-    {
-        return "00001";
-    }
-    #endregion
 }
