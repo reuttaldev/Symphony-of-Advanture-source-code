@@ -216,6 +216,12 @@ public class DataMigrationSettingsEditor : Editor
 
             pulledData = GoogleSheets.PullData(service, spreadsheetID.stringValue, importSheetID.intValue, true, columnsToRead.intValue);
             GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target);
+            GameSettings settings = AssetDatabase.LoadAssetAtPath< GameSettings>("Assets/Game Settings.asset");
+            if(settings == null)
+            {
+                Debug.LogError("Game Settings asset is missing");
+            }
+            settings.SetDefaultTracks();
             UpdateHelpBoxMessage("Data was imported successfully.");
         }
         catch(GoogleApiException ex)

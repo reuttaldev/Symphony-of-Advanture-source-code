@@ -31,6 +31,7 @@ public class TrackData : MyScriptableObject
     [TextAreaAttribute]
     public string license = null;
     public string source = null;
+    public int index; // the order in which the input was written in the meta data spreadsheet, i.e. the line they were written at, starting from 0
     private Emotions? userResponse = null;
 
 

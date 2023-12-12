@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: d31d7abc8177d5340b4a1c3461d0a546
   m_currentHash:
     serializedVersion: 2
-    Hash: 6c58822e24593f8601d7b8a4d8fa3f1b
+    Hash: 1c6951323977891ec3ef746821f8dfea
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -87,8 +87,8 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
-    - Tracks Data
-    - Tracks Audio
+    - Track Audio Clip
+    - Track Data
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 22d4a97fda1475240b49f82d42f36cbb, type: 2}

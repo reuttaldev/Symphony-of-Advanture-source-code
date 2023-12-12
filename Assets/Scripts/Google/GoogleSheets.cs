@@ -117,7 +117,7 @@ public static class GoogleSheets
                 rowCount++;
             }
 
-            Debug.Log($"Imported successfully.");
+            Debug.Log($"Imported from Google Sheet successfully.");
             return table;
         }
         else

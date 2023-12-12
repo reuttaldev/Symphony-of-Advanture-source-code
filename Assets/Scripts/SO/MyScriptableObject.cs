@@ -35,17 +35,6 @@ public class MyScriptableObject : ScriptableObject
         JsonUtility.FromJsonOverwrite(defaultStateInJson, this);
     }
    
-    /*static T[] FindAssets<T>() where T : Object
-    {
-        var guids = AssetDatabase.FindAssets($"t:{typeof(T)}");
-        var assets = new T[guids.Length];
-        for (int i = 0; i < guids.Length; i++)
-        {
-            var path = AssetDatabase.GUIDToAssetPath(guids[i]); 
-            assets[i] = AssetDatabase.LoadAssetAtPath<T>(path);
-        }
-        return assets;
-    }*/
 #endif
 }
 

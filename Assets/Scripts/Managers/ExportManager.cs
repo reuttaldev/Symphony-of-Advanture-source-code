@@ -16,9 +16,7 @@ using Newtonsoft.Json.Linq;
 // I need the CSV file to be created and reset only ONCE at the very start of the game
 public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
 {
-    [SerializeField]
     GameSettings settings;
-
     [Header("Google")]
     string rangeEnd = "!A2";
     // I want to save my latest export data so I can execute it again in the case it failed the first time
@@ -36,8 +34,10 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     }
     void Start()
     {
+
+        settings = ServiceLocator.Instance.Get<GameManager>().gameSettings;
         // do these at start to avoid delay on the first export call
-        if(settings.exportSettings.sentResultByEmail)
+        if(settings.dataMigrationSettings.sentResultByEmail)
             VerifyCVSFile();
         // also, do a check at start that we have an Internet connection
     }
@@ -47,7 +47,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     {
         List<object> data = new List<object>();
         DateTime exportTime = GetCETTime();
-        foreach (var item in settings.exportSettings.newSheetProperties.columnTitles)
+        foreach (var item in settings.dataMigrationSettings.newSheetProperties.columnTitles)
         {
             switch (item)
             {
@@ -101,10 +101,10 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     public void ExportData(TrackData trackData, MusicDialogueData dialogueData,string lastDialogueNode)
     {
         List<object> dataToExport = CollectAndCheckData(trackData, dialogueData.InteractionID,dialogueData.interactionName, dialogueData.emotionToInvoke.ToString(), lastDialogueNode);
-        if (dataToExport.Count != settings.exportSettings.newSheetProperties.columnTitles.Length) // the data we have collected does not match what we require for the spreadsheet
+        if (dataToExport.Count != settings.dataMigrationSettings.newSheetProperties.columnTitles.Length) // the data we have collected does not match what we require for the spreadsheet
             return;
         pendingPushData = dataToExport;
-        if (settings.exportSettings.sentResultByEmail)
+        if (settings.dataMigrationSettings.sentResultByEmail)
             WriteToCSV(dataToExport);
         ExportToGoogleSheets(dataToExport);
 
@@ -122,10 +122,10 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     {
 
         var values = new List<IList<object>> { dataToExport };
-        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(settings.exportSettings);
+        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(settings.dataMigrationSettings);
         try
         {
-            GoogleSheets.PushData(service,settings.exportSettings.spreadsheetID, values,  GoogleSheets.GetSheetNameByID(service, settings.exportSettings.spreadsheetID, settings.exportSettings.exportSheetID) + rangeEnd);
+            GoogleSheets.PushData(service,settings.dataMigrationSettings.spreadsheetID, values,  GoogleSheets.GetSheetNameByID(service, settings.dataMigrationSettings.spreadsheetID, settings.dataMigrationSettings.exportSheetID) + rangeEnd);
             Debug.Log("Recorded the following data to Google Sheets: " + string.Join(" ,", dataToExport));
             // mark that nothing is pending
             pendingPushData = null;
@@ -179,7 +179,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
             // add the titles first, false to remove everything that's already there is something is there 
             using (var writer = new StreamWriter(path, false))
             {
-                writer.WriteLine(string.Join(CSVseparator, settings.exportSettings.newSheetProperties.columnTitles));
+                writer.WriteLine(string.Join(CSVseparator, settings.dataMigrationSettings.newSheetProperties.columnTitles));
             }
             Debug.Log("Created CSV in path: " + path);
         }
@@ -192,7 +192,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     // returns true for success and false for failure 
     public bool SendCSVByEmail()
     {
-        if(!settings.exportSettings.sentResultByEmail)
+        if(!settings.dataMigrationSettings.sentResultByEmail)
         {
             Debug.LogWarning("Send CSV by email is set to false in the data migration settings.");
             return false;
@@ -200,11 +200,11 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         // add configuration name to the email 
         try
         {
-            if (string.IsNullOrEmpty(settings.exportSettings.researchersEmail))
+            if (string.IsNullOrEmpty(settings.dataMigrationSettings.researchersEmail))
             {
                 Debug.LogError("Email to send to is unknown. Please set it up in the Data Migration Settings window.");
             }
-            EmailSender.SendEmail("Collected Data for experiment " + GetExperimentID(), BuildEmailBody(), settings.exportSettings.researchersEmail, GetCSVPath()); ;
+            EmailSender.SendEmail("Collected Data for experiment " + GetExperimentID(), BuildEmailBody(), settings.dataMigrationSettings.researchersEmail, GetCSVPath()); ;
             Debug.Log("Successfully send collected data CSV to email");
             return true;
         }

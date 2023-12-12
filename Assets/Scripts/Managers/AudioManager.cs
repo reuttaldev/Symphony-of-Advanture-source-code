@@ -2,51 +2,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
-using System.Linq;
 using System;
+using System.Collections;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
+
 
 // this is a singleton because the current available library must be persistent between scenes
 public class AudioManager : SimpleSingleton<AudioManager>
 {
-    // a dictionary of all currently available songs for the player to hear. key is track id and value is it's data container 
+    GameSettings settings;
+    AudioSource audioSource;
     [SerializeField]
-    private List<TrackData> library = new List<TrackData>();
-    [SerializeField]
-    int startingSongIndex;
-    // all possible tracks that can be used in the game
-    private Dictionary<string,TrackData> allTracks = new Dictionary<string,TrackData>();
-    // whenever the track we are currently playing has changed, invoke this events with the following parameters: track name, artist name, source (optional), license (optional)
     public UnityEvent OnTrackChanged;
-    // the index in the library list we are currently playing
-    private int current;
+
+    private AsyncOperationHandle loadHandle; // need to unload the assets when done
 
 
-    //making an asset "Addressable" allows you to use that asset's unique address to call it from anywhere
-    // Addressable assets are not loaded to memeory when the scene is loaded like hard-referenced objects, it will be loaded to memory only when you instantiate the needed asset
-    // making it Addressable ensured an asset is loaded and we are investing memory to it only when an if it is used, rather than loading the entire resources folder to the build
-    // bundle mode of is set to pack individually so not everything that is in a group (e.g. all audio tracks) must all be loaded at once. I want to choose which ones I will need to use for this build 
-    [SerializeField]
-    AssetReference reference;
-    //You only need to make sure that any time you explicitly load an asset, you release it when your application no longer needs that instance.
-
-    [Serializable]
-    public class AudioReferenceAudioClip: AssetReferenceT<AudioClip>
+    public void PlayNext()
     {
-        public AudioReferenceAudioClip(string guid) : base(guid) { }
+        //current = (current + 1) % library.Count;
+        //PlayCurrent();
     }
+    void StopPlaying()
+    {
+        audioSource.Stop();
+    }
+
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
-        current = 0;
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
-        // play the fist song in the library on start game 
-        current = startingSongIndex;
-        PlayTrack(library[current]);  
+        settings = ServiceLocator.Instance.Get<GameManager>().gameSettings;
     }
-    #region TRACK MEMORY MANAGMENT 
+    public void PlayTrack(TrackData data)
+    {
+        OnTrackChanged.Invoke();
+        //audioSource.clip = data.audioClip;
+        //audioSource.Play();
+    }
+    public void PlayNextTrack()
+    {
+
+    }
+    public void PlayLastTrack()
+    {
+
+    }
+    public void SetTrackEmotion(string trackID, Emotions emotion)
+    {
+
+        //allTracks[trackID].SetUserResponse(emotion);
+    }
+    public TrackData GetCurrentTrack()
+    {
+        //return library[current];
+        return null;
+    }
+    /*
     // this will load the track data scriptable object from a location that is accessible in build thorugh adressables
     // so we can choose what to load for different builds
     private void LoadTracks()
@@ -83,13 +100,7 @@ public class AudioManager : SimpleSingleton<AudioManager>
         }
         library.Remove(allTracks[trackID]);
     }
-    #endregion
-    void PlayTrack(TrackData data)
-    {
-        OnTrackChanged.Invoke();
-        //audioSource.clip = data.audioClip;
-        //audioSource.Play();
-    }
+    
     void PlayCurrent()
     {
         PlayTrack(library[current]);
@@ -99,15 +110,7 @@ public class AudioManager : SimpleSingleton<AudioManager>
             return;
         }
     }
-    void StopPlayingTrack()
-    {
-        //audioSource.Stop();
-    }
-    public void PlayNextTrack()
-    {
-        current = (current+1)%library.Count;
-        PlayCurrent();
-    }
+
     public void PlayLastTrack()
     {
         if (current == 0)
@@ -164,4 +167,63 @@ public class AudioManager : SimpleSingleton<AudioManager>
         }
         allTracks[trackID].SetUserResponse(emotion);
     }
+    */
+    #region TRACK MEMORY MANAGMENT 
+    public void LoadTrackData(List<string> keys) 
+    {
+
+    }
+
+    // Operation handle used to load and release assets
+
+    // Load Addressables by Label
+    public IEnumerator Start(List<string> keys)
+    {
+        float x = 0, z = 0;
+        loadHandle = Addressables.LoadAssetsAsync<GameObject>(
+            keys,
+            addressable =>
+            {
+                //Gets called for every loaded asset
+                Instantiate<GameObject>(addressable,
+                    new Vector3(x++ * 2.0f, 0, z * 2.0f),
+                    Quaternion.identity,
+                    transform);
+
+                if (x > 9)
+                {
+                    x = 0;
+                    z++;
+                }
+            }, Addressables.MergeMode.Union, // How to combine multiple labels 
+            true); // Whether to fail and release if any asset fails to load
+
+        yield return loadHandle;
+    }
+
+    private void OnDestroy()
+    {
+        Addressables.Release(loadHandle);
+        // Release all the loaded assets associated with loadHandle
+        // Note that if you do not make loaded addressables a child of this object,
+        // then you will need to devise another way of releasing the handle when
+        // all the individual addressables are destroyed.
+    }
+    #endregion
+
+}//making an asset "Addressable" allows you to use that asset's unique address to call it from anywhere
+ // Addressable assets are not loaded to memeory when the scene is loaded like hard-referenced objects, it will be loaded to memory only when you instantiate the needed asset
+ // making it Addressable ensured an asset is loaded and we are investing memory to it only when an if it is used, rather than loading the entire resources folder to the build
+ // bundle mode of is set to pack individually so not everything that is in a group (e.g. all audio tracks) must all be loaded at once. I want to choose which ones I will need to use for this build 
+ //You only need to make sure that any time you explicitly load an asset, you release it when your application no longer needs that instance.
+
+[Serializable]
+public class AudioClipReference : AssetReferenceT<AudioClip>
+{
+    public AudioClipReference(string guid) : base(guid) { }
+}
+[Serializable]
+public class TrackDataReference : AssetReferenceT<TrackData>
+{
+    public TrackDataReference(string guid) : base(guid) { }
 }

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spreadsheetID: 1qHmvEGfXoCBZQWwDBrjASd-an27MBgBMTmAK-BSrNbI
   importSheetID: 2040123043
-  exportSheetID: 1974605279
+  exportSheetID: 515697099
   exportSheetName: Collected Data
-  saveSOToPath: Assets\Resources\Tracks Data
-  loadAudioPath: Assets\Resources\Audio Tracks
+  saveSOToPath: Assets\Scriptable Objects\Tracks Data
+  loadAudioPath: Assets\Audio\Tracks Audio
   columnsToRead: 5
-  sentResultByEmail: 1
-  researchersEmail: reutgaming@gmail.com
+  sentResultByEmail: 0
+  researchersEmail: 
   newSheetProperties:
     columnTitles:
     - CET Time stamp
@@ -34,14 +34,14 @@ MonoBehaviour:
     - User ID
     - Game Session Index
     - Configuration ID
-    - Build ID
+    - Application Version
     - Time of Day
     m_HeaderForegroundColor: {r: 0.8941177, g: 0.8941177, b: 0.8941177, a: 1}
     m_HeaderBackgroundColor: {r: 0.2196079, g: 0.2196079, b: 0.2196079, a: 1}
     m_DuplicateKeyColor: {r: 0.8745098, g: 0.2240707, b: 0.1921569, a: 1}
     m_HighlightDuplicateKeys: 1
     m_FreezeTitleRowAndKeyColumn: 1
-  researcherData: {fileID: 11400000, guid: 757cc73399aa645489ba121671bb121d, type: 2}
-  clientData: {fileID: 11400000, guid: 4911fc5992993744db913b7207cf5f50, type: 2}
+  researcherData: {fileID: 11400000, guid: 25ae8289cac711844ae11d2961f8ee7c, type: 2}
+  clientData: {fileID: 11400000, guid: e03617353ffba6340afb80a2f41a204e, type: 2}
   tempExportName: Collected Data
   errorMessage: 

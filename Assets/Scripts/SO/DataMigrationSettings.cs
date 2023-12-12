@@ -21,10 +21,10 @@ public class DataMigrationSettings : MyScriptableObject
     public string exportSheetName = "Collected Data";
     [ReadOnly]
     [SerializeField]
-    string saveSOToPath = @"Assets\Resources\Tracks Data";
+    string saveSOToPath = @"Assets\Scriptable Objects\Tracks Data";
     [ReadOnly]
     [SerializeField]
-    string loadAudioPath = @"Assets\Resources\Audio Tracks";
+    string loadAudioPath = @"Assets\Audio\Tracks Audio";
     [ReadOnly]
     [SerializeField]
     public int columnsToRead=5;

@@ -5,8 +5,7 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour, IRegistrableService
 {
-    [SerializeField]
-    GameSettings gameSetings;
+    public GameSettings gameSettings;
     public  UnityEvent gameOverEvent;
     public  UnityEvent startedGameEvent;
     public static bool paused = false;
@@ -16,11 +15,11 @@ public class GameManager : MonoBehaviour, IRegistrableService
     }
     void OnEnable()
     {
-        startedGameEvent.AddListener(gameSetings.IncreaseGameSessionIndex);
+        startedGameEvent.AddListener(gameSettings.IncreaseGameSessionIndex);
     }
     void OnDisable()
     {
-        startedGameEvent.RemoveListener(gameSetings.IncreaseGameSessionIndex);
+        startedGameEvent.RemoveListener(gameSettings.IncreaseGameSessionIndex);
     }
     public void UnpauseGame()
     {

@@ -12,7 +12,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b507815b89636a408c869ccb12202d4, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
-  exportSettings: {fileID: 11400000, guid: 1a56585e2136e29478ed44fe5cd631b1, type: 2}
+  minimumNumberOfTracks: 10
+  usedTracks:
+  - m_AssetGUID: c6e774ac8641d0a4283535e2d75f2879
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 142ff6801aed0a644b4b5e10b4a15121
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 83bc5309eceb9194e9385c94365e1d6e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 7c69da4f662ba954689ffc97f51abac4
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: a953dd36f8fbfe14eaee2ca16190a610
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 01a702a4066bc284681d28824270cc6f
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 3bf37aa449f7fc742a44ed592157fcd3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 6ff067a9cc343944d9980fdfcb7a2e5e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 44f8a377dc101d441bdd8e1d3051801c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 4c123e397fde3614880b3ee4c30851d8
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  startingTrack:
+    m_AssetGUID: c6e774ac8641d0a4283535e2d75f2879
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   playerName: Reut
-  configFileLoaded: 0
   configurationID: Default
+  configFileLoaded: 0
+  buildID: 1
+  dataMigrationSettings: {fileID: 11400000, guid: 1a56585e2136e29478ed44fe5cd631b1, type: 2}

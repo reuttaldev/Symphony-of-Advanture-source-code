@@ -89,7 +89,7 @@ public class ConfigurationFileManager : MonoBehaviour
             }
             if (!ValidateExportSheetID(id))
             {
-                errorText.text = ($"Cannot have a valid connection to sheet with this ID. Are you connected to the Internet? If so, ensure that spreadsheet with ID {gameSettings.exportSettings.spreadsheetID} contains a table with the provided export ID.");
+                errorText.text = ($"Cannot have a valid connection to sheet with this ID. Are you connected to the Internet? If so, ensure that spreadsheet with ID {gameSettings.dataMigrationSettings.spreadsheetID} contains a table with the provided export ID.");
                 return false;
             }
         }
@@ -97,8 +97,8 @@ public class ConfigurationFileManager : MonoBehaviour
     }
     bool ValidateExportSheetID(int exportSheetID)
     {
-        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(gameSettings.exportSettings);
-        return GoogleSheets.ValidateSheetConnection(service, gameSettings.exportSettings.spreadsheetID, exportSheetID);
+        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(gameSettings.dataMigrationSettings);
+        return GoogleSheets.ValidateSheetConnection(service, gameSettings.dataMigrationSettings.spreadsheetID, exportSheetID);
     }
     bool ValidateTrackIdList()
     {
@@ -113,12 +113,12 @@ public class ConfigurationFileManager : MonoBehaviour
     void ApplySettings()
     {
         gameSettings.configFileLoaded = true;
-        gameSettings.exportSettings.exportSheetID = int.Parse(config.ExportSheetID);
+        gameSettings.dataMigrationSettings.exportSheetID = int.Parse(config.ExportSheetID);
         gameSettings.configurationID = config.ConfigurationID;
-        if (config.TracksIDs.Count != 0)
-            gameSettings.usedTracks = tracksToLoad.ToArray();
-        if (startingTrackData != null)
-            gameSettings.startingTrack = startingTrackData;
+        //if (config.TracksIDs.Count != 0)
+          //  gameSettings.usedTracks = tracksToLoad.ToArray();
+        //if (startingTrackData != null)
+          //  gameSettings.startingTrack = startingTrackData;
 
     }
 }
