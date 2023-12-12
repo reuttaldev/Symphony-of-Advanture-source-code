@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b507815b89636a408c869ccb12202d4, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
-  minimumNumberOfTracks: 10
-  usedTracks:
+  minimumLibrarySize: 5
+  minimumCollectibleTracks: 5
+  initTrackLibrary:
   - m_AssetGUID: c6e774ac8641d0a4283535e2d75f2879
     m_SubObjectName: 
     m_SubObjectType: 
@@ -34,23 +35,24 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  - m_AssetGUID: 01a702a4066bc284681d28824270cc6f
+  collectibleTracks:
+  - m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  - m_AssetGUID: 3bf37aa449f7fc742a44ed592157fcd3
+  - m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  - m_AssetGUID: 6ff067a9cc343944d9980fdfcb7a2e5e
+  - m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  - m_AssetGUID: 44f8a377dc101d441bdd8e1d3051801c
+  - m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  - m_AssetGUID: 4c123e397fde3614880b3ee4c30851d8
+  - m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

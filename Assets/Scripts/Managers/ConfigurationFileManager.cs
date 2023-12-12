@@ -102,9 +102,9 @@ public class ConfigurationFileManager : MonoBehaviour
     }
     bool ValidateTrackIdList()
     {
-        if(config.TracksIDs.Count < GameSettings.minNumberOfTracks)
+        if(config.TracksIDs.Count < GameSettings.minCollectibleTracks)
         {
-            errorText.text = "Not enough tracks specified in Track ID. You need a minimum of " + GameSettings.minNumberOfTracks + " tracks.";
+            errorText.text = "Not enough tracks specified in Track ID. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.";
             return false;
         }
         tracksToLoad = new List<TrackData>();

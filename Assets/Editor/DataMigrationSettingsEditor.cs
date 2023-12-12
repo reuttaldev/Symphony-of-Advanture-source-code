@@ -219,7 +219,8 @@ public class DataMigrationSettingsEditor : Editor
             GameSettings settings = AssetDatabase.LoadAssetAtPath< GameSettings>("Assets/Game Settings.asset");
             if(settings == null)
             {
-                Debug.LogError("Game Settings asset is missing");
+                throw new Exception("Game Settings asset is missing");
+
             }
             settings.SetDefaultTracks();
             UpdateHelpBoxMessage("Data was imported successfully.");
@@ -230,8 +231,7 @@ public class DataMigrationSettingsEditor : Editor
         }
         catch (Exception ex) 
         {
-            UpdateHelpBoxMessage("Data was pulled incorrectly",true);
-            Debug.LogError(ex.Message);
+            UpdateHelpBoxMessage("Data was pulled incorrectly, Error: "+ex.Message,true);
         }
     }
 }
