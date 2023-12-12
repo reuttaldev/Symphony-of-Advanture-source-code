@@ -11,7 +11,8 @@ using UnityEngine.Events;
 
 public class GameConfiguration
 {
-    public List<string> TracksIDs;
+    public List<string> InitialTrackLibrary;
+    public List<string> CollectibleTracks;
     public string StartingTrack;
     public string ExportSheetID;
     public string ConfigurationID;
@@ -25,9 +26,6 @@ public class ConfigurationFileManager : MonoBehaviour
     GameSettings gameSettings;
     [SerializeField]
     UnityEvent onLoadingSuccess;
-    
-    private List<TrackData> tracksToLoad;
-    private TrackData?  startingTrackData = null;
     private void Start()
     {
         errorText.text = "";
@@ -49,36 +47,71 @@ public class ConfigurationFileManager : MonoBehaviour
             errorText.text = $"Error parsing JSON: missing field in configuration file.";
             return;
         }
-        if (!VadilityChecks())
+        if (!SyntaxChecks())
             return;
         ApplySettings();
         errorText.gameObject.SetActive(false);
         onLoadingSuccess.Invoke();
     }
 
-    bool VadilityChecks()
+    bool SyntaxChecks()
     {
+        // check all given track IDs are valid, and that we have enough of them in th list 
+        if (!CheckSyntaxLibraryList())
+            return false;
+        if (!CheckSyntaxCollectibleList())
+            return false;
+        if (!ValidateExportSheetID())
+            return false;
+        if (!ValidateStartingTrack())
+            return false;
+
         if (string.IsNullOrWhiteSpace(config.ConfigurationID))
         {
             errorText.text = $"Error parsing JSON: Please specify an unique configuration ID.";
             return false;
         }
-        // check all given track IDs are valid
-        if(config.TracksIDs.Count!=0)
+        return true;
+    }
+    bool ValidateExportSheetID(int exportSheetID)
+    {
+        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(gameSettings.dataMigrationSettings);
+        return GoogleSheets.ValidateSheetConnection(service, gameSettings.dataMigrationSettings.spreadsheetID, exportSheetID);
+    }
+    bool CheckSyntaxCollectibleList()
+    {
+        if(config.InitialTrackLibrary.Count < GameSettings.minTrackLibrarySize)
         {
-            if (!ValidateTrackIdList())
-                return false;
-
+            errorText.text = "Not enough tracks specified in Track Library. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.";
+            return false;
         }
+        return true;
+    }
+    bool CheckSyntaxLibraryList()
+    {
+        if (config.CollectibleTracks.Count < GameSettings.minCollectibleTracks)
+        {
+            errorText.text = "Not enough tracks specified in Collectible Track. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.";
+            return false;
+        }
+        return true;
+    }
+    bool ValidateStartingTrack()
+    {
         if (!string.IsNullOrEmpty(config.StartingTrack) && config.StartingTrack != "default" && config.StartingTrack != "Default")
         {
             // check starting track is valid
-            if (tracksToLoad == null) //the stating track must be an element from the give list of track IDs to use
+            //the stating track must be an element from the give list of track IDs to use
+            if (config.InitialTrackLibrary == null|| config.InitialTrackLibrary.Count ==0 || !config.InitialTrackLibrary.Contains(config.StartingTrack)) 
+            {
+                errorText.text = "Specified starting track must be included in the initial track library list.";
                 return false;
-            startingTrackData = tracksToLoad.FirstOrDefault(track => track.trackID == config.StartingTrack);
-            if (startingTrackData != null)
-                return false;
+            }
         }
+        return true;
+    }
+    bool ValidateExportSheetID()
+    {
         if (!string.IsNullOrEmpty(config.ExportSheetID) && config.ExportSheetID != "default" && config.ExportSheetID != "Default")
         {
             int id;
@@ -93,21 +126,6 @@ public class ConfigurationFileManager : MonoBehaviour
                 return false;
             }
         }
-        return true;
-    }
-    bool ValidateExportSheetID(int exportSheetID)
-    {
-        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(gameSettings.dataMigrationSettings);
-        return GoogleSheets.ValidateSheetConnection(service, gameSettings.dataMigrationSettings.spreadsheetID, exportSheetID);
-    }
-    bool ValidateTrackIdList()
-    {
-        if(config.TracksIDs.Count < GameSettings.minCollectibleTracks)
-        {
-            errorText.text = "Not enough tracks specified in Track ID. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.";
-            return false;
-        }
-        tracksToLoad = new List<TrackData>();
         return true;
     }
     void ApplySettings()

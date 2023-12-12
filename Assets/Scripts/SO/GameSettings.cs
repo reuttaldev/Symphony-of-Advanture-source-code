@@ -2,11 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.AddressableAssets;
 using UnityEditor;
 using UnityEngine.ResourceManagement.AsyncOperations;
-
+#endif
 [CreateAssetMenu(fileName = "Game Settings", menuName = "Scriptable Objects/Game Settings")]
 [Serializable]
 public class GameSettings : MyScriptableObject

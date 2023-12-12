@@ -5,6 +5,9 @@ using UnityEngine.Events;
 using System;
 using System.Collections;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 
 
@@ -15,9 +18,60 @@ public class AudioManager : SimpleSingleton<AudioManager>
     AudioSource audioSource;
     [SerializeField]
     public UnityEvent OnTrackChanged;
+    [SerializeField]
+    private List<TrackData> library = new List<TrackData>(); // our currently available library of tracks
+    [SerializeField]
+    private List<TrackData> collectibles = new List<TrackData>(); // our currently available library of tracks
+    #region ASSET LOADING
+    #region SYNTAX CHECKS
+    #endregion
+    bool LoadLibraryList()
+    {
+        if (settings.initTrackLibrary.Length < GameSettings.minTrackLibrarySize)
 
-    private AsyncOperationHandle loadHandle; // need to unload the assets when done
+        {
+            Debug.LogError("Not enough tracks specified in Collectible Track. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.");
+            return false;
+        }
+        foreach (TrackDataReference reference in settings.initTrackLibrary)
+        {
+            if (reference == null)
+            {
+                Debug.LogError("Null reference found in Game Settings -> Init Track Library");
+                return false;
+            }
+            AsyncOperationHandle loadHandle = reference.LoadAssetAsync<TrackData>();
+            loadHandle.Completed += track =>
+            {
+                library.Add(track.Result as TrackData);
+            };
+        }
+        return true;
+    }
+    bool LoadCollectibleList()
+    {
+        if (settings.collectibleTracks.Length < GameSettings.minCollectibleTracks)
+        {
+            Debug.LogError("Not enough tracks specified in Track Library. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.");
+            return false;
+        }
+        // check that there are no duplicates 
+        // check that nothing that was selected as a collectible was also selected for the initial track list, otherwise it cannot be collected
+        return true;
+    }
+    public void LoadTracksFromAddressable()
+    {
+        LoadLibraryList();
+        LoadCollectibleList();
+    }
+    private void OnDestroy()
+    {
+        foreach (var item in library)
+        {
 
+        }
+    }
+    #endregion
 
     public void PlayNext()
     {
@@ -34,10 +88,13 @@ public class AudioManager : SimpleSingleton<AudioManager>
         base.Awake();
         DontDestroyOnLoad(this);
         audioSource = GetComponent<AudioSource>();
+        settings = ServiceLocator.Instance.Get<GameManager>().settings;
+        if (settings == null)
+            Debug.LogError("Audio manager is missing a reference to game settings");
+        LoadTracksFromAddressable();
     }
     private void Start()
     {
-        settings = ServiceLocator.Instance.Get<GameManager>().gameSettings;
     }
     public void PlayTrack(TrackData data)
     {
@@ -62,6 +119,11 @@ public class AudioManager : SimpleSingleton<AudioManager>
     {
         //return library[current];
         return null;
+    }
+    void RemoveFromLibrary()
+    {
+        //        reference.ReleaseAsset();
+
     }
     /*
     // this will load the track data scriptable object from a location that is accessible in build thorugh adressables
@@ -168,50 +230,8 @@ public class AudioManager : SimpleSingleton<AudioManager>
         allTracks[trackID].SetUserResponse(emotion);
     }
     */
-    #region TRACK MEMORY MANAGMENT 
-    public void LoadTrackData(List<string> keys) 
-    {
-
-    }
-
-    // Operation handle used to load and release assets
-
-    // Load Addressables by Label
-    public IEnumerator Start(List<string> keys)
-    {
-        float x = 0, z = 0;
-        loadHandle = Addressables.LoadAssetsAsync<GameObject>(
-            keys,
-            addressable =>
-            {
-                //Gets called for every loaded asset
-                Instantiate<GameObject>(addressable,
-                    new Vector3(x++ * 2.0f, 0, z * 2.0f),
-                    Quaternion.identity,
-                    transform);
-
-                if (x > 9)
-                {
-                    x = 0;
-                    z++;
-                }
-            }, Addressables.MergeMode.Union, // How to combine multiple labels 
-            true); // Whether to fail and release if any asset fails to load
-
-        yield return loadHandle;
-    }
-
-    private void OnDestroy()
-    {
-        Addressables.Release(loadHandle);
-        // Release all the loaded assets associated with loadHandle
-        // Note that if you do not make loaded addressables a child of this object,
-        // then you will need to devise another way of releasing the handle when
-        // all the individual addressables are destroyed.
-    }
-    #endregion
-
-}//making an asset "Addressable" allows you to use that asset's unique address to call it from anywhere
+}
+//making an asset "Addressable" allows you to use that asset's unique address to call it from anywhere
  // Addressable assets are not loaded to memeory when the scene is loaded like hard-referenced objects, it will be loaded to memory only when you instantiate the needed asset
  // making it Addressable ensured an asset is loaded and we are investing memory to it only when an if it is used, rather than loading the entire resources folder to the build
  // bundle mode of is set to pack individually so not everything that is in a group (e.g. all audio tracks) must all be loaded at once. I want to choose which ones I will need to use for this build 

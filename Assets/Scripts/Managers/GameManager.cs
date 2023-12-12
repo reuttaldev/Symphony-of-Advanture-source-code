@@ -5,21 +5,23 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour, IRegistrableService
 {
-    public GameSettings gameSettings;
+    public GameSettings settings;
     public  UnityEvent gameOverEvent;
     public  UnityEvent startedGameEvent;
     public static bool paused = false;
     private void Awake()
     {     
         ServiceLocator.Instance.Register<GameManager>(this);
+        if (settings == null)
+            Debug.LogError("Game manager is missing a reference to game settings");
     }
     void OnEnable()
     {
-        startedGameEvent.AddListener(gameSettings.IncreaseGameSessionIndex);
+        startedGameEvent.AddListener(settings.IncreaseGameSessionIndex);
     }
     void OnDisable()
     {
-        startedGameEvent.RemoveListener(gameSettings.IncreaseGameSessionIndex);
+        startedGameEvent.RemoveListener(settings.IncreaseGameSessionIndex);
     }
     public void UnpauseGame()
     {

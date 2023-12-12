@@ -35,7 +35,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     void Start()
     {
 
-        settings = ServiceLocator.Instance.Get<GameManager>().gameSettings;
+        settings = ServiceLocator.Instance.Get<GameManager>().settings;
         // do these at start to avoid delay on the first export call
         if(settings.dataMigrationSettings.sentResultByEmail)
             VerifyCVSFile();

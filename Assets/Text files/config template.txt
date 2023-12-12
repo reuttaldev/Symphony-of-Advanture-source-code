@@ -1,5 +1,6 @@
 {
-  "TracksIDs": ["25220","95587","95723","623052"],
+  "InitialTrackLibrary": ["25220","1250230","623052","682419"],
+  "CollectibleTracks": ["783250","95587","890518","95723", "1250230"],
   "StartingTrack": "623052",
   "ExportSheetID": "170754747",
   "ConfigurationID": "0002"
