@@ -15,19 +15,19 @@ MonoBehaviour:
   minimumLibrarySize: 5
   minimumCollectibleTracks: 5
   initTrackLibrary:
-  - m_AssetGUID: c6e774ac8641d0a4283535e2d75f2879
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
   - m_AssetGUID: 142ff6801aed0a644b4b5e10b4a15121
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  - m_AssetGUID: 83bc5309eceb9194e9385c94365e1d6e
+  - m_AssetGUID: 7c69da4f662ba954689ffc97f51abac4
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  - m_AssetGUID: 7c69da4f662ba954689ffc97f51abac4
+  - m_AssetGUID: c6e774ac8641d0a4283535e2d75f2879
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 83bc5309eceb9194e9385c94365e1d6e
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

@@ -1,4 +1,8 @@
-alternative to resources folder
-check why switching songs is so slow
 Do async to the export so it won't take so long 
- look at email what do I need for the configuration files 
+first track loading
+duplicate when loading 
+release assets correctly 
+scene fading effect is bad
+ArgumentNullException: Value cannot be null.
+Parameter name: _unity_self after changing tracks in game settings
+ Check dependency analyzer and memory usage

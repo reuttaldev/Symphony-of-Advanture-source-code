@@ -7,7 +7,7 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     bool changingScene = false;
     [SerializeField]
     float fadingTime;
-    const float defultFadingTime = 1;
+    const float defultFadingTime = 2;
     public GameObject loadingScreen;
     Image loadingImage;
     Color imageColor;

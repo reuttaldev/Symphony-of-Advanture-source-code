@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using System;
 using System.Collections;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Linq;
 
 
 
@@ -24,10 +25,11 @@ public class AudioManager : SimpleSingleton<AudioManager>
     #region ASSET LOADING
     #region SYNTAX CHECKS
     #endregion
-
+    AsyncOperationHandle libraryLoadHandle;
+    AsyncOperationHandle collectibleLoadHandle;
     void LoadStartingTrack()
     {
-        AsyncOperationHandle loadHandle = settings.startingTrack.LoadAssetAsync<TrackData>();
+        /*AsyncOperationHandle loadHandle = settings.startingTrack.LoadAssetAsync<TrackData>();
         loadHandle.Completed += track =>
         {
             TrackData t = track.Result as TrackData;
@@ -39,46 +41,54 @@ public class AudioManager : SimpleSingleton<AudioManager>
             // play it once loaded
             PlayTrack();
             Debug.Log(t.trackID);
-        };
+        };*/
     }
-    bool LoadLibraryList()
+    void LoadLibraryList()
     {
-        if (settings.initTrackLibrary.Length < GameSettings.minTrackLibrarySize)
-
-        {
-            Debug.LogError("Not enough tracks specified in Collectible Track. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.");
-            return false;
-        }
         LoadStartingTrack();
-        foreach (TrackDataReference reference in settings.initTrackLibrary)
+
+        // load all TrackData assets. loading all (addressable assets) with certain tag
+        // use the keys to filter only what you need 
+        libraryLoadHandle = Addressables.LoadAssetsAsync<TrackData>("Track Data", null,true);
+        libraryLoadHandle.Completed += foundAssets =>
         {
-            if (reference == null)
+            List<TrackData> allTracks = (List<TrackData>)foundAssets.Result;
+            int i = 0;
+            bool loadDefault = !settings.configFileLoaded;
+            if (!loadDefault && allTracks.Count < GameSettings.minTrackLibrarySize)
             {
-                Debug.LogError("Null reference found in Game Settings -> Init Track Library");
-                return false;
+                Debug.LogError("Not enough tracks specified in Initial Track Library. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.");
             }
-            AsyncOperationHandle loadHandle = reference.LoadAssetAsync<TrackData>();
-            loadHandle.Completed += track =>
+            foreach (TrackData track in allTracks)
             {
-                TrackData t = track.Result as TrackData;
-                if (t == null)
+                if (track == null)
                     Debug.LogError("Problem retrieving track");
-                if (TrackInLibrary(t.trackID))
+                if (!loadDefault) 
                 {
-                    Debug.LogError("Duplicate track ID found in Initial Track Library. Duplicate ID is " + t.trackID);
+                    // load by list specified in game settings 
+                    if(settings.initTrackLibrary.Contains(track.trackID))
+                        AddToLibrary(track);
+                    
                 }
                 else
                 {
-                    library.Add(t.trackID, t);
-                    libraryKeys.Add(t.trackID);
+                    // load by index
+                    // find them by the index, so the order remains as it was in the meta data spreadsheet 
+                    TrackData found = allTracks.Find(t => t.index == i);
+                    if (found == null)
+                        Debug.LogError("Could not find required track");
+                    else
+                        AddToLibrary(found);
                 }
-            };
-        }
-        return true;
+                i++;
+            }
+            PlayTrack();
+        };
     }
-    bool LoadCollectibleList()
+
+    void LoadCollectibleList()
     {
-        if (settings.collectibleTracks.Length < GameSettings.minCollectibleTracks)
+        /*if (settings.collectibleTracks.Length < GameSettings.minCollectibleTracks)
         {
             Debug.LogError("Not enough tracks specified in Track Library. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.");
             return false;
@@ -110,7 +120,7 @@ public class AudioManager : SimpleSingleton<AudioManager>
         }
         // check that there are no duplicates 
         // check that nothing that was selected as a collectible was also selected for the initial track list, otherwise it cannot be collected
-        return true;
+        return true;*/
     }
     public void LoadTracksFromAddressable()
     {
@@ -120,14 +130,8 @@ public class AudioManager : SimpleSingleton<AudioManager>
     }
     private void OnDestroy()
     {
-        /*foreach (var item in settings.initTrackLibrary)
-        {
-            item.ReleaseAsset();
-        }
-        foreach (var item in settings.collectibleTracks)
-        {
-            item.ReleaseAsset();
-        }*/
+        //Addressables.Release(libraryLoadHandle);
+        //Addressables.Release(collectibleLoadHandle);
     }
     #endregion
 
@@ -152,7 +156,9 @@ public class AudioManager : SimpleSingleton<AudioManager>
     }
     public void PlayLastTrack()
     {
-        index = (index - 1) % (libraryKeys.Count-1);
+        if (index == 0)
+            index = library.Count - 1;
+        index--;
         PlayTrack();
     }
     public void StopAudio()
@@ -176,6 +182,15 @@ public class AudioManager : SimpleSingleton<AudioManager>
         library.Add(id, trackToAdd);
         // I want it to be the now first track in the library
         libraryKeys.Insert(0,id);
+    }
+    public void AddToLibrary(TrackData data) // add track with id to the currently avaialble for playing music library
+    {
+        if (TrackInLibrary(data.trackID))
+        {
+            Debug.LogError("Duplicate track ID found in Initial Track Library. Duplicate ID is " + data.trackID);
+        }
+        library.Add(data.trackID, data);
+        libraryKeys.Add(data.trackID);
     }
     public void RemoveFromLibrary(string id)
     {

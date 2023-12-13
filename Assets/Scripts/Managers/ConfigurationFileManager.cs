@@ -117,10 +117,12 @@ public class ConfigurationFileManager : MonoBehaviour
         gameSettings.configFileLoaded = true;
         gameSettings.dataMigrationSettings.exportSheetID = int.Parse(config.ExportSheetID);
         gameSettings.configurationID = config.ConfigurationID;
-        //if (config.TracksIDs.Count != 0)
-          //  gameSettings.usedTracks = tracksToLoad.ToArray();
-        //if (startingTrackData != null)
-          //  gameSettings.startingTrack = startingTrackData;
+        if (config.InitialTrackLibrary.Count != 0)
+            gameSettings.initTrackLibrary = config.InitialTrackLibrary.ToArray();
+        if (config.CollectibleTracks.Count != 0)
+            gameSettings.collectibleTracks = config.CollectibleTracks.ToArray();
+        if (!string.IsNullOrEmpty(config.StartingTrack) || config.StartingTrack !="" || config.StartingTrack != "default"|| config.StartingTrack != "Default")
+            gameSettings.startingTrack = config.StartingTrack;
 
     }
 }

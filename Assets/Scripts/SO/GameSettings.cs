@@ -22,12 +22,11 @@ public class GameSettings : MyScriptableObject
     [SerializeField]
     [ReadOnly]
     private int minimumCollectibleTracks = minCollectibleTracks;
-    // TrackDataReference so it is marked as adressable and not loaded into memory until we specifically tell it to.
-    // this way, we can keep a list of  the default songs, but they will not be loaded into memory until we confirm the configuration file does not specify other songs.
+    // we can keep a list of  the default songs, but they will not be loaded into memory until we confirm the configuration file does not specify other songs.
     // this way we avoid loading unused audio clips into memory.
-    public TrackDataReference[] initTrackLibrary = new TrackDataReference[minTrackLibrarySize]; // the tracks here will be loaded onto the walkman at the start of them game 
-    public TrackDataReference[] collectibleTracks = new TrackDataReference[minCollectibleTracks]; // list of tracks the player will be able to pick up throughout the game
-    public TrackDataReference startingTrack;
+    public string[] initTrackLibrary = new string[minTrackLibrarySize]; // the tracks here will be loaded onto the walkman at the start of them game 
+    public string[] collectibleTracks = new string[minCollectibleTracks]; // list of tracks the player will be able to pick up throughout the game
+    public string startingTrack;
 
     [Header("Player Settings")]
     public string playerName = "Reut";
@@ -62,7 +61,7 @@ public class GameSettings : MyScriptableObject
 #if UNITY_EDITOR
     // load data into usedTracks list. Load by order in which the track ids were originally input in the meta data spreadsheet, stop when your reached the minimum required number of tracks.
     // will be done in the editor
-    public void SetDefaultTracks()
+   /* public void SetDefaultTracks()
     {
         try
         {
@@ -108,7 +107,7 @@ public class GameSettings : MyScriptableObject
         if (reference == null)
             throw new Exception("reference is null");
         return new TrackDataReference(assetGUID);
-    }
+    }*/
 
 #endif
 }

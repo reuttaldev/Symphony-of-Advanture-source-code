@@ -222,7 +222,6 @@ public class DataMigrationSettingsEditor : Editor
                 throw new Exception("Game Settings asset is missing");
 
             }
-            settings.SetDefaultTracks();
             UpdateHelpBoxMessage("Data was imported successfully.");
         }
         catch(GoogleApiException ex)
