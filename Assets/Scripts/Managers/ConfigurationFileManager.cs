@@ -63,8 +63,6 @@ public class ConfigurationFileManager : MonoBehaviour
             return false;
         if (!ValidateExportSheetID())
             return false;
-        if (!ValidateStartingTrack())
-            return false;
 
         if (string.IsNullOrWhiteSpace(config.ConfigurationID))
         {
@@ -93,20 +91,6 @@ public class ConfigurationFileManager : MonoBehaviour
         {
             errorText.text = "Not enough tracks specified in Collectible Track. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.";
             return false;
-        }
-        return true;
-    }
-    bool ValidateStartingTrack()
-    {
-        if (!string.IsNullOrEmpty(config.StartingTrack) && config.StartingTrack != "default" && config.StartingTrack != "Default")
-        {
-            // check starting track is valid
-            //the stating track must be an element from the give list of track IDs to use
-            if (config.InitialTrackLibrary == null|| config.InitialTrackLibrary.Count ==0 || !config.InitialTrackLibrary.Contains(config.StartingTrack)) 
-            {
-                errorText.text = "Specified starting track must be included in the initial track library list.";
-                return false;
-            }
         }
         return true;
     }

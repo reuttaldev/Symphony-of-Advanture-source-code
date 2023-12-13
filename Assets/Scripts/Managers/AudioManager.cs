@@ -5,26 +5,42 @@ using UnityEngine.Events;
 using System;
 using System.Collections;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 
 
 // this is a singleton because the current available library must be persistent between scenes
 public class AudioManager : SimpleSingleton<AudioManager>
 {
+    [SerializeField]
     GameSettings settings;
     AudioSource audioSource;
     [SerializeField]
     public UnityEvent OnTrackChanged;
+    private Dictionary<string, TrackData> library = new Dictionary<string, TrackData>(); // our currently available library of tracks, the key is the id
     [SerializeField]
-    private List<TrackData> library = new List<TrackData>(); // our currently available library of tracks
-    [SerializeField]
-    private List<TrackData> collectibles = new List<TrackData>(); // our currently available library of tracks
+    private List<string> libraryKeys = new List<string>();   // I need this list so I can iterate over the library dictionary by order of insertion of the keys
+    private Dictionary<string,TrackData> collectibles = new Dictionary<string, TrackData>(); // the key is the track ID. These are all the tracks that we can collect during the game
+    int index;// currently playing index
     #region ASSET LOADING
     #region SYNTAX CHECKS
     #endregion
+
+    void LoadStartingTrack()
+    {
+        AsyncOperationHandle loadHandle = settings.startingTrack.LoadAssetAsync<TrackData>();
+        loadHandle.Completed += track =>
+        {
+            TrackData t = track.Result as TrackData;
+            if(t == null)
+                Debug.LogError("Could not load starting track correctly");
+            // make it the first track in the list 
+            library.Add(t.trackID, t);
+            libraryKeys.Add(t.trackID);
+            // play it once loaded
+            PlayTrack();
+            Debug.Log(t.trackID);
+        };
+    }
     bool LoadLibraryList()
     {
         if (settings.initTrackLibrary.Length < GameSettings.minTrackLibrarySize)
@@ -33,6 +49,7 @@ public class AudioManager : SimpleSingleton<AudioManager>
             Debug.LogError("Not enough tracks specified in Collectible Track. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.");
             return false;
         }
+        LoadStartingTrack();
         foreach (TrackDataReference reference in settings.initTrackLibrary)
         {
             if (reference == null)
@@ -43,7 +60,18 @@ public class AudioManager : SimpleSingleton<AudioManager>
             AsyncOperationHandle loadHandle = reference.LoadAssetAsync<TrackData>();
             loadHandle.Completed += track =>
             {
-                library.Add(track.Result as TrackData);
+                TrackData t = track.Result as TrackData;
+                if (t == null)
+                    Debug.LogError("Problem retrieving track");
+                if (TrackInLibrary(t.trackID))
+                {
+                    Debug.LogError("Duplicate track ID found in Initial Track Library. Duplicate ID is " + t.trackID);
+                }
+                else
+                {
+                    library.Add(t.trackID, t);
+                    libraryKeys.Add(t.trackID);
+                }
             };
         }
         return true;
@@ -55,181 +83,129 @@ public class AudioManager : SimpleSingleton<AudioManager>
             Debug.LogError("Not enough tracks specified in Track Library. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.");
             return false;
         }
+        foreach (TrackDataReference reference in settings.collectibleTracks)
+        {
+            if (reference == null)
+            {
+                Debug.LogError("Null reference found in Game Settings -> Collectible Tracks");
+                return false;
+            }
+            AsyncOperationHandle loadHandle = reference.LoadAssetAsync<TrackData>();
+            loadHandle.Completed += track =>
+            {
+                TrackData t = track.Result as TrackData;    
+                if (t == null)
+                    Debug.LogError("Problem retrieving track");
+                if(HasCollectible(t.trackID))
+                {
+                    Debug.LogError("Duplicate track ID found in Collectible Tracks. Duplicate ID is "+t.trackID);
+                }
+                else if(TrackInLibrary(t.trackID))
+                {
+                    Debug.LogError("A track that was selected in collectible is already in the initial library lust. This is not allowed. Duplicate ID is "+t.trackID);
+                }
+                else
+                    collectibles.Add(t.trackID, t);
+            };
+        }
         // check that there are no duplicates 
         // check that nothing that was selected as a collectible was also selected for the initial track list, otherwise it cannot be collected
         return true;
     }
     public void LoadTracksFromAddressable()
     {
+        Debug.Log("started loading tracks");
         LoadLibraryList();
         LoadCollectibleList();
     }
     private void OnDestroy()
     {
-        foreach (var item in library)
+        /*foreach (var item in settings.initTrackLibrary)
         {
-
+            item.ReleaseAsset();
         }
+        foreach (var item in settings.collectibleTracks)
+        {
+            item.ReleaseAsset();
+        }*/
     }
     #endregion
-
-    public void PlayNext()
-    {
-        //current = (current + 1) % library.Count;
-        //PlayCurrent();
-    }
-    void StopPlaying()
-    {
-        audioSource.Stop();
-    }
 
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
         audioSource = GetComponent<AudioSource>();
-        settings = ServiceLocator.Instance.Get<GameManager>().settings;
         if (settings == null)
             Debug.LogError("Audio manager is missing a reference to game settings");
         LoadTracksFromAddressable();
+        index = 0;
     }
-    private void Start()
+    public void PlayTrack()
     {
-    }
-    public void PlayTrack(TrackData data)
-    {
-        OnTrackChanged.Invoke();
-        //audioSource.clip = data.audioClip;
-        //audioSource.Play();
+        PlayTrack(libraryKeys[index]);
     }
     public void PlayNextTrack()
     {
-
+        index = (index+1)%libraryKeys.Count;
+        PlayTrack();
     }
     public void PlayLastTrack()
     {
-
+        index = (index - 1) % (libraryKeys.Count-1);
+        PlayTrack();
     }
-    public void SetTrackEmotion(string trackID, Emotions emotion)
+    public void StopAudio()
+    { 
+        audioSource.Stop();
+    } 
+    public void PlayTrack(string id)
     {
-
-        //allTracks[trackID].SetUserResponse(emotion);
+        OnTrackChanged.Invoke();
+        audioSource.clip = library[id].audioClip;
+        audioSource.Play();
     }
-    public TrackData GetCurrentTrack()
+    public void AddToLibrary(string id) // add track with id to the currently avaialble for playing music library
     {
-        //return library[current];
-        return null;
-    }
-    void RemoveFromLibrary()
-    {
-        //        reference.ReleaseAsset();
-
-    }
-    /*
-    // this will load the track data scriptable object from a location that is accessible in build thorugh adressables
-    // so we can choose what to load for different builds
-    private void LoadTracks()
-    {
-    //Use the LoadAssetsAsync method to load more than one Addressable asset in a single operation. spesify a list of keys
-        //Addressables.LoadAssetAsync();
-        var loadedObjects = Resources.LoadAll("Tracks Data", typeof(TrackData)).Cast<TrackData>();
-        foreach (TrackData data in loadedObjects)
+        if(!HasCollectible(id))
         {
-            allTracks[data.trackID] = data;
-            AddTrackToLibrary(data.trackID);
-        }
-    }
-    public void AddTrackToLibrary(string trackID)
-    {
-        if (TrackAvilable(trackID))
-        {
-            Debug.LogError("Track is already in library");
+            Debug.LogError("Trying to add track with id "+id+" but it is not included as a collectible");
             return;
         }
-        if (!TrackExists(trackID))
-        {
-            Debug.LogError("Track does not exist");
-            return;
-        }
-        library.Add(allTracks[trackID]);
+        TrackData trackToAdd = collectibles[id];
+        library.Add(id, trackToAdd);
+        // I want it to be the now first track in the library
+        libraryKeys.Insert(0,id);
     }
-    public void RemoveTrackFromLibrary(string trackID)
+    public void RemoveFromLibrary(string id)
     {
-        if (!TrackAvilable(trackID))
+        if (!TrackInLibrary(id))
         {
+
             Debug.LogError("Track is not found in the current available tracks library");
             return;
         }
-        library.Remove(allTracks[trackID]);
-    }
-    
-    void PlayCurrent()
-    {
-        PlayTrack(library[current]);
-        if(!TrackAvilable(current))
-        {
-            Debug.LogError("Index out of range for audio library");
-            return;
-        }
-    }
-
-    public void PlayLastTrack()
-    {
-        if (current == 0)
-            current = library.Count - 1;
-        else
-            current--;
-        PlayCurrent();
+        library.Remove(id);
+        libraryKeys.Remove(id);
+        // addressable reference will be released whwn this manager OnDestroy() is called
     }
     public TrackData GetCurrentTrack()
     {
-        if(!TrackAvilable(current))
-        {
-            Debug.LogError("Index out of range for audio library");
-            return null;
-        }
-        return library[current];
+        return library[libraryKeys[index]];
     }
-    // check if track id is found in the currently available tracks library
-    bool TrackAvilable(string trackID)
+    public void SetTrackEmotion(string trackID, Emotions emotion)
     {
-        if(!TrackExists(trackID)) 
-        {
-            Debug.LogError("Track " + trackID + " does not exist");
-            return false;
-        }
-        if (library.Contains(allTracks[trackID]))
-            return true;
-        return false;
+        library[trackID].SetUserResponse(emotion);
     }
-    // check if library contains this index
-    bool TrackAvilable(int index)
+    bool TrackInLibrary(string id)
     {
-        if (index < library.Count && index >= 0)
-            return true;
-        return false;
+        return collectibles.ContainsKey(id);
+    }
+    bool HasCollectible(string id)
+    {
+        return library.ContainsKey(id);
     }
 
-
-    // check if a track id is found in all possible game tracks
-    bool TrackExists(string trackID)
-    {
-        if (allTracks.ContainsKey(trackID))
-            return true;
-        return false;
-    }
-
-    // when the user has categorized/ labeled a track to a certain emotion, use this method to add this new information to the track's data
-    public void SetTrackEmotion(string trackID,Emotions emotion)
-    {
-        if(!TrackAvilable(trackID))
-        {
-            Debug.LogError("Track "+trackID+ " is not found in the current available tracks library");
-            return;
-        }
-        allTracks[trackID].SetUserResponse(emotion);
-    }
-    */
 }
 //making an asset "Addressable" allows you to use that asset's unique address to call it from anywhere
  // Addressable assets are not loaded to memeory when the scene is loaded like hard-referenced objects, it will be loaded to memory only when you instantiate the needed asset
