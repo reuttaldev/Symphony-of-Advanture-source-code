@@ -36,7 +36,6 @@ public class DataMigrationSettings : MyScriptableObject
     public NewSheetProperties newSheetProperties = new NewSheetProperties();
     public ResearcherData researcherData;
     public ClientData clientData;
-
     // these values are here so we can know when to display the helper boxes in the editor
     [SerializeField]
     private string tempExportName;

@@ -15,15 +15,28 @@ MonoBehaviour:
   minimumLibrarySize: 5
   minimumCollectibleTracks: 5
   initTrackLibrary:
-  - m_AssetGUID: 142ff6801aed0a644b4b5e10b4a15121
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  - m_AssetGUID: 7c69da4f662ba954689ffc97f51abac4
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  - 
+  - 
+  - 
+  - 
+  - 
+  collectibleTracks:
+  - 
+  - 
+  - 
+  - 
+  - 
+  startingTrack: 
+  playerName: Reut
+  configurationID: Default
+  configFileLoaded: 0
+  buildID: 1
+  trackDataReferences:
   - m_AssetGUID: c6e774ac8641d0a4283535e2d75f2879
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 142ff6801aed0a644b4b5e10b4a15121
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -31,11 +44,14 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  - m_AssetGUID: 7c69da4f662ba954689ffc97f51abac4
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   - m_AssetGUID: a953dd36f8fbfe14eaee2ca16190a610
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  collectibleTracks:
   - m_AssetGUID: 01a702a4066bc284681d28824270cc6f
     m_SubObjectName: 
     m_SubObjectType: 
@@ -56,13 +72,19 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  startingTrack:
-    m_AssetGUID: 97036bcbe41f61c44b16239a18c66e0a
+  - m_AssetGUID: 97036bcbe41f61c44b16239a18c66e0a
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  playerName: Reut
-  configurationID: Default
-  configFileLoaded: 0
-  buildID: 1
-  dataMigrationSettings: {fileID: 11400000, guid: 1a56585e2136e29478ed44fe5cd631b1, type: 2}
+  trackDataKeys:
+  - 783250
+  - 25220
+  - 1265928
+  - 1167302
+  - 95587
+  - 890518
+  - 95723
+  - 623052
+  - 682419
+  - 1277709
+  - 1250230

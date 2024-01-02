@@ -1257,6 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   errorText: {fileID: 791024762}
+  dataMigrationSettings: {fileID: 11400000, guid: 1a56585e2136e29478ed44fe5cd631b1, type: 2}
   gameSettings: {fileID: 11400000, guid: 14688fc18c6d0554b9f76b0a5969c6be, type: 2}
   onLoadingSuccess:
     m_PersistentCalls:

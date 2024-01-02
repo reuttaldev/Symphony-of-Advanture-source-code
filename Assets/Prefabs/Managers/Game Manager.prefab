@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280128414617522459}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.840729, y: 6.806549, z: -0.007891655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6c7ee3c4aec2a48af01284b0b9f1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 14688fc18c6d0554b9f76b0a5969c6be, type: 2}
+  dataMigrationSettings: {fileID: 11400000, guid: 1a56585e2136e29478ed44fe5cd631b1, type: 2}
   gameOverEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  startedGameEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -4,49 +4,53 @@ using UnityEditor;
 using System.Collections.Generic;
 using System.IO;
 using System;
-using UnityEditor.AddressableAssets;
 using System.Text.RegularExpressions;
 using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.AddressableAssets;
 using UnityEngine.AddressableAssets;
-using static PlasticPipe.Server.MonitorStats;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Drawing.Printing;
 
 public static class GenerateTracksData 
 {
     static string[] mandatoryColumnTitles = { "Track ID", "Track Name", "Artist" };
     static string[] optionalColumnTitles = { "Source", "License" };
-    static string audioClipTag = "Track Audio Clip";
-    public static void GenerateData( IList<Dictionary<string, string>> table,DataMigrationSettings settings)
+    public static bool GenerateData( IList<Dictionary<string, string>> table,DataMigrationSettings dataMigrationSetting,GameSettings gameSettings)
     {
         //syntax check
-        if(!CheckRequiredColumns(settings.columnsToRead))
-            return;
-        CreateFolder(settings.GetTracksDataLocation());
-        // keep a dictionary with all of the track keys we have created a scriptable object for to detect duplicates and possible mistakes 
-        //(id,row)
-        Dictionary<string, int > allKeys = new Dictionary<string, int>();
-        // need to check and notify for duplicate keys or missing value
+        if(!CheckRequiredColumns(dataMigrationSetting.columnsToRead))
+            return false;
+        CreateFolder(dataMigrationSetting.GetTracksDataLocation());
+        gameSettings.trackDataReferences = new List<TrackDataReference>();
+        gameSettings.trackDataKeys = new List<string>();
         int rowNumber = 2;
         int trackIndex = 0;
         foreach (Dictionary<string, string> row in table)
         {
             List<string> rowValues = CheckMandatoryValues( row, rowNumber);
             if (rowValues == null)
-                return;
+                return false;
             string trackID = rowValues[0];
-            if (CheckForDuplicateIDs(allKeys, trackID,rowNumber))
-                return;
+            if (CheckForDuplicateIDs(gameSettings.trackDataKeys, trackID,rowNumber))
+                return false ;
             TrackData track = CreateTrackData(rowValues, trackIndex);
-            AudioClip clip = GetAudioClipByID( trackID, settings.GetTracksLocation());
+            AudioClip clip = GetAudioClipByID( trackID, dataMigrationSetting.GetTracksLocation());
             if(clip == null) 
-                return;
+                return false;
             track.audioClip = clip;
-            string saveToPath = Path.Combine(settings.GetTracksDataLocation(), track.trackID+ ".asset");
+            string saveToPath = Path.Combine(dataMigrationSetting.GetTracksDataLocation(), RemoveForbiddenPathCharacters(track.trackID)+ ".asset");
             AssetDatabase.CreateAsset(track, saveToPath);
+            gameSettings.trackDataReferences.Add(GetTrackDataReference(saveToPath));
+            gameSettings.trackDataKeys.Add(trackID);
+            // make sure changes are saved
+            EditorUtility.SetDirty(gameSettings);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
             rowNumber++;
             trackIndex++;
         }
         Debug.Log("Saved track data successfully.");
+        return true;
     }
     #region SYNTAX CHECKS
     static bool CheckRequiredColumns(int columnsToRead)
@@ -86,16 +90,15 @@ public static class GenerateTracksData
         }
         return rowValues;
     }
-    static bool CheckForDuplicateIDs(Dictionary<string, int> allKeys,string trackID, int rowNumber)
+    static bool CheckForDuplicateIDs(List<string> allKeys,string trackID, int rowNumber)
     {
         // check if track with this id has already been instantiated
-        if (allKeys.ContainsKey(trackID))
+        if (allKeys.Contains(trackID))
         {
-            Debug.LogError($"Your metadata Google sheet contains duplicate track id {trackID} in rows {rowNumber} and {allKeys[trackID]}. Please ensure no duplicate values are found and try again");
+            Debug.LogError($"Your metadata Google sheet contains duplicate track id {trackID} in row {rowNumber}, i.e. the same id already appears somewhere else. Please ensure no duplicate values are found and try again");
             Debug.LogError("Saving track data failed.");
             return true;
         }
-        allKeys[trackID] = rowNumber;
         return false;
     }
     #endregion
@@ -113,12 +116,13 @@ public static class GenerateTracksData
         track.index = index;
         return track;
     }
+
     static AudioClip GetAudioClipByID(string id, string lookInFolder)
     {
         var guids = AssetDatabase.FindAssets(id,new[] { lookInFolder });
         if(guids.Length ==0)
         {
-            Debug.LogError("Saving track data failed.");
+            Debug.LogError("Saving track data failed. Bad GUID");
             return null;
         }
         try
@@ -131,6 +135,54 @@ public static class GenerateTracksData
             Debug.LogError($"There is no audio file that matches track id {id} in {lookInFolder}. Please make sure there is an audio file for every entry in the metadata spreadsheed. The name of the audio file should be the track id.");
             return null;
         }
+    }
+    static void SetTracksReference()
+    {
+        /*try
+        {
+            // load all TrackData assets. loading all (addressable assets) with certain tag
+            AsyncOperationHandle loadHandle;
+            loadHandle = Addressables.LoadAssetsAsync<TrackData>("Track Data", null);
+            loadHandle.Completed += foundAssets =>
+            {
+                List<TrackData> allTracks = (List<TrackData>)foundAssets.Result;
+                if (allTracks.Count < minCollectibleTracks + minTrackLibrarySize)
+                {
+                    throw new Exception("Not enough songs were imported. Please ensure to include at least " + minCollectibleTracks + minTrackLibrarySize + "tracks.");
+                }
+                for (int i = 0; i < minCollectibleTracks + minTrackLibrarySize; i++)
+                {
+                    // find them by the index, so the order remains as it was in the meta data spreadsheet 
+                    TrackData track = allTracks.Find(t => t.index == i);
+                    // cast the track data to track data reference, so it will not be loaded automatically and only when we tell it to.
+                    if (i < minTrackLibrarySize)
+                        initTrackLibrary[i] = GetTrackDataReference(track);
+                    else
+                        collectibleTracks[i - minTrackLibrarySize] = GetTrackDataReference(track);
+                }
+                Debug.Log("Loaded default tracks to game settings successfully.");
+            };
+            Addressables.Release(loadHandle);
+            startingTrack = initTrackLibrary[0];
+            // make sure changes are saved
+            EditorUtility.SetDirty(this);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Could not load default tracks to game settings. Error: " + e.Message);
+        }*/
+    }
+    static TrackDataReference GetTrackDataReference(string assetPath)
+    {
+        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
+        string assetGUID = AssetDatabase.AssetPathToGUID(assetPath);
+        // adding this asset to adressables
+        AssetReference reference = settings.CreateAssetReference(assetGUID);
+        if (reference == null)
+            throw new Exception("reference is null");
+        return new TrackDataReference(assetGUID);
     }
     static void CreateFolder(string folderPath)
     {
@@ -162,13 +214,7 @@ public static class GenerateTracksData
         // Use Regex.Replace to remove forbidden characters
         return Regex.Replace(inputPath, pattern, " ");
     }
-    static AssetReference AddAssetToAddressables(UnityEngine.Object asset)
-    {
-        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
-        string assetPath = AssetDatabase.GetAssetPath(asset);
-        string assetGUID = AssetDatabase.AssetPathToGUID(assetPath);
-        return settings.CreateAssetReference(assetGUID);
-    }
+   
     #endregion
 }
 #endif

@@ -23,6 +23,8 @@ public class ConfigurationFileManager : MonoBehaviour
     [SerializeField]
     TMP_Text errorText;
     [SerializeField]
+    DataMigrationSettings dataMigrationSettings;
+    [SerializeField]
     GameSettings gameSettings;
     [SerializeField]
     UnityEvent onLoadingSuccess;
@@ -73,8 +75,8 @@ public class ConfigurationFileManager : MonoBehaviour
     }
     bool ValidateExportSheetID(int exportSheetID)
     {
-        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(gameSettings.dataMigrationSettings);
-        return GoogleSheets.ValidateSheetConnection(service, gameSettings.dataMigrationSettings.spreadsheetID, exportSheetID);
+        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(dataMigrationSettings);
+        return GoogleSheets.ValidateSheetConnection(service, dataMigrationSettings.spreadsheetID, exportSheetID);
     }
     bool CheckSyntaxCollectibleList()
     {
@@ -106,7 +108,7 @@ public class ConfigurationFileManager : MonoBehaviour
             }
             if (!ValidateExportSheetID(id))
             {
-                errorText.text = ($"Cannot have a valid connection to sheet with this ID. Are you connected to the Internet? If so, ensure that spreadsheet with ID {gameSettings.dataMigrationSettings.spreadsheetID} contains a table with the provided export ID.");
+                errorText.text = ($"Cannot have a valid connection to sheet with this ID. Are you connected to the Internet? If so, ensure that spreadsheet with ID {dataMigrationSettings.spreadsheetID} contains a table with the provided export ID.");
                 return false;
             }
         }
@@ -115,7 +117,7 @@ public class ConfigurationFileManager : MonoBehaviour
     void ApplySettings()
     {
         gameSettings.configFileLoaded = true;
-        gameSettings.dataMigrationSettings.exportSheetID = int.Parse(config.ExportSheetID);
+        dataMigrationSettings.exportSheetID = int.Parse(config.ExportSheetID);
         gameSettings.configurationID = config.ConfigurationID;
         if (config.InitialTrackLibrary.Count != 0)
             gameSettings.initTrackLibrary = config.InitialTrackLibrary.ToArray();

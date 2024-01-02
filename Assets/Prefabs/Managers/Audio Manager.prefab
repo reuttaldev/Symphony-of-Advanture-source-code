@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ca9c4c2d873754fa0033e0c1b9096d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  library: []
-  startingSongIndex: 7
+  settings: {fileID: 11400000, guid: 14688fc18c6d0554b9f76b0a5969c6be, type: 2}
   OnTrackChanged:
     m_PersistentCalls:
       m_Calls: []
+  libraryKeys: []
 --- !u!82 &7344000703931520484
 AudioSource:
   m_ObjectHideFlags: 0

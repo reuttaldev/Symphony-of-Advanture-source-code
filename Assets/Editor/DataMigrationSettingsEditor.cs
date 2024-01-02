@@ -214,15 +214,23 @@ public class DataMigrationSettingsEditor : Editor
         try
         {
 
-            pulledData = GoogleSheets.PullData(service, spreadsheetID.stringValue, importSheetID.intValue, true, columnsToRead.intValue);
-            GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target);
-            GameSettings settings = AssetDatabase.LoadAssetAtPath< GameSettings>("Assets/Game Settings.asset");
-            if(settings == null)
+            GameSettings gameSettings = AssetDatabase.LoadAssetAtPath<GameSettings>("Assets/Game Settings.asset");
+            if (gameSettings == null)
             {
-                throw new Exception("Game Settings asset is missing");
-
+                UpdateHelpBoxMessage("Game Settings asset is missing",true);
+                return;
             }
-            UpdateHelpBoxMessage("Data was imported successfully.");
+            pulledData = GoogleSheets.PullData(service, spreadsheetID.stringValue, importSheetID.intValue, true, columnsToRead.intValue);
+            if (pulledData.Count < GameSettings.minTrackLibrarySize + GameSettings.minCollectibleTracks)
+            {
+                UpdateHelpBoxMessage("Not enough songs were imported. Please ensure to include at least " + GameSettings.minTrackLibrarySize + GameSettings.minCollectibleTracks + "tracks.", true);
+                return;
+            }
+            bool success = GenerateTracksData.GenerateData(pulledData, (DataMigrationSettings)target,gameSettings);
+            if(success)
+                UpdateHelpBoxMessage("Data was imported successfully.");
+            else
+                UpdateHelpBoxMessage("Creation of track data scriptable objects has failed. Please read the error output in the console for more information.",true);
         }
         catch(GoogleApiException ex)
         {

@@ -16,7 +16,8 @@ using Newtonsoft.Json.Linq;
 // I need the CSV file to be created and reset only ONCE at the very start of the game
 public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
 {
-    GameSettings settings;
+    GameSettings gameSettings;
+    DataMigrationSettings dataMigrationSettings;
     [Header("Google")]
     string rangeEnd = "!A2";
     // I want to save my latest export data so I can execute it again in the case it failed the first time
@@ -35,9 +36,10 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     void Start()
     {
 
-        settings = ServiceLocator.Instance.Get<GameManager>().settings;
+        gameSettings = ServiceLocator.Instance.Get<GameManager>().settings;
+        dataMigrationSettings = ServiceLocator.Instance.Get<GameManager>().dataMigrationSettings;
         // do these at start to avoid delay on the first export call
-        if(settings.dataMigrationSettings.sentResultByEmail)
+        if(dataMigrationSettings.sentResultByEmail)
             VerifyCVSFile();
         // also, do a check at start that we have an Internet connection
     }
@@ -47,7 +49,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     {
         List<object> data = new List<object>();
         DateTime exportTime = GetCETTime();
-        foreach (var item in settings.dataMigrationSettings.newSheetProperties.columnTitles)
+        foreach (var item in dataMigrationSettings.newSheetProperties.columnTitles)
         {
             switch (item)
             {
@@ -73,19 +75,19 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
                     data.Add(lastDialogueNode);
                     break;
                 case ("User Name"):
-                    data.Add(settings.playerName);
+                    data.Add(gameSettings.playerName);
                     break;
                 case ("User ID"):
-                    data.Add(settings.playerId);
+                    data.Add(gameSettings.playerId);
                     break;
                 case ("Game Session Index"):
-                    data.Add(settings.gameSessionIndex.ToString());
+                    data.Add(gameSettings.gameSessionIndex.ToString());
                     break;
                 case ("Build ID"):
-                    data.Add(settings.buildID);
+                    data.Add(gameSettings.buildID);
                     break;
                 case ("Configuration ID"):
-                    data.Add(settings.configurationID);
+                    data.Add(gameSettings.configurationID);
                     break;
                 case ("Time of Day"):
                     data.Add(GetTimeOfDay(exportTime));
@@ -101,10 +103,10 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     public void ExportData(TrackData trackData, MusicDialogueData dialogueData,string lastDialogueNode)
     {
         List<object> dataToExport = CollectAndCheckData(trackData, dialogueData.InteractionID,dialogueData.interactionName, dialogueData.emotionToInvoke.ToString(), lastDialogueNode);
-        if (dataToExport.Count != settings.dataMigrationSettings.newSheetProperties.columnTitles.Length) // the data we have collected does not match what we require for the spreadsheet
+        if (dataToExport.Count != dataMigrationSettings.newSheetProperties.columnTitles.Length) // the data we have collected does not match what we require for the spreadsheet
             return;
         pendingPushData = dataToExport;
-        if (settings.dataMigrationSettings.sentResultByEmail)
+        if (dataMigrationSettings.sentResultByEmail)
             WriteToCSV(dataToExport);
         ExportToGoogleSheets(dataToExport);
 
@@ -122,10 +124,10 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     {
 
         var values = new List<IList<object>> { dataToExport };
-        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(settings.dataMigrationSettings);
+        SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(dataMigrationSettings);
         try
         {
-            GoogleSheets.PushData(service,settings.dataMigrationSettings.spreadsheetID, values,  GoogleSheets.GetSheetNameByID(service, settings.dataMigrationSettings.spreadsheetID, settings.dataMigrationSettings.exportSheetID) + rangeEnd);
+            GoogleSheets.PushData(service,dataMigrationSettings.spreadsheetID, values,  GoogleSheets.GetSheetNameByID(service, dataMigrationSettings.spreadsheetID, dataMigrationSettings.exportSheetID) + rangeEnd);
             Debug.Log("Recorded the following data to Google Sheets: " + string.Join(" ,", dataToExport));
             // mark that nothing is pending
             pendingPushData = null;
@@ -179,7 +181,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
             // add the titles first, false to remove everything that's already there is something is there 
             using (var writer = new StreamWriter(path, false))
             {
-                writer.WriteLine(string.Join(CSVseparator, settings.dataMigrationSettings.newSheetProperties.columnTitles));
+                writer.WriteLine(string.Join(CSVseparator, dataMigrationSettings.newSheetProperties.columnTitles));
             }
             Debug.Log("Created CSV in path: " + path);
         }
@@ -192,7 +194,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     // returns true for success and false for failure 
     public bool SendCSVByEmail()
     {
-        if(!settings.dataMigrationSettings.sentResultByEmail)
+        if(!dataMigrationSettings.sentResultByEmail)
         {
             Debug.LogWarning("Send CSV by email is set to false in the data migration settings.");
             return false;
@@ -200,11 +202,11 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         // add configuration name to the email 
         try
         {
-            if (string.IsNullOrEmpty(settings.dataMigrationSettings.researchersEmail))
+            if (string.IsNullOrEmpty(dataMigrationSettings.researchersEmail))
             {
                 Debug.LogError("Email to send to is unknown. Please set it up in the Data Migration Settings window.");
             }
-            EmailSender.SendEmail("Collected Data for experiment " + GetExperimentID(), BuildEmailBody(), settings.dataMigrationSettings.researchersEmail, GetCSVPath()); ;
+            EmailSender.SendEmail("Collected Data for experiment " + GetExperimentID(), BuildEmailBody(), dataMigrationSettings.researchersEmail, GetCSVPath()); ;
             Debug.Log("Successfully send collected data CSV to email");
             return true;
         }
@@ -234,16 +236,16 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
         Guid randomGuid = Guid.NewGuid();
         string randomGuidString = randomGuid.ToString();
         string formattedDateTime = exportTime.ToString("yyyy:MM:dd:HH:mm:ss");
-        return formattedDateTime + "_" + settings.playerId + "_" + settings.gameSessionIndex + "_" + randomGuidString;
+        return formattedDateTime + "_" + gameSettings.playerId + "_" + gameSettings.gameSessionIndex + "_" + randomGuidString;
     }
     string GetExperimentID()
     {
-        return settings.configurationID + "_" + settings.playerId + "_" + settings.gameSessionIndex + "_" + Application.version;
+        return gameSettings.configurationID + "_" + gameSettings.playerId + "_" + gameSettings.gameSessionIndex + "_" + Application.version;
     }
 
     Dictionary<string, string> GetExperimentData()
     {
-        Dictionary<string, string> data = new Dictionary<string, string> { { "Configuration ID" , settings.configurationID }, {"Application Version" , Application.version },{ "User Name", settings.playerName} ,{ "User ID", settings.playerId }, { "Game Session Index" , settings.gameSessionIndex.ToString() } };
+        Dictionary<string, string> data = new Dictionary<string, string> { { "Configuration ID" , gameSettings.configurationID }, {"Application Version" , Application.version },{ "User Name", gameSettings.playerName} ,{ "User ID", gameSettings.playerId }, { "Game Session Index" , gameSettings.gameSessionIndex.ToString() } };
         return data;
     }
     DateTime GetCETTime()

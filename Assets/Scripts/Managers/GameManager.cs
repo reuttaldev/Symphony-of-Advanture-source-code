@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour, IRegistrableService
 {
     public GameSettings settings;
+    public DataMigrationSettings dataMigrationSettings;
     public  UnityEvent gameOverEvent;
     public  UnityEvent startedGameEvent;
     public static bool paused = false;
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour, IRegistrableService
         ServiceLocator.Instance.Register<GameManager>(this);
         if (settings == null)
             Debug.LogError("Game manager is missing a reference to game settings");
+        if(dataMigrationSettings == null)
+            Debug.LogError("Game manager is missing a reference to data migration settings");
     }
     void OnEnable()
     {

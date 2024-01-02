@@ -6,3 +6,11 @@ scene fading effect is bad
 ArgumentNullException: Value cannot be null.
 Parameter name: _unity_self after changing tracks in game settings
  Check dependency analyzer and memory usage
+
+ Between 8 to 12 points the emotional model 
+
+ Finish back end
+ Do reading about emotional models 
+ Choose points on the model of which emotions you want to trigger so you cover enough varaity of emotions
+ Write the dialogues to fit the point in the spectrom I want to trigger 
+ why they come ip with models and how 
