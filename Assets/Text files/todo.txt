@@ -1,6 +1,7 @@
 first track loading
 duplicate when loading 
 scene fading effect is bad
+file explorer is marked as dont destroy 
 
  Between 8 to 12 points the emotional model 
 
