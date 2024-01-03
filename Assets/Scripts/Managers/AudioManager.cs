@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Linq;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 
 
@@ -33,7 +34,6 @@ public class AudioManager : SimpleSingleton<AudioManager>
             var refToLoad = GetAdressableReferenceByID(settings.startingTrack);
             if(refToLoad != null ) 
             {
-                Debug.Log("trying 1");
                 LoadAdressable(refToLoad, library, true,true);
                 return;
             }
@@ -45,7 +45,7 @@ public class AudioManager : SimpleSingleton<AudioManager>
     }
     TrackDataReference GetAdressableReferenceByID(string id)
     {
-        int i = libraryKeys.IndexOf(id);
+        int i = settings.trackDataKeys.IndexOf(id);
         if (i==-1)
         {
             Debug.LogError("Could not find requested track with id "+id+", loading default.");
@@ -68,12 +68,9 @@ public class AudioManager : SimpleSingleton<AudioManager>
         loadHandle.Completed += track =>
         {
             TrackData t = track.Result as TrackData;
-            if (t == null)
-                Debug.LogError("Could not load starting track correctly");
-            // make it the first track in the list 
-            loadTo.Add(t.trackID, t);
             if(addKeyToList)
                 libraryKeys.Add(t.trackID);
+            loadTo.Add(t.trackID, t);
             Debug.Log(t.trackID);
             if(playOnLoad)
                 PlayTrack(t.trackID);
@@ -81,7 +78,6 @@ public class AudioManager : SimpleSingleton<AudioManager>
     }
     int LoadAdressable(string [] loadFrom, Dictionary<string, TrackData> loadTo,int startDefaultAt, int minSize, bool playOnLoad = false, bool addKeyToList = true)
     {
-
         bool fromSettingFailed = false;
         List<TrackDataReference> references = new List<TrackDataReference>();
         for (int i = 0; i < loadFrom.Length; i++)
@@ -92,19 +88,18 @@ public class AudioManager : SimpleSingleton<AudioManager>
                 break;
             }
             {
-                TrackDataReference toAdd = GetAdressableReferenceByID(settings.initTrackLibrary[i]);
+                TrackDataReference toAdd = GetAdressableReferenceByID(loadFrom[i]);
                 if (toAdd == null)
                 {
                     fromSettingFailed = true;
                     break;
                 }
                 references.Add(toAdd);
-
             }
         }
         if(!fromSettingFailed &&references.Count < minSize)
         {
-            Debug.LogError("Not enough tracks specified in initial library or collectibles.");
+            Debug.Log("Not enough tracks specified in initial library or collectibles. Loading default");
             fromSettingFailed = true;
         }
         if(fromSettingFailed)
@@ -123,59 +118,30 @@ public class AudioManager : SimpleSingleton<AudioManager>
         return references.Count;
     }
 
-    void LoadLibraryList()
-    {
-        LoadStartingTrack();
-        int loadedToLibrary= LoadAdressable(settings.initTrackLibrary, library, 1, GameSettings.minTrackLibrarySize -1); // -1 bc first track is already loaded
-        Debug.Log("Loading into library " + loadedToLibrary + " tracks.");
-        int loadedTocollectibles = LoadAdressable(settings.collectibleTracks, collectibles, loadedToLibrary+1, GameSettings.minCollectibleTracks,false,false);
-        Debug.Log("Loading into collectibles " + loadedTocollectibles + " tracks.");
-    }
-
-    void LoadCollectibleList()
-    {
-       /*if (gameSettings.collectibleTracks.Length < GameSettings.minCollectibleTracks)
-        {
-            Debug.LogError("Not enough tracks specified in Track Library. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.");
-            return false;
-        }
-        foreach (TrackDataReference reference in gameSettings.collectibleTracks)
-        {
-            if (reference == null)
-            {
-                Debug.LogError("Null reference found in Game Settings -> Collectible Tracks");
-                return false;
-            }
-            AsyncOperationHandle loadHandle = reference.LoadAssetAsync<TrackData>();
-            loadHandle.Completed += track =>
-            {
-                TrackData t = track.Result as TrackData;    
-                if (t == null)
-                    Debug.LogError("Problem retrieving track");
-                if(HasCollectible(t.trackID))
-                {
-                    Debug.LogError("Duplicate track ID found in Collectible Tracks. Duplicate ID is "+t.trackID);
-                }
-                else if(TrackInLibrary(t.trackID))
-                {
-                    Debug.LogError("A track that was selected in collectible is already in the initial library lust. This is not allowed. Duplicate ID is "+t.trackID);
-                }
-                else
-                    collectibles.Add(t.trackID, t);
-            };
-        }
-        // check that there are no duplicates 
-        // check that nothing that was selected as a collectible was also selected for the initial track list, otherwise it cannot be collected
-        return true;*/
-    }
     public void LoadTracksFromAddressable()
     {
-        LoadLibraryList();
-        LoadCollectibleList();
+        LoadStartingTrack();
+        int loadedToLibrary = LoadAdressable(settings.initTrackLibrary, library, 1, GameSettings.minTrackLibrarySize - 1); // -1 bc first track is already loaded
+        Debug.Log("Loading into library " + loadedToLibrary + " tracks.");
+        int loadedTocollectibles = LoadAdressable(settings.collectibleTracks, collectibles, loadedToLibrary + 1, GameSettings.minCollectibleTracks, false, false);
+        Debug.Log("Loading into collectibles " + loadedTocollectibles + " tracks.");
+        Debug.Log(loadHandle.IsValid());
+    }
+    public void UnloadAdressables()
+    {
+        // before you release the handle, remove everything from the list so the reference count goes down 
+        for (int i = 0; i < settings.trackDataReferences.Count; i++)
+        {
+            settings.trackDataReferences[i].ReleaseAsset();
+        }
+        if (loadHandle.IsValid())
+        {
+            Addressables.Release(loadHandle);
+        }
     }
     private void OnDestroy()
     {
-        Addressables.Release(loadHandle);
+        UnloadAdressables();
     }
     #endregion
 
@@ -186,7 +152,7 @@ public class AudioManager : SimpleSingleton<AudioManager>
         audioSource = GetComponent<AudioSource>();
         if (settings == null)
             Debug.LogError("Audio manager is missing a reference to game settings");
-        LoadTracksFromAddressable();
+        //LoadTracksFromAddressable();
         index = 0;
     }
     public void PlayTrack()

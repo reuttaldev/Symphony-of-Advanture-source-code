@@ -6,25 +6,14 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
 {
     bool changingScene = false;
     [SerializeField]
-    float fadingTime;
-    const float defultFadingTime = 2;
-    public GameObject loadingScreen;
-    Image loadingImage;
-    Color imageColor;
-    float alpha;
+    float fadingTime=2;
+    Animator animator;
     protected override void  Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
+        animator = gameObject.GetComponent<Animator>();
     }
-    void Start()
-    {
-        loadingImage = loadingScreen.GetComponent<Image>();
-        imageColor = loadingImage.color;
-        if (fadingTime == 0)
-            fadingTime = defultFadingTime;
-    }
-
     public void LoadScene(string sceneToLoadName)
     {
         if (!string.IsNullOrEmpty(sceneToLoadName))
@@ -41,51 +30,22 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     private IEnumerator LoadSceneWithAnimation(string sceneName)
     {
         changingScene = true;
-        loadingScreen.SetActive(true);
-        yield return StartCoroutine(FadeToBlackAnimation());
+        animator.SetTrigger("start");
+
+        // start loading the scene, while fade out animation is playing
         AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
         asyncLoad.allowSceneActivation = false;
         while (asyncLoad.progress < 0.9f)
         {
             yield return null;
         }
-        // actual scene switch is here
+        // scene has finished loading (we are currently showing black screen. make sure animation finishes playing
+        yield return new WaitForSeconds(fadingTime/2);   
         asyncLoad.allowSceneActivation = true;
-        yield return StartCoroutine(FadeFromBlackAnimation());
+        // start fading in
+        animator.SetTrigger("end");
+        yield return new WaitForSeconds(fadingTime/2);   
+        // actual scene switch is here
         changingScene = false;
-    }
-    internal IEnumerator FadeToBlackAnimation()
-    {
-        loadingScreen.SetActive(true);
-        float startValue = 0;
-        float targetValue = 1;
-        if (loadingImage.color.a != startValue)
-            loadingImage.color = new Color(imageColor.r, imageColor.b, imageColor.g, startValue);
-        float time = 0;
-
-        while (time < fadingTime)
-        {
-            alpha = Mathf.Lerp(startValue, targetValue, time / fadingTime);
-            loadingImage.color = new Color(imageColor.r, imageColor.b, imageColor.g, alpha);
-            time += Time.deltaTime;
-            yield return null;
-        }
-    }
-    internal IEnumerator FadeFromBlackAnimation()
-    {
-        float startValue = 1;
-        float targetValue = 0;
-        if (loadingImage.color.a != startValue)
-            loadingImage.color = new Color(imageColor.r, imageColor.b, imageColor.g, startValue);
-        float time = 0;
-
-        while (time < fadingTime)
-        {
-            alpha = Mathf.Lerp(startValue, targetValue, time / fadingTime);
-            loadingImage.color = new Color(imageColor.r, imageColor.b, imageColor.g, alpha);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        loadingScreen.SetActive(false);
     }
 }

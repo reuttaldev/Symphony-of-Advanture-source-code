@@ -58,7 +58,6 @@ public static class SheetsServiceProvider
                     ApplicationName = "App"
                 });
                 sheetService = service;
-                Debug.Log("Setting up Sheets Service");
             }
             catch (Exception e) 
             {

@@ -65,8 +65,7 @@ public static class GoogleSheets
         try
         {
             string sheetName = GetSheetNameByID(service, spreadSheetId, sheetId);
-            Debug.Log("name "+sheetName); 
-            if (sheetName == null)
+                if (sheetName == null)
                 return false;
         }
         catch
