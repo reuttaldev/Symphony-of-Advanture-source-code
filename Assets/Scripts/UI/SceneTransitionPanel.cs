@@ -4,15 +4,17 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 
 // this scripts make the scene transition screen have a transparant inside circle 
-public class SceneTransitionPanel : Image
+public class SceneTransitionPanel : MonoBehaviour
 {
-    public override Material materialForRendering
+    private Image image;
+    public float circleSize =0;
+    private readonly int circleSizeId = Shader.PropertyToID(name: "_circleSize");
+    private void Awake()
     {
-        get
-        {
-            Material material = new Material(base.materialForRendering);
-            material.SetInt("_StencilComp", (int)CompareFunction.NotEqual);
-            return material;
-        }
+        image = GetComponent<Image>();
+    }
+    private void Update()
+    {
+        image.materialForRendering.SetFloat(circleSizeId, circleSize);
     }
 }
