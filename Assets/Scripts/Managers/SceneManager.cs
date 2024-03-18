@@ -10,6 +10,8 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     [SerializeField] 
     SceneTransitionPanel sceneTransitionPanel;
     private Animator animator;
+    [SerializeField]
+    GameObject canvas; 
 
     protected override void  Awake()
     {
@@ -32,6 +34,7 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     }
     private IEnumerator LoadSceneWithAnimation(string sceneName)
     {
+        canvas.SetActive(true);
         changingScene = true;
         animator.SetTrigger("start");
         // start loading the scene, while fade out animation is playing
@@ -48,6 +51,7 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         // load the new scene while screen is still black
         // start fading in
         yield return new WaitForSeconds(animationDuration);
+        canvas.SetActive(false);
         // actual scene switch is here
         changingScene = false;
     }
