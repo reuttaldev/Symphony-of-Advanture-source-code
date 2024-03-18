@@ -14,9 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumLibrarySize: 5
   minimumCollectibleTracks: 5
-  initTrackLibrary: []
-  collectibleTracks: []
-  startingTrack: 
+  initTrackLibrary:
+  - 
+  - 
+  - 
+  - 
+  - 
+  collectibleTracks:
+  - 
+  - 
+  - 
+  - 
+  - 
+  startingTrack: 1250230
   playerName: Reut
   configurationID: Default
   configFileLoaded: 0

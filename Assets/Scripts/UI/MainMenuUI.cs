@@ -13,10 +13,6 @@ public class MainMenuUI : MonoBehaviour
     {
         FileBrowser.SetFilters(false, new FileBrowser.Filter("Text Files", ".txt"));       
     }
-    void OpenFileExplorerRuntime()
-    {
-        FileBrowser.ShowLoadDialog(OpenConfigurationFile, null, FileBrowser.PickMode.Files);
-    }
     void OpenConfigurationFile(string[] paths)
     {
         configManager.LoadConfigurationFile(FileBrowserHelpers.ReadTextFromFile(paths[0]));
@@ -27,7 +23,10 @@ public class MainMenuUI : MonoBehaviour
         OpenFileExplorerRuntime();
         // ConfigurationFileManager will call start game if the configuration file was loaded successfully
     }
-
+    void OpenFileExplorerRuntime()
+    {
+        FileBrowser.ShowLoadDialog(OpenConfigurationFile, null, FileBrowser.PickMode.Files);
+    }
     public void StartGame()
     {
         SceneManager.Instance.LoadScene("TownSquare");

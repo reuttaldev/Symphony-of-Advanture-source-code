@@ -672,15 +672,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 946635903530019018, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 946635903530019018, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 946635903530019018, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 840
       objectReference: {fileID: 0}
     - target: {fileID: 8605976519907169035, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -725,6 +725,10 @@ PrefabInstance:
     - target: {fileID: 8699111121714947372, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_Name
       value: Scene Manager (Don't destroy on load)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699111121714947372, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2574,6 +2578,10 @@ PrefabInstance:
     - target: {fileID: 4199261634973810547, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: m_Name
       value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199261634973810547, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7657828497608798411, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: m_LocalPosition.x
