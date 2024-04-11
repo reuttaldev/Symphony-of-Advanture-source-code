@@ -16,11 +16,21 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
+
+
     void FixedUpdate()
     {
         input = moveAction.action.ReadValue<Vector2>();
         rb.velocity = input * speed;
+        if(input.x!=0 || input.y!=0)
+        {
+            animator.SetFloat("x", input.x);
+            animator.SetFloat("y", input.y);
+            animator.SetBool("Moving", true);
+        }
+        else
+            animator.SetBool("Moving", false);
     }
 }
