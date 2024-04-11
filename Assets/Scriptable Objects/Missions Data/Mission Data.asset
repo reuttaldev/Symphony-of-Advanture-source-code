@@ -15,7 +15,7 @@ MonoBehaviour:
   missionName: 
   missionID: 
   mainObjective: 
-  missionDescription: 
+  startLocation: 
   active: 0
   completed: 0
   mandatory: 0
