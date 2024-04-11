@@ -10,3 +10,7 @@ file explorer is marked as dont destroy
  Choose points on the model of which emotions you want to trigger so you cover enough varaity of emotions
  Write the dialogues to fit the point in the spectrom I want to trigger 
  why they come ip with models and how 
+
+
+
+ need to add syntax check to check if song id is repeated in the configuration file bc if so it could be that below the min amount of collectibles will be loaded and I wont know bc I am adding references and checking the amount before they are actually loaded so I don't know if they will actually be loaded or not bc they are duplicate.

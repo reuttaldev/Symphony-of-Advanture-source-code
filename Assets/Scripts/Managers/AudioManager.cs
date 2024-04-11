@@ -10,7 +10,7 @@ using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 
 // this is a singleton because the current available library must be persistent between scenes
-public class AudioManager : SimpleSingleton<AudioManager>
+public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
 {
     [SerializeField]
     GameSettings settings;

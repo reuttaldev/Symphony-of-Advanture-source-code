@@ -5,42 +5,19 @@ using UnityEngine;
 using Yarn.Unity;
 
 // this script will be added to every game object that allows the start of a dialogue
-[RequireComponent(typeof(Collider2D))]
-
-public class DialogueIntractable : MonoBehaviour
+public class DialogueIntractable : Interactable
 {
     [SerializeField]
-    private bool interactable = true;
-    [SerializeField]
-    private bool interactableMoreThanOnce = true; // whether this character should be enabled right now
-    [SerializeField]
     string conversationStartNode;
-    private void Awake()
-    {
-        if (!GetComponent<Collider2D>().isTrigger)
-            Debug.LogWarning(gameObject.name + "'s collider is not set to trigger. Interaction will not happen.");
-    }
+    DialogueManager dialogueManager;
     // then we need a function to tell Yarn Spinner to start from {specifiedNodeName}
-    private void StartConversation()
+    private void Start()
     {
-        if (interactable)
-            ServiceLocator.Instance.Get<DialogueManager>().StartDialogue(conversationStartNode);
-        else
-            Debug.Log("marked as not intractable");
+        dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
     }
-
-    // make character not able to be clicked on
-    [YarnCommand("disable")]
-    public void DisableConversation()
+    protected override void TriggerInteraction()
     {
-        interactable = false;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        // then run this character's conversation
-        StartConversation();
-        if (!interactableMoreThanOnce)
-            DisableConversation();
+        // start conversation
+        dialogueManager.StartDialogue(conversationStartNode);
     }
 }
