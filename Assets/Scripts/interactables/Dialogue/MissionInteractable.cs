@@ -27,5 +27,5 @@ public class MissionInteractable : Interactable
 
 enum MissionEventType
 {
-    Start, Complete, StartandComplete
+    Start, Complete, StartAndComplete
 }

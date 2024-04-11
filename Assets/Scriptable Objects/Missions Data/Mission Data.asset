@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Mission Data
   m_EditorClassIdentifier: 
-  missionName: 
-  missionID: 
-  mainObjective: 
+  missionName: Trial mission
+  missionID: try1
+  mainObjective: Talk to violet
   startLocation: 
   active: 0
   completed: 0
-  mandatory: 0
+  mandatory: 1
   prerequisiteIds: []

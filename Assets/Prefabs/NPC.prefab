@@ -181,19 +181,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5083983794000809426, guid: d2ead8dcab5055f4db258a6470081a90, type: 3}
       propertyPath: m_Size.x
-      value: 3.9663467
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5083983794000809426, guid: d2ead8dcab5055f4db258a6470081a90, type: 3}
       propertyPath: m_Size.y
-      value: 3.9663467
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5083983794000809426, guid: d2ead8dcab5055f4db258a6470081a90, type: 3}
       propertyPath: m_Offset.x
-      value: 0.08704281
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5083983794000809426, guid: d2ead8dcab5055f4db258a6470081a90, type: 3}
       propertyPath: m_Offset.y
-      value: -0.008869886
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083983794000809426, guid: d2ead8dcab5055f4db258a6470081a90, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8126148175054220988, guid: d2ead8dcab5055f4db258a6470081a90, type: 3}
       propertyPath: m_LocalPosition.x
@@ -296,6 +300,26 @@ PrefabInstance:
     - target: {fileID: 3508874500619445742, guid: aa7b1d2806523894e87a2c81b96f204b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292968141073684815, guid: aa7b1d2806523894e87a2c81b96f204b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292968141073684815, guid: aa7b1d2806523894e87a2c81b96f204b, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292968141073684815, guid: aa7b1d2806523894e87a2c81b96f204b, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292968141073684815, guid: aa7b1d2806523894e87a2c81b96f204b, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292968141073684815, guid: aa7b1d2806523894e87a2c81b96f204b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8736877106199390096, guid: aa7b1d2806523894e87a2c81b96f204b, type: 3}
       propertyPath: m_Name

@@ -35,5 +35,10 @@ title: Example
 // can put the answer in a variable and have the C# script read the variable using bool TryGetValue<T>(string variableName, out T result);
 // but how does the C# script knows at which point to read?
 // better to have a command that sends in the value
+===
 
+title: Trying
+--- 
+Violet: You're mission is to talk to me.
+Violet: Mission complete!
 ===

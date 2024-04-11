@@ -8,7 +8,7 @@ public class MissionManager : SimpleSingleton<MissionManager>, IRegistrableServi
     private List<MissionData> allMissionsReferences;
 
     // key is misssion id, value is mission data
-    Dictionary<string,MissionData> allMissions;
+    Dictionary<string,MissionData> allMissions = new Dictionary<string, MissionData>();
 
     protected override void Awake()
     {
