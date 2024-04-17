@@ -15,18 +15,19 @@ MonoBehaviour:
   minimumLibrarySize: 5
   minimumCollectibleTracks: 5
   initTrackLibrary:
-  - 
-  - 
-  - 
-  - 
-  - 
+  - 25220
+  - 1167296
+  - 983594
+  - 682419
+  - 1277709
+  - 1250230
   collectibleTracks:
   - 
   - 
   - 
   - 
   - 
-  startingTrack: 1250230
+  startingTrack: 
   playerName: Reut
   configurationID: Default
   configFileLoaded: 0
@@ -76,6 +77,14 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  - m_AssetGUID: ba145ca352419a143a51ed1d5086e355
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 88519a2abf574a24ca5be6a029e2a2c2
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   trackDataKeys:
   - 783250
   - 25220
@@ -88,3 +97,5 @@ MonoBehaviour:
   - 682419
   - 1277709
   - 1250230
+  - 983594
+  - 1167296
