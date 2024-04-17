@@ -28,12 +28,12 @@ public abstract class Interactable : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(interactable)
+        if(collision.tag == "Player" && interactable)
             TriggerInteraction();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (interactable)
+        if (collision.tag == "Player" && interactable)
             DisableInteraction();
     }
 }

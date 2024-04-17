@@ -26,19 +26,3 @@ Master: Hey, can you play a song that will make me feel Calm?
 -> Player: No
     Master: Okay. I will leave you alone.
 ===
-
-title: Example
----
-<<declare $response_track_1 = "">>
-    <<set $response_track_1 to "Happy">>
-<<ExpResponse DialogueSystem 1 First {$response_track_1}>>
-// can put the answer in a variable and have the C# script read the variable using bool TryGetValue<T>(string variableName, out T result);
-// but how does the C# script knows at which point to read?
-// better to have a command that sends in the value
-===
-
-title: Trying
---- 
-Violet: You're mission is to talk to me.
-Violet: Mission complete!
-===

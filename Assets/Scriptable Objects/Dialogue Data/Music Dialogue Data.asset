@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3db1806ea827efa4e883bfc3e247f217, type: 3}
-  m_Name: Make capsul 2 relaxed
+  m_Name: Music Dialogue Data
   m_EditorClassIdentifier: 
-  emotionToEnvoke: 2
-  onCompletionNode: 
-  interactionName: 'Make capsul 2 calm '
+  emotionToInvoke: Relaxed and calm
+  onCompletionNode: old_lady_2
+  interactionName: old lady

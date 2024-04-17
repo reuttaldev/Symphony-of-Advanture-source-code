@@ -32,7 +32,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
             if(refToLoad != null ) 
             {
                 LoadAdressable(refToLoad, true,true);
-                Debug.Log("Loaded to library the starting track");
+                //Debug.Log("Loaded to library the starting track");
                 return;
             }
         }
@@ -74,10 +74,10 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
             if(addKeyToList)
             {
                 library.Add(t.trackID);
-                Debug.Log("Loaded to memory and library track: " + t.trackID);
+                //Debug.Log("Loaded to memory and library track: " + t.trackID);
             }
             else
-                Debug.Log("Loaded to memory track: " + t.trackID);
+                //Debug.Log("Loaded to memory track: " + t.trackID);
             // make sure this call is after you added it to the library
             if(playOnLoad)
             {

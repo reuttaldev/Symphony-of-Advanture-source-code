@@ -6,13 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Music Dialogue Data", menuName = "Scriptable Objects/ Music Dialogue Data")]
 public class MusicDialogueData : MyScriptableObject
 {
-    public Emotions emotionToInvoke;
-    [SerializeField]
-    string onCompletionNode = null;
+    public string emotionToInvoke;
+    public string onCompletionNode = null;
     public string interactionName;
 
-    public Emotions GetEmotion()
-    {
-        return emotionToInvoke;
-    }
 }

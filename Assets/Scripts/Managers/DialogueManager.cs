@@ -7,8 +7,12 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
 {
     DialogueRunner dialogueRunner;
     // / keep a reference to the interaction that called to open the interface so that we can have it's id and the associated label
-    //[HideInInspector]
+    [HideInInspector]
     public MusicDialogueData currentMusicInteraction;
+    [HideInInspector]
+    public UnityEvent onDialogueComplete;
+    [HideInInspector]
+    public UnityEvent onPlayerLabaled;
     UIManager uiManager;
     string lastReadDialogueNode = null;
     void Awake()
@@ -52,6 +56,10 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     public void FinishDialogue() 
     {
         uiManager.CloseDialogueUI();
+        if (onDialogueComplete != null)
+            onDialogueComplete.Invoke();
+        //reset it 
+        onDialogueComplete = null;
     }
 
     public void StartMusicDialogue()
@@ -62,8 +70,9 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     {
         currentMusicInteraction = null;
         lastReadDialogueNode = null;
+        onDialogueComplete = null;
     }
-    public void PlayerLabeledTrack() // this will be called by a unity event on Music Dialogue UI, don't forget to set that this will be called on the inspector or music dialogue UI
+    public void PlayerLabeledTrack() // this will be called by a unity event on Music Dialogue UI, don't forget to set that this will be called on the inspector on music dialogue UI
     {
         if (currentMusicInteraction == null)
         {
@@ -89,6 +98,9 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         uiManager.CloseMusicDialogueUI();
         // Unity's execution continues to process the next lines of code, even though the in-game time is paused.
         ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
+        // execute any events we want to happen after player has made their selection
+        if (onPlayerLabaled != null)
+            onPlayerLabaled.Invoke();
         ResetMusicDialogue();
         //EnsureInternetConnectionAndExportData();
     }

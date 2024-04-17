@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Yarn;
 
 // music dialogue intractable will hold a reference to music dialogue data to let the dialogue manager know this is the data that needs to be opend once the command OMD has been used
@@ -11,6 +12,8 @@ public class MusicDialogueInteractable : Interactable
     [SerializeField]
     MusicDialogueData data;
     DialogueManager dialogueManager;
+    [SerializeField]
+    UnityEvent onCompletion;
     // Start is called before the first frame update
 
     private void Start()
@@ -37,5 +40,6 @@ public class MusicDialogueInteractable : Interactable
     protected override void TriggerInteraction()
     {
         dialogueManager.currentMusicInteraction = data;
+        dialogueManager.onPlayerLabaled = onCompletion;
     }
 }
