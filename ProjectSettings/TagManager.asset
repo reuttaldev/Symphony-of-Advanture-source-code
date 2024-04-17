@@ -38,9 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Tiles
+    uniqueID: 183903251
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
+  - name: World Canvas
     uniqueID: 1176396145
     locked: 0
