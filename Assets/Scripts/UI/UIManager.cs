@@ -7,8 +7,6 @@ using Yarn.Unity;
 public class UIManager : MonoBehaviour, IRegistrableService
 {
     [SerializeField]
-    private UIInterface mainInterfaceUI;
-    [SerializeField]
     private MusicDialogueUI musicDialogueUI;
     [SerializeField]
     private WalkmanUI walkmanUI;
@@ -66,15 +64,15 @@ public class UIManager : MonoBehaviour, IRegistrableService
         if (!OpenAndSwitchUIMap())
             return;
         // only make visible if we are not in the middle of a dialogue and no other menu is open
-        mainInterfaceUI.MakeVisible();
+        musicDialogueUI.MakeVisible();
         walkmanUI.gameObject.SetActive(true);
     }
     void CloseMainMenu() 
     {
         // close only if open already
-        if (!mainInterfaceUI.active)
+        if (!musicDialogueUI.active)
             return;
-        mainInterfaceUI.MakeInvisible();
+        musicDialogueUI.MakeInvisible();
         walkmanUI.gameObject.SetActive(false);
         CloseAndSwitchUIMap();
     }
@@ -83,6 +81,8 @@ public class UIManager : MonoBehaviour, IRegistrableService
         //  we will often start the music dialogue from the regular dialogue, so no need to check if another UI window is open
         walkmanUI.gameObject.SetActive(true);
         musicDialogueUI.MakeVisible();
+        ServiceLocator.Instance.Get<AudioManager>().PlayCurrentTrack();
+
     }
     public void CloseMusicDialogueUI()
     {

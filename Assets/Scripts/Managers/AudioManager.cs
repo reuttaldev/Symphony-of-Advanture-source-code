@@ -157,11 +157,14 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
         if (settings == null)
             Debug.LogError("Audio manager is missing a reference to game settings");
         LoadTracksFromAddressable();
+        ServiceLocator.Instance.Register<AudioManager>(this);
+
     }
-    private void PlayCurrentTrack()
+    public void PlayCurrentTrack()
     {
         OnTrackChanged.Invoke();
         string idToPlay = library[index];
+        Debug.Log(loadedTracks[idToPlay]);
         audioSource.clip = loadedTracks[idToPlay].audioClip;
         audioSource.Play();
     }
