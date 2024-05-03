@@ -37,7 +37,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
             }
         }
         // if we got here it means refToLoad is null and we should load by default
-        Debug.LogError("Could not find requested first track, loaded default.");
+        Debug.LogWarning("Could not find requested first track, loaded default.");
         LoadAdressable(GetAdressableReferenceByIndex(0), true,true);
     }
     TrackDataReference GetAdressableReferenceByID(string id)
@@ -45,7 +45,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
         int i = settings.trackDataKeys.IndexOf(id);
         if (i==-1)
         {
-            Debug.LogError("Could not find requested track with id "+id+", loading default.");
+            Debug.LogWarning("Could not find requested track with id "+id+", loading default.");
             return null;
         }
         return settings.trackDataReferences[i];
@@ -156,9 +156,12 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
         audioSource = GetComponent<AudioSource>();
         if (settings == null)
             Debug.LogError("Audio manager is missing a reference to game settings");
-        LoadTracksFromAddressable();
         ServiceLocator.Instance.Register<AudioManager>(this);
 
+    }
+    void Start()
+    {
+        LoadTracksFromAddressable();
     }
     public void PlayCurrentTrack()
     {

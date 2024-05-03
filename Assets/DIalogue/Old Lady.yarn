@@ -30,3 +30,11 @@ Companion: Now that you're feeling better, how about you give us some informatio
 Companion: Don't worry. We're going to find him.
 Old lady: Okay. I will stay right here. Maybe by some miracle he will wander back home.
 ===
+
+title: old_lady_bugging
+emotion: -
+scene: approaching after talking but before finding her cat.
+---
+Old lady: No, I am not alright! Whiskers, have you seen Whiskers?
+You: Not yet, sorry. we will come back as soon as we find him!
+===

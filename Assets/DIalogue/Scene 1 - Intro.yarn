@@ -1,5 +1,4 @@
 ﻿title: EXP1
-interactionID: 1
 emotion: Happy
 ---
 Master: Hey, can you play a song that will make me feel happy?
@@ -17,7 +16,6 @@ Master: The game developer cares about your answers. Your input will be collecte
     <<ExitGame>>
 ===
 title: EXP2
-interactionID: 2
 emotion: Calm
 ---
 Master: Hey, can you play a song that will make me feel Calm?

@@ -20,6 +20,7 @@ file explorer is marked as dont destroy
  About how the emotional model is related to the sementics of the dialogue, expressed in research that emotional models building blocks are language semantics 
 
  offset in time between playe movement and companion movement
+
  add button for selecting music
  visuals for options in dialogue 
  keep in mind controls for mobile 

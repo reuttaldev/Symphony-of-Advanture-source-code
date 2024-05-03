@@ -7,13 +7,13 @@ using UnityEngine;
 public class MusicDialogueData : MyScriptableObject
 {
     [SerializeField]
-    public string emotionToInvoke { get; }
+    public string emotionToInvoke;
     [SerializeField]
 
-    public string onCompletionNode { get; }
+    public string onCompletionNode;
     [SerializeField]
 
-    public string interactionName { get; }
+    public string interactionName;
 
 
 

@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     [HideInInspector]
     // the mission that is associatedMission with the currently open dialogue
     public MissionData missionToComplete;
+    [HideInInspector]
     public MissionData missionToStart;
     UIManager uiManager;
     string lastReadDialogueNode = null;
@@ -67,24 +68,25 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     void FinishDialogue()
     {
         uiManager.CloseDialogueUI();
-        ResetMusicDialogue();
         HandleMissionOnDialogueEnd();
     }
 
     void StartMusicDialogue()
     {
+        Debug.Log("starting music dialogue");
         uiManager.OpenMusicDialogueUI();
         HandleMissionOnDialogueStart();
     }
     void FinishMusicDialogue()
     {
-        FinishMusicDialogue();
+        Debug.Log("finishing music dialogue");
         uiManager.CloseMusicDialogueUI();
         ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
         // execute any events we want to happen after player has made their selection
         if (missionToComplete != null)
             missionToComplete.EndMission();
         ResetMusicDialogue();
+
     }
     void ResetMusicDialogue()
     {
@@ -115,6 +117,8 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("last seen dialogue node is undefined ");
             return;
         }
+        FinishMusicDialogue();
+
     }
     #region MISSION HANDLES
     void HandleMissionOnDialogueStart()
