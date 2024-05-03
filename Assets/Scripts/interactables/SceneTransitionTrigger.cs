@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SceneTransitionTrigger : MonoBehaviour
+public class SceneTransitionTrigger : Interactable
 {
     [SerializeField]
     string transitionTo;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void TriggerInteraction()
     {
-        if (collision.gameObject.tag !="Player")
-            return;
         if(string.IsNullOrEmpty(transitionTo))
         {
             Debug.LogError("SceneTransitionTrigger: Scene to transition to name is Null");

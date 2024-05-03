@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MissionInteractable : Interactable
 {
@@ -15,13 +16,19 @@ public class MissionInteractable : Interactable
     }
     protected override void TriggerInteraction()
     {
-        if(missionEventType == MissionEventType.Start) 
-            missionManager.StartMission(missionData);
-        else if (missionEventType == MissionEventType.Complete)
-            missionManager.CompleteMission(missionData);
-        else
-            missionManager.StartMission(missionData);
-            missionManager.CompleteMission(missionData);
+        switch (missionEventType)
+        {
+            case MissionEventType.Start:
+                missionData.StartMission();
+                break;
+            case MissionEventType.StartAndComplete:
+                missionData.StartMission();
+                missionData.EndMission();
+                break;
+            case MissionEventType.Complete:
+                missionData.EndMission();
+                break;
+        }
     }
 }
 

@@ -13,7 +13,7 @@ public class MusicDialogueInteractable : Interactable
     MusicDialogueData data;
     DialogueManager dialogueManager;
     [SerializeField]
-    UnityEvent onCompletion;
+    MissionData associatedMission;
     // Start is called before the first frame update
 
     private void Start()
@@ -28,7 +28,7 @@ public class MusicDialogueInteractable : Interactable
             Debug.LogError(gameObject.name + "'s music dialogue data is not set! ");
             return;
         }
-        if (string.IsNullOrEmpty(data.UniqueGloablID))
+        if (string.IsNullOrEmpty(data.ID))
         {
             Debug.LogError("No interaction id");
         }
@@ -40,6 +40,6 @@ public class MusicDialogueInteractable : Interactable
     protected override void TriggerInteraction()
     {
         dialogueManager.currentMusicInteraction = data;
-        dialogueManager.onPlayerLabaled = onCompletion;
+        dialogueManager.missionToComplete = associatedMission;
     }
 }

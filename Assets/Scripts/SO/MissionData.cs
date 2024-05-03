@@ -8,24 +8,51 @@ using UnityEngine.Events;
 public class MissionData : MyScriptableObject
 {
     [SerializeField]
-    string missionName;
+    private string missionName;
+    public string Name => missionName;
     [SerializeField]
-    string missionID; // case sensetive, be carful when using in the editor 
+    private string mainObjective;
     [SerializeField]
-    string mainObjective;
+    private string startLocation;
     [SerializeField]
-    string startLocation;
+    private MissionState state = MissionState.NotStarted;
+    public MissionState State=> state;
     [SerializeField]
-    public bool active = false;
+    private bool mandatory = true;
+    public bool Mandatory=>mandatory;
     [SerializeField]
-    public bool completed = false;
-    [SerializeField]
-    bool mandatory = true;
-    [SerializeField]
-    List<string> prerequisiteIds; // list of ids that must be completed before this one can be started 
-    // need to figure how to trigger stuff in scene when mission is completed
-    //List<UnityEvent> eventsToTrigger;
-    public string GetMissionId() => missionID;
+    private List<string> prerequisiteIds; // list of ids that must be completed before this one can be started 
     public List<string> GetPrerequsite() => prerequisiteIds;
 
+    public void StartMission()
+    {
+        state = MissionState.OnGoing;
+        ServiceLocator.Instance.Get<MissionManager>().MissionHasStarted(ID);
+        Debug.Log("Started mission " + Name);
+     }
+    public void EndMission(bool successful = true)
+    {
+        if ( state != MissionState.NotStarted)
+        {
+            Debug.LogError("Trying to complete a mission that has not been started. Mission name is: " + missionName);
+            return;
+        }
+        if (state != MissionState.CompletedUnSuccessfully || state != MissionState.CompletedSuccessfully)
+        {
+            Debug.LogError("Trying to complete a mission that was already completed.");
+            return;
+        }
+        state = successful ? MissionState.CompletedSuccessfully : MissionState.CompletedUnSuccessfully;
+        ServiceLocator.Instance.Get<MissionManager>().MissionHasEnded(ID);
+        Debug.Log("Mission " + Name + "has been marked as completed");
+    }
+
+}
+
+public enum MissionState
+{
+    CompletedSuccessfully,
+    CompletedUnSuccessfully,
+    OnGoing,
+    NotStarted
 }

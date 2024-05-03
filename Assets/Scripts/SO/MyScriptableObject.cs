@@ -8,7 +8,7 @@ using UnityEditor;
 public class MyScriptableObject : ScriptableObject
 {
     private string uniqueId; // for this gameobject, persistent throughout the project 
-    public string UniqueGloablID => uniqueId;
+    public string ID => uniqueId;
 
 #if UNITY_EDITOR
     private string defaultStateInJson;

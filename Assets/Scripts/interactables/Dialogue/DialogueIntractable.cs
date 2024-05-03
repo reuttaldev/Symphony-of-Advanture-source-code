@@ -8,7 +8,7 @@ public class DialogueIntractable : Interactable
     string conversationStartNode;
     DialogueManager dialogueManager;
     [SerializeField]
-    UnityEvent onCompletion;
+    MissionData associatedMission;
     private void Start()
     {
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
@@ -17,7 +17,7 @@ public class DialogueIntractable : Interactable
     {
         // start conversation
         // we need a function to tell Yarn Spinner to start from {specifiedNodeName}
-        dialogueManager.onDialogueComplete = onCompletion;
         dialogueManager.StartDialogue(conversationStartNode);
+        dialogueManager.missionToComplete = associatedMission;
     }
 }

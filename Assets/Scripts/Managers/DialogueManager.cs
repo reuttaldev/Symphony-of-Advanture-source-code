@@ -2,7 +2,7 @@ using Yarn.Unity;
 using UnityEngine;
 using UnityEngine.Events;
 
-    // In this script I will connect to yarn all of the commands it needs to have access to
+// In this script I will connect to yarn all of the commands it needs to have access to
 public class DialogueManager : MonoBehaviour, IRegistrableService
 {
     DialogueRunner dialogueRunner;
@@ -10,11 +10,12 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     [HideInInspector]
     public MusicDialogueData currentMusicInteraction;
     [HideInInspector]
-    public UnityEvent onDialogueComplete;
-    [HideInInspector]
-    public UnityEvent onPlayerLabaled;
+    // the mission that is associatedMission with the currently open dialogue
+    public MissionData missionToComplete;
+    public MissionData missionToStart;
     UIManager uiManager;
     string lastReadDialogueNode = null;
+
     void Awake()
     {
         dialogueRunner = gameObject.GetComponent<DialogueRunner>();
@@ -34,7 +35,13 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         uiManager = ServiceLocator.Instance.Get<UIManager>();
         dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
         dialogueRunner.AddCommandHandler("OMD", StartMusicDialogue);
-        //dialogueRunner.AddCommandHandler("CMD", FinishMusicDialogue);
+        // finish mission successfuly
+        dialogueRunner.AddCommandHandler("FMS", delegate { missionToComplete.EndMission(); });
+        // finish mission insuccessfuly
+        dialogueRunner.AddCommandHandler("FMF", delegate { missionToComplete.EndMission(); });
+        dialogueRunner.AddCommandHandler("SM", delegate { missionToStart.StartMission(); });
+
+
     }
     public void StartDialogue(string nodeToStart)
     {
@@ -51,26 +58,40 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         dialogueRunner.StartDialogue(nodeToStart);
         uiManager.OpenDialogueUI();
         lastReadDialogueNode = dialogueRunner.CurrentNodeName;
+        HandleMissionOnDialogueStart();
     }
 
-    public void FinishDialogue() 
+    // Please note that in order to mark the associated mission as completed at the end of a dialogue
+    // you need to do that from the yarn script itself and say if it was sucessful or not.
+    // actually, for now I will do it here, so it will always be marked as completed successfuly for now.
+    void FinishDialogue()
     {
         uiManager.CloseDialogueUI();
-        if (onDialogueComplete != null)
-            onDialogueComplete.Invoke();
-        //reset it 
-        onDialogueComplete = null;
+        ResetMusicDialogue();
+        HandleMissionOnDialogueEnd();
     }
 
-    public void StartMusicDialogue()
+    void StartMusicDialogue()
     {
         uiManager.OpenMusicDialogueUI();
+        HandleMissionOnDialogueStart();
     }
-    public void ResetMusicDialogue()
+    void FinishMusicDialogue()
+    {
+        FinishMusicDialogue();
+        uiManager.CloseMusicDialogueUI();
+        ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
+        // execute any events we want to happen after player has made their selection
+        if (missionToComplete != null)
+            missionToComplete.EndMission();
+        ResetMusicDialogue();
+    }
+    void ResetMusicDialogue()
     {
         currentMusicInteraction = null;
         lastReadDialogueNode = null;
-        onDialogueComplete = null;
+        missionToComplete = null;
+        missionToStart = null;
     }
     public void PlayerLabeledTrack() // this will be called by a unity event on Music Dialogue UI, don't forget to set that this will be called on the inspector on music dialogue UI
     {
@@ -79,7 +100,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("Current interaction is null. Who is calling open music dialogue? Need interaction ID");
             return;
         }
-        if (string.IsNullOrEmpty(currentMusicInteraction.UniqueGloablID))
+        if (string.IsNullOrEmpty(currentMusicInteraction.ID))
         {
             Debug.LogError("No interaction id");
             return;
@@ -94,35 +115,19 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("last seen dialogue node is undefined ");
             return;
         }
-        // keep this order because
-        uiManager.CloseMusicDialogueUI();
-        // Unity's execution continues to process the next lines of code, even though the in-game time is paused.
-        ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
-        // execute any events we want to happen after player has made their selection
-        if (onPlayerLabaled != null)
-            onPlayerLabaled.Invoke();
-        ResetMusicDialogue();
-        //EnsureInternetConnectionAndExportData();
     }
-    // the player can move on from this only if there was an active internet connection and the data was sent. otherwise, player will need to make a choice again and PlayerLabeledTrack method will be called again
-    // but when I use this, each time I want to send something I need to wait and see if there is a connection. better just to catch a problem when it occurs
-    /*public void EnsureInternetConnectionAndExportData()
+    #region MISSION HANDLES
+    void HandleMissionOnDialogueStart()
     {
-        InternetConnectionManager it = ServiceLocator.Instance.Get<InternetConnectionManager>();
-        StartCoroutine(it.CheckInternetConnection(isConnected =>
-        {
-            if (isConnected)
-            {
-                ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
-                // once player has made their choice, music dialogue is over. close the panel
-                FinishMusicDialogue();
-            }
-            else
-            {
-                // pause the game if there is no connection.
-                it.NoConnectionDetected();
-            }
-        }));
-    }*/
-
+        if (missionToComplete != null)
+            missionToComplete.EndMission();
+        if (missionToStart != null)
+            missionToStart.StartMission();
+    }
+    void HandleMissionOnDialogueEnd()
+    {
+        missionToComplete = null;
+        missionToStart = null;
+    }
+    #endregion
 }

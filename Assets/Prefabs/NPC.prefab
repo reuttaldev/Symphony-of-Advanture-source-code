@@ -84,6 +84,9 @@ MonoBehaviour:
   interactable: 1
   interactableMoreThanOnce: 1
   conversationStartNode: 
+  onCompletion:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7292871183470178716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +102,9 @@ MonoBehaviour:
   interactable: 1
   interactableMoreThanOnce: 1
   data: {fileID: 0}
+  onCompletion:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5354622456944651965
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +116,7 @@ GameObject:
   - component: {fileID: 3524377742429031824}
   - component: {fileID: 1062352334119230141}
   - component: {fileID: 5025447612662961872}
+  - component: {fileID: 5137527155000562423}
   - component: {fileID: 3531820951137031902}
   m_Layer: 0
   m_Name: NPC
@@ -207,6 +214,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &5137527155000562423
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5354622456944651965}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05822003, y: -0.044789314}
+  m_Size: {x: 1.5010703, y: 2.6661587}
+  m_Direction: 0
 --- !u!60 &3531820951137031902
 PolygonCollider2D:
   m_ObjectHideFlags: 0
