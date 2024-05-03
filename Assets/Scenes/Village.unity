@@ -8062,9 +8062,6 @@ PrefabInstance:
       addedObject: {fileID: 744139877}
     - targetCorrespondingSourceObject: {fileID: 5354622456944651965, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 744139883}
-    - targetCorrespondingSourceObject: {fileID: 5354622456944651965, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 744139882}
     - targetCorrespondingSourceObject: {fileID: 5354622456944651965, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       insertIndex: -1
@@ -8137,20 +8134,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &744139883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744139873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4163ad9d05d9e2e4aa71035c27594634, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 6
-  moveAction: {fileID: -3616807016952365935, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
 --- !u!114 &744139884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8163,8 +8146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91689a89a345dd42bcc1593f84de54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  companionMovment: {fileID: 744139883}
   dialogueIntractable: {fileID: 1794862319}
+  speed: 6
+  moveAction: {fileID: -3616807016952365935, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
 --- !u!1 &806414977 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1083351993915878345, guid: a6e606dcf2868f24baf00fe8de8cdad2, type: 3}
@@ -51908,7 +51892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862611986877007892, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
       propertyPath: m_Alpha
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
