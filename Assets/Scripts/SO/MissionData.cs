@@ -24,6 +24,13 @@ public class MissionData : MyScriptableObject
     private List<string> prerequisiteIds; // list of ids that must be completed before this one can be started 
     public List<string> GetPrerequsite() => prerequisiteIds;
 
+#if UNITY_EDITOR
+    override protected void OnEnable()
+    {
+        base.OnEnable();
+        missionName = name;
+    }
+#endif
     public void StartMission()
     {
         state = MissionState.OnGoing;
@@ -37,14 +44,14 @@ public class MissionData : MyScriptableObject
             Debug.LogError("Trying to complete a mission that has not been started. Mission name is: " + missionName);
             return;
         }
-        if (state != MissionState.CompletedUnSuccessfully || state != MissionState.CompletedSuccessfully)
+        if (state == MissionState.CompletedUnSuccessfully || state == MissionState.CompletedSuccessfully)
         {
             Debug.LogError("Trying to complete a mission that was already completed.");
             return;
         }
         state = successful ? MissionState.CompletedSuccessfully : MissionState.CompletedUnSuccessfully;
         ServiceLocator.Instance.Get<MissionManager>().MissionHasEnded(ID);
-        Debug.Log("Mission " + Name + "has been marked as completed");
+        Debug.Log("Mission " + Name + " has been marked as completed");
     }
 
 }

@@ -20,4 +20,19 @@ public class DialogueIntractable : Interactable
         dialogueManager.StartDialogue(conversationStartNode);
         dialogueManager.missionToComplete = associatedMission;
     }
+    public void ChangeConversationStartNode(string nodeName)
+    {
+        conversationStartNode = nodeName;
+        // make the trigger interactble again
+        interactable = true;
+        Debug.Log("Changing dialogue node to be " + nodeName + " on npc " + transform.root.name);
+    }
+    public void InteractableMoreThanOnce(bool a)
+    {
+        interactableMoreThanOnce = a;
+    }
+    public void ChangeAssociatedMission(MissionData a) 
+    {
+        associatedMission = a;
+    }
 }

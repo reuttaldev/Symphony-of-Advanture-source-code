@@ -1,0 +1,71 @@
+﻿title: new_town_keeper_intro
+location: in his office, next to town square
+scene: player has just woken up and they are confused. Astrid took them to this office to learn more about the walkman. new town keeper will explain the journy to them, 
+emotion: - 
+---
+Town keeper: Hey, Astrid. Hey - 
+Town keeper: Who are you? 
+[readName][/readName]
+Town keeper: Hey $playerName. I am Mayor Tony, but you can call me Tony.
+Tony: Have you come for vacation in our lovely town?
+->Player: I just woke up here. 
+    Tony: Huh, that's unsual. 
+    Tony: Did you have a lot to drink yesterday?
+    ->Player: No!         
+    ->Player: Probably.
+-> Player: Vacation? here? I don't think so. 
+    Tony: That's rude, kid. Don't speak that way about my town.
+    Tony: I was born and raised here. This place has a lot to offer, if you just listen. 
+Astrid: $playerName just appeared out of no where in the middle of town square. With this, look- 
+Tony: Oh, an old Walkman.
+Tony: What a shame, they're all useless now. 
+Tony: Put that thing away please, I can't stand to look at it.
+Tony: It's just a reminder on how this town will never be the same. 
+Astrid: No, Tony! This Walkman works!
+Tony: Astrid I really don't have time for one of your pranks today-
+Tony: I may not be that much older than you, but I am still your Mayor.
+Astrid: I am serious! Listen- 
+[checksOutWalkman][/checksOutWalkman]
+Tony: Oh, Incridibe! This is the thing I've been waiting for.
+Tony: You, $playerName, are carrying something unique. Something the curse doesn't seem to affect. 
+Tony: It's the only source of music left in our town. 
+Tony: I believe it holds the key to breaking the curse.
+->Player: Really? Me?
+    Tony: Yes, you!
+    Tony: If you can locate the old town keeper, Edmund, you may save this town. 
+    Tony: I am doing my best here, but there is only so much I can do. 
+    Tony: Everything has been a mess since this damn curse. 
+->Player: I want to go home. 
+    Tony: Hey, I hear you. Being a mayor is a pretty big deal, but unfortunately I can't do that.
+    Tony: I don't know where you came from, or how to send you back. 
+    Tony: The only one powerfula and knolagble enough who can help you find answers is the previous town keeper, Edmund.
+    Tony: You must find him if you wish to return home. 
+
+Tony: The first thing I received when I got elected was this piece of paper. 
+Tony: I had my theories about what it was, I though I was just going. 
+Tony: But now, I know I am right. It's a part of a map.
+Tony: It looks like the map was torn into 3 pieces.
+Tony: Sure does sounds something Edmund would do. He really didn't want to be found, unless by someone special enuogh I guess.
+Tony: Here, take it.  
+Tony: Finding the rest is up to you. 
+/// map piece 1 mission
+<<FMS>>
+->Player: Okay, thanks.
+    Tony: I'll give you a hint to help you out. 
+->Player: Where should I start?
+->Player: I don't care, I just want to go home.
+    Tony: Okay... I still can't help you. You're only change to go back home is by finding edmund.
+    Tony: I'll give you a hint to help you out. 
+Tony: Visit Sona at her shop. She collects music artifacts. 
+Tony: She's a bit of a character, but I'm sure she can help you somehow.
+Town keeper: What an adventure! I wish I could come with you but, ya' know, I'm too busy being the mayor of this town. 
+===
+
+title: new_town_keeper_badgering
+location: in his office, next to town square
+scene: before leaving the office, after hearing what he has to say
+emotion: - 
+---
+Tony: Sorry again for not joining you, but it's my job to keep this place functioning. 
+Tony: I am counting on you to help me turn this place around. 
+===

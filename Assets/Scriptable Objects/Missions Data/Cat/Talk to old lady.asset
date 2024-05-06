@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Talk to old lady
   m_EditorClassIdentifier: 
   missionName: Talk to old lady
-  mainObjective: talk to the old lady about her cat
+  mainObjective: talk to the old lady about her cat, and make her feel relaxed
   startLocation: village
   state: 3
   mandatory: 1

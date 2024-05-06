@@ -14,7 +14,6 @@ public class MusicDialogueInteractable : Interactable
     DialogueManager dialogueManager;
     [SerializeField]
     MissionData associatedMission;
-    // Start is called before the first frame update
 
     private void Start()
     {

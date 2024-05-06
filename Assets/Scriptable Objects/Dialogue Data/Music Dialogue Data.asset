@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db1806ea827efa4e883bfc3e247f217, type: 3}
   m_Name: Music Dialogue Data
   m_EditorClassIdentifier: 
-  emotionToInvoke: Relaxed and calm
+  emotionToInvoke: old_lady_heard_music
   onCompletionNode: old_lady_2
   interactionName: old lady

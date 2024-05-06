@@ -32,7 +32,7 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         }
         else Debug.LogError("scene to load  name is empty", this);
     }
-    private IEnumerator LoadSceneWithAnimation(string sceneName)
+    public IEnumerator LoadSceneWithAnimation(string sceneName)
     {
         canvas.SetActive(true);
         changingScene = true;

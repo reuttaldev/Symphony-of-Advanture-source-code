@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
     Vector2 input;
+    public Vector2 Input => input;
     [SerializeField]
     InputActionReference moveAction;
 

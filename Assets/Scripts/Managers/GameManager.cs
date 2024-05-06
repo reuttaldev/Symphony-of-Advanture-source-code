@@ -2,14 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Yarn;
+using Yarn.Unity;
 
 public class GameManager : MonoBehaviour, IRegistrableService
 {
     public GameSettings settings;
     public DataMigrationSettings dataMigrationSettings;
+    DialogueManager dialogueManager;
     public  UnityEvent gameOverEvent;
     public  UnityEvent startedGameEvent;
     public static bool paused = false;
+    string playerName;
+
+
+    [SerializeField] 
+    GameObject player, companion;
+
     private void Awake()
     {     
         ServiceLocator.Instance.Register<GameManager>(this);
@@ -17,6 +26,19 @@ public class GameManager : MonoBehaviour, IRegistrableService
             Debug.LogError("Game manager is missing a reference to game settings");
         if(dataMigrationSettings == null)
             Debug.LogError("Game manager is missing a reference to data migration settings");
+
+    }
+
+    void Start()
+    {
+        dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
+    }
+    public void SetPlayerName(string playerName)
+    {
+        // set player name in yarn
+        var nameVariableStorage = GameObject.FindObjectOfType<InMemoryVariableStorage>();
+        nameVariableStorage.SetValue("$playerName", playerName);
+
     }
     void OnEnable()
     {
@@ -59,6 +81,27 @@ public class GameManager : MonoBehaviour, IRegistrableService
         ExportManager exportManager = ServiceLocator.Instance.Get<ExportManager>();
         exportManager.SendCSVByEmail();
         gameOverEvent.Invoke();
+    }
+
+    [YarnCommand("WalkToOffice")]
+
+    public void WalkToOffice()
+    {
+        SceneManager.Instance.LoadScene("TownKeeperOffice");
+        dialogueManager.StartDialogue("");
+    }
+    [YarnCommand("LeaveOffice")]
+
+    public void LeaveOffice()
+    {
+        SceneManager.Instance.LoadScene("TownSquare");
+    }
+
+
+    // make the player and companion face eachother
+    void FaceEachother()
+    {
+
     }
 
 }

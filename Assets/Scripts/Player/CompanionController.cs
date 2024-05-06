@@ -5,9 +5,6 @@ using UnityEngine.InputSystem;
 
 public class CompanionController : MonoBehaviour
 {
-    [SerializeField]
-    DialogueIntractable dialogueIntractable;
-
 
     [SerializeField]
     float speed;

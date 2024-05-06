@@ -1,0 +1,62 @@
+﻿title: collector_intro
+emotion: -
+scene: player approches artifact collector for the first time. she suggests that you find something else of value, and she will consider trading it with you. She tells you good luck- as most people in the town have lost hope and therefore interest in music, and she has already picked up anything of value. 
+location: old city, in her shop
+---
+Sona: Hey Astrid. Have you finnaly done something usful with yourself and brought me a new customer?  
+Astrid: This is $playerName. We're looking for something that resembles a map segment. 
+Astrid: Do you have something like that in your collection?
+Sona: Let me see... 
+Sona: this looks like it would fit. 
+Astrid: Great, thanks. See ya!
+Sona: Hey, Hey! Not so quick. What are you giving me in return?
+-> Player: I don't have any money. 
+    Sona: What's that on your belt, A walkman? I'll trade you for it.  
+    -> Player: Okay. 
+        Astrid: $playerName, what are you doing? We need that.
+    -> Player: No. It was a gift
+-> Player: Please, I'm on a mission. 
+    Sona: And? I'm also on a mission, to pay rent. 
+Sona: Oh and forget about the cassette tapes that are scattered around town, I have plenty of those already.
+===
+
+title: collector_badgering
+emotion: -
+scene: player approches artifact collector after aleady talking to the first time but before obtaining the violin
+location: old city, in her shop
+---
+Sona: Come back when you've got something worthy, kid. 
+->Player: How did I get here?
+    Sona: To my shop? You walked through the front door…
+->How can I go home?
+->Player: Why are you so mean?
+    Sona: Me? Mean? 
+    Sona: I am not mean. I don't don't trust any kid that walks through my door. 
+    Sona: Do you know the kind of tricks Astrid has pulled on me before?
+    Sona: Once you prove you are determined enough, you may be trusted. 
+===
+
+title: collector_completion
+emotion: -
+scene: player gives her the violin in exchange for the walkman 
+location: old city, in her shop
+---
+Astrid: Hey, will this do?
+Sona: An old violin... where did you get that?
+Sona: Wait... I've seen it before.
+Sona: Is that what I think it is? You can't be serious. 
+Sona: Oh. You are. 
+Sona: Yeah, yes. This will do. Are you certain? 
+Astrid: Yes, we're sure.
+Sona: Alright. The map is yours. 
+/// map piece 2 
+<<FMS>>
+Sona: Why do you need it anyway?
+-> Player: I am going to bring back harmony. 
+-> Player: We are looking for Edmund.
+    Sona: Oh. Astrid, I'm so proud of you for finally looking for him.
+-> Player: One step closer to getting home. 
+    Sona: You're weird, kid.
+Sona: Good luck.
+===
+

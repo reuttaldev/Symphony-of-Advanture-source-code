@@ -1,6 +1,7 @@
-﻿title: old_lady_1
-emotion: relaxed and calm
+﻿title: old_lady_intro
 scene: approaching after seeing her scream out for her cat.
+location: village
+emotion: relaxed and calm
 ---
 You: Hey, are you alright?
 Old lady: No, I am not alright! Whiskers, have you seen Whiskers?
@@ -14,8 +15,10 @@ Companion: Hey, lady, I know you're upset. Here, let us play you some music that
 ===
 
 
-title: old_lady_2
+title: old_lady_heard_music
 scene: talking after she's calmed down from the music
+location: village
+emotion: -
 --- 
 Old lady: Oh, what a soothing melody. 
 Old ladt: Thank you, dear ones. Your song has lifted a weight off my chest, if only for a moment.
@@ -31,10 +34,28 @@ Companion: Don't worry. We're going to find him.
 Old lady: Okay. I will stay right here. Maybe by some miracle he will wander back home.
 ===
 
-title: old_lady_bugging
-emotion: -
+title: old_lady_badgering
 scene: approaching after talking but before finding her cat.
+location: village
+emotion: -
 ---
-Old lady: No, I am not alright! Whiskers, have you seen Whiskers?
-You: Not yet, sorry. we will come back as soon as we find him!
+Old lady: Have you found him yet?
+You: Not yet.
+===
+
+
+title: old_lady_complete
+scene: bringing her cat back.
+location: village
+emotion: -
+---
+Old lady: Whiskers! Oh lord, I can breath again. 
+Old lady: Thank you! How may I repay you?
+-> Player: I don't need anything, I am just happy he's safe.
+    Old lady: Oh, maybe your generation is not lost after all. 
+-> Player: I am looking for a map of a hidden castel, do you know anything about that?
+    Old lady: Oh, no. Hidden castel? There is nothing like that around here. 
+    Old lady: This town is very... quite.
+-> Player: Give me Whiskers.
+    Old lady: What... No! Is this why you helped me? What's wrong with you? Go away. 
 ===

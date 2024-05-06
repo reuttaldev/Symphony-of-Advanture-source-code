@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         dialogueRunner.AddCommandHandler("SM", delegate { missionToStart.StartMission(); });
 
 
+
     }
     public void StartDialogue(string nodeToStart)
     {
@@ -73,20 +74,20 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
 
     void StartMusicDialogue()
     {
-        Debug.Log("starting music dialogue");
         uiManager.OpenMusicDialogueUI();
         HandleMissionOnDialogueStart();
     }
     void FinishMusicDialogue()
     {
-        Debug.Log("finishing music dialogue");
+        string nextNode = currentMusicInteraction.onCompletionNode;
         uiManager.CloseMusicDialogueUI();
         ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
         // execute any events we want to happen after player has made their selection
         if (missionToComplete != null)
             missionToComplete.EndMission();
         ResetMusicDialogue();
-
+        if(string.IsNullOrEmpty(nextNode))
+            StartDialogue(nextNode);
     }
     void ResetMusicDialogue()
     {

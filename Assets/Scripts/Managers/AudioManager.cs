@@ -167,7 +167,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     {
         OnTrackChanged.Invoke();
         string idToPlay = library[index];
-        Debug.Log(loadedTracks[idToPlay]);
+        //Debug.Log(loadedTracks[idToPlay]);
         audioSource.clip = loadedTracks[idToPlay].audioClip;
         audioSource.Play();
     }

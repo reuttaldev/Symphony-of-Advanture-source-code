@@ -1,0 +1,82 @@
+﻿title: companion_intro
+scene: Player wakes up and everyone gathers around him. Astrid approches them to see what's going on
+location: middle of town square
+---
+///game is in silence
+Astrid: Hey, are you alright? 
+Astrid: You just appeared here, out of no where. 
+Astrid: It’s strange. this is a small town, we rarely get any visitors.
+-> Player: Who are you?
+    Astrid: I'm Astrid. 
+-> Player: Whare am I?
+    Astrid: You're in town square. 
+    Astrid: Of which town? [TownName], of course.
+    Astrid: I'm Astrid, by the way.
+-> Player: How did I get here?
+    Astrid: I don’t know. You just appeared here.
+    Astrid: Well, welcome to our town, stranger. I'm Astrid.
+Astrid: What’s this thing you are carrying on your waist? 
+Astrid: A walkman? What's that?
+->Player: It's an old audio player.
+    Astrid: You don't say.
+->Player: It's my own personal stereo.
+    Astrid: You don't say.
+->Player: It's a birthday gift from my mom.
+    Astrid: Wait, I remember now. It's a portable audio player, right?
+Astrid: Sorry buddy, those don't work here. Or anything that plays music- for that matter.
+Tony: No music has been heard in this town since... you know.
+Tony: Wait, you don't know, do you? 
+-> Player: I don't.
+    <<set $skipExplanation to true>>
+    << jump companion_story_explanation>>
+-> Player: I do.
+    <<set $skipExplanation to true>>
+Astrid: So yeah, your walkman is as good as trash here.
+-> Player 
+Astrid: What do you mean... it works?
+Astrid: That can't be.
+Astrid: Let me see that. [checksOutWalkman][/checksOutWalkman]
+///music starts in the game- the intro song
+Astrid: Oh my! Music! 
+Astrid: I can hear it! 
+Astrid: Quickly, we must show this to the town keeper. He's gonna be thrilled!
+-> Player: The town keeper?
+    Astrid: I mean the new mayor. His office is right there, let's go.
+-> Player: Where is he?
+    Astrid: His office is right there. His office is right there, let's go.
+-> Player: Okay.
+<<GoToOffice GameManager>>
+===
+
+title: companion_story_explanation
+scene: jumped into from intro if the player needs to be told the story
+---
+Astrid: Alright, let me tell ya.
+Astrid: Years ago, we had a wise and poweful town keeper. 
+Atrid: He was good, really good. Probably the best this town has even seen. 
+Astrid: His daughter, Ingrid, took after him in her greatness.
+Astrid: She was a prodigy, especially with the violin. Her music... they weren't just melodies, they were magic. 
+Astrid: A power unlike any other.
+Astrid: She could communicate with people through music, even manipulate them.
+Astrid: It was a language. A connection between people and their emotions.
+Astrid: But...
+Astrid: Things took a turn when she died. Her father, well, he couldn't bear it.
+Astrid: Grief took over him and twisted him. Made him do something unthinkable.
+Astrid: He He cast a curse on the town, a spell to silence all music.
+Astrid: He thought... he thought nothing would ever compare to Ingrid's playing. That nothing else was worth hearing.
+Astrid: He blames himself, you know? Thinks he didn't do enough to protect her. 
+Astrid: So now he is hiding away, who knows where. 
+Astrid: And he is the only one who can break this curse.
+===
+
+title: companion_after_artifact_collector
+scene: Sona just gave them the map in exchange for the violin. He's upset bc sona gave them just a piece of the map and not all of it.
+location: old city, outside of Sona's store
+---
+Astrid: Pff, Can you believe that? I knew we should not have trusted her.
+Astrid: Whatever. Let's get going.
+-> Player: What now?
+    Astrid: I'm not sure. Let's hit up the library, maybe we can find something usful there. 
+-> Player: Where are we going?
+    Astrid: I thought we can go to the library, maybe we can find some more information there.
+===

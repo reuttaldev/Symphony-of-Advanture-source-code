@@ -5,10 +5,9 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    [SerializeField]
     protected bool interactable = true;
     [SerializeField]
-    protected bool interactableMoreThanOnce = true; // whether this character should be enabled right now
+    protected bool interactableMoreThanOnce = true; 
     public virtual void Awake()
     {
         if (!GetComponent<Collider2D>().isTrigger)
@@ -19,7 +18,6 @@ public abstract class Interactable : MonoBehaviour
         if (!interactableMoreThanOnce)
         {
             interactable = false;
-            gameObject.SetActive(false);
         }
     }
     protected virtual void TriggerInteraction()
