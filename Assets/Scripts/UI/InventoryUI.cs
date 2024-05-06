@@ -19,7 +19,7 @@ public class InventoryUI : MonoBehaviour
     {
         mapIconObjects = mapIconParent.GetComponentsInChildren<Image>();
     }
-    public void ShowMapIcons(int pieceNumber)
+    public void ShowMapIcons()
     {
         for (int i = 0; i < mapIconObjects.Length; i++)
         {

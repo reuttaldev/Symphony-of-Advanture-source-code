@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
-  m_Name: Get violin
+  m_Name: Talk to town keeper
   m_EditorClassIdentifier: 
-  missionName: Get violin
+  missionName: Talk to town keeper
   mainObjective: 
-  startLocation: Astrid's house
+  startLocation: Town keeper office
   state: 3
   mandatory: 1
   prerequisiteIds: []

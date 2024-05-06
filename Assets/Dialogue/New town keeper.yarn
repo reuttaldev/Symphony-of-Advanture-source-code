@@ -47,9 +47,9 @@ Tony: But now, I know I am right. It's a part of a map.
 Tony: It looks like the map was torn into 3 pieces.
 Tony: Sure does sounds something Edmund would do. He really didn't want to be found, unless by someone special enuogh I guess.
 Tony: Here, take it.  
-Tony: Finding the rest is up to you. 
 /// map piece 1 mission
 <<FMS>>
+Tony: Finding the rest is up to you. 
 ->Player: Okay, thanks.
     Tony: I'll give you a hint to help you out. 
 ->Player: Where should I start?

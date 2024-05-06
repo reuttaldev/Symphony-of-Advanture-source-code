@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/CastelHallway.unity
     guid: 5a4119c08ae7157449e8ca1a02054115
   - enabled: 1
-    path: Assets/Scenes/SonaOffice.unity
+    path: Assets/Scenes/SonaShop.unity
     guid: a0b1755cd9d4fb844af4719d2438f838
   - enabled: 1
     path: Assets/Scenes/TownKeeperOffice.unity

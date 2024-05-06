@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
-  m_Name: Talk to kid
+  m_Name: Talk to artist
   m_EditorClassIdentifier: 
-  missionName: Talk to kid
-  mainObjective: ' amuse a child playing outside who is bored with their current
-    game and make them feel interested. '
-  startLocation: Village
+  missionName: Talk to artist
+  mainObjective: This artist lost their spark, help them get it back
+  startLocation: town square
   state: 3
   mandatory: 0
   prerequisiteIds: []
