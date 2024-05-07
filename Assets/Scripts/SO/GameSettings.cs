@@ -13,7 +13,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class GameSettings : MyScriptableObject
 {
     public const int minTrackLibrarySize = 5;
-    public const int minCollectibleTracks =5;
+    public const int minCollectibleTracks =2;
     // I want to display the constant values as a read only property.
     [Header("Audio Settings")]
     [SerializeField]

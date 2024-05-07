@@ -11,6 +11,9 @@ public class SceneTransitionTrigger : Interactable
     MissionData[] activeOnlyDuring;
     [SerializeField]
     MissionData[] inactiveDuring;
+    [SerializeField]
+    MissionData[] activeWhenCompleted;
+    public string GoesTo => transitionTo;
 
 
     protected override void TriggerInteraction()

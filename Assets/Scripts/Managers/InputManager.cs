@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour, IRegistrableService
     {
         ServiceLocator.Instance.Register<InputManager>(this);
         playerInput = GetComponent<PlayerInput>();
+        lastActiveMapName = playerInput.currentActionMap.name;
     }
     public void ActivatePlayerMap()
     {
@@ -19,7 +20,7 @@ public class InputManager : MonoBehaviour, IRegistrableService
     }
     public void ActivateUIMap()
     {
-        lastActiveMapName = playerInput.currentActionMap.name;
+        lastActiveMapName = playerInput.currentActionMap.name;  
         playerInput.SwitchCurrentActionMap("UI");
     }
     public void ActivatePausedUIMap()

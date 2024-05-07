@@ -11,7 +11,7 @@ public class MissionWrapper : MonoBehaviour
     MissionData missionData;
     public UnityEvent onMissionStart;
     public UnityEvent onMissionEnd;
-    public string MissionDataID => missionData.ID;
+    public string MissionDataID => missionData.GlobalID;
     public string Name => missionData.Name;
 
     private void Start()

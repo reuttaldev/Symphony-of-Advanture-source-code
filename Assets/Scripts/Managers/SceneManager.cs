@@ -11,8 +11,8 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     SceneTransitionPanel sceneTransitionPanel;
     private Animator animator;
     [SerializeField]
-    GameObject canvas; 
-
+    GameObject canvas;
+    string previousSceneName;
     protected override void  Awake()
     {
         base.Awake();
@@ -28,6 +28,7 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
                 Debug.LogError("Scene is already loading");
                 return;
             }
+            previousSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             StartCoroutine(LoadSceneWithAnimation(sceneToLoadName));
         }
         else Debug.LogError("scene to load  name is empty", this);
@@ -46,13 +47,21 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         }
         // scene has finished loading (we are currently showing black screen. make sure animation finishes playing
         yield return new WaitForSeconds(animationDuration);
-        animator.SetTrigger("end");
-        asyncLoad.allowSceneActivation = true;
         // load the new scene while screen is still black
         // start fading in
+        animator.SetTrigger("end");
+        // actual scene switch is here
+        asyncLoad.allowSceneActivation = true;
+        yield return new WaitForSeconds(0.1f); 
+        Debug.Log(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        HandleReturn();
         yield return new WaitForSeconds(animationDuration);
         canvas.SetActive(false);
-        // actual scene switch is here
         changingScene = false;
+    }
+    void HandleReturn()
+    {
+        // if we returned  to the scene in which we came from previosly 
+        ServiceLocator.Instance.Get<GameManager>().PlacePlayerInScene(previousSceneName);
     }
 }

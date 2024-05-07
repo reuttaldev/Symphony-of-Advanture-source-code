@@ -32,7 +32,6 @@ Player: Wait, you don't know, do you?
 -> Player: I do.
     <<set $skipExplanation to true>>
 Astrid: So yeah, your walkman is as good as trash here.
--> Player 
 Astrid: What do you mean... it works?
 Astrid: That can't be.
 Astrid: Let me see that. [checksOutWalkman][/checksOutWalkman]

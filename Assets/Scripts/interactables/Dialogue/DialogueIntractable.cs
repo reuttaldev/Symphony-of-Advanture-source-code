@@ -12,7 +12,6 @@ public class DialogueIntractable : Interactable
     private void Start()
     {
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
-        Debug.Log("git it " + dialogueManager);
     }
     protected override void TriggerInteraction()
     {

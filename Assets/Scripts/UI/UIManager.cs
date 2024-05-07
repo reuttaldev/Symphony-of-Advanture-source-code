@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour, IRegistrableService
     [SerializeField]
     private WalkmanUI walkmanUI;
     [SerializeField]
+    GameObject musicDialogueText;
+    [SerializeField]
     private InputActionReference openWalkmanAction;
     [SerializeField]
     private InputActionReference closeWalkmanAction;
@@ -69,12 +71,14 @@ public class UIManager : MonoBehaviour, IRegistrableService
     {
         //  we will often start the music dialogue from the regular dialogue, so no need to check if another UI window is open
         walkmanUI.gameObject.SetActive(true);
-        ServiceLocator.Instance.Get<AudioManager>().PlayCurrentTrack();
+        musicDialogueText.SetActive(true);
 
     }
     public void CloseMusicDialogueUI()
     {
         walkmanUI.gameObject.SetActive(false);
+        musicDialogueText.SetActive(false);
+
         CloseAndSwitchUIMap();
     }
 

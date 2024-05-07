@@ -19,6 +19,6 @@ public class InventoryManager : MonoBehaviour, IRegistrableService
     public void AddTrackCollectable(TrackData cassetteData)
     {
         uiManager.AddTrackCollectableUI();
-        ServiceLocator.Instance.Get<AudioManager>().AddToLibrary(cassetteData.ID);
+        ServiceLocator.Instance.Get<AudioManager>().AddToLibrary(cassetteData.trackID);
     }
 }

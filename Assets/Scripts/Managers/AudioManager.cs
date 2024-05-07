@@ -20,7 +20,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     [SerializeField]
     // our current library, what we make available for the player out of the loaded tracks. Contains the keys for the loaded tracks that are stored in the dictionary above 
     private List<string> library = new List<string>();   // I need this list so I can iterate over the library dictionary by order of insertion of the keys
-    int index;// currently playing index
+    int index=0;// currently playing index
     #region ASSET LOADING
     Dictionary<TrackDataReference, AsyncOperationHandle> loadHandles = new Dictionary<TrackDataReference, AsyncOperationHandle>();
     void LoadStartingTrack()
@@ -70,6 +70,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
         {
             TrackData t = request.Result as TrackData;
             loadedTracks.Add(t.trackID, t);
+            Debug.Log("loaded track with id " + t.trackID);
             if(addKeyToList)
             {
                 library.Add(t.trackID);
@@ -100,9 +101,11 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
                 TrackDataReference toAdd = GetAdressableReferenceByID(loadFrom[i]);
                 if (toAdd == null)
                 {
+                    Debug.LogError("failed to find id " + loadFrom[i]);
                     fromSettingFailed = true;
                     break;
                 }
+                //Debug.Log("loaded reference with id "+ toAdd.)
                 references.Add(toAdd);
             }
         }
@@ -166,7 +169,6 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     {
         OnTrackChanged.Invoke();
         string idToPlay = library[index];
-        Debug.Log(index);
         audioSource.clip = loadedTracks[idToPlay].audioClip;
         audioSource.Play();
     }
@@ -183,14 +185,16 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     }
     public void PlayNextTrack()
     {
-        index = (index + 1) % library.Count;
+        index = (index + 1) % (library.Count-1);
+        Debug.Log(index);
         PlayCurrentTrack();
     }
     public void PlayLastTrack()
     {
         if (index == 0)
-            index = loadedTracks.Count - 1;
-        index--;
+            index = library.Count - 1;
+        else
+            index--;
         PlayCurrentTrack();
     }
     public void StopAudio()
@@ -230,7 +234,10 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     }
     public TrackData GetCurrentTrack()
     {
-        return loadedTracks[library[index]];
+        string id = library[index];
+        Debug.Log(index);
+        return loadedTracks[id];
+
     }
     public void SetTrackEmotion(string trackID, Emotions emotion)
     {

@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("Current interaction is null. Who is calling open music dialogue? Need interaction ID");
             return;
         }
-        if (string.IsNullOrEmpty(currentMusicInteraction.ID))
+        if (string.IsNullOrEmpty(currentMusicInteraction.GlobalID))
         {
             Debug.LogError("No interaction id");
             return;

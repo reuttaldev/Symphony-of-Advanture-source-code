@@ -22,11 +22,8 @@ MonoBehaviour:
   - 682419
   - 1277709
   collectibleTracks:
-  - 
-  - 
-  - 
-  - 
-  - 
+  - A1
+  - A2
   startingTrack: 
   playerName: Reut
   configurationID: Default
@@ -85,6 +82,14 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  - m_AssetGUID: ee6f72840423aec4e80f2206cbb06174
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 4c28d7ddaac36224cb98cf63ca42898d
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
   trackDataKeys:
   - 783250
   - 25220
@@ -99,3 +104,5 @@ MonoBehaviour:
   - 1250230
   - 983594
   - 1167296
+  - A1
+  - A2

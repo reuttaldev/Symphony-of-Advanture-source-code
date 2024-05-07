@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7806254208784879048}
   - component: {fileID: 8520830505126271309}
+  - component: {fileID: 5167799106303742719}
   m_Layer: 0
   m_Name: Export Manager
   m_TagString: Untagged
@@ -44,5 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d0cc92458feb04db859fb38d62d8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 1a56585e2136e29478ed44fe5cd631b1, type: 2}
-  playerData: {fileID: 11400000, guid: f21117a3cd1d5e8458c50329e91d64d5, type: 2}
+--- !u!114 &5167799106303742719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083351993915878345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd25f1b02194b94c84884096edbc16b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noInternetPanel: {fileID: 0}

@@ -65,8 +65,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01001358, y: -0.13017654}
-  m_Size: {x: 4.2450666, y: 4.5054197}
+  m_Offset: {x: -0.007867284, y: -0.13393946}
+  m_Size: {x: 1.5332415, y: 3.1177213}
   m_Direction: 0
 --- !u!114 &323412642044925072
 MonoBehaviour:
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e439fa9e3a2804db3e675a52d10599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableMoreThanOnce: 1
+  interactableMoreThanOnce: 0
   conversationStartNode: companion_intro
   associatedMission: {fileID: 0}
 --- !u!1 &7982300860391390057
@@ -226,8 +226,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08826077, y: -0.044789314}
-  m_Size: {x: 2.3622358, y: 2.6661587}
+  m_Offset: {x: -0.027345289, y: -0.044789318}
+  m_Size: {x: 1.2170236, y: 2.6661592}
   m_Direction: 0
 --- !u!50 &8116781961012815273
 Rigidbody2D:
