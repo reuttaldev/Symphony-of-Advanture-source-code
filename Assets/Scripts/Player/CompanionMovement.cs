@@ -35,7 +35,7 @@ public class CompanionMovement : MonoBehaviour
     {
         animator.SetBool("Moving", false);
         rb.velocity = new Vector2(0, 0);
-        rb.bodyType = RigidbodyType2D.Static;
+        //rb.bodyType = RigidbodyType2D.Static;
     }
 
     private void FixedUpdate()
@@ -52,6 +52,7 @@ public class CompanionMovement : MonoBehaviour
             {
                 StartCoroutine(WaitCoroutine());
             }
+            //rb.bodyType = RigidbodyType2D.Static;
             animator.SetFloat("x", input.x);
             animator.SetFloat("y", input.y);
             animator.SetBool("Moving", true);

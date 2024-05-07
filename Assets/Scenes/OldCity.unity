@@ -2178,6 +2178,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Astrid
       objectReference: {fileID: 0}
+    - target: {fileID: 8116781961012815273, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307982934633218513, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
+      propertyPath: followPlayerAtStart
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2276,81 +2284,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1776442642361953834, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 319.3167
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776442642361953834, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 205.0012
-      objectReference: {fileID: 0}
-    - target: {fileID: 2799336996107652819, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 215
-      objectReference: {fileID: 0}
     - target: {fileID: 2864163567865908013, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 4980551760919697751, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5838733
-      objectReference: {fileID: 0}
-    - target: {fileID: 4980551760919697751, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_Color.g
-      value: 0.7110517
-      objectReference: {fileID: 0}
-    - target: {fileID: 4980551760919697751, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_Color.r
-      value: 0.87169814
-      objectReference: {fileID: 0}
-    - target: {fileID: 6296500431713078697, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -215
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751323533775115750, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 350
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751323533775115750, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 350
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751323533775115750, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751323533775115750, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7525675858112672756, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575674804927024080, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575674804927024080, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575674804927024080, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8726522943216333319, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8726522943216333319, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8726522943216333319, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_Color.r
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
