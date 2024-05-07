@@ -19,8 +19,8 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
 
     void Awake()
     {
-        dialogueRunner = gameObject.GetComponent<DialogueRunner>();
         ServiceLocator.Instance.Register<DialogueManager>(this);
+        dialogueRunner = gameObject.GetComponent<DialogueRunner>();
 
     }
     void OnEnable()

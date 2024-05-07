@@ -10,11 +10,9 @@ public class GameManager : MonoBehaviour, IRegistrableService
     public GameSettings settings;
     public DataMigrationSettings dataMigrationSettings;
     DialogueManager dialogueManager;
-    public  UnityEvent gameOverEvent;
-    public  UnityEvent startedGameEvent;
     public static bool paused = false;
     string playerName;
-
+    
 
     [SerializeField] 
     GameObject player, companion;
@@ -40,14 +38,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
         nameVariableStorage.SetValue("$playerName", playerName);
 
     }
-    void OnEnable()
-    {
-        startedGameEvent.AddListener(settings.IncreaseGameSessionIndex);
-    }
-    void OnDisable()
-    {
-        startedGameEvent.RemoveListener(settings.IncreaseGameSessionIndex);
-    }
+
     public void UnpauseGame()
     {
         if (paused)
@@ -80,22 +71,8 @@ public class GameManager : MonoBehaviour, IRegistrableService
     {
         ExportManager exportManager = ServiceLocator.Instance.Get<ExportManager>();
         exportManager.SendCSVByEmail();
-        gameOverEvent.Invoke();
     }
 
-    [YarnCommand("WalkToOffice")]
-
-    public void WalkToOffice()
-    {
-        SceneManager.Instance.LoadScene("TownKeeperOffice");
-        dialogueManager.StartDialogue("");
-    }
-    [YarnCommand("LeaveOffice")]
-
-    public void LeaveOffice()
-    {
-        SceneManager.Instance.LoadScene("TownSquare");
-    }
 
 
     // make the player and companion face eachother

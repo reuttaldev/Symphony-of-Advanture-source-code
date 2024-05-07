@@ -12,13 +12,16 @@ public class DialogueIntractable : Interactable
     private void Start()
     {
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
+        Debug.Log("git it " + dialogueManager);
     }
     protected override void TriggerInteraction()
     {
         // start conversation
         // we need a function to tell Yarn Spinner to start from {specifiedNodeName}
+        Debug.Log(dialogueManager);
         dialogueManager.StartDialogue(conversationStartNode);
-        dialogueManager.missionToComplete = associatedMission;
+        if(associatedMission != null) 
+            dialogueManager.missionToComplete = associatedMission;
     }
     public void ChangeConversationStartNode(string nodeName)
     {

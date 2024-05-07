@@ -1,20 +1,29 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Collections;
+using UnityEngine.Events;
 
 public class WalkmanUI : MonoBehaviour
 {
-    private Animator animator;
-    [SerializeField]
-    private TMP_Text trackNameTxt, artistNameTxt, sourceTxt, licenseTxt;
     private AudioManager audioManager;
+    DialogueManager dialogueManager;
     [SerializeField]
-    private InputActionReference nextSongAction, lastSongAction;
+    private InputActionReference nextSongAction, lastSongAction, confirmAction;
 
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
+    [SerializeField]
+    private TMP_Text emotionTxt; // this is the emotion we are asking the player get the character to feel in this specific dialogue;
+    [SerializeField]
+    Image leftArrow, rightArrow;
+    [SerializeField]
+    float hightlightArrowDuration = 0.2f;
+    [SerializeField]
+    Sprite selectorOn, selectorOff;
+    [SerializeField]
+    Sprite[] cassetteImages;
+
+
     private void OnEnable()
     {
         if (audioManager == null)
@@ -32,28 +41,27 @@ public class WalkmanUI : MonoBehaviour
         if(lastSongAction.action.WasPressedThisFrame())
         {
             audioManager.PlayLastTrack();
+            StartCoroutine(HighlightArrow(rightArrow));
         }
         if (nextSongAction.action.WasPressedThisFrame())
         {
             audioManager.PlayNextTrack();
+            StartCoroutine(HighlightArrow(leftArrow));
+        }
+        if (confirmAction.action.WasPressedThisFrame())
+        {
+            ServiceLocator.Instance.Get<DialogueManager>().PlayerLabeledTrack();
         }
     }
-
+    IEnumerator HighlightArrow(Image arrow)
+    {
+        yield return new WaitForSeconds(hightlightArrowDuration);
+    }
     // this method will be called when a new song is being played 
     void UpdateDisplay()
     {
         TrackData currentTrack = audioManager.GetCurrentTrack();
-        // do some animation to indicate we are switching songs 
-        trackNameTxt.text = "Track Name: "+currentTrack.trackName;
-        artistNameTxt.text = "Artist: "+currentTrack.artistName;
-        if (!string.IsNullOrEmpty(currentTrack.source))
-            sourceTxt.text = "Source: "+ currentTrack.source;
-        else
-            sourceTxt.text = "";
-        if (!string.IsNullOrEmpty(currentTrack.license))
-            licenseTxt.text = currentTrack.license;
-        else
-            licenseTxt.text = "";
+        // do something to indicate we are switching songs 
 
     }
 }

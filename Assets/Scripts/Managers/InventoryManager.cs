@@ -11,9 +11,9 @@ public class InventoryManager : MonoBehaviour, IRegistrableService
     {
         ServiceLocator.Instance.Register<InventoryManager>(this);
     }
-    public void ShowMapIcons()
+    public void ShowMapIcons(int whichPieces)
     {
-        uiManager.ShowMapIcons();
+        uiManager.ShowMapIcons(whichPieces);
     }
 
     public void AddTrackCollectable(TrackData cassetteData)

@@ -7,16 +7,13 @@ using Yarn.Unity;
 public class UIManager : MonoBehaviour, IRegistrableService
 {
     [SerializeField]
-    private MusicDialogueUI musicDialogueUI;
-    [SerializeField]
     private WalkmanUI walkmanUI;
     [SerializeField]
-    private InputActionReference openMainMenuAction;
+    private InputActionReference openWalkmanAction;
     [SerializeField]
-    private InputActionReference closeMainMenuAction;
+    private InputActionReference closeWalkmanAction;
     private InputManager inputManager;
     bool uiPanalOpen; // this will be true if any of our UI menus are currently open
-    DialogueManager dialogueManager;
 
     private void Awake()
     {
@@ -25,20 +22,19 @@ public class UIManager : MonoBehaviour, IRegistrableService
     }
     private void OnEnable()
     {
-        openMainMenuAction.action.performed += context => OpenMainMenu();
-        closeMainMenuAction.action.performed += context => CloseMainMenu();
+        openWalkmanAction.action.performed += context => OpenWalkmanInterface();
+        closeWalkmanAction.action.performed += context => CloseWalkmanInterface();
         // listen to when the player has made a choce in a music dialogue
     }
     private void Start()
     {
         inputManager = ServiceLocator.Instance.Get<InputManager>();
-        dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
         walkmanUI.gameObject.SetActive(false);
     }
     private void OnDisable()
     {
-        openMainMenuAction.action.performed -= context => OpenMainMenu();
-        closeMainMenuAction.action.performed -= context => CloseMainMenu();
+        openWalkmanAction.action.performed -= context => OpenWalkmanInterface();
+        closeWalkmanAction.action.performed -= context => CloseWalkmanInterface();
     }
 
     bool OpenAndSwitchUIMap()
@@ -57,22 +53,15 @@ public class UIManager : MonoBehaviour, IRegistrableService
         inputManager.ActivatePlayerMap();
     }
 
-    // main menu contains the walkman UI inside of it, but not just that
-    void OpenMainMenu()
+    void OpenWalkmanInterface()
     {
         // open menu only if nothing else is open
         if (!OpenAndSwitchUIMap())
             return;
-        // only make visible if we are not in the middle of a dialogue and no other menu is open
-        musicDialogueUI.MakeVisible();
         walkmanUI.gameObject.SetActive(true);
     }
-    void CloseMainMenu() 
+    void CloseWalkmanInterface() 
     {
-        // close only if open already
-        if (!musicDialogueUI.active)
-            return;
-        musicDialogueUI.MakeInvisible();
         walkmanUI.gameObject.SetActive(false);
         CloseAndSwitchUIMap();
     }
@@ -80,13 +69,11 @@ public class UIManager : MonoBehaviour, IRegistrableService
     {
         //  we will often start the music dialogue from the regular dialogue, so no need to check if another UI window is open
         walkmanUI.gameObject.SetActive(true);
-        musicDialogueUI.MakeVisible();
         ServiceLocator.Instance.Get<AudioManager>().PlayCurrentTrack();
 
     }
     public void CloseMusicDialogueUI()
     {
-        musicDialogueUI.MakeInvisible();
         walkmanUI.gameObject.SetActive(false);
         CloseAndSwitchUIMap();
     }
@@ -98,7 +85,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
     public void CloseDialogueUI()
     {
         // if we have opened the music dialogue UI though a yarn script, don't close
-        if(!musicDialogueUI.active)
+        if(!walkmanUI.gameObject.activeInHierarchy)
             CloseAndSwitchUIMap();
     }
 }

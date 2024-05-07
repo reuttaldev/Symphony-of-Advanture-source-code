@@ -14,4 +14,8 @@ public class MissionWrapper : MonoBehaviour
     public string MissionDataID => missionData.ID;
     public string Name => missionData.Name;
 
+    private void Start()
+    {
+        
+    }
 }

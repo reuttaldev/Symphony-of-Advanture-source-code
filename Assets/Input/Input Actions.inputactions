@@ -6,7 +6,7 @@
             "id": "6cf296be-bbb8-4cd0-98e8-3ce744adfcf7",
             "actions": [
                 {
-                    "name": "Open Main Menu",
+                    "name": "Open Walkman interface",
                     "type": "Button",
                     "id": "8df946ba-3648-49c4-b5ed-63e448d1b9ef",
                     "expectedControlType": "Button",
@@ -32,7 +32,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Open Main Menu",
+                    "action": "Open Walkman interface",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -43,7 +43,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Open Main Menu",
+                    "action": "Open Walkman interface",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

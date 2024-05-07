@@ -5,7 +5,6 @@ using UnityEngine.Events;
 using System;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Linq;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 
 
@@ -167,7 +166,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     {
         OnTrackChanged.Invoke();
         string idToPlay = library[index];
-        //Debug.Log(loadedTracks[idToPlay]);
+        Debug.Log(index);
         audioSource.clip = loadedTracks[idToPlay].audioClip;
         audioSource.Play();
     }

@@ -8,23 +8,18 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField]
     CanvasGroup mapIconParent;
+    [SerializeField]
     Image[] mapIconObjects;
     [SerializeField]
     TMP_Text addItemText;
     [SerializeField]
-    float fadeDuration = 0.3f, showTextDuration = 3, showMapDuration = 3;
-    [SerializeField]
-    MissionData[] mapMissionData;
-    private void Start()
+    float fadeDuration = 0.3f, showTextDuration = 180, showMapDuration = 180;
+    public void ShowMapIcons(int whichPieces)
     {
-        mapIconObjects = mapIconParent.GetComponentsInChildren<Image>();
-    }
-    public void ShowMapIcons()
-    {
-        for (int i = 0; i < mapIconObjects.Length; i++)
+        for (int i = 0; i < whichPieces ; i++)
         {
-            if (mapMissionData[i].State == MissionState.CompletedSuccessfully)
-                mapIconObjects[i].gameObject.SetActive(true);
+            mapIconObjects[i].gameObject.SetActive(true);
+            Debug.Log("setting active");
         }
         StartCoroutine(ShowIcons());
     }
@@ -36,9 +31,9 @@ public class InventoryUI : MonoBehaviour
     }
     IEnumerator ShowIcons()
     {
-        yield return FadeIconsToFullAlpha(fadeDuration, addItemText);
-        yield return new WaitForSeconds(showTextDuration);
-        yield return FadeIconsZeroAlpha(fadeDuration, addItemText);
+        yield return FadeIconsToFullAlpha();
+        yield return new WaitForSeconds(showMapDuration);
+        yield return FadeIconsZeroAlpha();
     }
 
     IEnumerator ShowText()
@@ -50,22 +45,20 @@ public class InventoryUI : MonoBehaviour
         addItemText.gameObject.SetActive(false);
     }
 
-    IEnumerator FadeIconsToFullAlpha(float t, TMP_Text i)
-    {
-        i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
-        while (i.color.a < 1.0f)
+    IEnumerator FadeIconsToFullAlpha()
+    {   
+        while (mapIconParent.alpha < 1.0f)
         {
-            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+            mapIconParent.alpha += (Time.deltaTime / fadeDuration);
             yield return null;
         }
     }
 
-    IEnumerator FadeIconsZeroAlpha(float t, TMP_Text i)
+    IEnumerator FadeIconsZeroAlpha()
     {
-        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
-        while (i.color.a > 0.0f)
+        while (mapIconParent.alpha > 0.0f)
         {
-            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+            mapIconParent.alpha -= (Time.deltaTime / fadeDuration);
             yield return null;
         }
     }

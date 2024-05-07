@@ -24,8 +24,8 @@ Astrid: A walkman? What's that?
 ->Player: It's a birthday gift from my mom.
     Astrid: Wait, I remember now. It's a portable audio player, right?
 Astrid: Sorry buddy, those don't work here. Or anything that plays music- for that matter.
-Tony: No music has been heard in this town since... you know.
-Tony: Wait, you don't know, do you? 
+Player: No music has been heard in this town since... you know.
+Player: Wait, you don't know, do you? 
 -> Player: I don't.
     <<set $skipExplanation to true>>
     << jump companion_story_explanation>>
@@ -45,7 +45,7 @@ Astrid: Quickly, we must show this to the town keeper. He's gonna be thrilled!
 -> Player: Where is he?
     Astrid: His office is right there. His office is right there, let's go.
 -> Player: Okay.
-<<GoToOffice GameManager>>
+<<WalkToOffice OfficeTransitions>>
 ===
 
 title: companion_story_explanation
