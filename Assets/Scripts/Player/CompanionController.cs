@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CompanionController : MonoBehaviour
 {
-    CompanionMovement movementManager;
+    NPCFollowPlayer movementManager;
     [SerializeField]
     bool followPlayerAtStart;
     private void Awake()
     {
-        movementManager= gameObject.GetComponent<CompanionMovement>();
+        movementManager= gameObject.GetComponent<NPCFollowPlayer>();
     }
     private void Start()
     {

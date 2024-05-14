@@ -158,6 +158,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
         audioSource = GetComponent<AudioSource>();
         if (settings == null)
             Debug.LogError("Audio manager is missing a reference to game settings");
+        audioSource = GetComponent<AudioSource>();
         ServiceLocator.Instance.Register<AudioManager>(this);
 
     }

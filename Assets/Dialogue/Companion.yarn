@@ -4,14 +4,13 @@ location: middle of town square
 ---
 ///game is in silence
 Astrid: Hey, are you alright? 
-Astrid: You just appeared here, out of no where. 
-Astrid: It’s strange. this is a small town, we rarely get any visitors.
+Astrid: You just appeared here, out of no where. Weird, our town rarely gets any visitors.
 -> Player: Who are you?
     Astrid: I'm Astrid. 
 -> Player: Whare am I?
     Astrid: You're in town square. 
     Astrid: Of which town? [TownName], of course.
-    Astrid: I'm Astrid, by the way.
+    Astrid: I'm Astrid. And you are?
 -> Player: How did I get here?
     Astrid: I don’t know. You just appeared here.
     Astrid: Well, welcome to our town, stranger. I'm Astrid.
