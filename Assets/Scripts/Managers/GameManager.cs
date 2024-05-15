@@ -115,6 +115,10 @@ public class GameManager : MonoBehaviour, IRegistrableService
             Debug.LogError("previous scene name is nnull");
             return;
         }
+        if(returnPoints == null || returnPoints.Count ==0)
+        {
+            Debug.Log("You forgot to set return points list in game manager");
+        }
         ReturnPoint returnPoint = null;
         foreach(var item in returnPoints)
         {
@@ -131,7 +135,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
         }
         player.transform.position = returnPoint.transform.position;
         PlaceNextToPlayer(companion, returnPoint.companionAtSideOfPlayer);
-        Direction lookAtDirection = GetOppositeDirection(returnPoint.companionAtSideOfPlayer);
+        Direction lookAtDirection = returnPoint.lookAt;
         CharacterLookAt(player, lookAtDirection);
         CharacterLookAt(companion, lookAtDirection);
     }
@@ -203,6 +207,8 @@ public class GameManager : MonoBehaviour, IRegistrableService
         CharacterLookAt(player, companionDirection);
         CharacterLookAt(companion, GetOppositeDirection(companionDirection));
     }
+
+
 
     Direction GetOppositeDirection(Direction direction) 
     {

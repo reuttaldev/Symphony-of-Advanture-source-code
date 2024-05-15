@@ -42,7 +42,7 @@ public class MissionData : MyScriptableObject
         if ( state != MissionState.NotStarted)
         {
             Debug.LogError("Trying to complete a mission that has not been started. Mission name is: " + missionName);
-            return;
+            //return;
         }
         if (state == MissionState.CompletedUnSuccessfully || state == MissionState.CompletedSuccessfully)
         {

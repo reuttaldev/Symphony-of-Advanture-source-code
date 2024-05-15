@@ -60,8 +60,9 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("Dialogue already running");
             return;
         }
-        if(companionDirection != Direction.none)
-            gameManager.CompanionWalkToPlayer(companionDirection,false);
+        if (companionDirection != Direction.none)
+            gameManager.CompanionWalkToPlayer(companionDirection, false);
+
         dialogueRunner.StartDialogue(nodeToStart);
         uiManager.OpenDialogueUI();
         lastReadDialogueNode = dialogueRunner.CurrentNodeName;
@@ -88,9 +89,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         string nextNode = currentMusicInteraction.onCompletionNode;
         uiManager.CloseMusicDialogueUI();
         ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
-        // execute any events we want to happen after player has made their selection
-        if (missionToComplete != null)
-            missionToComplete.EndMission();
+        HandleMissionOnDialogueEnd();
         ResetMusicDialogue();
         if(string.IsNullOrEmpty(nextNode))
             StartDialogue(nextNode);

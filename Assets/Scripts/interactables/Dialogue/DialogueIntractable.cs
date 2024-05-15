@@ -20,10 +20,15 @@ public class DialogueIntractable : Interactable
     {
         // start conversation
         // we need a function to tell Yarn Spinner to start from {specifiedNodeName}
-        Debug.Log(dialogueManager);
-        // 
-        if(associatedMission != null) 
+        if(associatedMission != null)
+        {
+            // associated mission was already completed, dialogue is irrelevent now 
+            if(associatedMission.State == MissionState.CompletedSuccessfully || associatedMission.State == MissionState.CompletedUnSuccessfully)
+            {
+                return;
+            }
             dialogueManager.missionToComplete = associatedMission;
+        }
         dialogueManager.StartDialogue(conversationStartNode, companionPosition);
     }
     public void ChangeConversationStartNode(string nodeName)

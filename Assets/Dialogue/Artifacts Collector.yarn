@@ -5,10 +5,9 @@ location: old city, in her shop
 ---
 Sona: Hey Astrid. Have you finnaly done something usful with yourself and brought me a new customer?  
 Astrid: This is $playerName. We're looking for something that resembles a map segment. 
-Astrid: Do you have something like that in your collection?
 Sona: Let me see... 
 Sona: this looks like it would fit. 
-Astrid: Great, thanks. See ya!
+Astrid: You're the best Sona. See ya!
 Sona: Hey, Hey! Not so quick. What are you giving me in return?
 -> Player: I don't have any money. 
     Sona: What's that on your belt, A walkman? I'll trade you for it.  
@@ -32,8 +31,7 @@ Sona: Come back when you've got something worthy, kid.
 ->How can I go home?
 ->Player: Why are you so mean?
     Sona: Me? Mean? 
-    Sona: I am not mean. I don't don't trust any kid that walks through my door. 
-    Sona: Do you know the kind of tricks Astrid has pulled on me before?
+    Sona: I am not mean. I don't don't trust any kid that walks through my door.    Do you know the kind of tricks Astrid has pulled on me before?
     Sona: Once you prove you are determined enough, you may be trusted. 
 ===
 

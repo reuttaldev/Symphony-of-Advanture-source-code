@@ -70,7 +70,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
         {
             TrackData t = request.Result as TrackData;
             loadedTracks.Add(t.trackID, t);
-            Debug.Log("loaded track with id " + t.trackID);
+            //Debug.Log("loaded track with id " + t.trackID);
             if(addKeyToList)
             {
                 library.Add(t.trackID);

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to be shown during scene changes, therefore it cannot be a scene object and must be a don't destroy on load singleton
 {
     bool changingScene = false;
-    float animationDuration = 1f;
     [SerializeField] 
     SceneTransitionPanel sceneTransitionPanel;
     private Animator animator;
@@ -46,16 +45,23 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
             yield return new WaitForEndOfFrame();
         }
         // scene has finished loading (we are currently showing black screen. make sure animation finishes playing
-        yield return new WaitForSeconds(animationDuration);
-        // load the new scene while screen is still black
+        // wait until fade in animation has finished 
+        while(animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f)
+            yield return new WaitForEndOfFrame();
         // start fading in
         animator.SetTrigger("end");
+        // let the fact that we triggered the end animation set in
+        yield return new WaitForEndOfFrame();
         // actual scene switch is here
         asyncLoad.allowSceneActivation = true;
-        yield return new WaitForSeconds(0.1f); 
-        Debug.Log(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        yield return new WaitForEndOfFrame();
         HandleReturn();
-        yield return new WaitForSeconds(animationDuration);
+        // wait until fade out animation has finished 
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f)
+        {
+            yield return new WaitForEndOfFrame();
+            Debug.Log("waiting");
+        }
         canvas.SetActive(false);
         changingScene = false;
     }
