@@ -5,45 +5,58 @@ using UnityEngine.Events;
 public class DialogueIntractable : Interactable
 {
     [SerializeField]
-    string conversationStartNode;
+    DialogueNodeData nodeData;
     DialogueManager dialogueManager;
-    [SerializeField]
-    MissionData associatedMission;
     [SerializeField]
     // where to place the companion in comparison to the player once the dialogue (with someone who is not the companion) has started
     Direction companionPosition = Direction.none;
     private void Start()
     {
+        if (nodeData == null)
+            Debug.LogError("Forgot to set DialogueStartNodeData to DialogueIntractable " + name);
+        if (nodeData != null && string.IsNullOrWhiteSpace(nodeData.nodeTitle))
+            Debug.LogError("DialogueStartNodeData with name " + nodeData.name + " has no title set.");
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
+        interactableMoreThanOnce = nodeData.interactableMoreThanOnce;   
+    }
+    protected override void DisableInteraction()
+    {
+        if (!nodeData.interactableMoreThanOnce)
+        {
+            interactable = false;
+        }
     }
     protected override void TriggerInteraction()
     {
+        Debug.Log("TriggerInteraction");
+
         // start conversation
         // we need a function to tell Yarn Spinner to start from {specifiedNodeName}
-        if(associatedMission != null)
+        if (nodeData.associatedMission != null)
         {
             // associated mission was already completed, dialogue is irrelevent now 
-            if(associatedMission.State == MissionState.CompletedSuccessfully || associatedMission.State == MissionState.CompletedUnSuccessfully)
+            if(nodeData.associatedMission.State == MissionState.CompletedSuccessfully || nodeData.associatedMission.State == MissionState.CompletedUnSuccessfully)
             {
                 return;
             }
-            dialogueManager.missionToComplete = associatedMission;
+            dialogueManager.missionToComplete = nodeData.associatedMission;
         }
-        dialogueManager.StartDialogue(conversationStartNode, companionPosition);
+        dialogueManager.StartDialogue(nodeData.nodeTitle, companionPosition);
     }
     public void ChangeConversationStartNode(string nodeName)
     {
-        conversationStartNode = nodeName;
+        nodeData.nodeTitle = nodeName;
         // make the trigger interactble again
         interactable = true;
+        nodeData.associatedMission = null;
         Debug.Log("Changing dialogue node to be " + nodeName + " on npc " + transform.root.name);
     }
-    public void InteractableMoreThanOnce(bool a)
+    public void InteractableMoreThanOnce(bool i)
     {
-        interactableMoreThanOnce = a;
+        nodeData.interactableMoreThanOnce = i;
     }
-    public void ChangeAssociatedMission(MissionData a) 
+    public void ChangeAssociatedMission(MissionData newAssociatedMission) 
     {
-        associatedMission = a;
+        nodeData.associatedMission = newAssociatedMission;
     }
 }

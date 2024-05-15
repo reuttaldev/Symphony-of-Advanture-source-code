@@ -29,7 +29,15 @@ Astrid: Wait, you don't know, do you?
     << jump companion_story_explanation>>
 -> Player: I do.
     <<set $skipExplanation to true>>
-Astrid: So yeah, your walkman is as good as trash here.
+
+<< jump companion_discovers_walkman_works>>
+
+
+===
+
+title: companion_discovers_walkman_works
+---
+Astrid: So y'know, your walkman is as good as trash here.
 -> Player:  It's working.
 Astrid: What do you mean... it works? That can't be.
 Astrid: Let me see that. [checksOutWalkman][/checksOutWalkman]
@@ -40,8 +48,12 @@ Astrid: Oh my! Music! I can hear it! Quickly, we must show this to the town keep
 -> Player: Where is he?
     Astrid: His office is right there. His office is right there, let's go.
 -> Player: Okay.
-<<WalkToOffice GameManager>>
+
+
+<<FMS>>
 ===
+
+
 
 title: companion_story_explanation
 scene: jumped into from intro if the player needs to be told the story
@@ -55,6 +67,7 @@ Astrid: But... things took a turn when she died. Her father, well, he couldn't b
 Astrid: He He cast a curse on the town, a spell to silence all music.
 Astrid: He thought... he thought nothing would ever compare to Ingrid's playing. That nothing else was worth hearing. He blames himself, you know? Thinks he didn't do enough to protect her. 
 Astrid: So now he is hiding away, who knows where. And he is the only one who can break this curse.
+<< jump companion_discovers_walkman_works>>
 ===
 
 title: companion_after_artifact_collector
@@ -67,4 +80,5 @@ Astrid: Whatever. Let's get going.
     Astrid: I'm not sure. Let's hit up the library, maybe we can find something usful there. 
 -> Player: Where are we going?
     Astrid: I thought we can go to the library, maybe we can find some more information there.
+
 ===

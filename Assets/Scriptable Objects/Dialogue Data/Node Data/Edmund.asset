@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
-  m_Name: Talk to Astrid for the first time
+  m_Script: {fileID: 11500000, guid: 98caad6d26309f64c99e25c7bd543386, type: 3}
+  m_Name: Edmund
   m_EditorClassIdentifier: 
-  missionName: Talk to Astrid for the first time
-  mainObjective: 
-  startLocation: 
-  state: 3
-  mandatory: 1
-  prerequisiteIds: []
+  nodeTitle: edmund_intro
+  associatedMission: {fileID: 11400000, guid: d537631462b88a84e9817108ff72af31, type: 2}
+  interactableMoreThanOnce: 0

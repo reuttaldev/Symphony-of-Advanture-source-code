@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour, IRegistrableService
     MissionData startGameMission;
     [SerializeField]
     UnityEvent startGameActions, endGameActions;
-
     private void Awake()
     {     
         ServiceLocator.Instance.Register<GameManager>(this);
@@ -43,7 +42,6 @@ public class GameManager : MonoBehaviour, IRegistrableService
         if (startGameMission!= null && startGameMission.State == MissionState.NotStarted)
         {
             startGameActions.Invoke();
-            Debug.Log("inov");
         }
     }
     
@@ -88,22 +86,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
         ExportManager exportManager = ServiceLocator.Instance.Get<ExportManager>();
         exportManager.SendCSVByEmail();
     }
-    #region player and  companion walking transitions
-    [YarnCommand("WalkToOffice")]
 
-    public void WalkToOffice()
-    {
-        SceneManager.Instance.LoadScene("TownKeeperOffice");
-        //dialogueManager.StartDialogue("");
-    }
-    [YarnCommand("LeaveOffice")]
-
-    public void LeaveOffice()
-    {
-        SceneManager.Instance.LoadScene("TownSquare");
-    }
-
-    #endregion
     #region COMPANION AND PLAYER POSITION CONTROLLER METHODS
 
     // each scene trigger exit also has a return point child, which shows us where to place the player and companion
@@ -174,17 +157,16 @@ public class GameManager : MonoBehaviour, IRegistrableService
     public void CompanionWalkToPlayer(Direction direction,bool faceEachother)
     {
         NPCFollowPlayer companionMovements = companion.GetComponent<NPCFollowPlayer>(); 
-        StartCoroutine(WalkToPlayer(companionMovements, GetNextToPlayerPos(direction), direction, faceEachother));
+        StartCoroutine(WalkNPC(companionMovements, GetNextToPlayerPos(direction), faceEachother, direction));
     }
 
     // when player is static, walk towards it. not the same as npc follow player bc there we are following the player when it's moving
-    IEnumerator WalkToPlayer(NPCFollowPlayer character, Transform walkTo,Direction direction,bool faceEachother)
+    IEnumerator WalkNPC(NPCFollowPlayer character, Transform walkTo,bool faceEachother, Direction direction= Direction.none)
     {
         // stop regular companion movements (if he is already following the player
         bool wasFollowing = character.FollowingPlayer;
         if(wasFollowing) 
             character.StopFollowingPlayer();
-        Debug.Log("walking towards player "+ Vector2.Distance(walkTo.position, character.transform.position));
         while (Vector2.Distance(walkTo.position, character.transform.position) > 0.2)
         {
             character.Move(walkTo);

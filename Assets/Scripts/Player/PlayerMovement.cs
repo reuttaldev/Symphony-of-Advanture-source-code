@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -62,6 +63,22 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("x", input.x);
         animator.SetFloat("y", input.y);
         animator.SetBool("Moving", true);
+    }
+
+
+    public IEnumerator MoveTowardsCoroutine(Transform walkTo)
+    {
+            Vector2 direction = (transform.position - walkTo.position).normalized;
+        while (Vector2.Distance(walkTo.position, transform.position) > 0.2)
+        {
+            if (direction.x != 0 || direction.y != 0)
+            {
+                animator.SetFloat("x", direction.x);
+                animator.SetFloat("y", direction.y);
+            }
+            transform.position = Vector3.MoveTowards(transform.position, walkTo.position, speed * Time.deltaTime);
+            yield return new WaitForFixedUpdate();
+        }
     }
     void StopMoving()
     {

@@ -6137,6 +6137,10 @@ PrefabInstance:
       value: 0.21988714
       objectReference: {fileID: 0}
     - target: {fileID: 7210769603776619197, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
+      propertyPath: nodeData
+      value: 
+      objectReference: {fileID: 11400000, guid: 77d07c813836e154ca0b9ab5de43a5b9, type: 2}
+    - target: {fileID: 7210769603776619197, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: associatedMission
       value: 
       objectReference: {fileID: 11400000, guid: 60f83a6ca3adadc41953761dd60c0737, type: 2}

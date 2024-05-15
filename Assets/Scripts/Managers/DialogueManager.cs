@@ -129,13 +129,11 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     #region MISSION HANDLES
     void HandleMissionOnDialogueStart()
     {
-        Debug.Log(missionToComplete);
         if (missionToStart != null)
             missionToStart.StartMission();
     }
     void HandleMissionOnDialogueEnd()
     {
-        Debug.Log(missionToComplete);
         if (missionToComplete != null)
             missionToComplete.EndMission();
         missionToComplete = null;

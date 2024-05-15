@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static PlayerMovement;
 
 public class NPCFollowPlayer : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class NPCFollowPlayer : MonoBehaviour
     private Transform wayPoint;
     bool wasOutOfOffest = false;
     Vector2 direction;
+
+    GroundMaterial groundMaterial = GroundMaterial.Gravel;
+
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -114,7 +118,7 @@ public class NPCFollowPlayer : MonoBehaviour
     {
         move = true;
         animator.SetBool("Moving", true);
-        LookWherePlayerIsLooking();
+        LookAtPlayer();
         transform.position = Vector3.MoveTowards(transform.position, walkTo.position, speed * Time.deltaTime);
 
     }
@@ -127,5 +131,23 @@ public class NPCFollowPlayer : MonoBehaviour
             animator.SetBool("Moving", false);
         }
     }
-
+    public void Step()
+    {
+        DetectGroundMaterial();
+        switch (groundMaterial)
+        {
+            case GroundMaterial.Gravel:
+                audioSource.PlayOneShot(gravelFootsteps);
+                break;
+            case GroundMaterial.Grass:
+                audioSource.PlayOneShot(grassFootsteps);
+                break;
+            case GroundMaterial.WoodFloor:
+                audioSource.PlayOneShot(floorFootsteps);
+                break;
+        }
+    }
+    void DetectGroundMaterial()
+    {
+    }
 }

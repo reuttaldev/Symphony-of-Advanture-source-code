@@ -43,7 +43,6 @@ Tony: Here, take it. Finding the rest is up to you.
 ->Player: I don't care, I just want to go home.
     Tony: Okay... I still can't help you. You're only change to go back home is by finding edmund. I'll give you a hint to help you out. 
 Tony: Visit Sona at her shop. She collects music artifacts. She's a bit of a character, but I'm sure she can help you somehow.
-Town keeper: What an adventure! I wish I could come with you but, ya' know, I'm too busy being the mayor of this town. 
 ===
 
 title: new_town_keeper_badgering
@@ -51,6 +50,6 @@ location: in his office, next to town square
 scene: before leaving the office, after hearing what he has to say
 emotion: - 
 ---
-Tony: Sorry again for not joining you, but it's my job to keep this place functioning. 
+Town keeper: What an adventure! I wish I could come with you but, ya' know, I'm too busy being the mayor of this town. 
 Tony: I am counting on you to help me turn this place around. 
 ===

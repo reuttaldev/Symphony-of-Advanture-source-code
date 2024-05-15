@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6049078525308443108
+--- !u!1 &3314433684514572117
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6926131091112473521}
-  - component: {fileID: 4584290629928495396}
-  - component: {fileID: 323412642044925072}
+  - component: {fileID: 8859599942190931632}
+  - component: {fileID: 6496588289032556191}
+  - component: {fileID: 419872611704506622}
   m_Layer: 0
   m_Name: Interactables
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6926131091112473521
+--- !u!4 &8859599942190931632
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049078525308443108}
+  m_GameObject: {fileID: 3314433684514572117}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,13 +33,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5258811966917127420}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &4584290629928495396
+--- !u!70 &6496588289032556191
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049078525308443108}
+  m_GameObject: {fileID: 3314433684514572117}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -65,24 +65,24 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.007867284, y: -0.13393946}
-  m_Size: {x: 1.5332415, y: 3.1177213}
+  m_Offset: {x: -1.2397226, y: -0.13393946}
+  m_Size: {x: 3.996952, y: 3.996952}
   m_Direction: 0
---- !u!114 &323412642044925072
+--- !u!114 &419872611704506622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049078525308443108}
-  m_Enabled: 0
+  m_GameObject: {fileID: 3314433684514572117}
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49e439fa9e3a2804db3e675a52d10599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactableMoreThanOnce: 0
-  conversationStartNode: companion_intro
-  associatedMission: {fileID: 0}
+  nodeData: {fileID: 11400000, guid: f14789b89a04c4447976d8c1e61d1bb6, type: 2}
+  companionPosition: 1
 --- !u!1 &7982300860391390057
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ Transform:
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6926131091112473521}
+  - {fileID: 8859599942190931632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4942462349453437850

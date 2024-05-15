@@ -60,7 +60,6 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f)
         {
             yield return new WaitForEndOfFrame();
-            Debug.Log("waiting");
         }
         canvas.SetActive(false);
         changingScene = false;
