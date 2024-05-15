@@ -751,8 +751,8 @@ MonoBehaviour:
   - {fileID: 2873975718920055773}
   addItemText: {fileID: 3691828738427918310}
   fadeDuration: 0.3
-  showTextDuration: 60
-  showMapDuration: 60
+  showTextDuration: 30
+  showMapDuration: 30
 --- !u!1 &2864163567865908013
 GameObject:
   m_ObjectHideFlags: 0

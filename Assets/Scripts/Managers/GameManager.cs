@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.TextCore.Text;
 using Yarn;
 using Yarn.Unity;
 
@@ -13,10 +14,15 @@ public class GameManager : MonoBehaviour, IRegistrableService
     public static bool paused = false;
     string playerName;
     [SerializeField]
-    List<ReturnPoints> returnPoints;
+    List<ReturnPoint> returnPoints;
     [SerializeField] 
     GameObject player, companion;
-    Vector2 companionOffset = new Vector2(5,5);
+    [SerializeField]
+    Transform leftOfPlayer, rightOfPlayer, downOfPlayer, upOfPlayer;
+    [SerializeField]
+    MissionData startGameMission;
+    [SerializeField]
+    UnityEvent startGameActions, endGameActions;
 
     private void Awake()
     {     
@@ -34,7 +40,13 @@ public class GameManager : MonoBehaviour, IRegistrableService
     void Start()
     {
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
+        if (startGameMission!= null && startGameMission.State == MissionState.NotStarted)
+        {
+            startGameActions.Invoke();
+            Debug.Log("inov");
+        }
     }
+    
     public void SetPlayerName(string playerName)
     {
         // set player name in yarn
@@ -76,34 +88,169 @@ public class GameManager : MonoBehaviour, IRegistrableService
         ExportManager exportManager = ServiceLocator.Instance.Get<ExportManager>();
         exportManager.SendCSVByEmail();
     }
+    #region player and  companion walking transitions
+    [YarnCommand("WalkToOffice")]
 
+    public void WalkToOffice()
+    {
+        SceneManager.Instance.LoadScene("TownKeeperOffice");
+        //dialogueManager.StartDialogue("");
+    }
+    [YarnCommand("LeaveOffice")]
+
+    public void LeaveOffice()
+    {
+        SceneManager.Instance.LoadScene("TownSquare");
+    }
+
+    #endregion
+    #region COMPANION AND PLAYER POSITION CONTROLLER METHODS
+
+    // each scene trigger exit also has a return point child, which shows us where to place the player and companion
+    // when RETURNING from that scene exit, i.e entering this scene from Scene TransitionTrigger .TransitionTo
     public void PlacePlayerInScene(string previousSceneName)
     {
-        Vector2 pos = new Vector2(0, 0);
-        bool found= false;
+        if(string.IsNullOrWhiteSpace(previousSceneName))
+        {
+            Debug.LogError("previous scene name is nnull");
+            return;
+        }
+        ReturnPoint returnPoint = null;
         foreach(var item in returnPoints)
         {
             if(item.whenComingFrom ==  previousSceneName) 
             { 
-                found = true;
-                pos = item.transform.position;
+                returnPoint = item;
                 break;
             }
         }
-        if(previousSceneName != null && !found)
+        if (returnPoint == null)
         {
             Debug.LogError("No entry point for scene: " + previousSceneName);
             return;
         }
-
-        player.transform.position = pos;
-        companion.transform.position = new Vector2(pos.x + companionOffset.x, pos.y + companionOffset.y);
+        player.transform.position = returnPoint.transform.position;
+        PlaceNextToPlayer(companion, returnPoint.companionAtSideOfPlayer);
+        Direction lookAtDirection = GetOppositeDirection(returnPoint.companionAtSideOfPlayer);
+        CharacterLookAt(player, lookAtDirection);
+        CharacterLookAt(companion, lookAtDirection);
     }
 
-    // make the player and companion face eachother
-    void FaceEachother()
+    void PlaceNextToPlayer(GameObject character, Direction direction)
     {
+        character.transform.position = GetNextToPlayerPos(direction).position;
+    }
+    void CharacterLookAt(GameObject character, Direction direction)
+    {
+        var animator = character.GetComponent<Animator>();
+        switch (direction)
+        {
+            case Direction.left:
+                animator.SetFloat("x", -1);
+                animator.SetFloat("y", 0);
+                break;
+            case Direction.right:
+                animator.SetFloat("x", 1);
+                animator.SetFloat("y", 0);
+                break;
+            case Direction.up:
+                animator.SetFloat("x", 0);
+                animator.SetFloat("y", 1);
+                break;
+            case Direction.down:
+                animator.SetFloat("x", 0);
+                animator.SetFloat("y", -1);
+                break;
+        }
+    }
+    public void CompanionWalkToPlayer(string d)
+    {
+        CompanionWalkToPlayer(GetDirection(d),true);
+    }
+    public void CompanionWalkToPlayer(Direction direction,bool faceEachother)
+    {
+        NPCFollowPlayer companionMovements = companion.GetComponent<NPCFollowPlayer>(); 
+        StartCoroutine(WalkToPlayer(companionMovements, GetNextToPlayerPos(direction), direction, faceEachother));
+    }
+
+    // when player is static, walk towards it. not the same as npc follow player bc there we are following the player when it's moving
+    IEnumerator WalkToPlayer(NPCFollowPlayer character, Transform walkTo,Direction direction,bool faceEachother)
+    {
+        // stop regular companion movements (if he is already following the player
+        bool wasFollowing = character.FollowingPlayer;
+        if(wasFollowing) 
+            character.StopFollowingPlayer();
+        Debug.Log("walking towards player "+ Vector2.Distance(walkTo.position, character.transform.position));
+        while (Vector2.Distance(walkTo.position, character.transform.position) > 0.2)
+        {
+            character.Move(walkTo);
+            yield return new WaitForFixedUpdate();
+        }
+        // we have reached our position
+        character.StopMoving();
+        // make the player and character face each other
+        if(faceEachother)
+            FaceEachother(direction);
+        // resume previous follow directions
+        if(wasFollowing)
+            character.FollowPlayer();
 
     }
 
+    // make companion and player face each other
+    void FaceEachother(Direction companionDirection)
+    {
+        CharacterLookAt(player, companionDirection);
+        CharacterLookAt(companion, GetOppositeDirection(companionDirection));
+    }
+
+    Direction GetOppositeDirection(Direction direction) 
+    {
+        Direction opposite = Direction.right;
+        switch (direction)
+        {
+            case Direction.up:
+                opposite = Direction.down;
+                break;
+            case Direction.right:
+                opposite = Direction.left;
+                break;
+            case Direction.down:
+                opposite = Direction.up;
+                break;
+        }
+        return opposite;
+    }
+
+    Transform GetNextToPlayerPos(Direction direction) 
+    {
+        switch (direction)
+        {
+            case Direction.left:
+                return leftOfPlayer;
+            case Direction.right:
+                return rightOfPlayer;
+            case Direction.up:
+                return upOfPlayer;
+            case Direction.down:
+                return downOfPlayer;
+        }
+        return leftOfPlayer;
+    }
+    Direction GetDirection(string d)
+    {
+        switch (d)
+        {
+            case "left":
+                return Direction.left;
+            case "right":
+                return Direction.right;
+            case "up":
+                return Direction.up;
+            case "down":
+                return Direction.down;
+        }
+        return Direction.left;
+    }
+    #endregion
 }

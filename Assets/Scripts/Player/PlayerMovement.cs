@@ -13,15 +13,16 @@ public class PlayerMovement : MonoBehaviour
     AudioClip grassFootsteps, gravelFootsteps, floorFootsteps;
     Rigidbody2D rb;
     Animator animator;
-    Vector2 input;
+    Vector2 input,lastInput;
     public bool Moving;
     public GroundMaterial groundMaterial = GroundMaterial.Gravel;
     [SerializeField]
     float rayDistance = 1;
-    public Vector2 Input => input;
+    public Vector2 Input => lastInput;
     AudioSource audioSource;
     [SerializeField]
     LayerMask layerMask;
+    bool canMove = true;
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -29,12 +30,25 @@ public class PlayerMovement : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    public void CanMove()
+    {
+        canMove = true;
 
+    }
+    public void CantMove()
+    {
+        canMove = false;
+    }
     void FixedUpdate()
     {
+        if (!canMove)
+            return;
         input = moveAction.action.ReadValue<Vector2>();
         if (input.x != 0 || input.y != 0)
+        {
             Move();
+            lastInput = input;
+        }
         else
             StopMoving();
         Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.green); // Draw a green line to visualize the raycast
@@ -82,7 +96,6 @@ public class PlayerMovement : MonoBehaviour
     // detect which type of tile the player is walking on, so we know which footstep audioclip to play
     void DetectGroundMaterial()
     {
-        Debug.Log(LayerMask.LayerToName(1 << 3));
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, layerMask);
         // Does the ray intersect any objects in the ground layer
 

@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     public MissionData missionToStart;
     UIManager uiManager;
     string lastReadDialogueNode = null;
+    GameManager gameManager;
 
     void Awake()
     {
@@ -34,6 +35,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     private void Start()
     {
         uiManager = ServiceLocator.Instance.Get<UIManager>();
+        gameManager = ServiceLocator.Instance.Get<GameManager>();
         dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
         dialogueRunner.AddCommandHandler("OMD", StartMusicDialogue);
         // finish mission successfuly
@@ -45,7 +47,8 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
 
 
     }
-    public void StartDialogue(string nodeToStart)
+
+    public void StartDialogue(string nodeToStart, Direction companionDirection = Direction.none)
     {
         if (string.IsNullOrEmpty(nodeToStart))
         {
@@ -57,11 +60,14 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("Dialogue already running");
             return;
         }
+        if(companionDirection != Direction.none)
+            gameManager.CompanionWalkToPlayer(companionDirection,false);
         dialogueRunner.StartDialogue(nodeToStart);
         uiManager.OpenDialogueUI();
         lastReadDialogueNode = dialogueRunner.CurrentNodeName;
         HandleMissionOnDialogueStart();
     }
+
 
     // Please note that in order to mark the associated mission as completed at the end of a dialogue
     // you need to do that from the yarn script itself and say if it was sucessful or not.
@@ -124,13 +130,15 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     #region MISSION HANDLES
     void HandleMissionOnDialogueStart()
     {
-        if (missionToComplete != null)
-            missionToComplete.EndMission();
+        Debug.Log(missionToComplete);
         if (missionToStart != null)
             missionToStart.StartMission();
     }
     void HandleMissionOnDialogueEnd()
     {
+        Debug.Log(missionToComplete);
+        if (missionToComplete != null)
+            missionToComplete.EndMission();
         missionToComplete = null;
         missionToStart = null;
     }

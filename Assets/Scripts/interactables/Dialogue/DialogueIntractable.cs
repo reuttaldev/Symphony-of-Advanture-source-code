@@ -9,6 +9,9 @@ public class DialogueIntractable : Interactable
     DialogueManager dialogueManager;
     [SerializeField]
     MissionData associatedMission;
+    [SerializeField]
+    // where to place the companion in comparison to the player once the dialogue (with someone who is not the companion) has started
+    Direction companionPosition = Direction.none;
     private void Start()
     {
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
@@ -18,9 +21,10 @@ public class DialogueIntractable : Interactable
         // start conversation
         // we need a function to tell Yarn Spinner to start from {specifiedNodeName}
         Debug.Log(dialogueManager);
-        dialogueManager.StartDialogue(conversationStartNode);
+        // 
         if(associatedMission != null) 
             dialogueManager.missionToComplete = associatedMission;
+        dialogueManager.StartDialogue(conversationStartNode, companionPosition);
     }
     public void ChangeConversationStartNode(string nodeName)
     {

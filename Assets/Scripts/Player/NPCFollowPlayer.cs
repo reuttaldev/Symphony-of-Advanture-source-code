@@ -9,7 +9,7 @@ public class NPCFollowPlayer : MonoBehaviour
     [SerializeField] AudioClip grassFootsteps, gravelFootsteps, floorFootsteps;
     [SerializeField] Transform followPositionLeft, followPositionRight, followPositionUp, followPositionDown;
     [SerializeField] PlayerMovement playerMovement;
-
+    public bool FollowingPlayer => followPlayer;
     Animator animator;
     AudioSource audioSource;
     Vector2 input;
@@ -31,6 +31,7 @@ public class NPCFollowPlayer : MonoBehaviour
 
     public void StopFollowingPlayer()
     {
+
         followPlayer = false;
     }
 
@@ -59,15 +60,9 @@ public class NPCFollowPlayer : MonoBehaviour
             StopMoving();
 
         if (move)
-            Move();
-        direction =-1* (transform.position- playerMovement.transform.position).normalized;
-
-        // always look at where you will be going next 
-        if (direction.x != 0 || direction.y != 0)
-            {
-                animator.SetFloat("x", direction.x);
-                animator.SetFloat("y", direction.y);
-            }
+            Move(wayPoint);
+        else
+            LookWherePlayerIsLooking();
     }
 
     void FindWaypoint()
@@ -94,15 +89,36 @@ public class NPCFollowPlayer : MonoBehaviour
                 wayPoint = followPositionLeft;
         }
     }
+    void LookWherePlayerIsLooking()
+    {
+        direction = playerMovement.Input;
+        // look at where you will be going next 
+        if (direction.x != 0 || direction.y != 0)
+        {
+            animator.SetFloat("x", direction.x);
+            animator.SetFloat("y", direction.y);
+        }
+    }
+    void LookAtPlayer()
+    {
+        direction = -1 * (transform.position - playerMovement.transform.position).normalized;
+        // look at where you will be going next 
+        if (direction.x != 0 || direction.y != 0)
+        {
+            animator.SetFloat("x", direction.x);
+            animator.SetFloat("y", direction.y);
+        }
+    }
 
-    void Move()
+    public void Move(Transform walkTo)
     {
         move = true;
         animator.SetBool("Moving", true);
-        transform.position = Vector3.MoveTowards(transform.position, wayPoint.position, speed * Time.deltaTime);
+        LookWherePlayerIsLooking();
+        transform.position = Vector3.MoveTowards(transform.position, walkTo.position, speed * Time.deltaTime);
 
     }
-    void StopMoving()
+    public void StopMoving()
     {
         if (move)
         {

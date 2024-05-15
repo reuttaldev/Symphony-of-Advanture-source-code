@@ -13,7 +13,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]
     TMP_Text addItemText;
     [SerializeField]
-    float fadeDuration = 0.3f, showTextDuration = 180, showMapDuration = 180;
+    float fadeDuration = 0.3f, showTextDuration = 30, showMapDuration = 30;
     public void ShowMapIcons(int whichPieces)
     {
         for (int i = 0; i < whichPieces ; i++)
