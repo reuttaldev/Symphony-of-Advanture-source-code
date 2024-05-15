@@ -6,6 +6,8 @@ using System.Collections;
 using UnityEngine.Events;
 using System;
 using Yarn;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class WalkmanUI : MonoBehaviour
 {
@@ -27,10 +29,10 @@ public class WalkmanUI : MonoBehaviour
     [SerializeField]
     Image cassetteTapeLocation;
     int cassetteImageIndex = 0;
+    [SerializeField]
+    GameObject cassettePrefab, gridParent;
+    List<Button> cassetteButtons = new List<Button>();
 
-    private void Start()
-    {
-    }
     private void OnEnable()
     {
         if (audioManager == null)
@@ -39,10 +41,16 @@ public class WalkmanUI : MonoBehaviour
         audioManager.OnTrackChanged.AddListener(UpdateDisplay); 
         cassetteImageIndex = 0;
         UpdateDisplay();
+        OpenPanel();
     }
     private void OnDisable()
     {
         audioManager.OnTrackChanged.RemoveListener(UpdateDisplay);
+        cassetteButtons = new List<Button>();
+        foreach (Transform child in gridParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
     private void Update()
     {
@@ -83,13 +91,22 @@ public class WalkmanUI : MonoBehaviour
         arrow.sprite = selectorOff;
 
     }
+
+    void OpenPanel()
+    {
+        for (int i = 0; i < audioManager.LibrarySize; i++)
+        {
+            GameObject cassette = Instantiate(cassettePrefab, gridParent.transform);
+            CassetteUI cassetteUI = cassette.GetComponent<CassetteUI>();
+            cassetteUI.image.sprite = cassetteImages[i];
+            cassetteButtons.Add(cassette.GetComponent<Button>());
+        }
+        EventSystem.current.SetSelectedGameObject(cassetteButtons[0].gameObject);
+    }
     // this method will be called when a new song is being played 
     void UpdateDisplay()
     {
-        //TrackData currentTrack = audioManager.GetCurrentTrack();
-        // do something to indicate we are switching songs 
-        Debug.Log("updating display " + cassetteImageIndex);
-        cassetteTapeLocation.sprite = cassetteImages[cassetteImageIndex];
+        
 
     }
 }

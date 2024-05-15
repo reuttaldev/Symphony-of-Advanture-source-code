@@ -21,6 +21,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     // our current library, what we make available for the player out of the loaded tracks. Contains the keys for the loaded tracks that are stored in the dictionary above 
     private List<string> library = new List<string>();   // I need this list so I can iterate over the library dictionary by order of insertion of the keys
     int index=0;// currently playing index
+    public int LibrarySize => library.Count;
     #region ASSET LOADING
     Dictionary<TrackDataReference, AsyncOperationHandle> loadHandles = new Dictionary<TrackDataReference, AsyncOperationHandle>();
     void LoadStartingTrack()
@@ -187,7 +188,6 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     public void PlayNextTrack()
     {
         index = (index + 1) % (library.Count-1);
-        Debug.Log(index);
         PlayCurrentTrack();
     }
     public void PlayLastTrack()
@@ -205,6 +205,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
 
     public void AddToLibrary(string id) // add track with id to the currently avaialble for playing music library
     {
+        Debug.Log("adding to library track with id " + id);
         if (!loadedTracks.ContainsKey(id))
         {
             Debug.LogError("Trying to add track with id "+id+" but it is has no reference loaded");

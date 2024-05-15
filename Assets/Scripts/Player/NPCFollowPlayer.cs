@@ -114,11 +114,14 @@ public class NPCFollowPlayer : MonoBehaviour
         }
     }
 
-    public void Move(Transform walkTo)
+    public void Move(Transform walkTo, bool lookAtPlayer = false)
     {
         move = true;
         animator.SetBool("Moving", true);
-        LookAtPlayer();
+        if (lookAtPlayer)
+            LookAtPlayer();
+        else
+            LookWherePlayerIsLooking();
         transform.position = Vector3.MoveTowards(transform.position, walkTo.position, speed * Time.deltaTime);
 
     }
