@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Map 1
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-5341231da6f56534286de67ad8024c6a-11400000-0
   missionName: Map 1
   mainObjective: Talk to edmund and he will give you the first map piece
   startLocation: Edmund's office
-  state: 3
+  state: 0
   mandatory: 1
   prerequisiteIds: []

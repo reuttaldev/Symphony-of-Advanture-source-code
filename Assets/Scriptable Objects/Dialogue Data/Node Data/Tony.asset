@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98caad6d26309f64c99e25c7bd543386, type: 3}
   m_Name: Tony
   m_EditorClassIdentifier: 
-  nodeTitle: new_town_keeper_intro
-  associatedMission: {fileID: 11400000, guid: 60f83a6ca3adadc41953761dd60c0737, type: 2}
-  interactableMoreThanOnce: 0
+  GlobalID: GlobalObjectId_V1-3-77d07c813836e154ca0b9ab5de43a5b9-11400000-0
+  nodeTitle: new_town_keeper_badgering
+  associatedMission: {fileID: 0}
+  interactableMoreThanOnce: 1

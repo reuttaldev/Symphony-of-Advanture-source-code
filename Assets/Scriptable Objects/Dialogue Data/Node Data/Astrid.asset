@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98caad6d26309f64c99e25c7bd543386, type: 3}
   m_Name: Astrid
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-f14789b89a04c4447976d8c1e61d1bb6-11400000-0
   nodeTitle: companion_intro
   associatedMission: {fileID: 11400000, guid: fa1d302f03dd61a418cbb828dfb5d1ea, type: 2}
   interactableMoreThanOnce: 0

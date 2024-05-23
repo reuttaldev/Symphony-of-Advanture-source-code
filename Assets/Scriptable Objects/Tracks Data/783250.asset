@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
   m_Name: 783250
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-c6e774ac8641d0a4283535e2d75f2879-11400000-0
   audioClip: {fileID: 8300000, guid: 7d3c7f66d03575d48844c6b1f697ce5b, type: 3}
   trackID: 783250
   trackName: Carsten Jessen-Traveler

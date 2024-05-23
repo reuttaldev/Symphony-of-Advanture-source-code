@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Talk to town keeper
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-60f83a6ca3adadc41953761dd60c0737-11400000-0
   missionName: Talk to town keeper
   mainObjective: 
   startLocation: Town keeper office

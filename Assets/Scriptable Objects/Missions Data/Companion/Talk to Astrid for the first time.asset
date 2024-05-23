@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Talk to Astrid for the first time
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-fa1d302f03dd61a418cbb828dfb5d1ea-11400000-0
   missionName: Talk to Astrid for the first time
   mainObjective: 
   startLocation: 

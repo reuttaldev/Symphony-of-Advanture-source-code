@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
   m_Name: 1277709
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-4c123e397fde3614880b3ee4c30851d8-11400000-0
   audioClip: {fileID: 8300000, guid: 369f149c1f90e7a4db73acad7a22c1c8, type: 3}
   trackID: 1277709
   trackName: Ofelia s Clock Ticks Backwards

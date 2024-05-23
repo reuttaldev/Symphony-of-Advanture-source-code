@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b507815b89636a408c869ccb12202d4, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-14688fc18c6d0554b9f76b0a5969c6be-11400000-0
   minimumLibrarySize: 5
   minimumCollectibleTracks: 5
   initTrackLibrary:

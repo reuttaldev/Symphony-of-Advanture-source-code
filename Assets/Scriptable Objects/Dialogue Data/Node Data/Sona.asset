@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98caad6d26309f64c99e25c7bd543386, type: 3}
   m_Name: Sona
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-39d23b839cfd2ce46884f5c4152dbc35-11400000-0
   nodeTitle: collector_intro
   associatedMission: {fileID: 11400000, guid: 2774373882d2a534bb499aa1e7bae3a0, type: 2}
   interactableMoreThanOnce: 0

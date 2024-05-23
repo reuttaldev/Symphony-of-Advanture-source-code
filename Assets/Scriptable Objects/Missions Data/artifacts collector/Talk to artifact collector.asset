@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Talk to artifact collector
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-2774373882d2a534bb499aa1e7bae3a0-11400000-0
   missionName: Talk to artifact collector
   mainObjective: 
   startLocation: Sona's shop
-  state: 3
+  state: 2
   mandatory: 1
   prerequisiteIds: []

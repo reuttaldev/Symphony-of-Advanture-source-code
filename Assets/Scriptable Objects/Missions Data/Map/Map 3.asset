@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Map 3
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-d225d3740533a624e8e3ffce2217cfb2-11400000-0
   missionName: Map 3
   mainObjective: Find the map piece in the belonging of the cheating wift
   startLocation: Village, in the yard of the cheated man

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Talk to old lady
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-06a509492be24f24d83775ba0dd69501-11400000-0
   missionName: Talk to old lady
   mainObjective: talk to the old lady about her cat, and make her feel relaxed
   startLocation: village

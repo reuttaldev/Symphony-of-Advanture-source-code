@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
   m_Name: 1167302
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-7c69da4f662ba954689ffc97f51abac4-11400000-0
   audioClip: {fileID: 8300000, guid: ac0342c792d94dd419e0c598c00658f0, type: 3}
   trackID: 1167302
   trackName: Sanity Not Included

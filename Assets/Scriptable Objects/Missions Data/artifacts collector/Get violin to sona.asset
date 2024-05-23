@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Get violin to sona
   m_EditorClassIdentifier: 
-  missionName: Bring the violin to sona
+  GlobalID: GlobalObjectId_V1-3-062162071b4f2e147935a64a648530f7-11400000-0
+  missionName: Get violin to sona
   mainObjective: 
   startLocation: Astrid's house
   state: 3

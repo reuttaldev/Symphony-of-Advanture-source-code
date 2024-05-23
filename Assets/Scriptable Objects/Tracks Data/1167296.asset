@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
   m_Name: 1167296
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-88519a2abf574a24ca5be6a029e2a2c2-11400000-0
   audioClip: {fileID: 8300000, guid: 4c12d6132107e684fb51ca541289c7ea, type: 3}
   trackID: 1167296
   trackName: Track 2

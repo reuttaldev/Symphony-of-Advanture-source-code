@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Talk to Edmund
   m_EditorClassIdentifier: 
-  missionName: Talk to edmund
+  GlobalID: GlobalObjectId_V1-3-d537631462b88a84e9817108ff72af31-11400000-0
+  missionName: Talk to Edmund
   mainObjective: 
   startLocation: Castel
   state: 3

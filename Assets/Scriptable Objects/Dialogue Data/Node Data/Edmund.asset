@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98caad6d26309f64c99e25c7bd543386, type: 3}
   m_Name: Edmund
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-5e3c35e393e4503448bfa6ab52b88127-11400000-0
   nodeTitle: edmund_intro
   associatedMission: {fileID: 11400000, guid: d537631462b88a84e9817108ff72af31, type: 2}
   interactableMoreThanOnce: 0

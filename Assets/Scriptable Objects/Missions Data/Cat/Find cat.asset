@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Find cat
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-322021692a5e0944593760fb7fad1715-11400000-0
   missionName: Find cat
   mainObjective: 
   startLocation: 

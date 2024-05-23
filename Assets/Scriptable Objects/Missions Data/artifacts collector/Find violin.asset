@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Find violin
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-cf354acd8c9a4d54fabef39083bb7831-11400000-0
   missionName: Find violin
   mainObjective: 
   startLocation: Astrid's house

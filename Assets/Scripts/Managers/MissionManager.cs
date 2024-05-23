@@ -38,6 +38,7 @@ public class MissionManager : MonoBehaviour, IRegistrableService
     // dialogue manger or mission interactables have reference to missionData and those call complete mission on mission data and then it will call this
     public void MissionHasStarted(string missionID)
     {
+        Debug.LogError(missionID);
         if (missionWrappers.ContainsKey(missionID))
         {
             Debug.Log("Envoking onMissionStart events for " + missionWrappers[missionID].Name);

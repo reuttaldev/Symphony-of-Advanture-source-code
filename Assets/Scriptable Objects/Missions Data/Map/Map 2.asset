@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Map 2
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-eec36df9bd9ae384ea7919dde1f58b7e-11400000-0
   missionName: Map 2
   mainObjective: exchange the violin in return to the second map piece
   startLocation: Sona's office

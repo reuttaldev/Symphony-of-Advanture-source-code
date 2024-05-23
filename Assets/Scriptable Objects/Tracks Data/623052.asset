@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
   m_Name: 623052
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-6ff067a9cc343944d9980fdfcb7a2e5e-11400000-0
   audioClip: {fileID: 8300000, guid: 0376ac4f459a0a1419a50515bd226456, type: 3}
   trackID: 623052
   trackName: Rola Z (overture)

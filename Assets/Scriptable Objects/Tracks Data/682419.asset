@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
   m_Name: 682419
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-44f8a377dc101d441bdd8e1d3051801c-11400000-0
   audioClip: {fileID: 8300000, guid: bbdf61f8dd3543a43ac54cacb5a85283, type: 3}
   trackID: 682419
   trackName: Homecoming

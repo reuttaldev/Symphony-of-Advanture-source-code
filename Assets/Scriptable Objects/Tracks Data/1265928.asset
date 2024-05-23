@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
   m_Name: 1265928
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-83bc5309eceb9194e9385c94365e1d6e-11400000-0
   audioClip: {fileID: 8300000, guid: 69d83f7d49b4e8d40adb47866d6206fe, type: 3}
   trackID: 1265928
   trackName: Micronesia

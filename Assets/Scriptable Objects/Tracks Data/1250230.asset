@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369e5b3245423b1438471213410914e7, type: 3}
   m_Name: 1250230
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-97036bcbe41f61c44b16239a18c66e0a-11400000-0
   audioClip: {fileID: 8300000, guid: 18dffd7573e98a94da4fc53ad0783e0f, type: 3}
   trackID: 1250230
   trackName: Chimes
