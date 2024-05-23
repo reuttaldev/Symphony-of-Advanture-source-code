@@ -7,9 +7,10 @@ public class DialogueIntractable : Interactable
     [SerializeField]
     DialogueNodeData nodeData;
     DialogueManager dialogueManager;
+    GameManager gameManager;
     [SerializeField]
     // where to place the companion in comparison to the player once the dialogue (with someone who is not the companion) has started
-    Direction companionPosition = Direction.none;
+    Direction companionPosition = Direction.none, playerDirection = Direction.none;
     private void Start()
     {
         if (nodeData == null)
@@ -17,6 +18,7 @@ public class DialogueIntractable : Interactable
         if (nodeData != null && string.IsNullOrWhiteSpace(nodeData.nodeTitle))
             Debug.LogError("DialogueStartNodeData with name " + nodeData.name + " has no title set.");
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
+        gameManager = ServiceLocator.Instance.Get<GameManager>();
         interactableMoreThanOnce = nodeData.interactableMoreThanOnce;   
     }
     protected override void DisableInteraction()
@@ -28,8 +30,6 @@ public class DialogueIntractable : Interactable
     }
     protected override void TriggerInteraction()
     {
-        Debug.Log("TriggerInteraction");
-
         // start conversation
         // we need a function to tell Yarn Spinner to start from {specifiedNodeName}
         if (nodeData.associatedMission != null)
@@ -40,8 +40,14 @@ public class DialogueIntractable : Interactable
                 return;
             }
             dialogueManager.missionToComplete = nodeData.associatedMission;
+            nodeData.associatedMission.StartMission();
         }
-        dialogueManager.StartDialogue(nodeData.nodeTitle, companionPosition);
+        if (playerDirection != Direction.none)
+            gameManager.FacePosition(playerDirection, transform.position);
+        if (companionPosition != Direction.none)
+            gameManager.CompanionWalkToPlayer(companionPosition, false);
+
+        dialogueManager.StartDialogue(nodeData.nodeTitle);
     }
     public void ChangeConversationStartNode(string nodeName)
     {

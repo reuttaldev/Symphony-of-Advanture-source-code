@@ -40,18 +40,13 @@ public class WalkmanUI : MonoBehaviour
         audioManager.PlayCurrentTrack();
         audioManager.OnTrackChanged.AddListener(UpdateDisplay); 
         cassetteImageIndex = 0;
-        UpdateDisplay();
-        OpenPanel();
     }
     private void OnDisable()
     {
         audioManager.OnTrackChanged.RemoveListener(UpdateDisplay);
-        cassetteButtons = new List<Button>();
-        foreach (Transform child in gridParent.transform)
-        {
-            Destroy(child.gameObject);
-        }
     }
+
+
     private void Update()
     {
         if(lastSongAction.action.WasPressedThisFrame())
@@ -69,7 +64,6 @@ public class WalkmanUI : MonoBehaviour
     }
     public void NextWasPressed()
     {
-        Debug.Log("next was pressed");
         cassetteImageIndex = (cassetteImageIndex + 1) % (cassetteImages.Length - 1);
         audioManager.PlayLastTrack();
         StartCoroutine(HighlightArrow(rightArrow));
@@ -92,7 +86,7 @@ public class WalkmanUI : MonoBehaviour
 
     }
 
-    void OpenPanel()
+    public void Open()
     {
         for (int i = 0; i < audioManager.LibrarySize; i++)
         {
@@ -103,6 +97,18 @@ public class WalkmanUI : MonoBehaviour
         }
         EventSystem.current.SetSelectedGameObject(cassetteButtons[0].gameObject);
     }
+    // manual = true when we open the walkman through C key, and not through a music dialogue with one of the characters
+    public void Close(bool manual = false)
+    {
+        if (manual)
+            audioManager.StopAudio();
+        cassetteButtons = new List<Button>();
+        foreach (Transform child in gridParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     // this method will be called when a new song is being played 
     void UpdateDisplay()
     {

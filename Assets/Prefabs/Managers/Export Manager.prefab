@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7806254208784879048}
   - component: {fileID: 8520830505126271309}
-  - component: {fileID: 5167799106303742719}
+  - component: {fileID: 6188075723671265916}
   m_Layer: 0
   m_Name: Export Manager
   m_TagString: Untagged
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d0cc92458feb04db859fb38d62d8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5167799106303742719
+--- !u!114 &6188075723671265916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

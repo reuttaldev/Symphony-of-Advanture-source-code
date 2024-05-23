@@ -26,7 +26,6 @@ public abstract class Interactable : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("onTriggerEnter");
         if(collision.tag == "Player" && interactable)
             TriggerInteraction();
     }

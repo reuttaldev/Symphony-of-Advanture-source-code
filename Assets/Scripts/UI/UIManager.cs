@@ -55,27 +55,32 @@ public class UIManager : MonoBehaviour, IRegistrableService
         inputManager.ActivatePlayerMap();
     }
 
-    void OpenWalkmanInterface()
+    void OpenWalkmanInterface(bool manual = false)
     {
         // open menu only if nothing else is open
         if (!OpenAndSwitchUIMap())
             return;
         walkmanUI.gameObject.SetActive(true);
+        walkmanUI.Open();
+        musicDialogueText.SetActive(false);
     }
     void CloseWalkmanInterface() 
     {
         walkmanUI.gameObject.SetActive(false);
+        walkmanUI.Close(manual:true);
         CloseAndSwitchUIMap();
     }
     public void OpenMusicDialogueUI()
     {
         //  we will often start the music dialogue from the regular dialogue, so no need to check if another UI window is open
         walkmanUI.gameObject.SetActive(true);
+        walkmanUI.Open();
         musicDialogueText.SetActive(true);
 
     }
     public void CloseMusicDialogueUI()
     {
+        walkmanUI.Close(manual:false);
         walkmanUI.gameObject.SetActive(false);
         musicDialogueText.SetActive(false);
 

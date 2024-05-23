@@ -150,6 +150,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
                 break;
         }
     }
+
     public void CompanionWalkToPlayer(string d)
     {
         CompanionWalkToPlayer(GetDirection(d),true);
@@ -240,5 +241,19 @@ public class GameManager : MonoBehaviour, IRegistrableService
         }
         return Direction.left;
     }
+
+
+    // when a dialogue starts, player and companion should face the person they are talking to
+    public void FacePosition(Direction direction, Vector2 position)
+    {
+        CharacterLookAt(player, direction);
+        CharacterLookAt(companion, direction);
+        // make them stand right infront of who they are takling to, for symmetry 
+    }
     #endregion
 }
+
+    public enum Direction
+    {
+        left, right, up, down, none
+    }

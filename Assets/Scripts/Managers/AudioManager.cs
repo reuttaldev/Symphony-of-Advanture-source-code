@@ -199,7 +199,8 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
         PlayCurrentTrack();
     }
     public void StopAudio()
-    { 
+    {
+        Debug.Log("stopping audio");
         audioSource.Stop();
     } 
 

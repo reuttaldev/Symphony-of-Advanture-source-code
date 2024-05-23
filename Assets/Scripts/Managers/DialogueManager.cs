@@ -5,6 +5,7 @@ using UnityEngine.Events;
 // In this script I will connect to yarn all of the commands it needs to have access to
 public class DialogueManager : MonoBehaviour, IRegistrableService
 {
+    [SerializeField]
     DialogueRunner dialogueRunner;
     // / keep a reference to the interaction that called to open the interface so that we can have it's id and the associated label
     [HideInInspector]
@@ -16,12 +17,10 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     public MissionData missionToStart;
     UIManager uiManager;
     string lastReadDialogueNode = null;
-    GameManager gameManager;
 
     void Awake()
     {
         ServiceLocator.Instance.Register<DialogueManager>(this);
-        dialogueRunner = gameObject.GetComponent<DialogueRunner>();
 
     }
     void OnEnable()
@@ -35,7 +34,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     private void Start()
     {
         uiManager = ServiceLocator.Instance.Get<UIManager>();
-        gameManager = ServiceLocator.Instance.Get<GameManager>();
         dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
         dialogueRunner.AddCommandHandler("OMD", StartMusicDialogue);
         // finish mission successfuly
@@ -43,12 +41,9 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         // finish mission insuccessfuly
         dialogueRunner.AddCommandHandler("FMF", delegate { missionToComplete.EndMission(); });
         dialogueRunner.AddCommandHandler("SM", delegate { missionToStart.StartMission(); });
-
-
-
     }
 
-    public void StartDialogue(string nodeToStart, Direction companionDirection = Direction.none)
+    public void StartDialogue(string nodeToStart)
     {
         if (string.IsNullOrEmpty(nodeToStart))
         {
@@ -60,9 +55,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("Dialogue already running");
             return;
         }
-        if (companionDirection != Direction.none)
-            gameManager.CompanionWalkToPlayer(companionDirection, false);
-
         dialogueRunner.StartDialogue(nodeToStart);
         uiManager.OpenDialogueUI();
         lastReadDialogueNode = dialogueRunner.CurrentNodeName;
@@ -77,6 +69,8 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     {
         uiManager.CloseDialogueUI();
         HandleMissionOnDialogueEnd();
+        if(AudioManager.Instance != null)
+            AudioManager.Instance.StopAudio();
     }
 
     void StartMusicDialogue()
@@ -88,11 +82,13 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     {
         string nextNode = currentMusicInteraction.onCompletionNode;
         uiManager.CloseMusicDialogueUI();
+        if(!string.IsNullOrEmpty(nextNode))
+        {
+            StartDialogue(nextNode);
+        }
         ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
         HandleMissionOnDialogueEnd();
         ResetMusicDialogue();
-        if(string.IsNullOrEmpty(nextNode))
-            StartDialogue(nextNode);
     }
     void ResetMusicDialogue()
     {
