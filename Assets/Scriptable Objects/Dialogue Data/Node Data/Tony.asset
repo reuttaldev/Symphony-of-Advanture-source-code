@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tony
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-77d07c813836e154ca0b9ab5de43a5b9-11400000-0
-  nodeTitle: new_town_keeper_badgering
-  associatedMission: {fileID: 0}
+  nodeTitle: new_town_keeper_intro
+  associatedMission: {fileID: 11400000, guid: 60f83a6ca3adadc41953761dd60c0737, type: 2}
   interactableMoreThanOnce: 1

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Talk to university student
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-1e7db9781952a8d49ae5cc56cbcd071d-11400000-0
   missionName: Talk to university student
   mainObjective: he is dressed like a rock
   startLocation: NewCity, next to a bridge

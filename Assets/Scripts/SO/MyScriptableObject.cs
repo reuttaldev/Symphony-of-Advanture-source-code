@@ -15,8 +15,7 @@ public class MyScriptableObject : ScriptableObject
     virtual protected void OnEnable()
     {
         GlobalID = GlobalObjectId.GetGlobalObjectIdSlow(this).ToString();
-        EditorUtility.SetDirty(this); // Mark the object as "dirty" to ensure the change is saved.
-        AssetDatabase.SaveAssets(); // Save the asset to disk.
+        //EditorUtility.SetDirty(this); // Mark the object as "dirty" to ensure the change is saved.
         EditorApplication.playModeStateChanged += OnPlayModeChanged;
     }
 

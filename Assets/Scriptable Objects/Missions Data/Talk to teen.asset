@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Talk to teen
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-d64e56cbcd2e44249bcaf52cd15b54ca-11400000-0
   missionName: Talk to teen
   mainObjective: that is upset about his dad
   startLocation: Outside castel hallway door. he just happened to be there.

@@ -17,6 +17,10 @@ public class CatController : MonoBehaviour
     Transform[] way;
     [SerializeField]
     Transform teasePlayerPosition;
+    [SerializeField]
+    MissionData associatedMission;
+    [SerializeField]
+    GameObject interactble;
     int i = 0;
     bool reachedCurrentPoint = false;
     AudioSource audioSource;
@@ -37,6 +41,10 @@ public class CatController : MonoBehaviour
         escapeFromPlayer = false;
         meow = true;
         walkTo = teasePlayerPosition;
+        if (associatedMission.State == MissionState.OnGoing)
+            transform.position = way[0].position;
+        else
+            gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -67,8 +75,9 @@ public class CatController : MonoBehaviour
             if (i + 1 == way.Length)
             {
                 StopMoving();
-                animator.SetBool("Resting", true);
+                animator.SetTrigger("Resting");
                 escapeFromPlayer = false;
+                interactble.gameObject.SetActive(true);
             }
             else
             {
@@ -78,11 +87,11 @@ public class CatController : MonoBehaviour
                 reachedCurrentPoint = false;
             }
         }
-        if (!meow)
-            return;
         timer += Time.fixedDeltaTime;
         if (timer >= meowInterval)
         {
+            if (!meow)
+                return;
             audioSource.PlayOneShot(meows[Random.Range(0, meows.Length)]);
             timer = 0f;
         }
@@ -124,11 +133,11 @@ public class CatController : MonoBehaviour
     {
         yield return new WaitForSeconds(waitToTeaseDuration);
         yield return WalkTo();
-        yield return new WaitForSeconds(teaseDuration);
+        //yield return new WaitForSeconds(teaseDuration);
         walkTo = way[0];
         yield return WalkTo();
         StopMoving();
-        animator.SetBool("Resting", true);
+        animator.SetTrigger("Resting");
     }
     IEnumerator WalkTo()
     {
