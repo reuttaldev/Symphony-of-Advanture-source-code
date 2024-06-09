@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using System;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Linq;
+using System.Collections;
 
 
 
@@ -22,6 +23,8 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     private List<string> library = new List<string>();   // I need this list so I can iterate over the library dictionary by order of insertion of the keys
     int index=0;// currently playing index
     public int LibrarySize => library.Count;
+    [SerializeField]
+    float fadeOutDuration = 1;
     #region ASSET LOADING
     Dictionary<TrackDataReference, AsyncOperationHandle> loadHandles = new Dictionary<TrackDataReference, AsyncOperationHandle>();
     void LoadStartingTrack()
@@ -198,11 +201,6 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
             index--;
         PlayCurrentTrack();
     }
-    public void StopAudio()
-    {
-        audioSource.Stop();
-    } 
-
     public void AddToLibrary(string id) // add track with id to the currently avaialble for playing music library
     {
         Debug.Log("adding to library track with id " + id);
@@ -245,7 +243,28 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     {
         loadedTracks[trackID].SetUserResponse(emotion);
     }
+    public void StopAudio()
+    {
+        StartCoroutine(FadeOut());
+    }
+    public IEnumerator FadeOut()
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime /fadeOutDuration;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+
 }
+
+
 //making an asset "Addressable" allows you to use that asset's unique address to call it from anywhere
  // Addressable assets are not loaded to memeory when the scene is loaded like hard-referenced objects, it will be loaded to memory only when you instantiate the needed asset
  // making it Addressable ensured an asset is loaded and we are investing memory to it only when an if it is used, rather than loading the entire resources folder to the build

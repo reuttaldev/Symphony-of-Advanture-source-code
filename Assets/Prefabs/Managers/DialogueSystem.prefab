@@ -1105,5 +1105,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 4632972474567403005}
   currentMusicInteraction: {fileID: 0}
-  missionToComplete: {fileID: 0}
-  missionToStart: {fileID: 0}
+  playerNameData: {fileID: 11400000, guid: a6624afec1413ca44a4f906746e897d2, type: 2}

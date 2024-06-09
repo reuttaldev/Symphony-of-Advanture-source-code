@@ -23,6 +23,8 @@ public class MissionManager : MonoBehaviour, IRegistrableService
                 Debug.LogError("Duplicate mission wrapper with name " + wrapper.Name);
                 return;
             }    
+            // trigger on scene start events, if the associated missions are active
+
             missionWrappers[wrapper.MissionDataID] = wrapper;
         }
     }

@@ -38,7 +38,7 @@ public class MusicDialogueInteractable : Interactable
     }
     protected override void TriggerInteraction()
     {
-        dialogueManager.currentMusicInteraction = data;
-        dialogueManager.missionToComplete = associatedMission;
+        dialogueManager.SetMusicInteraction(data);
+        dialogueManager.SetMissionToComplete(associatedMission);
     }
 }

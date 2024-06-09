@@ -2,18 +2,36 @@
 scene: Player wakes up and everyone gathers around him. Astrid approches them to see what's going on
 location: middle of town square
 ---
-///game is in silence
-Astrid: Hey, are you alright? 
-Astrid: You just appeared here. This is weird, our town rarely gets any visitors.
+<<declare $playerName = "name">> 
+<<declare $astridSaidName = false>> 
+?: Hey, are you alright? 
+?: You just appeared here. This is weird, our town rarely gets any visitors.
 -> Player: Who are you?
-    Astrid: I'm Astrid. 
+    ?: I'm Astrid. 
+    <<set $astridSaidName = true>> 
 -> Player: Whare am I?
-    Astrid: You're in town square. 
-    Astrid: Of which town? "TownName", of course.
-    Astrid: I'm Astrid. And you are?
+    ?: You're in town square. 
+    ?: Of which town? This one, of course.
 -> Player: How did I get here?
-    Astrid: I don’t know. You just appeared here.
-    Astrid: Well, welcome to our town, stranger. I'm Astrid.
+    ?: I don’t know. You just appeared here.
+
+<<if $astridSaidName>>
+    Astrid: What's your name? 
+    <<EnterName EnterNameManager>>
+<<else>>
+    -: What's your name? 
+    <<EnterName EnterNameManager>>
+<<endif>>
+===
+
+title: companion_intro_after_name
+---
+<<if $astridSaidName>>
+    Astrid: Well, welcome to our town, {$playerName}.
+<<else>>
+    Astrid: Well, welcome to our town, {$playerName}. I'm Astrid.
+<<endif>>
+
 Astrid: What’s this thing you are carrying on your waist? 
 Astrid: A walkman? What's that?
 ->Player: It's an old audio player.
@@ -48,8 +66,6 @@ Astrid: Oh my! Music! I can hear it! Quickly, we must show this to the town keep
 -> Player: Where is he?
     Astrid: His office is right there. His office is right there, let's go.
 -> Player: Okay.
-
-
 <<FMS>>
 ===
 
@@ -68,6 +84,19 @@ Astrid: He He cast a curse on the town, a spell to silence all music.
 Astrid: He thought... he thought nothing would ever compare to Ingrid's playing. That nothing else was worth hearing. He blames himself, you know? Thinks he didn't do enough to protect her. 
 Astrid: So now he is hiding away, who knows where. And he is the only one who can break this curse.
 << jump companion_discovers_walkman_works>>
+===
+
+
+title: companion_goes_home
+---
+Astrid: Y'know, I think I have something sona will find valuable at my house.  It's in the village, on the right of town square.
+Astrid: Meet me there, after you are done exploring. 
+<<FMS>>
+===
+
+title: companion_outside_home
+---
+Astrid: This part will be available later on. 
 ===
 
 title: companion_after_artifact_collector

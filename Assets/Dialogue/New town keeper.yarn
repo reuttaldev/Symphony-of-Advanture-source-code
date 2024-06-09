@@ -4,7 +4,7 @@ scene: player has just woken up and they are confused. Astrid took them to this 
 emotion: - 
 ---
 Town keeper: Hey, Astrid. Hey - Who are you? 
-Astrid: This is $playerName.
+Astrid: This is {$playerName}.
 Town keeper: Oh, welcome! . I am Mayor Tony, but you can call me Tony. Have you come for vacation in our lovely town?
 ->Player: I just woke up here. 
     Tony: Huh, that's unsual. 
@@ -14,15 +14,20 @@ Town keeper: Oh, welcome! . I am Mayor Tony, but you can call me Tony. Have you 
 -> Player: Vacation? here? I don't think so. 
     Tony: That's rude, kid. Don't speak that way about my town.
     Tony: I was born and raised here. This place has a lot to offer, if you just listen. 
-Astrid: $playerName just appeared out of no where in the middle of town square. With this, look- 
+Astrid: {$playerName} just appeared out of no where in the middle of town square. With this, look- 
 Tony: Oh, an old Walkman. What a shame they're all useless now. 
 Tony: Put that thing away please, I can't stand to look at it. It's just a reminder on how this town will never be the same. 
 Astrid: No, Tony! This Walkman works!
 Tony: Astrid I really don't have time for one of your pranks today-
-Astrid: I am serious! Listen- 
-[checksOutWalkman][/checksOutWalkman]
+Astrid: I am serious! { $playerName }, Prove it. Play us a... <color=\#ff0000>sad</color> song.
+<<tutorial TutorialManager>>
+===
+
+title: new_town_keeper_heard_music
+location: in his office, next to town square
+---
 Tony: Oh, Incridibe! This is the thing I've been waiting for.
-Tony: You, $playerName, are carrying something unique. Something the curse doesn't seem to affect. 
+Tony: You, {$playerName}, are carrying something unique. Something the curse doesn't seem to affect. 
 Tony: It's the only source of music left in our town. I believe it holds the key to breaking the curse.
 ->Player: Really? Me?
     Tony: Yes, you!

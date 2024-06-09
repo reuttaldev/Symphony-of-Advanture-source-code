@@ -1,22 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System.Text;
 using System;
-using CsvHelper;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Linq;
 using Google.Apis.Sheets.v4;
 using Google;
 using System.Net.Http;
-using Newtonsoft.Json.Linq;
-
 
 // I am making it a singleton because otherwise each time we load a scene and we reach start, the csv file will be reset.
 // I need the CSV file to be created and reset only ONCE at the very start of the game
 public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
 {
+    [SerializeField]
     GameSettings gameSettings;
+    [SerializeField]
     DataMigrationSettings dataMigrationSettings;
     [Header("Google")]
     string rangeEnd = "!A2";

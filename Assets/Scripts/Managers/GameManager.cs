@@ -19,10 +19,8 @@ public class GameManager : MonoBehaviour, IRegistrableService
     GameObject player, companion;
     [SerializeField]
     Transform leftOfPlayer, rightOfPlayer, downOfPlayer, upOfPlayer;
-    [SerializeField]
-    MissionData startGameMission;
-    [SerializeField]
-    UnityEvent startGameActions, endGameActions;
+    bool loaded = false;
+
     private void Awake()
     {     
         ServiceLocator.Instance.Register<GameManager>(this);
@@ -32,19 +30,35 @@ public class GameManager : MonoBehaviour, IRegistrableService
             Debug.LogError("Game manager is missing a reference to data migration settings");
         if (returnPoints.Count == 0)
             Debug.LogWarning("Forgot to drag in scene exits to game manager");
-
-
     }
 
     void Start()
     {
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
-        if (startGameMission!= null && startGameMission.State == MissionState.NotStarted)
-        {
-            startGameActions.Invoke();
-        }
+    }
+
+    // called from scene controller
+    public void OnSceneLoad(string previousSceneName)
+    {
+        if(!string.IsNullOrEmpty(previousSceneName))
+            PlacePlayerInScene(previousSceneName);
+        TriggerOnSceneStartEvents();
     }
     
+    void TriggerOnSceneStartEvents()
+    {
+        var children = GetComponentsInChildren<StartSceneEventWrapper>();
+        foreach (StartSceneEventWrapper wrapper in children)
+        {
+            // trigger on scene start events, if the associated missions are active
+            // these missions will often be completed through the dialouge yarn script
+            // or one of the events we are triggering here will be to complete the mission
+            if(wrapper.MissionState == MissionState.OnGoing)
+            {
+                wrapper.onSceneStart.Invoke();
+            }
+        }
+    }
     public void SetPlayerName(string playerName)
     {
         // set player name in yarn
@@ -78,7 +92,6 @@ public class GameManager : MonoBehaviour, IRegistrableService
         GameOver();
         Application.Quit();
         Debug.Log("exiting game");
-
     }
 
     public void GameOver()
@@ -91,7 +104,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
 
     // each scene trigger exit also has a return point child, which shows us where to place the player and companion
     // when RETURNING from that scene exit, i.e entering this scene from Scene TransitionTrigger .TransitionTo
-    public void PlacePlayerInScene(string previousSceneName)
+    void PlacePlayerInScene(string previousSceneName)
     {
         if(string.IsNullOrWhiteSpace(previousSceneName))
         {
@@ -117,10 +130,13 @@ public class GameManager : MonoBehaviour, IRegistrableService
             return;
         }
         player.transform.position = returnPoint.transform.position;
-        PlaceNextToPlayer(companion, returnPoint.companionAtSideOfPlayer);
         Direction lookAtDirection = returnPoint.lookAt;
         CharacterLookAt(player, lookAtDirection);
-        CharacterLookAt(companion, lookAtDirection);
+        if(companion.GetComponent<NPCFollowPlayer>().FollowingPlayer)
+        {
+            PlaceNextToPlayer(companion, returnPoint.companionAtSideOfPlayer);
+            CharacterLookAt(companion, lookAtDirection);
+        }
     }
 
     void PlaceNextToPlayer(GameObject character, Direction direction)
@@ -160,9 +176,14 @@ public class GameManager : MonoBehaviour, IRegistrableService
         NPCFollowPlayer companionMovements = companion.GetComponent<NPCFollowPlayer>(); 
         StartCoroutine(WalkNPC(companionMovements, GetNextToPlayerPos(direction), faceEachother, direction));
     }
-
+    public void CompanionWalkTo(Transform transform)
+    {
+        NPCFollowPlayer companionMovements = companion.GetComponent<NPCFollowPlayer>();
+        StartCoroutine(WalkNPC(companionMovements, transform));
+        Debug.Log("companion walk to");
+    }
     // when player is static, walk towards it. not the same as npc follow player bc there we are following the player when it's moving
-    IEnumerator WalkNPC(NPCFollowPlayer character, Transform walkTo,bool faceEachother, Direction direction= Direction.none)
+    IEnumerator WalkNPC(NPCFollowPlayer character, Transform walkTo,bool faceEachother = false, Direction direction= Direction.none)
     {
         // stop regular companion movements (if he is already following the player
         bool wasFollowing = character.FollowingPlayer;
@@ -170,7 +191,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
             character.StopFollowingPlayer();
         while (Vector2.Distance(walkTo.position, character.transform.position) > 0.2)
         {
-            character.Move(walkTo,true);
+            character.Move(walkTo);
             yield return new WaitForFixedUpdate();
         }
         // we have reached our position
@@ -211,6 +232,10 @@ public class GameManager : MonoBehaviour, IRegistrableService
         return opposite;
     }
 
+    public void SetCompanionPosition(Transform at)
+    {
+        companion.gameObject.transform.position = at.position;
+    }
     Transform GetNextToPlayerPos(Direction direction) 
     {
         switch (direction)

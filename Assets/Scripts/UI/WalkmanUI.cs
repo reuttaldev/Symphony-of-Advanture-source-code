@@ -37,7 +37,6 @@ public class WalkmanUI : MonoBehaviour
     {
         if (audioManager == null)
             audioManager = AudioManager.Instance;
-        audioManager.PlayCurrentTrack();
         audioManager.OnTrackChanged.AddListener(UpdateDisplay); 
         cassetteImageIndex = 0;
     }
@@ -96,6 +95,7 @@ public class WalkmanUI : MonoBehaviour
             cassetteButtons.Add(cassette.GetComponent<Button>());
         }
         EventSystem.current.SetSelectedGameObject(cassetteButtons[0].gameObject);
+        audioManager.PlayCurrentTrack();
     }
     // manual = true when we open the walkman through C key, and not through a music dialogue with one of the characters
     public void Close(bool manual = false)

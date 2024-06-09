@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour, IRegistrableService
     [SerializeField]
     private InputActionReference closeWalkmanAction;
     private InputManager inputManager;
+    [SerializeField]
+    GameObject extraPanel;
     bool uiPanalOpen; // this will be true if any of our UI menus are currently open
 
     private void Awake()
@@ -39,7 +41,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
         closeWalkmanAction.action.performed -= context => CloseWalkmanInterface();
     }
 
-    bool OpenAndSwitchUIMap()
+    public bool SwitchUIMap()
     {
         // if no other menu is already open
         if (uiPanalOpen)
@@ -58,8 +60,9 @@ public class UIManager : MonoBehaviour, IRegistrableService
     void OpenWalkmanInterface(bool manual = false)
     {
         // open menu only if nothing else is open
-        if (!OpenAndSwitchUIMap())
+        if (!SwitchUIMap())
             return;
+        uiPanalOpen = true;
         walkmanUI.gameObject.SetActive(true);
         walkmanUI.Open();
         musicDialogueText.SetActive(false);
@@ -73,28 +76,30 @@ public class UIManager : MonoBehaviour, IRegistrableService
     public void OpenMusicDialogueUI()
     {
         //  we will often start the music dialogue from the regular dialogue, so no need to check if another UI window is open
+        uiPanalOpen = true;
         walkmanUI.gameObject.SetActive(true);
         walkmanUI.Open();
-        musicDialogueText.SetActive(true);
+        musicDialogueText.SetActive(false);
 
     }
     public void CloseMusicDialogueUI()
     {
         walkmanUI.Close(manual:false);
         walkmanUI.gameObject.SetActive(false);
-        musicDialogueText.SetActive(false);
+        //musicDialogueText.SetActive(false);
 
         CloseAndSwitchUIMap();
     }
 
     public void OpenDialogueUI()
     {
-        OpenAndSwitchUIMap();
+        uiPanalOpen = SwitchUIMap();
     }
     public void CloseDialogueUI()
     {
         // if we have opened the music dialogue UI though a yarn script, don't close
-        if(!walkmanUI.gameObject.activeInHierarchy)
-            CloseAndSwitchUIMap();
+        if (walkmanUI.gameObject.activeInHierarchy || (extraPanel != null && extraPanel.gameObject.activeInHierarchy))
+            return;
+        CloseAndSwitchUIMap();
     }
 }

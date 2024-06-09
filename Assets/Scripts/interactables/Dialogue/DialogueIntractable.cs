@@ -39,7 +39,8 @@ public class DialogueIntractable : Interactable
             {
                 return;
             }
-            dialogueManager.missionToComplete = nodeData.associatedMission;
+            if (nodeData.associatedMission !=null)
+                dialogueManager.SetMissionToComplete(nodeData.associatedMission);
             nodeData.associatedMission.StartMission();
         }
         if (playerDirection != Direction.none)

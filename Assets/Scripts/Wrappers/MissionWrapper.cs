@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,9 +14,4 @@ public class MissionWrapper : MonoBehaviour
     public UnityEvent onMissionEnd;
     public string MissionDataID => missionData.GlobalID;
     public string Name => missionData.Name;
-
-    private void Start()
-    {
-        
-    }
 }

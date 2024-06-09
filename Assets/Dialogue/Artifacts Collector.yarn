@@ -4,7 +4,7 @@ scene: player approches artifact collector for the first time. she suggests that
 location: old city, in her shop
 ---
 Sona: Hey Astrid. Have you finnaly done something usful with yourself and brought me a new customer?  
-Astrid: This is $playerName. We're looking for something that resembles a map segment. 
+Astrid: This is {$playerName}. We're looking for something that resembles a map segment. 
 Sona: Let me see... 
 Sona: this looks like it would fit. 
 Astrid: You're the best Sona. See ya!
@@ -12,7 +12,7 @@ Sona: Hey, Hey! Not so quick. What are you giving me in return?
 -> Player: I don't have any money. 
     Sona: What's that on your belt, A walkman? I'll trade you for it.  
     -> Player: Okay. 
-        Astrid: $playerName, what are you doing? We need that.
+        Astrid: {$playerName}, what are you doing? We need that.
     -> Player: No. It was a gift
 -> Player: Please, I'm on a mission. 
     Sona: And? I'm also on a mission, to pay rent. 

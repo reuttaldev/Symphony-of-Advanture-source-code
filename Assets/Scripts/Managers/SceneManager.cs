@@ -18,6 +18,10 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         DontDestroyOnLoad(this);
         animator = sceneTransitionPanel.GetComponent<Animator>();
     }
+    private void Start()
+    {
+        HandleReturn();
+    }
     public void LoadScene(string sceneToLoadName)
     {
         if (!string.IsNullOrEmpty(sceneToLoadName))
@@ -67,6 +71,6 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     void HandleReturn()
     {
         // if we returned  to the scene in which we came from previosly 
-        ServiceLocator.Instance.Get<GameManager>().PlacePlayerInScene(previousSceneName);
+        ServiceLocator.Instance.Get<GameManager>().OnSceneLoad(previousSceneName);
     }
 }

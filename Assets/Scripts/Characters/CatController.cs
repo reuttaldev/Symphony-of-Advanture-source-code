@@ -41,16 +41,22 @@ public class CatController : MonoBehaviour
         escapeFromPlayer = false;
         meow = true;
         walkTo = teasePlayerPosition;
-        if (associatedMission.State == MissionState.OnGoing)
-            transform.position = way[0].position;
-        else
-            gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
     {
         if (!escapeFromPlayer)
             return;
+
+        timer += Time.fixedDeltaTime;
+        if (timer >= meowInterval)
+        {
+            if (!meow)
+                return;
+            audioSource.PlayOneShot(meows[Random.Range(0, meows.Length)]);
+            timer = 0f;
+        }
+
         // if you know your next walking point and you have not yet reached it, walk to it
         // if we have not reached our current destination 
         if (Vector2.Distance(transform.position, walkTo.position) > 0.1)
@@ -76,7 +82,6 @@ public class CatController : MonoBehaviour
             {
                 StopMoving();
                 animator.SetTrigger("Resting");
-                escapeFromPlayer = false;
                 interactble.gameObject.SetActive(true);
             }
             else
@@ -87,14 +92,7 @@ public class CatController : MonoBehaviour
                 reachedCurrentPoint = false;
             }
         }
-        timer += Time.fixedDeltaTime;
-        if (timer >= meowInterval)
-        {
-            if (!meow)
-                return;
-            audioSource.PlayOneShot(meows[Random.Range(0, meows.Length)]);
-            timer = 0f;
-        }
+       
     }
 
     public void Move()
@@ -152,6 +150,7 @@ public class CatController : MonoBehaviour
 
     public void StartEscapingPlayer()
     {
+        transform.position = way[0].position;
         escapeFromPlayer = true;
     }
 }

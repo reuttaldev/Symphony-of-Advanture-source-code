@@ -118,11 +118,18 @@ public class NPCFollowPlayer : MonoBehaviour
     {
         move = true;
         animator.SetBool("Moving", true);
-        if (lookAtPlayer)
-            LookAtPlayer();
-        else
-            LookWherePlayerIsLooking();
+        //if (lookAtPlayer)
+        //    LookAtPlayer();
+        //else
+            //LookWherePlayerIsLooking();
         transform.position = Vector3.MoveTowards(transform.position, walkTo.position, speed * Time.deltaTime);
+        //LookWhereYoureGoing
+        direction = -1 * (transform.position - walkTo.transform.position).normalized;
+        if (direction.x != 0 || direction.y != 0)
+        {
+            animator.SetFloat("x", direction.x);
+            animator.SetFloat("y", direction.y);
+        }
 
     }
     public void StopMoving()

@@ -120,6 +120,34 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 21940bd0-819c-4b54-a01b-c03f3f51c87e
     m_ActionName: Paused UI/Submit[/Keyboard/enter,/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a6c19f9-2d4a-4ee8-beb4-901ba4a8f1e5
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e2f1d016-b0d0-4fb3-9228-192a7026fa4b
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 98e844c3-c64a-461f-93b2-60a5c72bbc10
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e0f0ee2c-e6d1-4dd7-905c-cc1277ead895
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a02b2b75-f614-4fe9-a80b-5bb5b0e591dd
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f6fad90-4384-411a-850c-69b54067b584
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 647f3de8-4053-4a16-b530-495c0efda682
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -157,16 +185,16 @@ MonoBehaviour:
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
-  m_PointAction: {fileID: 0}
+  m_PointAction: {fileID: -2644742743805565318, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   m_MoveAction: {fileID: -8185594473555136210, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   m_SubmitAction: {fileID: -4462085463790603261, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   m_CancelAction: {fileID: 8631025337802188502, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
-  m_LeftClickAction: {fileID: 0}
-  m_MiddleClickAction: {fileID: 0}
-  m_RightClickAction: {fileID: 0}
-  m_ScrollWheelAction: {fileID: 0}
-  m_TrackedDevicePositionAction: {fileID: 0}
-  m_TrackedDeviceOrientationAction: {fileID: 0}
+  m_LeftClickAction: {fileID: -9068944333668592817, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
+  m_MiddleClickAction: {fileID: -1271953684908238763, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
+  m_RightClickAction: {fileID: -1271953684908238763, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
+  m_ScrollWheelAction: {fileID: 1259597871490596902, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
+  m_TrackedDevicePositionAction: {fileID: -8905543303006034877, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -4489950530002233923, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0

@@ -1,6 +1,7 @@
 using Yarn.Unity;
 using UnityEngine;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 
 // In this script I will connect to yarn all of the commands it needs to have access to
 public class DialogueManager : MonoBehaviour, IRegistrableService
@@ -10,14 +11,15 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     // / keep a reference to the interaction that called to open the interface so that we can have it's id and the associated label
     [HideInInspector]
     public MusicDialogueData currentMusicInteraction;
-    [HideInInspector]
+    //[HideInInspector]
     // the mission that is associatedMission with the currently open dialogue
-    public MissionData missionToComplete;
+    MissionData missionToComplete;
     [HideInInspector]
-    public MissionData missionToStart;
+    MissionData missionToStart;
     UIManager uiManager;
     string lastReadDialogueNode = null;
-
+    [SerializeField]
+    PlayerNameData playerNameData;
     void Awake()
     {
         ServiceLocator.Instance.Register<DialogueManager>(this);
@@ -33,16 +35,27 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     }
     private void Start()
     {
+        dialogueRunner.VariableStorage.SetValue("$playerName", playerNameData.PlayerName);
         uiManager = ServiceLocator.Instance.Get<UIManager>();
         dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
-        dialogueRunner.AddCommandHandler("OMD", StartMusicDialogue);
+        dialogueRunner.AddCommandHandler("OMD",delegate { uiManager.OpenMusicDialogueUI(); });
         // finish mission successfuly
         dialogueRunner.AddCommandHandler("FMS", delegate { missionToComplete.EndMission(); });
         // finish mission insuccessfuly
         dialogueRunner.AddCommandHandler("FMF", delegate { missionToComplete.EndMission(); });
         dialogueRunner.AddCommandHandler("SM", delegate { missionToStart.StartMission(); });
+        //dialogueRunner.VariableStorage.(customVariableStorage);
     }
 
+    public void SetMissionToComplete(MissionData data)
+    {
+        Debug.Log("mission to complete is set to " + data.Name);
+        missionToComplete = data;
+    }
+    public void SetMusicInteraction(MusicDialogueData data)
+    {
+        currentMusicInteraction = data;
+    }
     public void StartDialogue(string nodeToStart)
     {
         if (string.IsNullOrEmpty(nodeToStart))
@@ -58,7 +71,8 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         dialogueRunner.StartDialogue(nodeToStart);
         uiManager.OpenDialogueUI();
         lastReadDialogueNode = dialogueRunner.CurrentNodeName;
-        HandleMissionOnDialogueStart();
+        if (missionToStart != null)
+            missionToStart.StartMission();
     }
 
 
@@ -68,15 +82,10 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     void FinishDialogue()
     {
         uiManager.CloseDialogueUI();
-        HandleMissionOnDialogueEnd();
-        if(AudioManager.Instance != null)
+        missionToComplete = null;
+        missionToStart = null;
+        if (AudioManager.Instance != null)
             AudioManager.Instance.StopAudio();
-    }
-
-    void StartMusicDialogue()
-    {
-        uiManager.OpenMusicDialogueUI();
-        HandleMissionOnDialogueStart();
     }
     void FinishMusicDialogue()
     {
@@ -84,18 +93,14 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         uiManager.CloseMusicDialogueUI();
         if(!string.IsNullOrEmpty(nextNode))
         {
+            if (currentMusicInteraction.missionToComplete != null)
+                missionToComplete = currentMusicInteraction.missionToComplete;
             StartDialogue(nextNode);
+
         }
         ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastReadDialogueNode);
-        HandleMissionOnDialogueEnd();
-        ResetMusicDialogue();
-    }
-    void ResetMusicDialogue()
-    {
         currentMusicInteraction = null;
         lastReadDialogueNode = null;
-        missionToComplete = null;
-        missionToStart = null;
     }
     public void PlayerLabeledTrack() // this will be called by a unity event on Music Dialogue UI, don't forget to set that this will be called on the inspector on music dialogue UI
     {
@@ -122,18 +127,4 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         FinishMusicDialogue();
 
     }
-    #region MISSION HANDLES
-    void HandleMissionOnDialogueStart()
-    {
-        if (missionToStart != null)
-            missionToStart.StartMission();
-    }
-    void HandleMissionOnDialogueEnd()
-    {
-        if (missionToComplete != null)
-            missionToComplete.EndMission();
-        missionToComplete = null;
-        missionToStart = null;
-    }
-    #endregion
 }

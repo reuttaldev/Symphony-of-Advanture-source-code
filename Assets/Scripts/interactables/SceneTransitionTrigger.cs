@@ -21,20 +21,26 @@ public class SceneTransitionTrigger : Interactable
         foreach (var mission in inactiveDuring)
         {
             if (mission.State == MissionState.OnGoing)
+            {
+                Debug.LogError("Not switching scenes bc "+mission.Name +" is active");
                 return;
+            }
         }
         bool allow = activeOnlyDuring.Length == 0;
         // if one of them is active, or the list is emptyallow it 
         foreach (var mission in activeOnlyDuring)
         {
+            Debug.LogError("Mission name "+mission.name+" has state "+mission.State);
             if (mission.State == MissionState.OnGoing)
             {
                 allow= true;
-                continue;
             }
         }
         if (!allow)
+        {
+            Debug.LogError("Not allowed to switch scenes");
             return;
+        }
         if(string.IsNullOrEmpty(transitionTo))
         {
             Debug.LogError("SceneTransitionTrigger: Scene to transition to name is Null");

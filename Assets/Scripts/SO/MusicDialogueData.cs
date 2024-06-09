@@ -11,6 +11,9 @@ public class MusicDialogueData : MyScriptableObject
     [SerializeField]
 
     public string onCompletionNode;
+    // on completion of the node above
+    [SerializeField]
+    public MissionData missionToComplete;
     [SerializeField]
 
     public string interactionName;

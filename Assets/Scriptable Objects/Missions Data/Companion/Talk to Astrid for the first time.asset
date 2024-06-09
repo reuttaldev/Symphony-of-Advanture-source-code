@@ -16,6 +16,6 @@ MonoBehaviour:
   missionName: Talk to Astrid for the first time
   mainObjective: 
   startLocation: 
-  state: 3
+  state: 2
   mandatory: 1
   prerequisiteIds: []
