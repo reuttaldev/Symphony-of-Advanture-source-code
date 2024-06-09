@@ -28,15 +28,19 @@ public class EnterNameManager : MonoBehaviour
     public void EnterNamePanel()
     {
         panel.gameObject.SetActive(true);
+        StartCoroutine(SelectInputField());
     }
 
-    public void SetName(string inputName)
+    public void SetName()
     {
-        Debug.Log(inputName);
+        string inputName = inputField.text;
+        if ( string.IsNullOrEmpty(inputName))
+        {
+            return;
+        }
         playerNameData.PlayerName = inputName;
         dialogueRunner.VariableStorage.SetValue("$playerName", inputName);
         panel.gameObject.SetActive(false);
-        StartCoroutine(SelectInputField());
         dialogueManager.SetMissionToComplete(talkToAstridMission);
         dialogueManager.StartDialogue("companion_intro_after_name");
         this.gameObject.SetActive(false);
@@ -45,13 +49,6 @@ public class EnterNameManager : MonoBehaviour
     {
         // Wait for end of frame to ensure UI elements are initialized
         yield return new WaitForEndOfFrame();
-
-        // Set the input field as the selected game object
-        EventSystem.current.SetSelectedGameObject(inputField.gameObject);
-
-        // Manually activate the input field to start typing immediately
-        inputField.OnPointerClick(new PointerEventData(EventSystem.current));
-        inputField.Select();
         inputField.ActivateInputField();
     }
 }

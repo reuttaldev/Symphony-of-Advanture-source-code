@@ -37,7 +37,6 @@ Old lady: Okay. I will stay right here. Maybe by some miracle he will wander bac
 title: old_lady_badgering
 scene: approaching after talking but before finding her cat.
 location: village
-emotion: -
 ---
 Old lady: Have you found him yet?
 You: Not yet.
@@ -47,7 +46,6 @@ You: Not yet.
 title: old_lady_complete
 scene: bringing her cat back.
 location: village
-emotion: -
 ---
 Old lady: Whiskers! Oh lord, I can breath again. 
 Old lady: Thank you! How may I repay you?

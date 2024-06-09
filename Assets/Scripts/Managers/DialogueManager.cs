@@ -84,8 +84,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         uiManager.CloseDialogueUI();
         missionToComplete = null;
         missionToStart = null;
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.StopAudio();
     }
     void FinishMusicDialogue()
     {

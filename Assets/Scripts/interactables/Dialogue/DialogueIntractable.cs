@@ -23,10 +23,6 @@ public class DialogueIntractable : Interactable
     }
     protected override void DisableInteraction()
     {
-        if (!nodeData.interactableMoreThanOnce)
-        {
-            interactable = false;
-        }
     }
     protected override void TriggerInteraction()
     {
@@ -61,9 +57,15 @@ public class DialogueIntractable : Interactable
     public void InteractableMoreThanOnce(bool i)
     {
         nodeData.interactableMoreThanOnce = i;
+        interactableMoreThanOnce = i;
+        interactable = i; 
     }
     public void ChangeAssociatedMission(MissionData newAssociatedMission) 
     {
         nodeData.associatedMission = newAssociatedMission;
+    }
+    public void Interactable(bool i)
+    {
+        interactable = i;
     }
 }

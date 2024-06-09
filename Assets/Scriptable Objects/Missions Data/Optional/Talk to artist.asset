@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
   m_Name: Talk to artist
   m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-cc8dfe41773c79a4cb25b83926df8d2b-11400000-0
   missionName: Talk to artist
   mainObjective: This artist lost their spark, help them get it back
   startLocation: town square

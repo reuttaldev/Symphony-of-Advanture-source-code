@@ -57,6 +57,7 @@ public class MissionData : MyScriptableObject
 
 }
 
+[Serializable]
 public enum MissionState
 {
     CompletedSuccessfully,

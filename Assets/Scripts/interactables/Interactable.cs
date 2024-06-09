@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
+    [SerializeField]
     protected bool interactable = true;
     [SerializeField]
     protected bool interactableMoreThanOnce = true; 

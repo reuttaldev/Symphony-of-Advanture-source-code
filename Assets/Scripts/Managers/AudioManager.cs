@@ -245,6 +245,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     }
     public void StopAudio()
     {
+        Debug.Log("stopping music");
         StartCoroutine(FadeOut());
     }
     public IEnumerator FadeOut()

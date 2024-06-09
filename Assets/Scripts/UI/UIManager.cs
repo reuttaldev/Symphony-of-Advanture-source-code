@@ -72,6 +72,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
         walkmanUI.gameObject.SetActive(false);
         walkmanUI.Close(manual:true);
         CloseAndSwitchUIMap();
+        Debug.Log("closing ui");
     }
     public void OpenMusicDialogueUI()
     {
@@ -101,5 +102,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
         if (walkmanUI.gameObject.activeInHierarchy || (extraPanel != null && extraPanel.gameObject.activeInHierarchy))
             return;
         CloseAndSwitchUIMap();
+        AudioManager.Instance.StopAudio();
+
     }
 }

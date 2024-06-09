@@ -16,7 +16,7 @@ public class CatController : MonoBehaviour
     [SerializeField]
     Transform[] way;
     [SerializeField]
-    Transform teasePlayerPosition;
+    Transform teasePlayerPosition, afterReturnPosition;
     [SerializeField]
     MissionData associatedMission;
     [SerializeField]
@@ -37,7 +37,6 @@ public class CatController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         gameManager = ServiceLocator.Instance.Get<GameManager>();
         animator = GetComponent<Animator>();
-        walkTo = way[0];
         escapeFromPlayer = false;
         meow = true;
         walkTo = teasePlayerPosition;
@@ -77,13 +76,11 @@ public class CatController : MonoBehaviour
             // so the condition is not satisfied multiple times before the cat can even get away
             if (!reachedCurrentPoint)
                 return;
-            // if we have reached our current destination, and we have a next one, move towards that one
             if (i + 1 == way.Length)
             {
-                StopMoving();
-                animator.SetTrigger("Resting");
-                interactble.gameObject.SetActive(true);
+                ReachedEnd();
             }
+            // if we have reached our current destination, and we have a next one, move towards that one
             else
             {
                 i++;
@@ -129,13 +126,17 @@ public class CatController : MonoBehaviour
 
     IEnumerator TeasePlayerCoroutine()
     {
+        GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(waitToTeaseDuration);
+        GetComponent<SpriteRenderer>().enabled = true;
+
         yield return WalkTo();
-        //yield return new WaitForSeconds(teaseDuration);
+        yield return new WaitForSeconds(teaseDuration);
         walkTo = way[0];
         yield return WalkTo();
         StopMoving();
         animator.SetTrigger("Resting");
+        StartEscapingPlayer();
     }
     IEnumerator WalkTo()
     {
@@ -150,7 +151,26 @@ public class CatController : MonoBehaviour
 
     public void StartEscapingPlayer()
     {
-        transform.position = way[0].position;
         escapeFromPlayer = true;
+    }
+
+    void ReachedEnd()
+    {
+        Debug.Log("Cat got caught");
+        StopMoving();
+        escapeFromPlayer = false;
+        animator.SetTrigger("Resting");
+        interactble.gameObject.SetActive(true);
+    }
+    public void PlayerCatchedUs()
+    {
+       
+        transform.SetParent(player.transform);
+        transform.localPosition = Vector3.zero;
+    }
+    public void PlayerReturnedUs()
+    {
+        transform.SetParent(null);
+        transform.position = afterReturnPosition.position;
     }
 }
