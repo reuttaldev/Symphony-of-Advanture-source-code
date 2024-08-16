@@ -852,11 +852,13 @@ MonoBehaviour:
   onCharacterTyped:
     m_PersistentCalls:
       m_Calls: []
-  typewriterEffectSpeed: 60
+  typewriterEffectSpeed: 75
   holdTime: 1
   autoAdvance: 0
+  runner: {fileID: 4632972474567403005}
   continueAction: {fileID: -4462085463790603261, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   interruptAction: {fileID: 8631025337802188502, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
+  skipAction: {fileID: 6932570671381177813, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
 --- !u!114 &283731126310153170
 MonoBehaviour:
   m_ObjectHideFlags: 0

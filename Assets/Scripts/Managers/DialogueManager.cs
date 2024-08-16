@@ -75,7 +75,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             missionToStart.StartMission();
     }
 
-
     // Please note that in order to mark the associated mission as completed at the end of a dialogue
     // you need to do that from the yarn script itself and say if it was sucessful or not.
     // actually, for now I will do it here, so it will always be marked as completed successfuly for now.

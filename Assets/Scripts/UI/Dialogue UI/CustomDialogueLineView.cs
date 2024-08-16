@@ -145,27 +145,6 @@ public class CustomDialogueLineView : DialogueViewBase
     [Min(0)]
     internal float holdTime = 1f;
 
-    /// <summary>
-    /// Controls whether this Line View will wait for user input before
-    /// indicating that it has finished presenting a line.
-    /// </summary>
-    /// <remarks>
-    /// <para>
-    /// If this value is true, the Line View will not report that it has
-    /// finished presenting its lines. Instead, it will wait until the <see
-    /// cref="UserRequestedViewAdvancement"/> method is called.
-    /// </para>
-    /// <para style="note"><para>The <see cref="DialogueRunner"/> will not
-    /// proceed to the next piece of content (e.g. the next line, or the
-    /// next options) until all Dialogue Views have reported that they have
-    /// finished presenting their lines. If a <see cref="LineView"/> doesn't
-    /// report that it's finished until it receives input, the <see
-    /// cref="DialogueRunner"/> will end up pausing.</para>
-    /// <para>
-    /// This is useful for games in which you want the player to be able to
-    /// read lines of dialogue at their own pace, and give them control over
-    /// when to advance to the next line.</para></para>
-    /// </remarks>
     [SerializeField]
     internal bool autoAdvance = false;
 
@@ -179,8 +158,11 @@ public class CustomDialogueLineView : DialogueViewBase
     /// A stop token that is used to interrupt the current animation.
     /// </summary>
     Effects.CoroutineInterruptToken currentStopToken = new Effects.CoroutineInterruptToken();
+
     [SerializeField]
-    InputActionReference continueAction, interruptAction;
+    DialogueRunner runner;
+    [SerializeField]
+    InputActionReference continueAction, interruptAction, skipAction;
 
 
     private void Awake()
@@ -197,11 +179,13 @@ public class CustomDialogueLineView : DialogueViewBase
     {
         continueAction.action.performed+=context=> UserRequestedViewAdvancement(); ;
         interruptAction.action.performed += context => UserRequestedViewInterrupt();
+        skipAction.action.performed += context => UserRequestedViewSkip();
     }
     private void OnDisable()
     {
         continueAction.action.performed -= context => UserRequestedViewAdvancement();
         interruptAction.action.performed -= context => UserRequestedViewInterrupt();
+        skipAction.action.performed -= context => UserRequestedViewSkip();
     }
 
     /// <inheritdoc/>
@@ -438,24 +422,15 @@ public class CustomDialogueLineView : DialogueViewBase
         {
             // Stop the current animation, and skip to the end of whatever
             // started it.
-            currentStopToken.Interrupt();
+            requestInterrupt?.Invoke();
         }
 
     }
 
-
-    /// <inheritdoc />
-    /// <remarks>
-    /// If a line is still being shown dismisses it.
-    /// </remarks>
-    public override void DialogueComplete()
+    public void UserRequestedViewSkip()
     {
-        // do we still have a line lying around?
-        if (currentLine != null)
-        {
-            currentLine = null;
-            StartCoroutine(DismissLineInternal(null));
-        }
+        if (currentLine == null)
+            return;
     }
 
 }
