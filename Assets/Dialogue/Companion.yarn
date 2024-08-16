@@ -9,7 +9,7 @@ location: middle of town square
 -> Player: Who are you?
     ?: I'm Astrid. 
     <<set $astridSaidName = true>> 
--> Player: Whare am I?
+-> Player: Where am I?
     ?: You're in town square. 
     ?: Of which town? This one, of course.
 -> Player: How did I get here?
