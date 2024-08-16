@@ -160,8 +160,6 @@ public class CustomDialogueLineView : DialogueViewBase
     Effects.CoroutineInterruptToken currentStopToken = new Effects.CoroutineInterruptToken();
 
     [SerializeField]
-    DialogueRunner runner;
-    [SerializeField]
     InputActionReference continueAction, interruptAction, skipAction;
 
 
@@ -177,7 +175,7 @@ public class CustomDialogueLineView : DialogueViewBase
     }
     private void OnEnable()
     {
-        continueAction.action.performed+=context=> UserRequestedViewAdvancement(); ;
+        continueAction.action.performed+=context=> UserRequestedViewAdvancement();
         interruptAction.action.performed += context => UserRequestedViewInterrupt();
         skipAction.action.performed += context => UserRequestedViewSkip();
     }

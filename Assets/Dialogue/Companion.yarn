@@ -64,7 +64,7 @@ Astrid: Oh my! Music! I can hear it! Quickly, we must show this to the town keep
 -> Player: The town keeper?
     Astrid: I mean the new mayor. His office is right there, let's go.
 -> Player: Where is he?
-    Astrid: His office is right there. His office is right there, let's go.
+    Astrid:His office is right there, let's go.
 -> Player: Okay.
 <<FMS>>
 ===

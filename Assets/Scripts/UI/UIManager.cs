@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Yarn.Unity;
+using Yarn.Unity.Example;
 
 public class UIManager : MonoBehaviour, IRegistrableService
 {
@@ -10,6 +11,8 @@ public class UIManager : MonoBehaviour, IRegistrableService
     private WalkmanUI walkmanUI;
     [SerializeField]
     GameObject musicDialogueText;
+    [SerializeField]
+    ItemInteractableView interactableView;
     [SerializeField]
     private InputActionReference openWalkmanAction;
     [SerializeField]
@@ -104,5 +107,15 @@ public class UIManager : MonoBehaviour, IRegistrableService
         CloseAndSwitchUIMap();
         AudioManager.Instance.StopAudio();
 
+    }
+    public void OpenItemInteractableView(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            Debug.LogError("Text to present in interctable item view is empty");
+            return;
+        }
+        OpenDialogueUI();
+        interactableView.Open(text);
     }
 }
