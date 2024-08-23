@@ -1,6 +1,8 @@
 ﻿title: companion_intro
 scene: Player wakes up and everyone gathers around him. Astrid approches them to see what's going on
 location: middle of town square
+mandatory: F
+nextMandatory: companion_after_intro
 ---
 <<declare $playerName = "name">> 
 <<declare $astridSaidName = false>> 
@@ -14,7 +16,13 @@ location: middle of town square
     ?: Of which town? This one, of course.
 -> Player: How did I get here?
     ?: I don’t know. You just appeared here.
+<<jump companion_after_intro>>
+===
 
+
+title: companion_after_intro
+mandatory: T
+---
 <<if $astridSaidName>>
     Astrid: What's your name? 
     <<EnterName EnterNameManager>>
@@ -25,6 +33,7 @@ location: middle of town square
 ===
 
 title: companion_intro_after_name
+nextMandatory: companion_go_to_mayor_shortcut
 ---
 <<if $astridSaidName>>
     Astrid: Well, welcome to our town, {$playerName}.
@@ -54,6 +63,7 @@ Astrid: Wait, you don't know, do you?
 ===
 
 title: companion_discovers_walkman_works
+nextMandatory: companion_go_to_mayor_shortcut
 ---
 Astrid: So y'know, your walkman is as good as trash here.
 -> Player:  It's working.
@@ -69,6 +79,12 @@ Astrid: Oh my! Music! I can hear it! Quickly, we must show this to the town keep
 <<FMS>>
 ===
 
+title: companion_go_to_mayor_shortcut
+mandatory: T
+---
+Astrid: Let's go talk to the mayor. 
+<<FMS>>
+===
 
 
 title: companion_story_explanation

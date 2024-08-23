@@ -400,7 +400,8 @@ public class CustomDialogueLineView : DialogueViewBase
     /// <inheritdoc/>
     public override void UserRequestedViewAdvancement()
     {
-
+        if (this == null)
+            return;
         // we have no line, so the user just mashed randomly
         if (currentLine == null)
         {
@@ -413,6 +414,8 @@ public class CustomDialogueLineView : DialogueViewBase
     }
     public void UserRequestedViewInterrupt()
     {
+        if (this == null)
+            return;
         // we have no line, so the user just mashed randomly
         if (currentLine == null)
             return;

@@ -16,6 +16,6 @@ MonoBehaviour:
   missionName: Map 1
   mainObjective: Talk to edmund and he will give you the first map piece
   startLocation: Edmund's office
-  state: 3
+  state: 2
   mandatory: 1
   prerequisiteIds: []

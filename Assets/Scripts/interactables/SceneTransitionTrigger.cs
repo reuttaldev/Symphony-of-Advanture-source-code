@@ -30,7 +30,6 @@ public class SceneTransitionTrigger : Interactable
         // if one of them is active, or the list is emptyallow it 
         foreach (var mission in activeOnlyDuring)
         {
-            Debug.LogError("Mission name "+mission.name+" has state "+mission.State);
             if (mission.State == MissionState.OnGoing)
             {
                 allow= true;

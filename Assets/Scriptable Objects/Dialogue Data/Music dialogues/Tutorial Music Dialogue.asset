@@ -15,5 +15,5 @@ MonoBehaviour:
   GlobalID: GlobalObjectId_V1-3-2a85708206c89974fa0185e8b0289615-11400000-0
   emotionToInvoke: 'sad '
   onCompletionNode: new_town_keeper_heard_music
-  missionToComplete: {fileID: 11400000, guid: 60f83a6ca3adadc41953761dd60c0737, type: 2}
+  missionToComplete: {fileID: 0}
   interactionName: Tutorial

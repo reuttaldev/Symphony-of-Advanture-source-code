@@ -1,10 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using Yarn.Unity;
 
 public class EnterNameManager : MonoBehaviour
@@ -14,8 +10,6 @@ public class EnterNameManager : MonoBehaviour
     [SerializeField]
     DialogueManager dialogueManager;
     [SerializeField]
-    UIManager uiManager;
-    [SerializeField]
     GameObject panel;
     [SerializeField]
     TMP_InputField inputField;
@@ -24,17 +18,21 @@ public class EnterNameManager : MonoBehaviour
     [SerializeField]
     PlayerNameData playerNameData;
 
+    private void Awake()
+    {
+        panel.SetActive(false);
+    }
     [YarnCommand("EnterName")]
     public void EnterNamePanel()
     {
-        panel.gameObject.SetActive(true);
+        panel.SetActive(true);
         StartCoroutine(SelectInputField());
     }
 
     public void SetName()
     {
         string inputName = inputField.text;
-        if ( string.IsNullOrEmpty(inputName))
+        if ( string.IsNullOrWhiteSpace(inputName))
         {
             return;
         }

@@ -15,10 +15,9 @@ public class ItemInteractableView : MonoBehaviour
     internal TextMeshProUGUI lineText;
     [SerializeField]
     [Min(0)]
-    internal float fadeInTime = 0.25f;
+    internal float fadeTime = 0.25f;
     [SerializeField]
     [Min(0)]
-    internal float fadeOutTime = 0.05f;
 
     private bool open = false;
     private void Awake()
@@ -38,7 +37,7 @@ public class ItemInteractableView : MonoBehaviour
     public void Open(string textToShow)
     {
         lineText.text = textToShow;
-        StartCoroutine(Effects.FadeAlpha(canvasGroup, 0, 1, fadeInTime));
+        StartCoroutine(Effects.FadeAlpha(canvasGroup, 0, 1, fadeTime));
         open = true;
     }
     public void Close()
@@ -46,7 +45,7 @@ public class ItemInteractableView : MonoBehaviour
         if (open)
         {
             Debug.Log("closing item interactable view");
-            StartCoroutine(Effects.FadeAlpha(canvasGroup, 1, 0, fadeOutTime));
+            StartCoroutine(Effects.FadeAlpha(canvasGroup, 1, 0, fadeTime));
             UIManager uIManager = ServiceLocator.Instance.Get<UIManager>();
             uIManager.CloseDialogueUI();
             open = false;

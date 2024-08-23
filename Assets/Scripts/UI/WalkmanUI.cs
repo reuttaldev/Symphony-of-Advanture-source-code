@@ -32,7 +32,7 @@ public class WalkmanUI : MonoBehaviour
     [SerializeField]
     GameObject cassettePrefab, gridParent;
     List<Button> cassetteButtons = new List<Button>();
-
+    public bool open = false;
     private void OnEnable()
     {
         if (audioManager == null)
@@ -87,6 +87,8 @@ public class WalkmanUI : MonoBehaviour
 
     public void Open()
     {
+        Debug.Log("opening walkman panel");
+        open = true;
         for (int i = 0; i < audioManager.LibrarySize; i++)
         {
             GameObject cassette = Instantiate(cassettePrefab, gridParent.transform);
@@ -100,6 +102,9 @@ public class WalkmanUI : MonoBehaviour
     // manual = true when we open the walkman through C key, and not through a music dialogue with one of the characters
     public void Close(bool manual = false)
     {
+        if (open)
+            return;
+
         if (manual)
             audioManager.StopAudio();
         cassetteButtons = new List<Button>();

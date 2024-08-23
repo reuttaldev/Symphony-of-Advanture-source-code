@@ -15,5 +15,5 @@ MonoBehaviour:
   GlobalID: GlobalObjectId_V1-3-8f4d272474c3b4049ae1597f3f908476-11400000-0
   emotionToInvoke: relaxed and calm
   onCompletionNode: old_lady_heard_music
-  missionToComplete: {fileID: 0}
+  missionToComplete: {fileID: 11400000, guid: 06a509492be24f24d83775ba0dd69501, type: 2}
   interactionName: old lady

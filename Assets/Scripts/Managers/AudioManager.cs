@@ -235,7 +235,6 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     public TrackData GetCurrentTrack()
     {
         string id = library[index];
-        Debug.Log(index);
         return loadedTracks[id];
 
     }

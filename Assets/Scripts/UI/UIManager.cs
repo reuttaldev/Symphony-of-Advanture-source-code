@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
     [SerializeField]
     GameObject musicDialogueText;
     [SerializeField]
-    ItemInteractableView interactableView;
+    public ItemInteractableView interactableView;
     [SerializeField]
     private InputActionReference openWalkmanAction;
     [SerializeField]
@@ -72,6 +72,8 @@ public class UIManager : MonoBehaviour, IRegistrableService
     }
     void CloseWalkmanInterface() 
     {
+        if (!walkmanUI.open)
+            return;
         walkmanUI.gameObject.SetActive(false);
         walkmanUI.Close(manual:true);
         CloseAndSwitchUIMap();
@@ -103,19 +105,14 @@ public class UIManager : MonoBehaviour, IRegistrableService
     {
         // if we have opened the music dialogue UI though a yarn script, don't close
         if (walkmanUI.gameObject.activeInHierarchy || (extraPanel != null && extraPanel.gameObject.activeInHierarchy))
+        {
+            Debug.Log("Not closing dialouge UI because something else is open");
             return;
+        }
         CloseAndSwitchUIMap();
+        uiPanalOpen = false;
         AudioManager.Instance.StopAudio();
 
     }
-    public void OpenItemInteractableView(string text)
-    {
-        if (string.IsNullOrEmpty(text))
-        {
-            Debug.LogError("Text to present in interctable item view is empty");
-            return;
-        }
-        OpenDialogueUI();
-        interactableView.Open(text);
-    }
+
 }

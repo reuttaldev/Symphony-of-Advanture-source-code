@@ -1,4 +1,5 @@
 ﻿title: new_town_keeper_intro
+nextMandatory: new_town_keeper_intro_shortcut
 location: in his office, next to town square
 scene: player has just woken up and they are confused. Astrid took them to this office to learn more about the walkman. new town keeper will explain the journy to them, 
 emotion: - 
@@ -49,6 +50,15 @@ Tony: Here, take it. Finding the rest is up to you.
     Tony: Okay... I still can't help you. You're only change to go back home is by finding edmund. I'll give you a hint to help you out. 
 Tony: Visit Sona at her shop. She collects music artifacts. She's a bit of a character, but I'm sure she can help you somehow.
 ===
+
+title: new_town_keeper_intro_shortcut
+mandatory: T
+---
+/// map piece 1 mission
+<<FMS>>
+Tony: Here, take the first map piece. Finding the rest is up to you. 
+Tony: Visit Sona at her shop. She collects music artifacts, I'm sure she can help you somehow.
+=== 
 
 title: new_town_keeper_badgering
 location: in his office, next to town square

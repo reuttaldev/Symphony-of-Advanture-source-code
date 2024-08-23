@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -11,9 +12,15 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]
     Image[] mapIconObjects;
     [SerializeField]
-    TMP_Text addItemText;
+    CanvasGroup addItemTextGroup;
     [SerializeField]
-    float fadeDuration = 0.3f, showTextDuration = 30, showMapDuration = 30;
+    TMP_Text addItemText;
+    float fadeDuration = 1.5f, showTextDuration = 70, showMapDuration = 100;
+
+    private void Awake()
+    {
+        addItemText = addItemTextGroup.gameObject.GetComponent<TMP_Text>();
+    }
     public void ShowMapIcons(int whichPieces)
     {
         for (int i = 0; i < whichPieces ; i++)
@@ -26,60 +33,22 @@ public class InventoryUI : MonoBehaviour
 
     public void AddTrackCollectableUI()
     {
-        addItemText.text = "New cassette obtained.";
+        addItemText .text = "New cassette obtained.";
         StartCoroutine(ShowText());
     }
     IEnumerator ShowIcons()
     {
-        yield return FadeIconsToFullAlpha();
+        yield return StartCoroutine(Effects.FadeAlpha(mapIconParent, 1, 0, fadeDuration));
         yield return new WaitForSeconds(showMapDuration);
-        yield return FadeIconsZeroAlpha();
+        yield return StartCoroutine(Effects.FadeAlpha(mapIconParent, 0, 1, fadeDuration));
     }
 
     IEnumerator ShowText()
     {
-        addItemText.gameObject.SetActive(true);
-        yield return FadeTextToFullAlpha(fadeDuration,addItemText);
+        addItemTextGroup.gameObject.SetActive(true);
+        yield return StartCoroutine(Effects.FadeAlpha(addItemTextGroup, 0, 1, fadeDuration));
         yield return new WaitForSeconds(showTextDuration);
-        yield return FadeTextToZeroAlpha(fadeDuration, addItemText);
-        addItemText.gameObject.SetActive(false);
+        yield return StartCoroutine(Effects.FadeAlpha(addItemTextGroup, 0, 1, fadeDuration));
+        addItemTextGroup.gameObject.SetActive(false);
     }
-
-    IEnumerator FadeIconsToFullAlpha()
-    {   
-        while (mapIconParent.alpha < 1.0f)
-        {
-            mapIconParent.alpha += (Time.deltaTime / fadeDuration);
-            yield return null;
-        }
-    }
-
-    IEnumerator FadeIconsZeroAlpha()
-    {
-        while (mapIconParent.alpha > 0.0f)
-        {
-            mapIconParent.alpha -= (Time.deltaTime / fadeDuration);
-            yield return null;
-        }
-    }
-    IEnumerator FadeTextToFullAlpha(float t, TMP_Text i)
-    {
-        i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
-        while (i.color.a < 1.0f)
-        {
-            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
-            yield return null;
-        }
-    }
-
-    IEnumerator FadeTextToZeroAlpha(float t, TMP_Text i)
-    {
-        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
-        while (i.color.a > 0.0f)
-        {
-            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
-            yield return null;
-        }
-    }
-
 }

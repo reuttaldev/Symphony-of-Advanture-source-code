@@ -3,6 +3,7 @@ emotion: -
 scene: player approches artifact collector for the first time. she suggests that you find something else of value, and she will consider trading it with you. She tells you good luck- as most people in the town have lost hope and therefore interest in music, and she has already picked up anything of value. 
 location: old city, in her shop
 ---
+<<FMS>>
 Sona: Hey Astrid. Have you finnaly done something usful with yourself and brought me a new customer?  
 Astrid: This is {$playerName}. We're looking for something that resembles a map segment. 
 Sona: Let me see... 
@@ -17,8 +18,12 @@ Sona: Hey, Hey! Not so quick. What are you giving me in return?
 -> Player: Please, I'm on a mission. 
     Sona: And? I'm also on a mission, to pay rent. 
 Sona: Oh and forget about the cassette tapes that are scattered around town, I have plenty of those already.
-<<FMS>>
 ===
+
+title: collector_shortcut_before
+---
+=== 
+
 
 title: collector_badgering
 emotion: -

@@ -35,7 +35,7 @@ public class MissionData : MyScriptableObject
     {
         state = MissionState.OnGoing;
         ServiceLocator.Instance.Get<MissionManager>().MissionHasStarted(GlobalID);
-        Debug.LogError("Started mission " + Name+". state is "+state);
+        Debug.Log("Started mission " + Name+". state is "+state);
 
      }
     public void EndMission(bool successful = true)
@@ -52,7 +52,7 @@ public class MissionData : MyScriptableObject
         }
         state = successful ? MissionState.CompletedSuccessfully : MissionState.CompletedUnSuccessfully;
         ServiceLocator.Instance.Get<MissionManager>().MissionHasEnded(GlobalID);
-        Debug.LogError("Mission " + Name + " has been marked as completed");
+        Debug.Log("Mission " + Name + " has been marked as completed");
     }
 
 }

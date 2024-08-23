@@ -1,4 +1,5 @@
 ﻿title: old_lady_intro
+nextMandatory: old_lady_shortcut_before_music
 scene: approaching after seeing her scream out for her cat.
 location: village
 emotion: relaxed and calm
@@ -16,6 +17,7 @@ Companion: Hey, lady, I know you're upset. Here, let us play you some music that
 
 
 title: old_lady_heard_music
+nextMandatory: old_lady_shortcut_after_music
 scene: talking after she's calmed down from the music
 location: village
 emotion: -
@@ -32,6 +34,21 @@ Companion: Now that you're feeling better, how about you give us some informatio
     Old lady: No, he never stays far from home. That is why I'm so worried.
 Companion: Don't worry. We're going to find him.
 Old lady: Okay. I will stay right here. Maybe by some miracle he will wander back home.
+<<FMS>>
+===
+
+title: old_lady_shortcut_before_music
+mandatory: T
+---
+Companion: Hey, let us play you some music that will help you feel <color=\#ff0000>relaxed and calm</color>.
+<<OMD>>
+===
+
+title: old_lady_shortcut_after_music
+mandatory: T
+---
+Old lady: Please let me know if you found my cat.
+<<FMS>>
 ===
 
 title: old_lady_badgering
@@ -42,11 +59,11 @@ Old lady: Have you found him yet?
 You: Not yet.
 ===
 
-
 title: old_lady_complete
 scene: bringing her cat back.
 location: village
 ---
+<<FMS>>
 Old lady: Whiskers! Oh lord, I can breath again. 
 Old lady: Thank you! How may I repay you?
 -> Player: I don't need anything, I am just happy he's safe.

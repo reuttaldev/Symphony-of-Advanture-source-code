@@ -15,4 +15,4 @@ MonoBehaviour:
   GlobalID: GlobalObjectId_V1-3-39d23b839cfd2ce46884f5c4152dbc35-11400000-0
   nodeTitle: collector_intro
   associatedMission: {fileID: 11400000, guid: 2774373882d2a534bb499aa1e7bae3a0, type: 2}
-  interactableMoreThanOnce: 0
+  interactableMoreThanOnce: 1
