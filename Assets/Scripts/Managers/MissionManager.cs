@@ -26,6 +26,10 @@ public class MissionManager : MonoBehaviour, IRegistrableService
             // trigger on scene start events, if the associated missions are active
 
             missionWrappers[wrapper.MissionDataID] = wrapper;
+
+            // if the associated mission is completed when the scene starts, do the events that are connected this
+            if (wrapper.IsMissionDone())
+                wrapper.missionDoneOnSceneStart.Invoke();
         }
     }
 

@@ -12,6 +12,13 @@ public class MissionWrapper : MonoBehaviour
     MissionData missionData;
     public UnityEvent onMissionStart;
     public UnityEvent onMissionEnd;
+    // if the associated mission is completed when the scene starts, do the events that are connected this
+    public UnityEvent missionDoneOnSceneStart;
     public string MissionDataID => missionData.GlobalID;
     public string Name => missionData.Name;
+
+    public bool IsMissionDone()
+    {
+        return missionData.State == MissionState.CompletedUnSuccessfully || missionData.State == MissionState.CompletedSuccessfully;
+    }
 }

@@ -1,14 +1,15 @@
 ﻿title: collector_intro
-emotion: -
-scene: player approches artifact collector for the first time. she suggests that you find something else of value, and she will consider trading it with you. She tells you good luck- as most people in the town have lost hope and therefore interest in music, and she has already picked up anything of value. 
+scene: The player approaches the artifact collector for the first time. She suggests that you find something else of value, and she will consider trading it with you. She tells you good luck- as most people in the town have lost hope and therefore interest in music, and she has already picked up anything of value. 
 location: old city, in her shop
+nextMandatory: collector_shortcut_before_map
 ---
 <<FMS>>
-Sona: Hey Astrid. Have you finnaly done something usful with yourself and brought me a new customer?  
+Sona: Hey Astrid. Have you finally done something useful with yourself and brought me a new customer?  
+Astrid: Haha, no.
 Astrid: This is {$playerName}. We're looking for something that resembles a map segment. 
 Sona: Let me see... 
-Sona: this looks like it would fit. 
-Astrid: You're the best Sona. See ya!
+Sona: Something like this? 
+Astrid: Perfect fit! You're the best Sona. See ya!
 Sona: Hey, Hey! Not so quick. What are you giving me in return?
 -> Player: I don't have any money. 
     Sona: What's that on your belt, A walkman? I'll trade you for it.  
@@ -17,41 +18,42 @@ Sona: Hey, Hey! Not so quick. What are you giving me in return?
     -> Player: No. It was a gift
 -> Player: Please, I'm on a mission. 
     Sona: And? I'm also on a mission, to pay rent. 
-Sona: Oh and forget about the cassette tapes that are scattered around town, I have plenty of those already.
+Sona: Come back when you have something useful. Oh and forget about the cassette tapes that are scattered around town, I have plenty of those already.
 ===
 
-title: collector_shortcut_before
+title: collector_shortcut_before_map
+mandatory: T
 ---
+Come back when you have something useful to trade the map for. No freebies round here.  
 === 
 
 
-title: collector_badgering
-emotion: -
-scene: player approches artifact collector after aleady talking to the first time but before obtaining the violin
+title: collector_badgering_before_map
+scene: The player approaches the artifact collector after already talking to her the first time but before obtaining the violin (to trade)
 location: old city, in her shop
 ---
 Sona: Come back when you've got something worthy, kid. 
 ->Player: How did I get here?
     Sona: To my shop? You walked through the front door…
 ->How can I go home?
+   Did you try walking the same way you came from?
 ->Player: Why are you so mean?
     Sona: Me? Mean? 
-    Sona: I am not mean. I don't don't trust any kid that walks through my door.    Do you know the kind of tricks Astrid has pulled on me before?
-    Sona: Once you prove you are determined enough, you may be trusted. 
+    Sona: I am not mean. I don't don't trust any kid that walks through my door. Do you know the kind of tricks Astrid has pulled on me before? You’d have trust issues too. 
+    Sona: Once you prove you are determined enough, you will be trusted. 
 ===
 
 title: collector_completion
-emotion: -
-scene: player gives her the violin in exchange for the walkman 
+scene: The player gives her the violin in exchange for the Walkman 
 location: old city, in her shop
 ---
-Astrid: Hey, will this do?
+Astrid: Hey Sona, will this do?
 Sona: An old violin... where did you get that?
 Sona: Wait... I've seen it before.
 Sona: Is that what I think it is? You can't be serious. 
 Sona: Oh. You are. 
 Sona: Yeah, yes. This will do. Are you certain? 
-Astrid: Yes, we're sure.
+Astrid: Yes, yes. We're sure.
 Sona: Alright. The map is yours. 
 /// map piece 2 
 <<FMS>>
@@ -63,4 +65,5 @@ Sona: Why do you need it anyway?
     Sona: You're weird, kid.
 Sona: Good luck.
 ===
+
 

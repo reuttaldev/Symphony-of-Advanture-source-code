@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
-  m_Name: Talk to cheated man
+  m_Name: Play to fighting friends
   m_EditorClassIdentifier: 
-  GlobalID: GlobalObjectId_V1-3-5f447ba46a5143846b32a2610b722954-11400000-0
-  missionName: Talk to cheated man
+  GlobalID: GlobalObjectId_V1-3-77e0ce43cc828ae47a505af7ab45ad34-11400000-0
+  missionName: Play to fighting friends
   mainObjective: 
-  startLocation: Village
+  startLocation: town square
   state: 3
-  mandatory: 1
+  mandatory: 0
   prerequisiteIds: []

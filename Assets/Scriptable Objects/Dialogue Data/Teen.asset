@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
-  m_Name: Help fighting friends
+  m_Script: {fileID: 11500000, guid: 98caad6d26309f64c99e25c7bd543386, type: 3}
+  m_Name: Teen
   m_EditorClassIdentifier: 
-  missionName: Help fighthing friends
-  mainObjective: 
-  startLocation: town square
-  state: 3
-  mandatory: 0
-  prerequisiteIds: []
+  GlobalID: GlobalObjectId_V1-3-24ac84d82cde4f0448660018a2efe596-11400000-0
+  nodeTitle: teen_intro
+  associatedMission: {fileID: 0}
+  interactableMoreThanOnce: 0

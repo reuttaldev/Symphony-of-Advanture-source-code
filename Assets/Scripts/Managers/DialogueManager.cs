@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         dialogueRunner.VariableStorage.SetValue("$playerName", playerNameData.PlayerName);
         uiManager = ServiceLocator.Instance.Get<UIManager>();
         dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
-        dialogueRunner.AddCommandHandler("OMD",delegate { uiManager.OpenMusicDialogueUI(); });
+        dialogueRunner.AddCommandHandler("OMD",delegate { StopDialogue(); uiManager.OpenMusicDialogueUI(); });
         // finish mission successfuly
         dialogueRunner.AddCommandHandler("FMS", delegate { missionToComplete.EndMission(); });
         // finish mission insuccessfuly
@@ -64,7 +64,12 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
 
     public void SetMissionToComplete(MissionData data)
     {
-        Debug.Log("mission to complete is set to " + data.Name);
+        if (data == null)
+        {
+            Debug.LogError("Trying to set mission to complete to null");
+            return;
+        }
+        Debug.Log("mission to complete is set to " + data.Name+" by music interactable");
         missionToComplete = data;
     }
     public void SetMusicInteraction(MusicDialogueData data)
@@ -90,7 +95,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             missionToStart.StartMission();
     }
 
-   
+
     public void SkipDialogue()
     {
         if (dialogueRunner == null)
@@ -100,35 +105,39 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         }
         if (string.IsNullOrWhiteSpace(lastNodeName))
         {
-            // no active node, nothing to skip
-            return; 
+            Debug.LogError("Trying to skip dialogue but lastNodeName is null");
+            return;
         }
         var headers = yarnProject.GetHeaders(lastNodeName);
-        if (headers != null) 
+        if (headers == null)
         {
-            if (headers.ContainsKey("mandatory") && headers["mandatory"].IndexOf("T") >=0)
+            Debug.LogError("Headers are null");
+            return;
+        }
+        if (headers.ContainsKey("mandatory") && headers["mandatory"].IndexOf("T") >= 0)
+        {
+            if (noSkipTextShowing)
+                return;
+            // this node is marked as mandatory, do not skip it. 
+            StartCoroutine(ShowCannotSkipText());
+            return;
+        }
+        // if it either has no metadata saying it is mandatory, or mandatory is marked as F
+        if (headers.ContainsKey("nextMandatory"))
+        {
+            if (headers["nextMandatory"].Count != 1)
             {
-                if(noSkipTextShowing)
-                    return;
-                // this node is marked as mandatory, do not skip it. 
-                StartCoroutine(ShowCannotSkipText());
+                Debug.LogError("next mandatory field for node " + lastNodeName + " is not filled in correctly. ");
                 return;
             }
-            // if it either has no metadata saying it is mandatory, or mandatory is marked as F
-            if (headers.ContainsKey("nextMandatory"))
-            {
-                if (headers["nextMandatory"].Count != 1)
-                {
-                    Debug.LogError("next mandatory field for node " + lastNodeName + " is not filled in correctly. ");
-                    return;
-                }
-                string nextNode = headers["nextMandatory"][0];
-                skippingDialouge = true;
-                StopDialogue();
-                StartDialogue(nextNode);
-                return; 
-            }
+            string nextNode = headers["nextMandatory"][0];
+            skippingDialouge = true;
+            StopDialogue();
+            StartDialogue(nextNode);
+            return;
         }
+        else
+            Debug.LogWarning("Skipping dialogue but next node header is not found.");
         //if we got here, just skip it
         Debug.Log("skipping dialogue");
         StopDialogue();

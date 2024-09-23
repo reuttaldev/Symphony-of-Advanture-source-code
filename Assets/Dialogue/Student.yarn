@@ -1,0 +1,67 @@
+﻿title: student_intro_1
+emotion:  energized and activated
+scene: The player needs to cross a bridge in Old City to get to Sona. But something is blocking their way. Or more accurately, someone.He covered himself with a grey blanket and looks like a rock. 
+nextMandatory: student_shortcut
+---
+-: zzzzzzzzzzzzzzz... zzzzzzzzzzzzzz…
+Astrid: Sorry, coming through.
+ // moves a tiny bit
+Student: Oh… Let me clear the way.
+===
+
+title: student_intro_2
+---
+Student: You need me to move some more?
+//moves in the wrong direction
+Student: Alright, how’s this? 
+===
+
+title: student_intro_3
+---
+ // removes cover 
+Student: Huh, that was the wrong direction? I can’t do anything right!
+Astrid:  We just need to pass through. We are not looking for trouble. 
+Teen: Trouble? No, n- you got me all wrong.  I’m just trying to having a rest. 
+Tommy:I will do anything to avoid trouble. For example… sleep on a bridge!  
+-> Player: Why are you here?
+    Tommy:  I'm resting. And… hiding. From my folks. 
+    Tommy: This morning was a rough one, I’ll tell ya that much. Had a 5-hour long exam, Now I’m too exhausted to face my parents and tell them how it went. I bet they’re sitting waiting for me, full of anticipation… and expectation!  
+     -> Player: Be honest, they will understand. . 
+          Tommy: Maybe… but they will still be disappointed. I try my best to please them, but it feels like I’m at a breaking point. I’m too damn tired! And I don’t even like these subjects.  
+     ->Player: Just lie and say it went great. 
+        Tommy: I can’t lie to them like that. They’ve given me everything. 
+         Plus, they’ll find out sooner than later. 
+-> Move out of my way!
+     Tommy: I want to bro, I really do. I’m just so… tired. I usually come here when I’m like this, because there is nobody around. Also, nature is healing.
+    
+-> Player: Let us help you.
+-> Player: Shoo!
+     Tommy: You ought to be nicer. You’re not gonna get anywhere in life with this kind of attitude.  
+     Astrid:I know just the right fix for you. Let’s play you a song that will help you feel <color=\#ff0000>energized and activated</color>.
+<<OMD>>
+===
+
+title: student_shortcut
+mandatory: T
+---
+You’re tired huh? My friend over here will play you a song that will help you feel <color=\#ff0000>energized and activated</color>.
+<<OMD>>
+===
+
+
+
+title: student_after_music
+nextMandatory: student_after_music_shortcut
+--- 
+Tommy: Oh, wow. This reminds me of my childhood. 
+Tommy: My parents wanted me to become a professional musician, and I actually wanted that too. I would be fine sitting by the piano, and practicing for hours and hours on end without a single frown. 
+Tommy: But then, you know, it all went POOF. They suggested I go to uni for my field instead. 
+Tommy: …Who knows how things would’ve turned out if it wasn’t for this curse?
+<<jump student_after_music_shortcut>>
+===
+
+title: student_after_music_shortcut
+mandatory: T
+--- 
+Tommy: I’ll be out of your way now.
+===

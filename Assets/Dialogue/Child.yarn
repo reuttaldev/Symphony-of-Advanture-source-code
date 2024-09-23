@@ -1,0 +1,19 @@
+﻿title: child_intro
+scene: The player spots a board child with no one to play with. He is kicking a ball to the wall and catching it. 
+emotions: interested
+---
+Child: My mommy told me not to talk to strangers. 
+-> Player: Your mom is right 
+     Astrid: But I am not a stranger, am I?
+     Child: She also told me specifically not to talk to you.
+     Astrid: Oh… okay. What does she know anyway? She doesn’t know me, that’s for sure.
+     -> Player: We don’t have to talk. We could just play.
+     -> Player: Nevermind. 
+->  Player: But I just want to play. 
+Child: Hm, that would be nice. See, I’m an only child, so often I just play with the wall. 
+Child: You could be the wall. 
+// Enter a ball-kicking minigame? 
+Child: Well, this is boring. 
+Astrid: How about some music to change things up? 
+<<OMD>> 
+===

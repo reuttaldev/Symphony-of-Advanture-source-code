@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98caad6d26309f64c99e25c7bd543386, type: 3}
-  m_Name: Tony
+  m_Name: Two friends
   m_EditorClassIdentifier: 
-  GlobalID: GlobalObjectId_V1-3-77d07c813836e154ca0b9ab5de43a5b9-11400000-0
-  nodeTitle: new_town_keeper_intro
-  associatedMission: {fileID: 11400000, guid: 5341231da6f56534286de67ad8024c6a, type: 2}
-  interactableMoreThanOnce: 1
+  GlobalID: GlobalObjectId_V1-3-b84f2a79bcdd4ef4081681171b600082-11400000-0
+  nodeTitle: two_friends_intro
+  associatedMission: {fileID: 0}
+  interactableMoreThanOnce: 0

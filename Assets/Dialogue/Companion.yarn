@@ -1,30 +1,30 @@
 ﻿title: companion_intro
-scene: Player wakes up and everyone gathers around him. Astrid approches them to see what's going on
+scene: The player wakes up and everyone gathers around him. Astrid approaches them to see what's going on
 location: middle of town square
-mandatory: F
-nextMandatory: companion_after_intro
+nextMandatory: companion_get_name
 ---
 <<declare $playerName = "name">> 
 <<declare $astridSaidName = false>> 
-?: Hey, are you alright? 
-?: You just appeared here. This is weird, our town rarely gets any visitors.
+?: Hey, hey!
+?: Are you alright? 
+?: Gee, you must be so confused. You appeared out of thin air. 
 -> Player: Who are you?
     ?: I'm Astrid. 
     <<set $astridSaidName = true>> 
 -> Player: Where am I?
-    ?: You're in town square. 
-    ?: Of which town? This one, of course.
+    ?: You're in the town square. 
+    ?: Of which town? This is Matfyz Hollow. It’s north of… that way. 
 -> Player: How did I get here?
-    ?: I don’t know. You just appeared here.
-<<jump companion_after_intro>>
+    ?: Couldn’t tell ya. It was quiet, then—BOOM—and there you were.”
+<<jump companion_get_name>>
 ===
 
 
-title: companion_after_intro
+title: companion_get_name
 mandatory: T
 ---
 <<if $astridSaidName>>
-    Astrid: What's your name? 
+    Astrid: Say, what's your name? 
     <<EnterName EnterNameManager>>
 <<else>>
     -: What's your name? 
@@ -33,97 +33,165 @@ mandatory: T
 ===
 
 title: companion_intro_after_name
+scene: Astrid needs to notice the walkman, explain the town’s history if required, and take the player to meet the new town keeper. 
 nextMandatory: companion_go_to_mayor_shortcut
 ---
 <<if $astridSaidName>>
-    Astrid: Well, welcome to our town, {$playerName}.
+    Astrid: Well, you are here now. Welcome, {$playerName}.
 <<else>>
-    Astrid: Well, welcome to our town, {$playerName}. I'm Astrid.
+    Astrid: Well, you are here now. Welcome, {$playerName}. I'm Astrid.
 <<endif>>
-
-Astrid: What’s this thing you are carrying on your waist? 
+Astid: I like your outfit, by the way. What’s this stylish thing on your belt? 
+// camera zooms in on walkman 
 Astrid: A walkman? What's that?
-->Player: It's an old audio player.
-    Astrid: You don't say.
+->Player: It's a portable cassette player.
+    Astrid: Oh, neat. 
 ->Player: It's my own personal stereo.
     Astrid: You don't say.
-->Player: It's a birthday gift from my mom.
-    Astrid: Wait, I remember now. It's a portable audio player, right?
-Astrid: Sorry buddy, those don't work here. Or anything that plays music- for that matter.No music has been heard in this town since... you know.
-Astrid: Wait, you don't know, do you? 
+->Player: It's none of your business.
+    Astrid: You’re a private person huh? noted. It looks familiar… Oh! It’s a portable cassette player, right?
+Astrid: It looks cool and all, but it has no use round here. No music has been heard in this town since... you know.
+Astrid: Wait, you don't know? 
 -> Player: I don't.
     <<set $skipExplanation to true>>
     << jump companion_story_explanation>>
 -> Player: I do.
     <<set $skipExplanation to true>>
-
+    Astrid: Word got around I guess. This town is more famous than I thought! 
 << jump companion_discovers_walkman_works>>
+===
 
+title: companion_story_explanation
+scene: jumped from intro if the player needs to be told the story
+nextMandatory: companion_go_to_mayor_shortcut
+---
+Astrid: Years ago, we had the ultimate town keeper. A wise wizard. His daughter, Ingrid, took after him in her greatness. She was a prodigy, especially with the violin.  Her melodies were pure magic, leaving everyone who heard them enchanted. I mean, she could even influence people's hearts and minds- I’ve seen it myself. 
+Astrid: But... things took a turn when she died. Her father, well, he couldn't bear it.
+Astrid: To avenge his daughter’s death, he cast a spell over the town so no melody can be heard again. He thought… nothing could compare to Ingrid's playing. So nothing else is worth hearing. 
+ << jump companion_story_explanation_questions>>
+===
 
+title: companion_story_explanation_questions
+nextMandatory: companion_go_to_mayor_shortcut
+---
+-> Player: Where is he now? 
+    Astrid: I don't have the answer, no one has seen him since that day.
+    << jump companion_story_explanation_questions>>
+-> Player: How did Ingrid die? 
+    Astrid: You don’t need to know all that. I’ll spare you the details. 
+    << jump companion_story_explanation_questions>>
+-> Player: How can I get home?
+    Astrid: You were brought here by some mysterious force... To get back, you'll need more than just a useless Walkman and a bit of luck. Your best bet is finding this wizard. I don’t know anyone with power like his.
+    << jump companion_story_explanation_questions>>
+-> Player: The Walkman works.
+    << jump companion_discovers_walkman_works>>
 ===
 
 title: companion_discovers_walkman_works
 nextMandatory: companion_go_to_mayor_shortcut
 ---
-Astrid: So y'know, your walkman is as good as trash here.
--> Player:  It's working.
-Astrid: What do you mean... it works? That can't be.
-Astrid: Let me see that. [checksOutWalkman][/checksOutWalkman]
-///music starts in the game- the intro song
-Astrid: Oh my! Music! I can hear it! Quickly, we must show this to the town keeper. He's gonna be thrilled!
--> Player: The town keeper?
-    Astrid: I mean the new mayor. His office is right there, let's go.
--> Player: Where is he?
-    Astrid:His office is right there, let's go.
--> Player: Okay.
+Astrid: Ha! You like to fool around, don’t you? I think we will get along nicely. 
+Astrid: You’ll prove it to me…? Alright, sure bud. Let’s see. [checksOutWalkman][/checksOutWalkman]
+///music starts in the game- the intro song. Zooming in on the walkman again *slowly*, Astrid’s expression changes to surprised, astonished, and slightly scared. 
+Astrid: t…th…this is C R A Z Y! We gotta show this to Tony, I mean the town keeper, quickly! Follow me. 
 <<FMS>>
 ===
 
 title: companion_go_to_mayor_shortcut
 mandatory: T
 ---
-Astrid: Let's go talk to the mayor. 
+Astrid: Let's talk to the town’s keeper. He will help us figure it out. 
 <<FMS>>
-===
-
-
-title: companion_story_explanation
-scene: jumped into from intro if the player needs to be told the story
----
-Astrid: Alright, let me tell ya.
-Astrid: Years ago, we had a wise and poweful town keeper. He was good, really good. Probably the best this town has even seen. 
-Astrid: His daughter, Ingrid, took after him in her greatness.
-Astrid: She was a prodigy, especially with the violin. Her music... they weren't just melodies, they were magic. A power unlike any other.
-Astrid: She could communicate with people through music, even manipulate them. It was a language. A connection between people and their emotions.
-Astrid: But... things took a turn when she died. Her father, well, he couldn't bear it. Grief took over him and twisted him. Made him do something unthinkable.
-Astrid: He He cast a curse on the town, a spell to silence all music.
-Astrid: He thought... he thought nothing would ever compare to Ingrid's playing. That nothing else was worth hearing. He blames himself, you know? Thinks he didn't do enough to protect her. 
-Astrid: So now he is hiding away, who knows where. And he is the only one who can break this curse.
-<< jump companion_discovers_walkman_works>>
 ===
 
 
 title: companion_goes_home
+mandatory: T
 ---
-Astrid: Y'know, I think I have something sona will find valuable at my house.  It's in the village, on the right of town square.
-Astrid: Meet me there, after you are done exploring. 
-<<FMS>>
+Astrid: I think I’ve got something Sona might find valuable at my place. I’ll dig it out from beneath the dust mites.
+Astrid: Meet me there when you’re done exploring. It’s in the village right at the entrance - you can’t miss it.
 ===
 
-title: companion_outside_home
+title: companion_infront_home
+nextMandatory: companion_infront_home_shortcut
 ---
-Astrid: This part will be available later on. 
+Astrid: Pal! Did you find anything interesting while exploring?
+<<if $astridSaidName>>
+-> Player: Found another map piece. 
+    Astrid: No way! Only one to go. Let’s hope Sona is in a good mood. 
+-> Player: Not really. 
+    Astrid: Alright. I hope you will be satisfied with what I found then.
+-> Player: Sure thing!
+    Astrid: Oh, I am sure you got to explore a bit. You must be so confused by all this, I hope you had a chance to relax. If not, you can do that at my place. Come on in 
+<<else>> 
+    Astrid: No way! Only one to go. Let’s hope Sona is in a good mood. 
+-> Player: Yeah!
+    Astrid: Fantastic! Let’s keep the good vibes going. Come on in.  
+-> Player: Not really. 
+    Astrid: Alright. I hope you will be satisfied with what I found then. Come inside and check it out. 
+<<endif>>
+<<SceneManager SwitchScenes AstridHouse>>
 ===
 
-title: companion_after_artifact_collector
-scene: Sona just gave them the map in exchange for the violin. He's upset bc sona gave them just a piece of the map and not all of it.
-location: old city, outside of Sona's store
+title: companion_infront_home_shortcut
 ---
-Astrid: Pff, Can you believe that? I knew we should not have trusted her.
-Astrid: Whatever. Let's get going.
--> Player: What now?
-    Astrid: I'm not sure. Let's hit up the library, maybe we can find something usful there. 
--> Player: Where are we going?
-    Astrid: I thought we can go to the library, maybe we can find some more information there.
+<<SceneManager SwitchScenes AstridHouse>>
+===
 
+title: companion_in_house_intro
+scene: In Astrid’s house. It is quite large and seems to be built for more than 1 person. There is a base floor with a living room and kitchen, an upper floor with Astrid’s room and 2 locked bedrooms (belonging to Endmund and Ingrid), and a lower floor with a basement. There is a picture frame of them the player can ask about. Going to the basement is a challenge but possible. 
+nextMandatory: companion_in_house_show_violin
+---
+Astrid: Welcome to my crib! What do you think?
+-> Player: Pretty cool. And big.
+-> Player: Do you live here all by yourself?
+     Astrid: Ahh yeah, my parents are usually around, but they’re on a trip. 
+-> Player: What might Sona be interested in from here?
+    Astrid: Alright, let’s go straight for business then.
+<<jump companion_in_house_show_violin>>
+===
+
+title: companion_in_house_show_violin
+mandatory: T
+---
+Astrid: I found this old instrument. Sona got to find some value in it- let’s go show it to here! I bet she’ll get real excited!!
+Astrid: You want to know where I got a violin from… em… Easy! I used to play as a kid, but I wasn’t very good. Like, at all. I wonder why my dad hasn’t sold it already. I guess it was lost in all the rubbish down in the basement. 
+Astrid: Feel free to take a rest here. Since you are my friend, and we don’t know when you’ll be going back home… I want you to feel comfortable here. My room is upstairs. 
+Once you are ready, walk out the front door and we’ll hit the road!
+===
+
+
+title: companion_likes_girl
+scene: Astrid likes a character in the game but has never dared to approach and talk to her. The player convinces him to talk to her. 
+emotion: confidence/ courage 
+---
+Astrid: Wait, we have to hide!
+Astrid: Why…? Can you see that gorgeous girl over there? I’ve always liked... but I’ve never dared to talk to her. Every time I get close, I just freeze up.
+Astrid: Help me out, will ya! Play something that will make me feel confident and courageous!
+<<OMD>>
+===
+
+title: companion_likes_girl_after_music_good
+---
+Astrid: I’m feeling it, I’m feeling it! I’m going for it! …Come with me though, will ya? 
+===
+
+title: companion_likes_girl_after_music_bad
+---
+Astrid: Hmm…that didn’t do much. Well, I guess we could try again tomorrow. 
+===
+
+title: companion_got_full_map
+scene: Right after obtaining the third and last map piece. This may happen at Sonna’s shop or outside Tommy’s house, depending on which mission was completed first.
+mandatory: T
+---
+Astrid: Yes, we did it! This is it—the key to finding him! We’re… So close.
+Astrid: So we should go that direction // turns right
+Astrid: Or that direction? // turns left 
+Astrid: {$playerName}, can you read this? 
+-> Player: It’s on the left
+    Astrid: Are you guessing?
+    -> Player: Yes. 
+    -> Player: No. 
+-> Player: It’s on the right. 
 ===

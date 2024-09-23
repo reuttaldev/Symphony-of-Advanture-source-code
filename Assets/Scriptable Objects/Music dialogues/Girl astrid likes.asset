@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db1806ea827efa4e883bfc3e247f217, type: 3}
+  m_Name: Girl astrid likes
+  m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-13f2cacc9a8626948893e52ffe8ae167-11400000-0
+  emotionToInvoke: charmed and in love
+  onCompletionNode: girl_after_music
+  missionToComplete: {fileID: 0}
+  interactionName: Girl Astrid likes

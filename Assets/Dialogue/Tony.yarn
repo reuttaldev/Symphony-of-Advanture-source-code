@@ -1,0 +1,71 @@
+﻿title: tony_intro
+nextMandatory: tony_intro_shortcut
+location: in his office, next to the town square
+scene: Astrid took the player to this office to learn more about the Walkman. new town keeper will explain the journey to them and give them the first part of the map
+emotion: sad. This is in the form of a tutorial so it is skippable. 
+---
+<<declare $mapFromSona = false>> 
+<<declare $mapFromCheatedMan = false>> 
+<<declare $mapFromTony = true>> 
+Tony: Hey, Astrid. No time for any of your shenanigans. Could we do this later?
+Astrid: I’ll make it worth your while, I promise. 
+// Office phone starts to ring
+Tony: "Alright, make it quick. See? They’re already looking for me. Who’s your friend?
+Astrid: This is {$playerName}. He has something special to show you.  
+Town keeper: Oh, welcome! I am Mayor Tony, but you can call me Tony. Apologies for acting rude earlier, I’m just swamped in work.  Being the youngest town keeper, everyone’s watching my every move. Filling the shoes of my predecessor isn’t easy.
+Have you come for a vacation in our lovely town?
+->Player: I just woke up here. 
+    Tony: You don’t say. Did you have a lot to drink yesterday?
+    ->Player: No!         
+    ->Player: Maybe.
+-> Player: Vacation? here? I don't think so. 
+    Tony: Hey, watch your tone. Don’t speak about *my* town like that. Sure, it could use some renovation, but I’ve done my best with the time I’ve had. It’s a work in progress.
+Tony: What was it you wanted to show me?
+Tony: Oh, look at this precious piece of junk. I saw a Walkman just like this one at the museum. It’s a pity they’re all just gathering dust there.
+Astrid: This one works! {$playerName} will prove it. Play us a... <color=\#ff0000>sad</color> song.
+<<tutorial TutorialManager>>
+===
+
+title: tony_heard_music
+location: in his office, next to town square
+---
+Tony: Oh. I need to think about this. I didn’t have “find the only source of music left in our town” in my schedule today.
+Tony: But I will make time. This must be some sign. Is this the key to banish the curse…?
+Tony: You should try to locate the old townkeeper- Edmund. If you can do that for us and return music… Off! Huge weight off my shoulders.
+->Player: Okay
+   Tony: Great!
+->Player: I want to go home. 
+    Tony: Hey, I hear you. Being a mayor is a big deal, but I can't help with that. Only Edmund has the wisdom and power to understand what’s happening to you.
+    Tony: You must find him if you wish to return home. 
+
+Tony: I found this piece of paper when I first came into the office.  I had my suspicions about it, but I thought I was just losing it from all the paperwork.
+Tony: But now I know what it is. It’s a torn piece of a map—looks like a third of it. The only other person who ever had access to this room is Edmund, so I’m sure it will lead to him.
+/// map piece 1 mission
+<<FMS>>
+Tony: Here, take it. Finding the rest is up to you. 
+->Player: Okay, thanks.
+    Tony: I'll give you a hint to help you out. 
+->Player: Where should I start?
+->Player: I don't care! I just want to go home.
+    Tony: I understand, kid. All I can offer you is this map and some advice. I’m not sure how you ended up here, or from where, or why… Your best bet for getting home is Edmund. He’s a much better town keeper than I am."
+Tony: Visit Sona at her shop. She collects music artifacts. She's a bit of a character, but I trust she can help you somehow.
+===
+
+title: tony_intro_shortcut
+mandatory: T
+---
+/// map piece 1 mission
+<<FMS>>
+Tony: Here, take the first map piece. Finding the rest is up to you. 
+Tony: Visit Sona at her shop for starters.
+=== 
+
+title: tony_badgering
+location: in his office, next to the town square
+scene: before leaving the office, after hearing what he has to say
+emotion: - 
+---
+Tony: What an adventure! I wish I could come with you but, I have too much on my plate right now. Someone has to hold the fourth down. Sometimes I wonder how I got elected. Well, it was all so sudden…
+Tony: Anyway, I have big dreams for this place, I am counting on you to help me turn this place around!  
+===
+

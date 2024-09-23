@@ -1,0 +1,32 @@
+﻿title: two_friends_intro
+mandatory: T
+emotions: nostalgia / sentimental/ yearning / longing
+---
+Dude 1: Hey, bro, can’t you see we’re fighting over here? Have some manners. 
+Dude 2: Yeah, bro.
+	-> Player: What are you fighting about?
+		Dude 2: We were arguing over who gets to DJ at our next hangout.
+Dude 1: It started off as a joke, then…it just spiraled.
+Dude 2: Yeah, then you started calling my playlist trash.
+		Dude 2: Well, all you have on it is Britney Spears bro. And you always do it, let me have a go!
+		Astrid: It seems like you two, bros, have forgotten what really matters. Let us help you remember. 
+		<<OMD>>
+	-> Player: I can help.
+		Dude 1: Oh yeah? Do you have the fighting antidote?
+		Player: Kinda. 
+		<<OMD>>
+	-> Sorry to bother you.
+
+===
+
+title: two_friends_after_music
+mandatory: T
+---
+Dude 2: Dude, you know what this reminds me of? Our old track, the one we always played during road trips.
+Dude 1: I forgot how much fun we had back then.
+Dude 2: Remember when we got lost for hours? We didn’t care, though. Just cruising and laughing.
+Dude 1: Yeah, bro. Like, things were so simple back then. We’ve been through way worse than this.
+Dude 2: You’re right, dude.
+Dude 2: Thanks for reminding us of that.
+Dude 1: Yeah, we needed this.
+===

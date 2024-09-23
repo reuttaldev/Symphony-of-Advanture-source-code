@@ -1,0 +1,24 @@
+﻿title: artist_intro
+emotions:  inspired / passionate /enthusiastic/determined 
+scene: old city
+---
+Astrid: Hey, Demi, how are you?
+Demi: Yeah, I’m alright. What about you?
+Astrid: I’m doing great, actually- on a top mission right now. But I’ve got a minute. Can I check out your new painting?
+Demi (Artist): No, it’s not finished yet. And you know how I feel about people looking at my work before it’s done- it’s personal.
+Astrid: Who, {$playerName}? They’re no stranger. 
+Artist: I don’t know what’s wrong with me. I’ve lost my creative spark… My inspiration’s gone, and I can’t seem to finish this piece. It’s like my imagination dried up.
+Artist: I used to be able to work 12 hours a day, every day, for weeks! Now, nothing. And the worst part? I don’t know how to fix it. I think I’m just… done.
+->Player: Comfort
+->Player: Give advice
+  Demi: Thanks, {$playerName}. 
+  Astrid: I’ve seen your work, demi. You’ve created some incredible pieces before. You just need to find that spark again. Remember why you started.
+Astrid: And one last thing. I know for some people the thing that helps the most with feeling lost is music. I never understood it myself, but I saw the effects of it in person. Could we play you something and see if that helps? I think an inspirational and enthusiastic track is suitable. 
+<<OMD>>
+=== 
+
+title: artist_badgering
+---
+Demi: Thanks for the motivation. 
+Astrid: You got it. Sometimes when everything feels out of balance, it’s better to take baby steps, till the ground gets stable again.
+===

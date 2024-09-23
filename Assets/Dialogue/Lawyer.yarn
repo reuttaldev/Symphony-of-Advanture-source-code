@@ -1,0 +1,39 @@
+﻿title: lawyer_intro
+Emotion: cheerful and distracting
+mandatory: T
+scene: The player is walking in the village and runs through a commotion. A man is throwing clothes, suitcases, and other personal belongings out a window into the front porch. Shouting things while doing so, e.g. “outrageous!”, “how could she do this to me” “I gave her everything she could ever want!” Eventually, he comes storming out of the house to the grass and the player can talk to him. 
+---
+Man: Hey Astrid. I’m kinda in the middle of something here, if you don’t mind. 
+Astrid: Ah, yeah, I can see that. What exactly is happening?
+Man: Well, my wife, remember her? She s no longer my wife, as of this moment! Apparently, while I was out in court defending the innocent, she was busy, ah, sleeping with the enemy!
+Man: 10 years of marriage and sacrifice down the drain, just like that! Can you believe it?
+-> Player: Are you not overreacting a little?
+    Man: Overeating? Who are you, that you allow yourself to judge me in this manner? 
+    -> Player: I’m sorry. 
+        Man: Alright. Just... don’t do that again.
+   -> I’m {$playerName}, the saviour of this town. 
+       Man: Sure you are, buddy. I wouldn’t expect anything less strange to come out of the mouth of someone who’s friends with Astrid. 
+       Man: Wait, no, I didn’t mean it like that Astrid. It’s just… been a rough day. 
+       Astrid: It..it’s okay.
+-> Player: Change the locks.
+    Man: I sure will!
+Man: At least I won’t have to listen to her rambling about her boring job anymore... History this, archive that...
+Astrid: Wait, she works in an archive? 
+Man: I just said I don’t want to talk about it!
+-> Player: I can help.
+<<OMD>>
+=== 
+
+title:  lawyer_after_music
+---
+Man: Ah! How did you do that? Real nice. I wish we could play music to the witnesses before they go on the stand, I think it would help them. 
+Astrid: So.. you mentioned an archive?
+Man: Yeah, she worked there. Real boring stuff if you ask me. 
+Astrid: We’re looking for segments of a lost map. Did she ever bring up anything like that? 
+Man: Not that I recall. But she kept a ton of stuff at home. You might find something on the front porch. Feel free to check it out. And, uh, thanks for listening.
+===
+
+title: lawyer_badgering
+---
+Man: Did you find what you were looking for? 
+===
