@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
-  m_Name: Talk to girl astrid likes
+  m_Name: Talk to Astrid inside the house
   m_EditorClassIdentifier: 
-  GlobalID: GlobalObjectId_V1-3-6eedff26fa0a7b84aaf03998fcad1ca4-11400000-0
-  missionName: Talk to girl astrid likes
-  mainObjective: ' make her feel in love/ captivated/ charmed/ Infatuated.  '
-  startLocation: town square
+  GlobalID: GlobalObjectId_V1-3-f76d8304d7759dc4ba9ee901ba80267d-11400000-0
+  missionName: Talk to Astrid inside the house
+  mainObjective: 
+  startLocation: 
   state: 3
-  mandatory: 0
+  mandatory: 1
   prerequisiteIds: []

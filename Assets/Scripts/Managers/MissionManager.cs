@@ -6,7 +6,6 @@ public class MissionManager : MonoBehaviour, IRegistrableService
     // key is misssion id, value is mission data (its weapper)
     // its only for mission we want to attach UnityEvents to 
     Dictionary<string,MissionWrapper> missionWrappers = new Dictionary<string, MissionWrapper>();
-
      void Awake()
     {
         ServiceLocator.Instance.Register<MissionManager>(this);
@@ -14,25 +13,41 @@ public class MissionManager : MonoBehaviour, IRegistrableService
 
     void Start()
     {
-        // init the all missions dictionary based on the references that were set in the editor
+        LoadMissionWrappers();
+    }
+
+    // init the all missions dictionary based on the references that were set in the editor
+    private void LoadMissionWrappers()
+    {
         var children = GetComponentsInChildren<MissionWrapper>();
         foreach (MissionWrapper wrapper in children)
         {
-            if(missionWrappers.ContainsKey(wrapper.MissionDataID))
+            if (missionWrappers.ContainsKey(wrapper.MissionDataID))
             {
                 Debug.LogError("Duplicate mission wrapper with name " + wrapper.Name);
                 return;
-            }    
+            }
             // trigger on scene start events, if the associated missions are active
 
             missionWrappers[wrapper.MissionDataID] = wrapper;
-
-            // if the associated mission is completed when the scene starts, do the events that are connected this
-            if (wrapper.IsMissionDone())
-                wrapper.missionDoneOnSceneStart.Invoke();
         }
     }
-
+    public void TriggerOnSceneStartEvents()
+    {
+        var children = GetComponentsInChildren<StartSceneEventWrapper>(false); // only get components that are active
+        Debug.Log(children.Length);
+        foreach (StartSceneEventWrapper wrapper in children)
+        {
+            // trigger on scene start events, if the associated missions are active
+            // these missions will often be completed through the dialouge yarn script
+            // or one of the events we are triggering here will be to complete the mission
+            if (wrapper.CurrentMissionState ==wrapper.targetState)
+            {
+                Debug.Log(wrapper.gameObject.name);
+                wrapper.onSceneStart.Invoke();
+            }
+        }
+    }
     void PrintAllMission()
     {
         foreach (var pair in missionWrappers)
@@ -50,12 +65,15 @@ public class MissionManager : MonoBehaviour, IRegistrableService
             missionWrappers[missionID].onMissionStart.Invoke();
         }
     }
-    public void MissionHasEnded(string missionID)
+    public void MissionHasEnded(string missionID, bool successful = true)
     {
         if (missionWrappers.ContainsKey(missionID))
         {
             Debug.Log("Envoking onMissionEnd events for " + missionWrappers[missionID].Name);
-            missionWrappers[missionID].onMissionEnd.Invoke();
+            if (successful)
+                missionWrappers[missionID].onMissionEnd.Invoke();
+            else
+                missionWrappers[missionID].onMissionFail.Invoke();
         }
     }
 

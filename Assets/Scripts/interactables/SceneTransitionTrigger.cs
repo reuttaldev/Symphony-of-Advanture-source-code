@@ -10,9 +10,13 @@ public class SceneTransitionTrigger : Interactable
     [SerializeField]
     MissionData[] activeOnlyDuring;
     [SerializeField]
+    MissionData[] activeOnlyAfterSuccess;
+    [SerializeField]
     MissionData[] inactiveDuring;
     [SerializeField]
-    MissionData[] activeWhenCompleted;
+    MissionData[] inactiveAfterSuccess;
+    [SerializeField]
+    bool andCondition = false; // specifying if one of the activeOnlyDuring condition is enough to open the door, or if all of them must be satisfied  
     public string GoesTo => transitionTo;
 
 
@@ -22,22 +26,15 @@ public class SceneTransitionTrigger : Interactable
         {
             if (mission.State == MissionState.OnGoing)
             {
-                Debug.LogError("Not switching scenes bc "+mission.Name +" is active");
+                Debug.LogWarning("Not switching scenes bc "+mission.Name +" is active");
                 return;
             }
         }
-        bool allow = activeOnlyDuring.Length == 0;
-        // if one of them is active, or the list is emptyallow it 
-        foreach (var mission in activeOnlyDuring)
+        var result1 = CheckIfSatisfied(activeOnlyDuring, MissionState.OnGoing);
+        var result2 = CheckIfSatisfied(activeOnlyAfterSuccess, MissionState.CompletedSuccessfully);
+        if(!(result1 && result2))
         {
-            if (mission.State == MissionState.OnGoing)
-            {
-                allow= true;
-            }
-        }
-        if (!allow)
-        {
-            Debug.LogError("Not allowed to switch scenes");
+            Debug.LogWarning("Conditions for opening trigger door are not satisfied.");
             return;
         }
         if(string.IsNullOrEmpty(transitionTo))
@@ -46,5 +43,23 @@ public class SceneTransitionTrigger : Interactable
             return;
         }
         SceneManager.Instance.LoadScene(transitionTo);
+    }
+
+    private bool CheckIfSatisfied(MissionData[] a,  MissionState state)
+    {
+        // if one of them is active, or the list is empty, allow it 
+        bool allow = a.Length == 0;
+        foreach (var mission in a)
+        {
+            if (mission.State == state && !andCondition)
+            {
+                return true;
+            }
+            else if (andCondition)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

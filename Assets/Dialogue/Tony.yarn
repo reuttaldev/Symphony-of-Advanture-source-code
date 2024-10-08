@@ -28,6 +28,7 @@ Astrid: This one works! {$playerName} will prove it. Play us a... <color=\#ff000
 
 title: tony_heard_music
 location: in his office, next to town square
+nextMandatory: tony_intro_shortcut
 ---
 Tony: Oh. I need to think about this. I didn’t have “find the only source of music left in our town” in my schedule today.
 Tony: But I will make time. This must be some sign. Is this the key to banish the curse…?

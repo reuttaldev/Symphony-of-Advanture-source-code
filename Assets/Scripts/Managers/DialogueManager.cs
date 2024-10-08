@@ -22,7 +22,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     [HideInInspector]
     MissionData missionToStart;
     UIManager uiManager;
-    string lastNodeName = null;
     [SerializeField]
     PlayerNameData playerNameData;
     [SerializeField]
@@ -30,20 +29,21 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     [SerializeField]
     CanvasGroup cannotSkipTextGroup;
     float cannotSkipTextFadeTime = 0.2f;
-    bool skippingDialouge= false, noSkipTextShowing = false;
+    bool skippingDialouge= false, noSkipTextShowing = false, addedCommand = false;
+    string lastNodeName = "init";
     void Awake()
     {
         ServiceLocator.Instance.Register<DialogueManager>(this);
     }
     void OnEnable()
     {
-        dialogueRunner.onDialogueComplete.AddListener(FinishDialogue);
+        dialogueRunner.onDialogueComplete.AddListener(StopDialogue);
         skipDialougeButton.action.performed += context => SkipDialogue(); 
  
     }
     void OnDisable()
     {
-        dialogueRunner.onDialogueComplete.RemoveListener(FinishDialogue);
+        dialogueRunner.onDialogueComplete.RemoveListener(StopDialogue);
         skipDialougeButton.action.performed -= context => SkipDialogue();
 
     }
@@ -52,16 +52,18 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         yarnProject = dialogueRunner.yarnProject;
         dialogueRunner.VariableStorage.SetValue("$playerName", playerNameData.PlayerName);
         uiManager = ServiceLocator.Instance.Get<UIManager>();
+        dialogueRunner.AddCommandHandler("OMD", delegate { dialogueRunner.Stop(); uiManager.OpenMusicDialogueUI();});
         dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
-        dialogueRunner.AddCommandHandler("OMD",delegate { StopDialogue(); uiManager.OpenMusicDialogueUI(); });
-        // finish mission successfuly
-        dialogueRunner.AddCommandHandler("FMS", delegate { missionToComplete.EndMission(); });
-        // finish mission insuccessfuly
-        dialogueRunner.AddCommandHandler("FMF", delegate { missionToComplete.EndMission(); });
-        dialogueRunner.AddCommandHandler("SM", delegate { missionToStart.StartMission(); });
-        //dialogueRunner.VariableStorage.(customVariableStorage);
     }
 
+    private void CompleteCurrentMission(bool successful = true)
+    {
+        missionToComplete.EndMission(successful);
+    }
+        private void OnApplicationPause(bool pause)
+    {
+        
+    }
     public void SetMissionToComplete(MissionData data)
     {
         if (data == null)
@@ -71,6 +73,14 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         }
         Debug.Log("mission to complete is set to " + data.Name+" by music interactable");
         missionToComplete = data;
+        if (!addedCommand)
+        {
+            addedCommand = true;
+            // finish mission successfully
+            dialogueRunner.AddCommandHandler("FMS", delegate { CompleteCurrentMission(true); });
+            // finish mission failed
+            dialogueRunner.AddCommandHandler("FMF", delegate { CompleteCurrentMission(false); });
+        }
     }
     public void SetMusicInteraction(MusicDialogueData data)
     {
@@ -90,7 +100,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         }
         dialogueRunner.StartDialogue(nodeToStart);
         uiManager.OpenDialogueUI();
-        lastNodeName = dialogueRunner.CurrentNodeName;
+        lastNodeName = nodeToStart;
         if (missionToStart != null)
             missionToStart.StartMission();
     }
@@ -98,11 +108,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
 
     public void SkipDialogue()
     {
-        if (dialogueRunner == null)
-        {
-            Debug.LogError("Dialogue runner is set to null in dialogue manager.");
-            return;
-        }
         if (string.IsNullOrWhiteSpace(lastNodeName))
         {
             Debug.LogError("Trying to skip dialogue but lastNodeName is null");
@@ -119,28 +124,32 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             if (noSkipTextShowing)
                 return;
             // this node is marked as mandatory, do not skip it. 
-            StartCoroutine(ShowCannotSkipText());
+            if (this != null && gameObject != null)
+            {
+                StartCoroutine(ShowCannotSkipText());
+            }
             return;
         }
         // if it either has no metadata saying it is mandatory, or mandatory is marked as F
-        if (headers.ContainsKey("nextMandatory"))
+        if (!headers.ContainsKey("nextMandatory"))
         {
-            if (headers["nextMandatory"].Count != 1)
-            {
-                Debug.LogError("next mandatory field for node " + lastNodeName + " is not filled in correctly. ");
-                return;
-            }
-            string nextNode = headers["nextMandatory"][0];
-            skippingDialouge = true;
-            StopDialogue();
-            StartDialogue(nextNode);
+            Debug.LogWarning("Skipping dialogue but next node header is not found.");
+            dialogueRunner.Stop();
             return;
         }
-        else
-            Debug.LogWarning("Skipping dialogue but next node header is not found.");
-        //if we got here, just skip it
+
+        if (headers["nextMandatory"].Count != 1)
+        {
+            Debug.LogError("next mandatory field for node " + lastNodeName + " is not filled in correctly. ");
+            return;
+        }
+        string nextNode = headers["nextMandatory"][0];
         Debug.Log("skipping dialogue");
-        StopDialogue();
+        skippingDialouge = true;
+        // Call before starting a new node to finish the previous one and allow skipping.
+        dialogueRunner.Stop();
+        StartDialogue(nextNode);
+        skippingDialouge = false;   
     }
 
     IEnumerator ShowCannotSkipText()
@@ -151,31 +160,24 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         yield return StartCoroutine(Effects.FadeAlpha(cannotSkipTextGroup, 1, 0, cannotSkipTextFadeTime));
         noSkipTextShowing = false;
     }
-    // for stopping a dialogue while its active
+
+    // called by dialogueRunner.Stop()
     void StopDialogue()
     {
-        foreach (var view in dialogueRunner.dialogueViews)
-        {
-            if(view!= null)
-                view.GetComponent<CanvasGroup>().alpha = 0;
-        }
-        dialogueRunner.Stop();
-    }
-    // Please note that in order to mark the associated mission as completed at the end of a dialogue
-    // you need to do that from the yarn script itself and say if it was sucessful or not.
-    // actually, for now I will do it here, so it will always be marked as completed successfuly for now.
-    void FinishDialogue()
-    {
-        // if we are skipping the dialoue, we must terminate the current node we are in the middle of before starting the next node (yarn requirments).
-        // but we don't want to switch maps if this is the case, since we still need the dialogue map
-        if(skippingDialouge) 
-        {
-            skippingDialouge = false;
+        dialogueRunner.StopAllCoroutines();
+        // if we are skipping the dialogue, we don't want to close the UI since the next node will start immediately after
+        if (skippingDialouge)
             return;
+        // hide the views on the canvas 
+        foreach (var dialogueView in dialogueRunner.dialogueViews)
+        {
+            if (dialogueView == null || dialogueView.isActiveAndEnabled == false) continue;
+
+            dialogueView.DialogueComplete();
+            dialogueView.GetComponent<CanvasGroup>().alpha = 0;
         }
+        // change input map 
         uiManager.CloseDialogueUI();
-        missionToComplete = null;
-        missionToStart = null;
     }
     void FinishMusicDialogue()
     {
@@ -190,7 +192,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         }
         ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastNodeName);
         currentMusicInteraction = null;
-        lastNodeName = null;
     }
     public void PlayerLabeledTrack() // this will be called by a unity event on Music Dialogue UI, don't forget to set that this will be called on the inspector on music dialogue UI
     {
@@ -216,5 +217,9 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         }
         FinishMusicDialogue();
 
+    }
+    void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }

@@ -47,11 +47,11 @@ public class MissionData : MyScriptableObject
         }
         if (state == MissionState.CompletedUnSuccessfully || state == MissionState.CompletedSuccessfully)
         {
-            Debug.LogError("Trying to complete a mission that was already completed.");
+            Debug.LogWarning("Trying to complete a mission that was already completed.");
             return;
         }
         state = successful ? MissionState.CompletedSuccessfully : MissionState.CompletedUnSuccessfully;
-        ServiceLocator.Instance.Get<MissionManager>().MissionHasEnded(GlobalID);
+        ServiceLocator.Instance.Get<MissionManager>().MissionHasEnded(GlobalID, successful);
         Debug.Log("Mission " + Name + " has been marked as completed");
     }
 

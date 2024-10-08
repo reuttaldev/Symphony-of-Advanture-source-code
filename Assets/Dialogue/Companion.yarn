@@ -4,6 +4,9 @@ location: middle of town square
 nextMandatory: companion_get_name
 ---
 <<declare $playerName = "name">> 
+<<declare $foundMapFromLawyer = false>> 
+<<declare $gotViolin = false>> 
+
 <<declare $astridSaidName = false>> 
 ?: Hey, hey!
 ?: Are you alright? 
@@ -110,32 +113,31 @@ mandatory: T
 ---
 Astrid: I think I’ve got something Sona might find valuable at my place. I’ll dig it out from beneath the dust mites.
 Astrid: Meet me there when you’re done exploring. It’s in the village right at the entrance - you can’t miss it.
+<<FMS>>
 ===
 
 title: companion_infront_home
 nextMandatory: companion_infront_home_shortcut
 ---
 Astrid: Pal! Did you find anything interesting while exploring?
-<<if $astridSaidName>>
+<<if $foundMapFromLawyer>>
 -> Player: Found another map piece. 
     Astrid: No way! Only one to go. Let’s hope Sona is in a good mood. 
 -> Player: Not really. 
-    Astrid: Alright. I hope you will be satisfied with what I found then.
--> Player: Sure thing!
-    Astrid: Oh, I am sure you got to explore a bit. You must be so confused by all this, I hope you had a chance to relax. If not, you can do that at my place. Come on in 
+    Astrid: Alright. I hope you had a chance to relax. If not, you can do that at my place. Come on in 
 <<else>> 
-    Astrid: No way! Only one to go. Let’s hope Sona is in a good mood. 
 -> Player: Yeah!
     Astrid: Fantastic! Let’s keep the good vibes going. Come on in.  
 -> Player: Not really. 
     Astrid: Alright. I hope you will be satisfied with what I found then. Come inside and check it out. 
 <<endif>>
-<<SceneManager SwitchScenes AstridHouse>>
+<<FMS>>
 ===
 
 title: companion_infront_home_shortcut
 ---
-<<SceneManager SwitchScenes AstridHouse>>
+Astrid: Come on in.
+<<FMS>>
 ===
 
 title: companion_in_house_intro
@@ -148,6 +150,7 @@ Astrid: Welcome to my crib! What do you think?
      Astrid: Ahh yeah, my parents are usually around, but they’re on a trip. 
 -> Player: What might Sona be interested in from here?
     Astrid: Alright, let’s go straight for business then.
+<<FMS>> // talking inside the house mission 
 <<jump companion_in_house_show_violin>>
 ===
 
@@ -158,8 +161,15 @@ Astrid: I found this old instrument. Sona got to find some value in it- let’s 
 Astrid: You want to know where I got a violin from… em… Easy! I used to play as a kid, but I wasn’t very good. Like, at all. I wonder why my dad hasn’t sold it already. I guess it was lost in all the rubbish down in the basement. 
 Astrid: Feel free to take a rest here. Since you are my friend, and we don’t know when you’ll be going back home… I want you to feel comfortable here. My room is upstairs. 
 Once you are ready, walk out the front door and we’ll hit the road!
+<<set $gotViolin = true>> 
+<<FMS>>
 ===
 
+title: companion_in_house_after_violin_badgering
+mandatory: T
+---
+Astrid: Let's go see what Sona has to say about this.
+===
 
 title: companion_likes_girl
 scene: Astrid likes a character in the game but has never dared to approach and talk to her. The player convinces him to talk to her. 

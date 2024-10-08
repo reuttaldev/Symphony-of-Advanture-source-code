@@ -12,8 +12,6 @@ public class MusicDialogueInteractable : Interactable
     [SerializeField]
     MusicDialogueData data;
     DialogueManager dialogueManager;
-    [SerializeField]
-    MissionData associatedMission;
 
     private void Start()
     {
@@ -39,6 +37,7 @@ public class MusicDialogueInteractable : Interactable
     protected override void TriggerInteraction()
     {
         dialogueManager.SetMusicInteraction(data);
-        dialogueManager.SetMissionToComplete(associatedMission);
+        if (data.missionToComplete != null)
+            dialogueManager.SetMissionToComplete(data.missionToComplete);
     }
 }

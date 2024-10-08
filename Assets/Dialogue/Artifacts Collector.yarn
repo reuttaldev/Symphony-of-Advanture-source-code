@@ -43,7 +43,7 @@ Sona: Come back when you've got something worthy, kid.
     Sona: Once you prove you are determined enough, you will be trusted. 
 ===
 
-title: collector_completion
+title: collector_give_violin
 scene: The player gives her the violin in exchange for the Walkman 
 location: old city, in her shop
 ---
@@ -66,4 +66,7 @@ Sona: Why do you need it anyway?
 Sona: Good luck.
 ===
 
-
+title: collector_after_violin_badgering
+---
+Sona: Good luck.
+===

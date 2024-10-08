@@ -42,22 +42,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
     {
         if(!string.IsNullOrEmpty(previousSceneName))
             PlacePlayerInScene(previousSceneName);
-        TriggerOnSceneStartEvents();
-    }
-    
-    void TriggerOnSceneStartEvents()
-    {
-        var children = GetComponentsInChildren<StartSceneEventWrapper>();
-        foreach (StartSceneEventWrapper wrapper in children)
-        {
-            // trigger on scene start events, if the associated missions are active
-            // these missions will often be completed through the dialouge yarn script
-            // or one of the events we are triggering here will be to complete the mission
-            if(wrapper.MissionState == MissionState.OnGoing)
-            {
-                wrapper.onSceneStart.Invoke();
-            }
-        }
+        ServiceLocator.Instance.Get<MissionManager>().TriggerOnSceneStartEvents();
     }
     public void SetPlayerName(string playerName)
     {

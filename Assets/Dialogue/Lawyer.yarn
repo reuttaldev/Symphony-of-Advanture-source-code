@@ -25,12 +25,14 @@ Man: I just said I don’t want to talk about it!
 === 
 
 title:  lawyer_after_music
+mandatory: T
 ---
 Man: Ah! How did you do that? Real nice. I wish we could play music to the witnesses before they go on the stand, I think it would help them. 
 Astrid: So.. you mentioned an archive?
 Man: Yeah, she worked there. Real boring stuff if you ask me. 
 Astrid: We’re looking for segments of a lost map. Did she ever bring up anything like that? 
 Man: Not that I recall. But she kept a ton of stuff at home. You might find something on the front porch. Feel free to check it out. And, uh, thanks for listening.
+<<FMS>>
 ===
 
 title: lawyer_badgering

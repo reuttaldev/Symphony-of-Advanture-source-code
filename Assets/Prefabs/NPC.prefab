@@ -83,8 +83,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   interactableMoreThanOnce: 1
-  conversationStartNode: 
-  associatedMission: {fileID: 0}
+  nodeData: {fileID: 0}
+  companionPosition: 4
+  playerDirection: 4
+  visible: 1
 --- !u!114 &7292871183470178716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: 1
-  interactableMoreThanOnce: 1
+  interactableMoreThanOnce: 0
   data: {fileID: 0}
   associatedMission: {fileID: 0}
 --- !u!1 &5354622456944651965

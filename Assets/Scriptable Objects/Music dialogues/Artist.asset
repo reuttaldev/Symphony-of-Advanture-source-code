@@ -15,5 +15,5 @@ MonoBehaviour:
   GlobalID: GlobalObjectId_V1-3-0de63ab62eb9d97469cedc1885ae8777-11400000-0
   emotionToInvoke: ' inspired, passionate and determined '
   onCompletionNode: artist_badgering
-  missionToComplete: {fileID: 11400000, guid: cc8dfe41773c79a4cb25b83926df8d2b, type: 2}
+  missionToComplete: {fileID: 0}
   interactionName: Artist

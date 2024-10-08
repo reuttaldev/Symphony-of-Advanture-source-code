@@ -40,7 +40,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
             }
         }
         // if we got here it means refToLoad is null and we should load by default
-        Debug.LogWarning("Could not find requested first track, loaded default.");
+        //Debug.LogWarning("Could not find requested first track, loaded default.");
         LoadAdressable(GetAdressableReferenceByIndex(0), true,true);
     }
     TrackDataReference GetAdressableReferenceByID(string id)

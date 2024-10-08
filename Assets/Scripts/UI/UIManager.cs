@@ -77,11 +77,10 @@ public class UIManager : MonoBehaviour, IRegistrableService
         walkmanUI.gameObject.SetActive(false);
         walkmanUI.Close(manual:true);
         CloseAndSwitchUIMap();
-        Debug.Log("closing ui");
     }
     public void OpenMusicDialogueUI()
     {
-        //  we will often start the music dialogue from the regular dialogue, so no need to check if another UI window is open
+        SwitchUIMap();
         uiPanalOpen = true;
         walkmanUI.gameObject.SetActive(true);
         walkmanUI.Open();

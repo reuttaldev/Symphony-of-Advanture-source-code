@@ -8,7 +8,7 @@ Child: My mommy told me not to talk to strangers.
      Child: She also told me specifically not to talk to you.
      Astrid: Oh… okay. What does she know anyway? She doesn’t know me, that’s for sure.
      -> Player: We don’t have to talk. We could just play.
-     -> Player: Nevermind. 
+     -> Player: Never mind. 
 ->  Player: But I just want to play. 
 Child: Hm, that would be nice. See, I’m an only child, so often I just play with the wall. 
 Child: You could be the wall. 
@@ -16,4 +16,9 @@ Child: You could be the wall.
 Child: Well, this is boring. 
 Astrid: How about some music to change things up? 
 <<OMD>> 
+===
+
+title: child_badgering
+---
+Child: Ohhh, I feel like dancing! I think I am going to come up with a dance, and show it to my parents tonight. 
 ===

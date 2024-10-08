@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-6bde2cae040b16f48837ed3a33dc7b4c-11400000-0
   nodeTitle: artist_intro
-  associatedMission: {fileID: 11400000, guid: 2774373882d2a534bb499aa1e7bae3a0, type: 2}
-  interactableMoreThanOnce: 0
+  associatedMission: {fileID: 11400000, guid: cc8dfe41773c79a4cb25b83926df8d2b, type: 2}
+  interactableMoreThanOnce: 1

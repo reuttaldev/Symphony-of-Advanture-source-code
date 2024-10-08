@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Student
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-0cb24b2104680f445834e8344fd32201-11400000-0
-  nodeTitle: student_intro
-  associatedMission: {fileID: 0}
-  interactableMoreThanOnce: 0
+  nodeTitle: student_intro_1
+  associatedMission: {fileID: 11400000, guid: 8ef42934c9ef1174c927f41e26f53c92, type: 2}
+  interactableMoreThanOnce: 1

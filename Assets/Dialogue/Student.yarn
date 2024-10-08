@@ -1,22 +1,26 @@
 ﻿title: student_intro_1
 emotion:  energized and activated
 scene: The player needs to cross a bridge in Old City to get to Sona. But something is blocking their way. Or more accurately, someone.He covered himself with a grey blanket and looks like a rock. 
-nextMandatory: student_shortcut
+mandatory: t 
 ---
 -: zzzzzzzzzzzzzzz... zzzzzzzzzzzzzz…
 Astrid: Sorry, coming through.
  // moves a tiny bit
 Student: Oh… Let me clear the way.
+<<FMS>>
 ===
 
 title: student_intro_2
+mandatory:T
 ---
 Student: You need me to move some more?
 //moves in the wrong direction
 Student: Alright, how’s this? 
+<<FMS>>
 ===
 
 title: student_intro_3
+mandatory: t 
 ---
  // removes cover 
 Student: Huh, that was the wrong direction? I can’t do anything right!
@@ -44,7 +48,7 @@ Tommy:I will do anything to avoid trouble. For example… sleep on a bridge!
 title: student_shortcut
 mandatory: T
 ---
-You’re tired huh? My friend over here will play you a song that will help you feel <color=\#ff0000>energized and activated</color>.
+Astrid: You’re tired huh? My friend over here will play you a song that will help you feel <color=\#ff0000>energized and activated</color>.
 <<OMD>>
 ===
 
@@ -64,4 +68,5 @@ title: student_after_music_shortcut
 mandatory: T
 --- 
 Tommy: I’ll be out of your way now.
+<<FMS>>
 ===

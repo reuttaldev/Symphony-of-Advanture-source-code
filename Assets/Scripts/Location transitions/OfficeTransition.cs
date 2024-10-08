@@ -19,7 +19,7 @@ public class OfficeTransition : MonoBehaviour
         Debug.Log("walking to office");
         //gameManager = ServiceLocator.Instance.Get<GameManager>();
         //StartCoroutine(WalkToOfficeCoroutine());
-        SceneManager.Instance.LoadScene("TownKeeperOffice");
+        SceneManager.Instance.LoadScene("Office");
     }
     /*
     static IEnumerator WalkToOfficeCoroutine()
