@@ -496,7 +496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4395286051017317371, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.065541245
+      value: 0.06552345
       objectReference: {fileID: 0}
     - target: {fileID: 4395286051017317371, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4661,6 +4661,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 419872611704506622, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
+      propertyPath: playerDirection
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 419872611704506622, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
+      propertyPath: companionPosition
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 419872611704506622, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
       propertyPath: interactableMoreThanOnce
       value: 1
       objectReference: {fileID: 0}
@@ -4867,12 +4875,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4826550361780427524, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
       propertyPath: inactiveDuring.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4826550361780427524, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
       propertyPath: inactiveDuring.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 5341231da6f56534286de67ad8024c6a, type: 2}
+    - target: {fileID: 4826550361780427524, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
+      propertyPath: activeOnlyAfterSuccess.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826550361780427524, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
+      propertyPath: activeOnlyAfterSuccess.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: cf354acd8c9a4d54fabef39083bb7831, type: 2}
     - target: {fileID: 6496925836796620124, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
       propertyPath: m_Size.x
       value: 2.603403
@@ -6160,20 +6176,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionData: {fileID: 11400000, guid: f76d8304d7759dc4ba9ee901ba80267d, type: 2}
-  onSceneStart:
+  targetState: 2
+  onTargetState:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237604465}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1237604466}
+        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
+        m_MethodName: ChangeAssociatedMission
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: f76d8304d7759dc4ba9ee901ba80267d, type: 2}
+          m_ObjectArgumentAssemblyTypeName: MissionData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1237604466}
         m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
@@ -6185,21 +6202,8 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: companion_in_house_intro
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1237604466}
-        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
-        m_MethodName: ChangeAssociatedMission
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: f76d8304d7759dc4ba9ee901ba80267d, type: 2}
-          m_ObjectArgumentAssemblyTypeName: MissionData, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  targetState: 2
 --- !u!114 &1763140338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6221,20 +6225,20 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1237604466}
         m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
-        m_MethodName: ChangeAssociatedMission
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: MissionData, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1237604466}
-        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
         m_MethodName: ChangeConversationStartNode
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: companion_in_house_after_violin_badgering
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 062162071b4f2e147935a64a648530f7, type: 2}
+        m_TargetAssemblyTypeName: MissionData, Assembly-CSharp
+        m_MethodName: StartMission
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6268,6 +6272,30 @@ MonoBehaviour:
       - m_Target: {fileID: 1237604466}
         m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
         m_MethodName: ChangeAssociatedMission
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: cf354acd8c9a4d54fabef39083bb7831, type: 2}
+          m_ObjectArgumentAssemblyTypeName: MissionData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: cf354acd8c9a4d54fabef39083bb7831, type: 2}
+        m_TargetAssemblyTypeName: MissionData, Assembly-CSharp
+        m_MethodName: StartMission
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1923142964}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: SetMissionToComplete
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: cf354acd8c9a4d54fabef39083bb7831, type: 2}

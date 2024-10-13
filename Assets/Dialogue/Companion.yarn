@@ -142,7 +142,7 @@ Astrid: Come on in.
 
 title: companion_in_house_intro
 scene: In Astrid’s house. It is quite large and seems to be built for more than 1 person. There is a base floor with a living room and kitchen, an upper floor with Astrid’s room and 2 locked bedrooms (belonging to Endmund and Ingrid), and a lower floor with a basement. There is a picture frame of them the player can ask about. Going to the basement is a challenge but possible. 
-nextMandatory: companion_in_house_show_violin
+mandatory: T
 ---
 Astrid: Welcome to my crib! What do you think?
 -> Player: Pretty cool. And big.

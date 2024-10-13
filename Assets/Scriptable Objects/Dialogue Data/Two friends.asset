@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-b84f2a79bcdd4ef4081681171b600082-11400000-0
   nodeTitle: two_friends_intro
-  associatedMission: {fileID: 0}
+  associatedMission: {fileID: 11400000, guid: 77e0ce43cc828ae47a505af7ab45ad34, type: 2}
   interactableMoreThanOnce: 0

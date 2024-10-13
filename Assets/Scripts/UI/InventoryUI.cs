@@ -23,6 +23,7 @@ public class InventoryUI : MonoBehaviour
     }
     public void ShowMapIcons(int whichPieces)
     {
+        Debug.Log("Showing map icons");
         for (int i = 0; i < whichPieces ; i++)
         {
             mapIconObjects[i].gameObject.SetActive(true);

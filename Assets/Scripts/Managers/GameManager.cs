@@ -37,12 +37,11 @@ public class GameManager : MonoBehaviour, IRegistrableService
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
     }
 
-    // called from scene controller
+    // called from scene controller, after awake and before start
     public void OnSceneLoad(string previousSceneName)
     {
         if(!string.IsNullOrEmpty(previousSceneName))
             PlacePlayerInScene(previousSceneName);
-        ServiceLocator.Instance.Get<MissionManager>().TriggerOnSceneStartEvents();
     }
     public void SetPlayerName(string playerName)
     {
@@ -111,7 +110,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
         }
         if (returnPoint == null)
         {
-            Debug.LogError("No entry point for scene: " + previousSceneName);
+            Debug.LogError("No entry point for scene: " + previousSceneName+" or you forget to add a reference to it in game manger.");
             return;
         }
         player.transform.position = returnPoint.transform.position;

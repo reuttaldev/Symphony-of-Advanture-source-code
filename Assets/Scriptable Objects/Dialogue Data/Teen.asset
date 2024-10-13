@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-24ac84d82cde4f0448660018a2efe596-11400000-0
   nodeTitle: teen_intro
-  associatedMission: {fileID: 0}
+  associatedMission: {fileID: 11400000, guid: d64e56cbcd2e44249bcaf52cd15b54ca, type: 2}
   interactableMoreThanOnce: 0

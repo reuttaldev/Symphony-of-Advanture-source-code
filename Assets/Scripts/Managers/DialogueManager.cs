@@ -54,15 +54,11 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         uiManager = ServiceLocator.Instance.Get<UIManager>();
         dialogueRunner.AddCommandHandler("OMD", delegate { dialogueRunner.Stop(); uiManager.OpenMusicDialogueUI();});
         dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
-    }
 
-    private void CompleteCurrentMission(bool successful = true)
-    {
-        missionToComplete.EndMission(successful);
-    }
-        private void OnApplicationPause(bool pause)
-    {
-        
+        // finish mission successfully
+        dialogueRunner.AddCommandHandler("FMS", delegate { FinishDialogueMission(); });
+        // finish mission failed
+        dialogueRunner.AddCommandHandler("FMF", delegate { FinishDialogueMission(false); });
     }
     public void SetMissionToComplete(MissionData data)
     {
@@ -73,14 +69,16 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         }
         Debug.Log("mission to complete is set to " + data.Name+" by music interactable");
         missionToComplete = data;
-        if (!addedCommand)
+    }
+
+    private void FinishDialogueMission(bool sucessful = true)
+    {
+        if(missionToComplete == null)
         {
-            addedCommand = true;
-            // finish mission successfully
-            dialogueRunner.AddCommandHandler("FMS", delegate { CompleteCurrentMission(true); });
-            // finish mission failed
-            dialogueRunner.AddCommandHandler("FMF", delegate { CompleteCurrentMission(false); });
+            Debug.LogError("No mission associated to this dialogue, but it was called to finish the mission");
+            return;
         }
+        missionToComplete.EndMission(sucessful);
     }
     public void SetMusicInteraction(MusicDialogueData data)
     {
@@ -133,7 +131,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         // if it either has no metadata saying it is mandatory, or mandatory is marked as F
         if (!headers.ContainsKey("nextMandatory"))
         {
-            Debug.LogWarning("Skipping dialogue but next node header is not found.");
+            //Debug.LogWarning("Skipping dialogue but next node header is not found.");
             dialogueRunner.Stop();
             return;
         }

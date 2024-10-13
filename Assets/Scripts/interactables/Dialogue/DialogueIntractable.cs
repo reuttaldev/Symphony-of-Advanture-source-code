@@ -58,7 +58,6 @@ public class DialogueIntractable : Interactable
         nodeData.nodeTitle = nodeName;
         // make the trigger interactble again
         interactable = true;
-        nodeData.associatedMission = null;
         Debug.Log("Changing dialogue node to be " + nodeName + " on npc " + transform.root.name);
     }
     public void InteractableMoreThanOnce(bool i)
@@ -69,10 +68,18 @@ public class DialogueIntractable : Interactable
     }
     public void ChangeAssociatedMission(MissionData newAssociatedMission) 
     {
+        if (nodeData == null)
+        {
+            Debug.LogError("node data is null");
+        }
         nodeData.associatedMission = newAssociatedMission;
     }
     public void Interactable(bool i)
     {
         interactable = i;
+    }
+    public void ChangeDireciton(Direction direction)
+    {
+        companionPosition = direction;
     }
 }

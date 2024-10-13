@@ -9,6 +9,6 @@ public class MapCollectable : Interactable
     protected override void TriggerInteraction()
     {
         mapMissionData.EndMission();    
-        gameObject.SetActive(false);
+        gameObject.transform.parent.gameObject.SetActive(false);
     }
 }

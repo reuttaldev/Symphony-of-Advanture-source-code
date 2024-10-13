@@ -9,11 +9,13 @@ public class MissionManager : MonoBehaviour, IRegistrableService
      void Awake()
     {
         ServiceLocator.Instance.Register<MissionManager>(this);
+        LoadMissionWrappers();
+        TriggerOnSceneStartEvents();
     }
 
     void Start()
     {
-        LoadMissionWrappers();
+
     }
 
     // init the all missions dictionary based on the references that were set in the editor
@@ -34,8 +36,8 @@ public class MissionManager : MonoBehaviour, IRegistrableService
     }
     public void TriggerOnSceneStartEvents()
     {
+
         var children = GetComponentsInChildren<StartSceneEventWrapper>(false); // only get components that are active
-        Debug.Log(children.Length);
         foreach (StartSceneEventWrapper wrapper in children)
         {
             // trigger on scene start events, if the associated missions are active
@@ -43,8 +45,7 @@ public class MissionManager : MonoBehaviour, IRegistrableService
             // or one of the events we are triggering here will be to complete the mission
             if (wrapper.CurrentMissionState ==wrapper.targetState)
             {
-                Debug.Log(wrapper.gameObject.name);
-                wrapper.onSceneStart.Invoke();
+                wrapper.onTargetState.Invoke();
             }
         }
     }

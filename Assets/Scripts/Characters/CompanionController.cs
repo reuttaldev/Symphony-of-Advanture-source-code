@@ -10,13 +10,13 @@ public class CompanionController : MonoBehaviour
     private void Awake()
     {
         movementManager= gameObject.GetComponent<NPCFollowPlayer>();
-    }
-    private void Start()
-    {
         if (!followPlayerAtStart)
             movementManager.StopFollowingPlayer();
         else
             movementManager.FollowPlayer();
+    }
+    private void Start()
+    {
 
     }
 }

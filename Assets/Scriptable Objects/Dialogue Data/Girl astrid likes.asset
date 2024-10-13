@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-6daa06aba200d5448a4706b321fdcdc8-11400000-0
   nodeTitle: girl_astrid_likes_intro
-  associatedMission: {fileID: 0}
+  associatedMission: {fileID: 11400000, guid: e58ee6d4dff90e8478b9ed6303fc100b, type: 2}
   interactableMoreThanOnce: 0
