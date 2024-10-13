@@ -3330,7 +3330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionData: {fileID: 11400000, guid: 062162071b4f2e147935a64a648530f7, type: 2}
-  onSceneStart:
+  targetState: 0
+  onTargetState:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 226274882}
@@ -3345,7 +3346,6 @@ MonoBehaviour:
           m_StringArgument: collector_after_violin_badgering
           m_BoolArgument: 0
         m_CallState: 2
-  targetState: 0
 --- !u!114 &578341852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3359,7 +3359,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionData: {fileID: 11400000, guid: cf354acd8c9a4d54fabef39083bb7831, type: 2}
-  onSceneStart:
+  targetState: 0
+  onTargetState:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 226274882}
@@ -3374,19 +3375,6 @@ MonoBehaviour:
           m_StringArgument: collector_give_violin
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 226274882}
-        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
-        m_MethodName: ChangeAssociatedMission
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 062162071b4f2e147935a64a648530f7, type: 2}
-          m_ObjectArgumentAssemblyTypeName: MissionData, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  targetState: 0
 --- !u!1001 &675543314
 PrefabInstance:
   m_ObjectHideFlags: 0

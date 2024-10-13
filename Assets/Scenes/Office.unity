@@ -496,7 +496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4395286051017317371, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.065541245
+      value: 0.06554124
       objectReference: {fileID: 0}
     - target: {fileID: 4395286051017317371, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6252,7 +6252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionData: {fileID: 11400000, guid: 2002abb2ca671db4d81c93bbdc21d041, type: 2}
-  onSceneStart:
+  targetState: 2
+  onTargetState:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1237604465}
@@ -6267,7 +6268,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  targetState: 2
 --- !u!4 &1796608997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378130884591065183, guid: 14bd081a741f6a548808abf4734bddd5, type: 3}

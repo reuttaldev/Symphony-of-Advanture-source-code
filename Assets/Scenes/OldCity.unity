@@ -3569,7 +3569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionData: {fileID: 11400000, guid: cc8dfe41773c79a4cb25b83926df8d2b, type: 2}
-  onSceneStart:
+  targetState: 0
+  onTargetState:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 269224000}
@@ -3584,7 +3585,6 @@ MonoBehaviour:
           m_StringArgument: artist_badgering
           m_BoolArgument: 0
         m_CallState: 2
-  targetState: 0
 --- !u!114 &523412898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23295,7 +23295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionData: {fileID: 11400000, guid: 3cf2722864ef9764581e93cdea50848f, type: 2}
-  onSceneStart:
+  targetState: 2
+  onTargetState:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1786630920934015599}
@@ -23319,7 +23320,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: right
+          m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 744139874}
@@ -23332,7 +23333,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: companion_goes_home
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 744139874}
         m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
@@ -23344,9 +23345,8 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: companion_goes_home
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
-  targetState: 2
 --- !u!114 &1370715303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23360,7 +23360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionData: {fileID: 11400000, guid: 2002abb2ca671db4d81c93bbdc21d041, type: 2}
-  onSceneStart:
+  targetState: 2
+  onTargetState:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 744139873}
@@ -23375,7 +23376,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  targetState: 2
 --- !u!1 &1372200311
 GameObject:
   m_ObjectHideFlags: 0
@@ -29499,7 +29499,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionData: {fileID: 11400000, guid: d4e4117eb0cbd8c40b5fead620a60cc5, type: 2}
-  onSceneStart:
+  targetState: 0
+  onTargetState:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1804191411}
@@ -29514,7 +29515,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  targetState: 0
 --- !u!114 &1937299201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29781,7 +29781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionData: {fileID: 11400000, guid: 2002abb2ca671db4d81c93bbdc21d041, type: 2}
-  onSceneStart:
+  targetState: 2
+  onTargetState:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 744139873}
@@ -29796,7 +29797,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  targetState: 2
 --- !u!20 &1980674958 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6743865315843182017, guid: 38e057931c138444ebcca8e807047df0, type: 3}
