@@ -45,21 +45,26 @@ public class SceneTransitionTrigger : Interactable
 
     private bool CheckIfSatisfied(MissionData[] a,  MissionState state)
     {
+        if (a.Length == 0)
+            return true; 
         // if one of them is active, or the list is empty, allow it 
         bool allow = a.Length == 0;
         foreach (var mission in a)
         {
-            if (mission.State == state && !andCondition)
+            if (mission.State == state)
             {
-                return true;
+                if(!andCondition)
+                    return true;
             }
             else if (andCondition)
             {
                 return false;
             }
         }
-        if (!andCondition && a.Length != 0)
+        // if we got here, and the condition is or it means that *no* state is the target one. return false
+        if (!andCondition)
             return false;
+        // if we got here, and the condition is and it means that all states are the target ones
         return true;
     }
 }

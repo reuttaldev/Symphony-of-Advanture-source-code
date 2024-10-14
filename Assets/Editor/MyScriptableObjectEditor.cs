@@ -4,7 +4,7 @@ using UnityEditor;
 #if UNITY_EDITOR
 [CustomEditor(typeof(MyScriptableObject), true)] // "true" makes it apply to derived classes
 public class MyScriptableObjectEditor : Editor
-{/*
+{
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -12,7 +12,11 @@ public class MyScriptableObjectEditor : Editor
 
         // check if the object has unsaved changes (i.e., is dirty)
         bool isDirty = EditorUtility.IsDirty(myScriptableObject);
-        GUI.color = isDirty ? Color.red : Color.green;
+        bool playing = Application.isPlaying;
+        if(playing)
+            GUI.color = isDirty ? Color.red : Color.white;
+        else
+            GUI.color = isDirty ? Color.red : Color.green;
         if (GUILayout.Button("Save"))
         {
             myScriptableObject.Save();
@@ -21,6 +25,6 @@ public class MyScriptableObjectEditor : Editor
         {
             myScriptableObject.ResetOnExitPlay();
         }
-    }*/
+    }
 }
 #endif

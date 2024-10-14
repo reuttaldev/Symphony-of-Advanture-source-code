@@ -33,16 +33,13 @@ public class MyScriptableObject : ScriptableObject
     virtual public void Save()
     {
         defaultStateInJson = JsonUtility.ToJson(this);
-        if (GlobalID == "GlobalObjectId_V1-3-fa1d302f03dd61a418cbb828dfb5d1ea-11400000-0")
-            Debug.LogError("Saving companion");
-
+        EditorUtility.ClearDirty(this);
     }
 
     virtual public void ResetOnExitPlay()
     {
         JsonUtility.FromJsonOverwrite(defaultStateInJson, this);
-        if (GlobalID == "GlobalObjectId_V1-3-fa1d302f03dd61a418cbb828dfb5d1ea-11400000-0")
-            Debug.LogError("Ressetting"); 
+        EditorUtility.ClearDirty(this);
     }
 
 #endif
