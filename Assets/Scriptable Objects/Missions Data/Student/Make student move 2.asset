@@ -15,7 +15,7 @@ MonoBehaviour:
   GlobalID: GlobalObjectId_V1-3-9124296b93f0d6848af2c3e54280a201-11400000-0
   missionName: Make student move 2
   mainObjective: 
-  startLocation: 
+  startLocation: NewCity, next to a bridge
   state: 3
   mandatory: 1
   prerequisiteIds: []

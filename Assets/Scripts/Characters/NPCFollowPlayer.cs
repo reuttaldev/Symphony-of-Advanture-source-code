@@ -30,14 +30,14 @@ public class NPCFollowPlayer : MonoBehaviour
 
     public void FollowPlayer()
     {
-        Debug.Log("Astrid started following player");
+        //Debug.Log("Astrid started following player");
         followPlayer = true;
     }
 
     public void StopFollowingPlayer()
     {
 
-        Debug.Log("Astrid stopped following player");
+        //Debug.Log("Astrid stopped following player");
         followPlayer = false;
     }
 

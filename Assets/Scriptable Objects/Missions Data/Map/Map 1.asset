@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-5341231da6f56534286de67ad8024c6a-11400000-0
   missionName: Map 1
-  mainObjective: Talk to edmund and he will give you the first map piece
-  startLocation: Edmund's office
-  state: 2
+  mainObjective: 
+  startLocation: 
+  state: 3
   mandatory: 1
   prerequisiteIds: []

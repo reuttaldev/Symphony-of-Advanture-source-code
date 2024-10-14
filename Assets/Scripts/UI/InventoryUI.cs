@@ -15,19 +15,18 @@ public class InventoryUI : MonoBehaviour
     CanvasGroup addItemTextGroup;
     [SerializeField]
     TMP_Text addItemText;
-    float fadeDuration = 1.5f, showTextDuration = 70, showMapDuration = 100;
+    float showTextDuration = 5, showMapDuration = 8;
 
     private void Awake()
     {
         addItemText = addItemTextGroup.gameObject.GetComponent<TMP_Text>();
     }
-    public void ShowMapIcons(int whichPieces)
+    public void ShowMapIcons(bool[] showPieceAtIndex)
     {
         Debug.Log("Showing map icons");
-        for (int i = 0; i < whichPieces ; i++)
+        for (int i = 0; i < showPieceAtIndex.Length; i++)
         {
-            mapIconObjects[i].gameObject.SetActive(true);
-            Debug.Log("setting active");
+            mapIconObjects[i].gameObject.SetActive(showPieceAtIndex[i]);
         }
         StartCoroutine(ShowIcons());
     }
@@ -39,17 +38,15 @@ public class InventoryUI : MonoBehaviour
     }
     IEnumerator ShowIcons()
     {
-        yield return StartCoroutine(Effects.FadeAlpha(mapIconParent, 1, 0, fadeDuration));
-        yield return new WaitForSeconds(showMapDuration);
-        yield return StartCoroutine(Effects.FadeAlpha(mapIconParent, 0, 1, fadeDuration));
+        yield return StartCoroutine(Effects.FadeAlpha(mapIconParent, 0, 1, showMapDuration/2));
+        yield return StartCoroutine(Effects.FadeAlpha(mapIconParent, 1, 0, showMapDuration/2));
     }
 
     IEnumerator ShowText()
     {
         addItemTextGroup.gameObject.SetActive(true);
-        yield return StartCoroutine(Effects.FadeAlpha(addItemTextGroup, 0, 1, fadeDuration));
-        yield return new WaitForSeconds(showTextDuration);
-        yield return StartCoroutine(Effects.FadeAlpha(addItemTextGroup, 0, 1, fadeDuration));
+        yield return StartCoroutine(Effects.FadeAlpha(addItemTextGroup, 0, 1, showTextDuration/2));
+        yield return StartCoroutine(Effects.FadeAlpha(addItemTextGroup, 1, 0, showTextDuration/2));
         addItemTextGroup.gameObject.SetActive(false);
     }
 }

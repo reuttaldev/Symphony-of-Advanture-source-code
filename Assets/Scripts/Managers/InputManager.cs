@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour, IRegistrableService
     }
     public void ActivatePlayerMap()
     {
-        Debug.Log("Activating player map");
+        //Debug.Log("Activating player map");
         lastActiveMapName = playerInput.currentActionMap.name;
         playerInput.SwitchCurrentActionMap("Player");
     }

@@ -51,6 +51,10 @@ public class GameManager : MonoBehaviour, IRegistrableService
 
     }
 
+    public void SwitchScene(string name)
+    {
+        SceneManager.Instance.LoadScene(name);  
+    }
     public void UnpauseGame()
     {
         if (paused)
@@ -111,7 +115,6 @@ public class GameManager : MonoBehaviour, IRegistrableService
         if (returnPoint == null)
         {
             Debug.LogError("No entry point for scene: " + previousSceneName+" or you forget to add a reference to it in game manger.");
-            return;
         }
         player.transform.position = returnPoint.transform.position;
         Direction lookAtDirection = returnPoint.lookAt;

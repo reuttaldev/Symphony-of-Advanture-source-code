@@ -4,16 +4,7 @@ using UnityEditor;
 using System;
 using System.IO;
 using Google.Apis.Sheets.v4;
-using System.Security.Cryptography;
-using Codice.Client.Common;
-using Codice.CM.Common;
-using static Codice.Client.Common.Servers.RecentlyUsedServers;
-using System.Buffers.Text;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
-using Unity.VisualScripting.YamlDotNet.Core;
-using Unity.VisualScripting;
 using Google;
-using UnityEngine.UIElements;
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(DataMigrationSettings))]
@@ -49,9 +40,6 @@ public class DataMigrationSettingsEditor : Editor
         exportSheetName = serializedObject.FindProperty("exportSheetName");
         tempExportName = serializedObject.FindProperty("tempExportName");
         errorMessage = serializedObject.FindProperty("errorMessage");
-    }
-    void ProgressBar(float value, string label)
-    {
     }
     public override void OnInspectorGUI()
     {

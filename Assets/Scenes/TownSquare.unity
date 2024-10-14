@@ -134,7 +134,8 @@ GameObject:
   - component: {fileID: 827829}
   - component: {fileID: 827830}
   - component: {fileID: 827831}
-  - component: {fileID: 827832}
+  - component: {fileID: 827833}
+  - component: {fileID: 827834}
   m_Layer: 0
   m_Name: Girl astrid likes
   m_TagString: Untagged
@@ -215,18 +216,6 @@ MonoBehaviour:
           m_StringArgument: girl_badgering
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 198833539}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: girl_badgering
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &827831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +245,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &827832
+--- !u!114 &827833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd714799250a5c499023bb0ff466596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionData: {fileID: 11400000, guid: 2002abb2ca671db4d81c93bbdc21d041, type: 2}
+  missionData: {fileID: 11400000, guid: e58ee6d4dff90e8478b9ed6303fc100b, type: 2}
   targetState: 2
   onTargetState:
     m_PersistentCalls:
@@ -283,6 +272,35 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &827834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd714799250a5c499023bb0ff466596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionData: {fileID: 11400000, guid: e58ee6d4dff90e8478b9ed6303fc100b, type: 2}
+  targetState: 1
+  onTargetState:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 955331922}
+        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
+        m_MethodName: ChangeConversationStartNode
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: girl_badgering
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1001 &34166281
@@ -361,6 +379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Girl Astrid likes
       objectReference: {fileID: 0}
+    - target: {fileID: 5354622456944651965, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5851397542403215832, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_Size.x
       value: 16.640442
@@ -425,6 +447,7 @@ GameObject:
   - component: {fileID: 34930134}
   - component: {fileID: 34930136}
   - component: {fileID: 34930135}
+  - component: {fileID: 34930137}
   m_Layer: 0
   m_Name: Child
   m_TagString: Untagged
@@ -498,10 +521,10 @@ MonoBehaviour:
   onTargetState:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1273869269}
-        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
-        m_MethodName: ChangeConversationStartNode
-        m_Mode: 5
+      - m_Target: {fileID: 34930133}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -509,6 +532,35 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: child_badgering
           m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &34930137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34930133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd714799250a5c499023bb0ff466596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionData: {fileID: 11400000, guid: faf1bd419f7a06f46b3f9c92eba3e4d8, type: 2}
+  targetState: 2
+  onTargetState:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1069669205}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &69947235
 GameObject:
@@ -5395,9 +5447,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Astrid
       objectReference: {fileID: 0}
+    - target: {fileID: 7982300860391390057, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8307982934633218513, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
       propertyPath: followPlayerAtStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5924,6 +5980,10 @@ PrefabInstance:
     - target: {fileID: 5354622456944651965, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_Name
       value: Child
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354622456944651965, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5851397542403215832, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_Size.x
@@ -10838,6 +10898,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1069669205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5354622456944651965, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
+  m_PrefabInstance: {fileID: 413996217}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1131314542 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4826550361780427524, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
@@ -11209,6 +11274,10 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 90680298}
+    - target: {fileID: 8330753797495558901, guid: 760278e82614e134a875173a63b47e6c, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 90680298}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11312,11 +11381,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1701165338}
   - component: {fileID: 1701165339}
-  - component: {fileID: 1701165343}
   - component: {fileID: 1701165342}
   - component: {fileID: 1701165341}
   - component: {fileID: 1701165344}
-  - component: {fileID: 1701165345}
   m_Layer: 0
   m_Name: Astrid
   m_TagString: Untagged
@@ -11373,6 +11440,18 @@ MonoBehaviour:
       - m_Target: {fileID: 869032239}
         m_TargetAssemblyTypeName: OfficeTransition, Assembly-CSharp
         m_MethodName: WalkToOffice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: faf1bd419f7a06f46b3f9c92eba3e4d8, type: 2}
+        m_TargetAssemblyTypeName: MissionData, Assembly-CSharp
+        m_MethodName: StartMission
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11467,35 +11546,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1701165343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701165337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cd714799250a5c499023bb0ff466596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  missionData: {fileID: 11400000, guid: e58ee6d4dff90e8478b9ed6303fc100b, type: 2}
-  targetState: 2
-  onTargetState:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 198833539}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1701165344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11524,47 +11574,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1701165345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701165337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cd714799250a5c499023bb0ff466596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  missionData: {fileID: 11400000, guid: fa1d302f03dd61a418cbb828dfb5d1ea, type: 2}
-  targetState: 0
-  onTargetState:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1273869269}
-        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
-        m_MethodName: ChangeCharacterVisibility
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 955331922}
-        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
-        m_MethodName: ChangeCharacterVisibility
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1820429967
 GameObject:

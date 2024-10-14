@@ -14,8 +14,6 @@ public class SceneTransitionTrigger : Interactable
     [SerializeField]
     MissionData[] inactiveDuring;
     [SerializeField]
-    MissionData[] inactiveAfterSuccess;
-    [SerializeField]
     bool andCondition = false; // specifying if one of the activeOnlyDuring condition is enough to open the door, or if all of them must be satisfied  
     public string GoesTo => transitionTo;
 
@@ -60,6 +58,8 @@ public class SceneTransitionTrigger : Interactable
                 return false;
             }
         }
+        if (!andCondition && a.Length != 0)
+            return false;
         return true;
     }
 }

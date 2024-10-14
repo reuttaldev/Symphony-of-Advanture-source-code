@@ -1,9 +1,6 @@
 using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
-using static Unity.Burst.Intrinsics.X86.Avx;
 public class CameraShake : MonoBehaviour
 {
 

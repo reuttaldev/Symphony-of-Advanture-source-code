@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class MissionManager : MonoBehaviour, IRegistrableService
@@ -37,15 +38,19 @@ public class MissionManager : MonoBehaviour, IRegistrableService
     public void TriggerOnSceneStartEvents()
     {
 
-        var children = GetComponentsInChildren<StartSceneEventWrapper>(false); // only get components that are active
+        var children = GetComponentsInChildren<StartSceneEventWrapper>(); 
         foreach (StartSceneEventWrapper wrapper in children)
         {
-            // trigger on scene start events, if the associated missions are active
-            // these missions will often be completed through the dialouge yarn script
-            // or one of the events we are triggering here will be to complete the mission
-            if (wrapper.CurrentMissionState ==wrapper.targetState)
+            // only get components that are active
+            if (wrapper.isActiveAndEnabled)
             {
-                wrapper.onTargetState.Invoke();
+                // trigger on scene start events, if the associated missions are active
+                // these missions will often be completed through the dialouge yarn script
+                // or one of the events we are triggering here will be to complete the mission
+                if (wrapper.CurrentMissionState == wrapper.targetState)
+                {
+                    wrapper.onTargetState.Invoke();
+                }
             }
         }
     }
@@ -62,7 +67,6 @@ public class MissionManager : MonoBehaviour, IRegistrableService
     {
         if (missionWrappers.ContainsKey(missionID))
         {
-            Debug.Log("Envoking onMissionStart events for " + missionWrappers[missionID].Name);
             missionWrappers[missionID].onMissionStart.Invoke();
         }
     }
@@ -70,7 +74,6 @@ public class MissionManager : MonoBehaviour, IRegistrableService
     {
         if (missionWrappers.ContainsKey(missionID))
         {
-            Debug.Log("Envoking onMissionEnd events for " + missionWrappers[missionID].Name);
             if (successful)
                 missionWrappers[missionID].onMissionEnd.Invoke();
             else

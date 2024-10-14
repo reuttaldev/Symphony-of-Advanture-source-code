@@ -15,5 +15,5 @@ MonoBehaviour:
   GlobalID: GlobalObjectId_V1-3-5d986bb9b50ce8443a699aa5ea22ffef-11400000-0
   emotionToInvoke: interested
   onCompletionNode: child_badgering
-  missionToComplete: {fileID: 11400000, guid: faf1bd419f7a06f46b3f9c92eba3e4d8, type: 2}
+  missionToComplete: {fileID: 0}
   interactionName: Child

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Menus/MainMenu.unity
     guid: c1ee73e66febf9241bc11431414bcb07
   - enabled: 1
     path: Assets/Scenes/TownSquare.unity
@@ -18,16 +18,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Village.unity
     guid: d1ea2946694201f4e92f3f65be517d39
   - enabled: 1
-    path: Assets/Scenes/SonaShop.unity
+    path: Assets/Scenes/Rooms/SonaShop.unity
     guid: a0b1755cd9d4fb844af4719d2438f838
   - enabled: 1
-    path: Assets/Scenes/Office.unity
+    path: Assets/Scenes/Rooms/Office.unity
     guid: 082e2338aca666b499edd5268fbb5242
   - enabled: 1
-    path: Assets/Scenes/AstridHouse.unity
+    path: Assets/Scenes/Rooms/AstridHouse.unity
     guid: 0ed10aab8977075479aac3ca7113464b
   - enabled: 1
-    path: Assets/Scenes/EdmundRoom.unity
+    path: Assets/Scenes/Rooms/EdmundRoom.unity
     guid: 9bc3efe1bcad22241952df16f410524d
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: eb22aafd18cfdbf43af9db33a24f6eba, type: 2}

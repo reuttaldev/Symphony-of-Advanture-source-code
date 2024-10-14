@@ -14011,17 +14011,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
---- !u!114 &890522579 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6962983337632199458, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
-  m_PrefabInstance: {fileID: 890522578}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a12aa77b9cca680458d00c1f8685c08a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &909615198
 GameObject:
   m_ObjectHideFlags: 0
@@ -14235,7 +14224,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.43403244, y: -0.056611538}
@@ -14396,7 +14385,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3089312759892624788}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
         m_MethodName: ShowMapIcons
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -75977,18 +75966,6 @@ MonoBehaviour:
   onMissionEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2510886321516883026}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: astrid_go_to_house
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: f76d8304d7759dc4ba9ee901ba80267d, type: 2}
         m_TargetAssemblyTypeName: MissionData, Assembly-CSharp
         m_MethodName: StartMission
@@ -76001,9 +75978,9 @@ MonoBehaviour:
           m_StringArgument: astrid_go_to_house
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 890522579}
-        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 1786630920934015600}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SwitchScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -76054,75 +76031,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
   m_PrefabInstance: {fileID: 1261798165}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2118764369
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5354622456944651965, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: m_Name
-      value: Child
-      objectReference: {fileID: 0}
-    - target: {fileID: 7210769603776619197, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: nodeData
-      value: 
-      objectReference: {fileID: 11400000, guid: 56b90a9eed93de049b7db12a2c64a715, type: 2}
-    - target: {fileID: 7292871183470178716, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: 5d986bb9b50ce8443a699aa5ea22ffef, type: 2}
-    - target: {fileID: 7292871183470178716, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      propertyPath: associatedMission
-      value: 
-      objectReference: {fileID: 11400000, guid: faf1bd419f7a06f46b3f9c92eba3e4d8, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
 --- !u!1001 &1377270007048585833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76312,18 +76220,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 254557920621527617, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1786630920934015600}
-    - target: {fileID: 254557920621527617, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 509809197736527570, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 756305420675725942, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -76403,14 +76299,6 @@ PrefabInstance:
     - target: {fileID: 756305420675725942, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1548280125096018636, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2094465648794632274, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2864163567865908013, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
       propertyPath: m_Name
@@ -76568,11 +76456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91689a89a345dd42bcc1593f84de54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &2510886321516883026 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2228516752409779136, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
-  m_PrefabInstance: {fileID: 2510886321516883024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2510886321516883027 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 419872611704506622, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
@@ -76804,6 +76687,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8330753797495558901, guid: 760278e82614e134a875173a63b47e6c, type: 3}
       propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 2388107763458259374}
+    - target: {fileID: 8330753797495558901, guid: 760278e82614e134a875173a63b47e6c, type: 3}
+      propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 2388107763458259374}
     m_RemovedComponents: []
@@ -77544,7 +77431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4395286051017317371, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.64484
+      value: -32.640316
       objectReference: {fileID: 0}
     - target: {fileID: 4395286051017317371, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -77645,7 +77532,6 @@ SceneRoots:
   - {fileID: 325250948}
   - {fileID: 1261798165}
   - {fileID: 1503464440}
-  - {fileID: 2118764369}
   - {fileID: 7037469604088186324}
   - {fileID: 2510886321516883024}
   - {fileID: 1969985670}

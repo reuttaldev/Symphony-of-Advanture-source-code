@@ -11,11 +11,9 @@ public class MyScriptableObject : ScriptableObject
 
 #if UNITY_EDITOR
     private string defaultStateInJson;
-    //Allow an editor class method to be initialized when Unity loads without action from the user.
     virtual protected void OnEnable()
     {
         GlobalID = GlobalObjectId.GetGlobalObjectIdSlow(this).ToString();
-        EditorUtility.SetDirty(this); // Mark the object as "dirty" to ensure the change is saved.
         EditorApplication.playModeStateChanged += OnPlayModeChanged;
     }
 
@@ -25,13 +23,12 @@ public class MyScriptableObject : ScriptableObject
     }
     void OnPlayModeChanged(PlayModeStateChange change)
     {
-        if (change == PlayModeStateChange.EnteredPlayMode)
-            SaveOnEnterPlay();
         if (change == PlayModeStateChange.ExitingPlayMode)
             ResetOnExitPlay();
+        if (change == PlayModeStateChange.EnteredPlayMode)
+            Save();
     }
-
-    virtual protected void SaveOnEnterPlay()
+    virtual public void Save()
     {
         defaultStateInJson = JsonUtility.ToJson(this);
     }
@@ -39,6 +36,8 @@ public class MyScriptableObject : ScriptableObject
     virtual protected void ResetOnExitPlay()
     {
         JsonUtility.FromJsonOverwrite(defaultStateInJson, this);
+        // Mark the object dirty again to ensure changes are recognized
+        EditorUtility.SetDirty(this);
     }
    
 #endif

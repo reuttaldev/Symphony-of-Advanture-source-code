@@ -32,6 +32,7 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
                 return;
             }
             previousSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            Debug.Log("loading new scene" +sceneToLoadName);
             StartCoroutine(LoadSceneWithAnimation(sceneToLoadName));
         }
         else Debug.LogError("scene to load  name is empty", this);

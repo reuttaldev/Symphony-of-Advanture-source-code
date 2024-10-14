@@ -12,7 +12,7 @@ Sona: Something like this?
 Astrid: Perfect fit! You're the best Sona. See ya!
 Sona: Hey, Hey! Not so quick. What are you giving me in return?
 -> Player: I don't have any money. 
-    Sona: What's that on your belt, A walkman? I'll trade you for it.  
+    Sona: What's that on your belt, a Walkman? I'll trade you for it.  
     -> Player: Okay. 
         Astrid: {$playerName}, what are you doing? We need that.
     -> Player: No. It was a gift
@@ -46,6 +46,7 @@ Sona: Come back when you've got something worthy, kid.
 title: collector_give_violin
 scene: The player gives her the violin in exchange for the Walkman 
 location: old city, in her shop
+mandatory: T
 ---
 Astrid: Hey Sona, will this do?
 Sona: An old violin... where did you get that?
@@ -66,7 +67,7 @@ Sona: Why do you need it anyway?
 Sona: Good luck.
 ===
 
-title: collector_after_violin_badgering
+title: collector_after_map_badgering
 ---
 Sona: Good luck.
 ===

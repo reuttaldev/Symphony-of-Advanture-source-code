@@ -11,8 +11,6 @@ public class DialogueIntractable : Interactable
     [SerializeField]
     // where to place the companion in comparison to the player once the dialogue (with someone who is not the companion) has started
     Direction companionPosition = Direction.none, playerDirection = Direction.none;
-    [SerializeField]
-    bool visible = true;
     private void Start()
     {
         if (nodeData == null)
@@ -22,7 +20,6 @@ public class DialogueIntractable : Interactable
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
         gameManager = ServiceLocator.Instance.Get<GameManager>();
         interactableMoreThanOnce = nodeData.interactableMoreThanOnce;   
-        ChangeCharacterVisibility(visible);
     }
     protected override void DisableInteraction()
     {
@@ -45,12 +42,6 @@ public class DialogueIntractable : Interactable
             gameManager.CompanionWalkToPlayer(companionPosition, false);
 
         dialogueManager.StartDialogue(nodeData.nodeTitle);
-    }
-
-    public void ChangeCharacterVisibility(bool v)
-    {
-        visible = v;
-        transform.parent.gameObject.SetActive(visible);
     }
 
     public void ChangeConversationStartNode(string nodeName)

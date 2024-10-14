@@ -110,8 +110,6 @@ public class UIManager : MonoBehaviour, IRegistrableService
         }
         CloseAndSwitchUIMap();
         uiPanalOpen = false;
-        AudioManager.Instance.StopAudio();
-
     }
 
 }

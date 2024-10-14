@@ -44,4 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfee4239d5147c4fbcd681ea50e7188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 0}
+  inventoryUI: {fileID: 0}
+  mapMissionData:
+  - {fileID: 11400000, guid: 5341231da6f56534286de67ad8024c6a, type: 2}
+  - {fileID: 11400000, guid: eec36df9bd9ae384ea7919dde1f58b7e, type: 2}
+  - {fileID: 11400000, guid: d225d3740533a624e8e3ffce2217cfb2, type: 2}

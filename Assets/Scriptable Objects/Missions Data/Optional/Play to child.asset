@@ -17,6 +17,6 @@ MonoBehaviour:
   mainObjective: ' amuse a child playing outside who is bored with their current
     game and make them feel interested. '
   startLocation: Village
-  state: 3
+  state: 2
   mandatory: 0
   prerequisiteIds: []

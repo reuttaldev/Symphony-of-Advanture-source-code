@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-f14789b89a04c4447976d8c1e61d1bb6-11400000-0
   nodeTitle: companion_intro
-  associatedMission: {fileID: 11400000, guid: 2002abb2ca671db4d81c93bbdc21d041, type: 2}
+  associatedMission: {fileID: 11400000, guid: fa1d302f03dd61a418cbb828dfb5d1ea, type: 2}
   interactableMoreThanOnce: 0

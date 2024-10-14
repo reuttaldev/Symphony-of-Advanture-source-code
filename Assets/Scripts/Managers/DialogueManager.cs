@@ -67,7 +67,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("Trying to set mission to complete to null");
             return;
         }
-        Debug.Log("mission to complete is set to " + data.Name+" by music interactable");
+        Debug.Log("mission to complete is set to " + data.Name+" by dialogue interactable");
         missionToComplete = data;
     }
 
@@ -175,7 +175,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             dialogueView.GetComponent<CanvasGroup>().alpha = 0;
         }
         // change input map 
-        uiManager.CloseDialogueUI();
+        uiManager.CloseDialogueUI();    
     }
     void FinishMusicDialogue()
     {

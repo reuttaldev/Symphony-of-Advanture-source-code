@@ -102,9 +102,10 @@ public class WalkmanUI : MonoBehaviour
     // manual = true when we open the walkman through C key, and not through a music dialogue with one of the characters
     public void Close(bool manual = false)
     {
-        if (open)
+        if (!open)
             return;
 
+        open = false;   
         if (manual)
             audioManager.StopAudio();
         cassetteButtons = new List<Button>();
