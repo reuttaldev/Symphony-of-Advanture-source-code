@@ -16,6 +16,6 @@ MonoBehaviour:
   missionName: Map 3
   mainObjective: Find the map piece in the belonging of the cheating wift
   startLocation: Village, in the yard of the cheated man
-  state: 3
+  state: 2
   mandatory: 1
   prerequisiteIds: []

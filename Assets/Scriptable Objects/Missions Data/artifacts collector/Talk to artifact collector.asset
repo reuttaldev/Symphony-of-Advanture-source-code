@@ -16,6 +16,6 @@ MonoBehaviour:
   missionName: Talk to artifact collector
   mainObjective: 
   startLocation: Sona's shop
-  state: 2
+  state: 3
   mandatory: 1
   prerequisiteIds: []

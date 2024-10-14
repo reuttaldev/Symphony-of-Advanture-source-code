@@ -16,6 +16,6 @@ MonoBehaviour:
   missionName: Get violin to sona
   mainObjective: 
   startLocation: Astrid's house
-  state: 0
+  state: 3
   mandatory: 1
   prerequisiteIds: []

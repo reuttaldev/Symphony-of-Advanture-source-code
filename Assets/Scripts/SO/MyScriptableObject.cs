@@ -7,13 +7,14 @@ using UnityEditor;
 // MAKING IT SO THE SCRIPTABLE OBJECT BEHAVES AS IT WOULD IN A BUILD, I.E. RESETS ITESELF WITH EACH GAME START
 public class MyScriptableObject : ScriptableObject
 {
-    public string GlobalID; // for this gameobject, persistent throughout the project 
+    public string GlobalID= null; // for this gameobject, persistent throughout the project 
 
 #if UNITY_EDITOR
     private string defaultStateInJson;
     virtual protected void OnEnable()
     {
-        GlobalID = GlobalObjectId.GetGlobalObjectIdSlow(this).ToString();
+        if (GlobalID == null)
+            GlobalID = GlobalObjectId.GetGlobalObjectIdSlow(this).ToString();
         EditorApplication.playModeStateChanged += OnPlayModeChanged;
     }
 
@@ -23,23 +24,27 @@ public class MyScriptableObject : ScriptableObject
     }
     void OnPlayModeChanged(PlayModeStateChange change)
     {
-        if (change == PlayModeStateChange.ExitingPlayMode)
-            ResetOnExitPlay();
+        // the order here matters, because on disable gets called before on enabled at the start of the game 
         if (change == PlayModeStateChange.EnteredPlayMode)
             Save();
+        else if (change == PlayModeStateChange.ExitingPlayMode)
+            ResetOnExitPlay();
     }
     virtual public void Save()
     {
         defaultStateInJson = JsonUtility.ToJson(this);
+        if (GlobalID == "GlobalObjectId_V1-3-fa1d302f03dd61a418cbb828dfb5d1ea-11400000-0")
+            Debug.LogError("Saving companion");
+
     }
 
-    virtual protected void ResetOnExitPlay()
+    virtual public void ResetOnExitPlay()
     {
         JsonUtility.FromJsonOverwrite(defaultStateInJson, this);
-        // Mark the object dirty again to ensure changes are recognized
-        EditorUtility.SetDirty(this);
+        if (GlobalID == "GlobalObjectId_V1-3-fa1d302f03dd61a418cbb828dfb5d1ea-11400000-0")
+            Debug.LogError("Ressetting"); 
     }
-   
+
 #endif
 }
 
