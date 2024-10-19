@@ -45,4 +45,5 @@ MonoBehaviour:
   researcherData: {fileID: 11400000, guid: 25ae8289cac711844ae11d2961f8ee7c, type: 2}
   clientData: {fileID: 11400000, guid: e03617353ffba6340afb80a2f41a204e, type: 2}
   tempExportName: Collected Data 2
-  errorMessage: 
+  errorMessage: 'Invalid requests[0].addSheet: A sheet with the name "Collected Data
+    2" already exists. Please enter another name.'

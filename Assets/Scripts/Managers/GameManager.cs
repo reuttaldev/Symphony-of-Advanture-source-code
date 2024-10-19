@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
     public GameSettings settings;
     public DataMigrationSettings dataMigrationSettings;
     DialogueManager dialogueManager;
+    MissionManager missionManager;
     public static bool paused = false;
     string playerName;
     [SerializeField]
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
     void Start()
     {
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
+        missionManager = ServiceLocator.Instance.Get<MissionManager>();
     }
 
     // called from scene controller, after awake and before start
@@ -42,6 +44,8 @@ public class GameManager : MonoBehaviour, IRegistrableService
     {
         if(!string.IsNullOrEmpty(previousSceneName))
             PlacePlayerInScene(previousSceneName);
+        missionManager.TriggerOnSceneStartEvents();
+
     }
     public void SetPlayerName(string playerName)
     {

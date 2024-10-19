@@ -30,11 +30,12 @@ public class DialogueIntractable : Interactable
         // we need a function to tell Yarn Spinner to start from {specifiedNodeName}
         if (nodeData.associatedMission != null)
         {
-            if (nodeData.associatedMission !=null)
-                dialogueManager.SetMissionToComplete(nodeData.associatedMission);
-            else
-                Debug.LogWarning("Triggering interaction without setting associated mission (it is null). Node is "+ nodeData.name );
-            nodeData.associatedMission.StartMission();
+            dialogueManager.SetMissionToComplete(nodeData.associatedMission);
+        }
+        else
+        {
+            Debug.LogWarning("Triggering interaction without setting associated mission (it is null). Node is " + nodeData.name);
+
         }
         if (playerDirection != Direction.none)
             gameManager.FacePosition(playerDirection, transform.position);

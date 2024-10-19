@@ -7,11 +7,13 @@ emotion: relaxed and calm
 You: Hey, are you alright?
 Old lady: No, I am not alright! Whiskers, have you seen Whiskers?
 You: No... is that your cat?
-Old lady: Yes! He's not in the house, he's not in the garden, he's not in the neighbor's house... I checked!
-Old lady: My sweet boy, who knows where he is, or what has happened to him
-Old lady: He could be injured, or lost... and afraid! 
-Old lady:  I don't know how I will live with myself if anything happened to him.
-Companion: Hey, lady, I know you're upset. Here, let us play you some music that will help you feel <color=\#ff0000>relaxed and calm</color>.
+Old lady: Yes! He's not in the house, he's not in the garden... I've been looking everywhere!
+-> Player: I will find him. 
+    Astrid: Yes, how about you give us some information and we will start looking?
+    Old lady: I don't know.. I can't stop thinking about him being lost and afraid! I don't know how I will live with myself if anything happened to him.
+    Astrid: Here, let us play you some music that will help you feel <color=\#ff0000>relaxed and calm</color>.
+-> Player: Well... good luck.  
+    [End]
 <<OMD>>
 ===
 
@@ -22,9 +24,8 @@ scene: talking after she's calmed down from the music
 location: village
 emotion: -
 --- 
-Old lady: Oh, what a soothing melody. 
-Old ladt: Thank you, dear ones. Your song has lifted a weight off my chest, if only for a moment.
-Companion: Now that you're feeling better, how about you give us some information, and we will try to find him?
+Old lady: Oh, what a soothing melody. Thank you, dear ones. This sure made me feel better.
+Companion: Now, how about you give us some information, and we will try to find him?
 -> Player: Where did you last see him?
     Old lady: At home, right before I left for my morning walk. 
     Old lady: When I returned, he was gone!
@@ -55,7 +56,7 @@ title: old_lady_badgering
 scene: approaching after talking but before finding her cat.
 location: village
 ---
-Old lady: Have you found him yet?
+Old lady: Have you found him?
 You: Not yet.
 ===
 
@@ -64,8 +65,7 @@ scene: bringing her cat back.
 location: village
 ---
 <<FMS>>
-Old lady: Whiskers! Oh lord, I can breath again. 
-Old lady: Thank you! How may I repay you?
+Old lady: Whiskers! Thank you! How may I repay you?
 -> Player: I don't need anything, I am just happy he's safe.
     Old lady: Oh, maybe your generation is not lost after all. 
 -> Player: I am looking for a map of a hidden castel, do you know anything about that?
@@ -73,4 +73,12 @@ Old lady: Thank you! How may I repay you?
     Old lady: This town is very... quite.
 -> Player: Give me Whiskers.
     Old lady: What... No! Is this why you helped me? What's wrong with you? Go away. 
+===
+
+title: old_lady_complete_badgering
+scene: bringing her cat back.
+location: village
+---
+
+Old lady: Thanks again.
 ===

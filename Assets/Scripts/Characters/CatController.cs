@@ -3,24 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatController : MonoBehaviour
+public class CatController : MonoBehaviour   
 {
     [SerializeField]
-    GameObject player;
+    GameObject player,oldLady;
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
     [SerializeField]
     float speed = 6f, offsetFromPlayer = 10, meowInterval = 5, waitToTeaseDuration, teaseDuration;
     [SerializeField]
     AudioClip[] meows;
     [SerializeField]
-    AudioClip purr;
-    [SerializeField]
     Transform[] way;
     [SerializeField]
     Transform teasePlayerPosition, afterReturnPosition;
     [SerializeField]
-    MissionData associatedMission;
-    [SerializeField]
-    GameObject interactble;
+    MissionData findMission,returnMission;
     int i = 0;
     bool reachedCurrentPoint = false;
     AudioSource audioSource;
@@ -28,7 +26,6 @@ public class CatController : MonoBehaviour
     GameManager gameManager;
     // where we are currently walking to 
     Transform walkTo;
-    bool move = false;
     bool escapeFromPlayer, meow;
     // Timer variable to track elapsed time
     private float timer = 0f;
@@ -66,7 +63,7 @@ public class CatController : MonoBehaviour
         else
         {
             reachedCurrentPoint = true;
-            StopMoving();
+            StopMovingAnimation();
         }
 
         // if we are close to player 
@@ -78,7 +75,7 @@ public class CatController : MonoBehaviour
                 return;
             if (i + 1 == way.Length)
             {
-                ReachedEnd();
+                ReachedPoint();
             }
             // if we have reached our current destination, and we have a next one, move towards that one
             else
@@ -94,7 +91,6 @@ public class CatController : MonoBehaviour
 
     public void Move()
     {
-
         var direction = -1 * (transform.position - walkTo.transform.position).normalized;
         // look at where you will be going next 
         {
@@ -105,36 +101,40 @@ public class CatController : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, walkTo.position, speed * Time.deltaTime);
 
     }
-    public void StopMoving()
+    public void StartEscapingPlayer()
+    {
+        escapeFromPlayer = true;
+    }
+    public void StopEscapingPlayer()
+    {
+        escapeFromPlayer = false;
+
+    }
+    private void StopMovingAnimation()
     {
         animator.SetBool("Moving", false);
-        move = false;
     }
-
-
-    public void Step()
-    {
-
-    }
-
-
     // this will be called once the dialouge with the old lady has started
     public void TeasePlayer()
     {
         StartCoroutine(TeasePlayerCoroutine());
     }
 
+    public void Step() // called from animator 
+    {
+
+    }
     IEnumerator TeasePlayerCoroutine()
     {
-        GetComponent<SpriteRenderer>().enabled = false;
+        spriteRenderer.enabled = false;
         yield return new WaitForSeconds(waitToTeaseDuration);
-        GetComponent<SpriteRenderer>().enabled = true;
+        spriteRenderer.enabled = true;
 
         yield return WalkTo();
         yield return new WaitForSeconds(teaseDuration);
         walkTo = way[0];
         yield return WalkTo();
-        StopMoving();
+        StopMovingAnimation();
         animator.SetTrigger("Resting");
         StartEscapingPlayer();
     }
@@ -145,32 +145,54 @@ public class CatController : MonoBehaviour
             Move();
             yield return new WaitForEndOfFrame();
         }
-        StopMoving();
-
+        StopMovingAnimation();
     }
 
-    public void StartEscapingPlayer()
+    void ReachedPoint()
     {
-        escapeFromPlayer = true;
-    }
-
-    void ReachedEnd()
-    {
-        Debug.Log("Cat got caught");
-        StopMoving();
+        StopMovingAnimation();
         escapeFromPlayer = false;
         animator.SetTrigger("Resting");
-        interactble.gameObject.SetActive(true);
+    }
+
+    bool HasReachedEnd()
+    {
+        var lastPos = way[way.Length - 1].position;
+        return ((int)lastPos.x == (int)transform.position.x && (int)lastPos.y == (int)transform.position.y);
+
+    }
+    public void SetAtEndPosition()
+    {
+        transform.position = way[way.Length - 1].position;
     }
     public void PlayerCatchedUs()
     {
-       
+        StopMovingAnimation() ;  
+       // make the cat follow the player
         transform.SetParent(player.transform);
         transform.localPosition = Vector3.zero;
+        findMission.EndMission();
     }
     public void PlayerReturnedUs()
     {
+        Debug.Log("Player returned cat");
         transform.SetParent(null);
         transform.position = afterReturnPosition.position;
+        //returnMission.EndMission(); done after conversation 
+    }
+
+    // need rigit body on the collision object for this to trigger
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == player && HasReachedEnd())
+        {
+            if(findMission.State != MissionState.CompletedSuccessfully)
+                PlayerCatchedUs();
+        }
+        if (collision.gameObject == oldLady)
+        {
+            if (returnMission.State != MissionState.CompletedSuccessfully)
+                PlayerReturnedUs();
+            }
     }
 }

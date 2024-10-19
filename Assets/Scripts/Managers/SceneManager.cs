@@ -18,10 +18,13 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         DontDestroyOnLoad(this);
         animator = sceneTransitionPanel.GetComponent<Animator>();
     }
+#if UNITY_EDITOR
     private void Start()
     {
+        // so it triggers on scene load methods when we start the game from the editor, without switching scenes 
         HandleReturn();
     }
+#endif
     public void LoadScene(string sceneToLoadName)
     {
         if (!string.IsNullOrEmpty(sceneToLoadName))
@@ -60,9 +63,15 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         // actual scene switch is here
         asyncLoad.allowSceneActivation = true;
         yield return new WaitForEndOfFrame();
-        HandleReturn();
         // wait until fade out animation has finished 
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f)
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 0.5f)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        HandleReturn();
+        yield return new WaitForEndOfFrame();
+
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1f)
         {
             yield return new WaitForEndOfFrame();
         }

@@ -11,7 +11,6 @@ public class MissionManager : MonoBehaviour, IRegistrableService
     {
         ServiceLocator.Instance.Register<MissionManager>(this);
         LoadMissionWrappers();
-        TriggerOnSceneStartEvents();
     }
 
     void Start()

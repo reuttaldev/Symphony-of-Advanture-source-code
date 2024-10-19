@@ -111,7 +111,7 @@ Astrid: Let's talk to the town’s keeper. He will help us figure it out.
 title: companion_goes_home
 mandatory: T
 ---
-Astrid: I think I’ve got something Sona might find valuable at my place. I’ll dig it out from beneath the dust mites.
+Astrid: I think I’ve got something Sona might like at my place.
 Astrid: Meet me there when you’re done exploring. It’s in the village right at the entrance - you can’t miss it.
 <<FMS>>
 ===

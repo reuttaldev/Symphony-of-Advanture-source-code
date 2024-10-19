@@ -67,6 +67,11 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("Trying to set mission to complete to null");
             return;
         }
+        if (data.State == MissionState.CompletedUnSuccessfully || data.State == MissionState.CompletedSuccessfully)
+        {
+            //Debug.LogError("Trying to set mission to complete in DialogueManager a mission that is already done");
+            return;
+        }
         Debug.Log("mission to complete is set to " + data.Name+" by dialogue interactable");
         missionToComplete = data;
     }
