@@ -170,6 +170,10 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     {
         LoadTracksFromAddressable();
     }
+    public void PlayClip(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
     public void PlayCurrentTrack()
     {
         OnTrackChanged.Invoke();

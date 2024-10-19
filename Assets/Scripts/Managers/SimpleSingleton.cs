@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 public class SimpleSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    // thread safety
     private static T instance;
     public static T Instance
     {
@@ -31,11 +30,11 @@ public class SimpleSingleton<T> : MonoBehaviour where T : MonoBehaviour
         if (instance == null)
         {
             instance = gameObject.GetComponent<T>();
-            //DontDestroyOnLoad(instance.gameObject);
         }
         else if(instance!=this)
         {
-            //Debug.Log("Duplicate instances for " + GetType().FullName + ", extra one deleted");
+            Debug.Log("Duplicate instances for " + GetType().FullName + ", extra one deleted");
+            Debug.Log(instance.gameObject.name);
             Destroy(gameObject);
         }
     }

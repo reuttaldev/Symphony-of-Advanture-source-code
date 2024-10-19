@@ -1,8 +1,6 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to be shown during scene changes, therefore it cannot be a scene object and must be a don't destroy on load singleton
 {
     bool changingScene = false;
@@ -12,17 +10,25 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     [SerializeField]
     GameObject canvas;
     string previousSceneName;
+    public event Action<string> OnSceneLoaded;
+
     protected override void  Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
         animator = sceneTransitionPanel.GetComponent<Animator>();
+        Debug.Log(animator);
+    }
+    private void OnDestroy()
+    {
+        Debug.Log("ondestroy");
     }
 #if UNITY_EDITOR
     private void Start()
     {
         // so it triggers on scene load methods when we start the game from the editor, without switching scenes 
-        HandleReturn();
+        if(!changingScene) 
+            OnSceneLoaded.Invoke(null);
     }
 #endif
     public void LoadScene(string sceneToLoadName)
@@ -68,7 +74,8 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         {
             yield return new WaitForEndOfFrame();
         }
-        HandleReturn();
+        //invoke an event to let other scripts know that we are done with the load animation 
+        OnSceneLoaded.Invoke(previousSceneName);
         yield return new WaitForEndOfFrame();
 
         while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1f)
@@ -77,10 +84,5 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         }
         canvas.SetActive(false);
         changingScene = false;
-    }
-    void HandleReturn()
-    {
-        // if we returned  to the scene in which we came from previosly 
-        ServiceLocator.Instance.Get<GameManager>().OnSceneLoad(previousSceneName);
     }
 }

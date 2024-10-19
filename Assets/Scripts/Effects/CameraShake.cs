@@ -1,27 +1,27 @@
 using Cinemachine;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 public class CameraShake : MonoBehaviour
 {
 
-    CinemachineVirtualCamera cam;
-    CinemachineBasicMultiChannelPerlin cmcp;
+    CinemachineImpulseSource impulseSource;
     [SerializeField]
-    float shakeIntensity = 3, shakeDuration = 2f;
-    private void Start()
+     float force = 0.4f;
+    private void Awake()
     {
-        cam = GetComponent<CinemachineVirtualCamera>();
-        cmcp = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();    
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+
     }
 
+    public void Update()
+    {
+        if (Keyboard.current.vKey.wasPressedThisFrame)
+            ShakeCamera();
+    }
     public void ShakeCamera()
     {
-        StartCoroutine(ShakeCameraCoroutine());
-    }
-    IEnumerator ShakeCameraCoroutine()
-    {
-        cmcp.m_AmplitudeGain = shakeIntensity;  
-        yield return new WaitForSeconds(shakeDuration);
-        cmcp.m_AmplitudeGain = 0;  
+        Debug.Log("shake");
+        impulseSource.GenerateImpulse(force);
     }
 }

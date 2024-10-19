@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour, IRegistrableService
 {
     public GameSettings settings;
     public DataMigrationSettings dataMigrationSettings;
-    DialogueManager dialogueManager;
-    MissionManager missionManager;
     public static bool paused = false;
     string playerName;
     [SerializeField]
@@ -32,20 +30,21 @@ public class GameManager : MonoBehaviour, IRegistrableService
         if (returnPoints.Count == 0)
             Debug.LogWarning("Forgot to drag in scene exits to game manager");
     }
-
-    void Start()
+    void OnEnable()
     {
-        dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
-        missionManager = ServiceLocator.Instance.Get<MissionManager>();
+        SceneManager.Instance.OnSceneLoaded += HandleSceneLoad;
+    }
+    void OnDisable()
+    {
+        SceneManager.Instance.OnSceneLoaded -= HandleSceneLoad;
     }
 
-    // called from scene controller, after awake and before start
-    public void OnSceneLoad(string previousSceneName)
+    // will be triggered when the scene animation is done 
+    public void HandleSceneLoad(string previousSceneName)
     {
+        Debug.Log("on scene loaded");
         if(!string.IsNullOrEmpty(previousSceneName))
             PlacePlayerInScene(previousSceneName);
-        missionManager.TriggerOnSceneStartEvents();
-
     }
     public void SetPlayerName(string playerName)
     {
