@@ -3987,10 +3987,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Manager (Don't destroy on load)
       objectReference: {fileID: 0}
-    - target: {fileID: 8699111121714947372, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30862,6 +30858,7 @@ SceneRoots:
   - {fileID: 3378477416630203143}
   - {fileID: 2577049957724373698}
   - {fileID: 482088136}
+  - {fileID: 890522578}
   - {fileID: 6264030991728495021}
   - {fileID: 325250948}
   - {fileID: 7037469604088186324}
@@ -30874,6 +30871,5 @@ SceneRoots:
   - {fileID: 1372200313}
   - {fileID: 443945031}
   - {fileID: 1450909745}
-  - {fileID: 890522578}
   - {fileID: 2121460481}
   - {fileID: 947210621}

@@ -6515,10 +6515,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Manager (Don't destroy on load)
       objectReference: {fileID: 0}
-    - target: {fileID: 8699111121714947372, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

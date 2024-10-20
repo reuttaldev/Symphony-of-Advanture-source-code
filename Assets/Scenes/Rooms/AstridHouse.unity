@@ -933,12 +933,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572993227}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 808.2803, y: 573.6652, z: -4.0986257}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 675543315}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &620995235
 GameObject:
@@ -3798,9 +3798,17 @@ PrefabInstance:
       objectReference: {fileID: 999976504}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1646003395174619387, guid: 30352f5f914103445a71f7434b4c072d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 572993229}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30352f5f914103445a71f7434b4c072d, type: 3}
+--- !u!4 &675543315 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1646003395174619387, guid: 30352f5f914103445a71f7434b4c072d, type: 3}
+  m_PrefabInstance: {fileID: 675543314}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &722066553 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8330753797495558901, guid: 760278e82614e134a875173a63b47e6c, type: 3}
@@ -6975,10 +6983,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Manager (Don't destroy on load)
       objectReference: {fileID: 0}
-    - target: {fileID: 8699111121714947372, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7000,7 +7004,6 @@ SceneRoots:
   - {fileID: 1923142963}
   - {fileID: 675543314}
   - {fileID: 1904982473}
-  - {fileID: 572993229}
   - {fileID: 69881263}
   - {fileID: 77023830}
   - {fileID: 442984528}
