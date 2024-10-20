@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Yarn.Unity;
@@ -17,11 +18,16 @@ public class UIManager : MonoBehaviour, IRegistrableService
     private InputActionReference openWalkmanAction;
     [SerializeField]
     private InputActionReference closeWalkmanAction;
+    [SerializeField]
+    private InputActionReference escapeAction; // this is in the plyer action map!!
     private InputManager inputManager;
     [SerializeField]
     GameObject extraPanel;
+    [SerializeField]
+    TMP_Text escapeText;
+    [SerializeField]
+    float holdDurationToEsc = 3;
     bool uiPanalOpen; // this will be true if any of our UI menus are currently open
-
     private void Awake()
     {
         ServiceLocator.Instance.Register<UIManager>(this);
@@ -31,17 +37,19 @@ public class UIManager : MonoBehaviour, IRegistrableService
     {
         openWalkmanAction.action.performed += context => OpenWalkmanInterface();
         closeWalkmanAction.action.performed += context => CloseWalkmanInterface();
-        // listen to when the player has made a choce in a music dialogue
+        escapeAction.action.performed += context => EscapeUI();
+
+    }
+    private void OnDisable()
+    {
+        openWalkmanAction.action.performed -= context => OpenWalkmanInterface();
+        closeWalkmanAction.action.performed += context => CloseWalkmanInterface();
+        escapeAction.action.performed -= context => EscapeUI();
     }
     private void Start()
     {
         inputManager = ServiceLocator.Instance.Get<InputManager>();
         walkmanUI.gameObject.SetActive(false);
-    }
-    private void OnDisable()
-    {
-        openWalkmanAction.action.performed -= context => OpenWalkmanInterface();
-        closeWalkmanAction.action.performed -= context => CloseWalkmanInterface();
     }
 
     public bool SwitchUIMap()
@@ -110,6 +118,30 @@ public class UIManager : MonoBehaviour, IRegistrableService
         }
         CloseAndSwitchUIMap();
         uiPanalOpen = false;
+    }
+    void EscapeUI()
+    {
+        escapeText.text = "Hold ESC to exit";
+        StopCoroutine(ShowEsccapeText());
+        StartCoroutine(ShowEsccapeText());
+    }
+
+    public IEnumerator ShowEsccapeText()
+    {
+        float elapsedTime = 0;
+        float showDotInterval = holdDurationToEsc / 4;
+        while (escapeAction.action.IsPressed())
+        {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= holdDurationToEsc)
+                ServiceLocator.Instance.Get<GameManager>().ExitGame();
+            int i = Mathf.FloorToInt(elapsedTime / showDotInterval) % 4; // Cycle through 0-3
+            escapeText.text = "Exiting" + new string('.', i); // Append dots based on the index
+            yield return null;
+        }
+        escapeText.text = "";
+        yield break;
+
     }
 
 }

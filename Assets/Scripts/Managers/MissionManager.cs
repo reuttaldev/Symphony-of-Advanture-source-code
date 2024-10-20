@@ -12,14 +12,9 @@ public class MissionManager : MonoBehaviour, IRegistrableService
         ServiceLocator.Instance.Register<MissionManager>(this);
         LoadMissionWrappers();
     }
-    void OnEnable()
+    void Start()
     {
-        SceneManager.Instance.OnSceneLoaded += HandleSceneLoad;
-    }
-    void OnDisable()
-    {
-        if (SceneManager.Instance != null)
-            SceneManager.Instance.OnSceneLoaded -= HandleSceneLoad;
+        TriggerOnSceneStartEvents();
     }
 
     // init the all missions dictionary based on the references that were set in the editor
@@ -37,10 +32,6 @@ public class MissionManager : MonoBehaviour, IRegistrableService
 
             missionWrappers[wrapper.MissionDataID] = wrapper;
         }
-    }
-    public void HandleSceneLoad(string previousSceneName)
-    {
-        TriggerOnSceneStartEvents();
     }
     public void TriggerOnSceneStartEvents()
     {

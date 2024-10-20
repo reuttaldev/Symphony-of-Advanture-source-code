@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "dbc9b900-b0be-4be8-97ab-51c1131369b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -178,6 +187,28 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90967c79-c93e-496e-9e4c-fc3ddd6ab384",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5531cdfc-e0b4-42cd-b8ab-f83b868bd31c",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -208,15 +239,6 @@
                     "type": "PassThrough",
                     "id": "4fb370cc-e96f-43e6-9849-cf4c80d6635b",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Close Main Menu",
-                    "type": "Button",
-                    "id": "7e197284-f055-4a85-a9c9-79611ec891f1",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -315,6 +337,15 @@
                     "name": "Test skip",
                     "type": "Button",
                     "id": "1be9fbaf-4e36-4855-ab0b-7b6f9dee446f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Close Walkman interface",
+                    "type": "Button",
+                    "id": "b2461fcb-dc42-4b26-94cd-af1c208fbad7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -643,28 +674,6 @@
                 },
                 {
                     "name": "",
-                    "id": "831d9f7c-e7db-43ae-9a86-4db345b4d0b1",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Close Main Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "79f647cf-1f92-4ce9-88e5-4c58c4502a4f",
-                    "path": "<Keyboard>/rightCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Close Main Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2c083454-253e-41f4-9f02-9b016ab758e7",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
@@ -836,6 +845,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Test skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ddac7ca6-89bb-4979-9cfe-80fc961bc37f",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close Walkman interface",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19e47b48-2bc5-4b7f-a0df-0f23dee17de9",
+                    "path": "<Keyboard>/rightCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close Walkman interface",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1e0eed1d-8ab9-454c-b278-92db9d893b72",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close Walkman interface",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

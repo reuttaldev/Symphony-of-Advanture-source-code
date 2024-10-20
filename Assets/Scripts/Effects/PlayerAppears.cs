@@ -18,20 +18,17 @@ public class PlayerAppears : MonoBehaviour
     }
     void OnEnable()
     {
-        SceneManager.Instance.OnSceneLoaded += HandleSceneLoad;
+        SceneManager.Instance.OnFadeInFinish += ShowEffect;
     }
     void OnDisable()
     {
         if (SceneManager.Instance != null)
-            SceneManager.Instance.OnSceneLoaded -= HandleSceneLoad;
-    }
-    public void HandleSceneLoad(string previousSceneName)
-    {
-        if (talkToAstridMission.State != MissionState.CompletedSuccessfully)
-            ShowEffect();
+            SceneManager.Instance.OnFadeInFinish -= ShowEffect;
     }
     void ShowEffect()
     {
+        if (talkToAstridMission.State == MissionState.CompletedSuccessfully)
+            return;
         animator.Play("player_appear");
         playerMovement.CantMove();
     }
@@ -46,6 +43,7 @@ public class PlayerAppears : MonoBehaviour
     }
     public void OnAnimationOver()
     {
+        Debug.Log("On animation over");
         talkToAstridMission.StartMission(); 
     }
 }

@@ -12,20 +12,23 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     public event Action<string> OnSceneLoaded;
     public event Action OnFadeInFinish;
 
+#if UNITY_EDITOR
+    private void Start()
+    {
+        // so it triggers on scene load methods when we start the game from the editor, without switching scenes 
+        if (!loadingScene)
+        {
+            OnSceneLoaded?.Invoke(null);
+            OnFadeInFinish?.Invoke();
+        }
+    }
+#endif
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
         animator = sceneTransitionPanel.GetComponent<Animator>();
     }
-#if UNITY_EDITOR
-    private void Start()
-    {
-        // so it triggers on scene load methods when we start the game from the editor, without switching scenes 
-        if (!loadingScene)
-            OnSceneLoaded.Invoke(null);
-    }
-#endif
     public void LoadScene(string sceneToLoadName)
     {
         if (string.IsNullOrEmpty(sceneToLoadName))
@@ -60,14 +63,12 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         //  actual scene switch is at the end of this loop
         while (asyncLoad.progress < 0.9f)
         {
-            Debug.Log("waiting 2");
             yield return new WaitForEndOfFrame();
         }
         // wait until the asynchronous scene fully loads
         // awkaes are called somewhere here 
         while (!asyncLoad.isDone)
         {
-            Debug.Log("waiting 1");
             yield return new WaitForEndOfFrame();
         }
         loadingScene = false;

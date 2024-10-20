@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 using Yarn;
 using Yarn.Unity;
@@ -32,28 +33,19 @@ public class GameManager : MonoBehaviour, IRegistrableService
     }
     void OnEnable()
     {
-        SceneManager.Instance.OnSceneLoaded += HandleSceneLoad;
+        SceneManager.Instance.OnSceneLoaded += PlacePlayerInScene;
     }
     void OnDisable()
     {
         if(SceneManager.Instance != null)   
-            SceneManager.Instance.OnSceneLoaded -= HandleSceneLoad;
-    }
-
-    // will be triggered when the scene animation is done 
-    public void HandleSceneLoad(string previousSceneName)
-    {
-        if(!string.IsNullOrEmpty(previousSceneName))
-            PlacePlayerInScene(previousSceneName);
+            SceneManager.Instance.OnSceneLoaded -= PlacePlayerInScene;
     }
     public void SetPlayerName(string playerName)
     {
         // set player name in yarn
         var nameVariableStorage = GameObject.FindObjectOfType<InMemoryVariableStorage>();
         nameVariableStorage.SetValue("$playerName", playerName);
-
     }
-
     public void SwitchScene(string name)
     {
         SceneManager.Instance.LoadScene(name);  
@@ -99,9 +91,12 @@ public class GameManager : MonoBehaviour, IRegistrableService
     {
         if(string.IsNullOrWhiteSpace(previousSceneName))
         {
-            Debug.LogError("previous scene name is nnull");
+            Debug.LogWarning("previous scene name is null - cannot place player in scene");
             return;
         }
+        if (previousSceneName == "MainMenu")
+            return;
+        Debug.Log("placing player and companion in scene");
         if(returnPoints == null || returnPoints.Count ==0)
         {
             Debug.Log("You forgot to set return points list in game manager");
