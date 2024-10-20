@@ -55,7 +55,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         yarnProject = dialogueRunner.yarnProject;
         dialogueRunner.VariableStorage.SetValue("$playerName", playerNameData.PlayerName);
         uiManager = ServiceLocator.Instance.Get<UIManager>();
-        dialogueRunner.AddCommandHandler("OMD", delegate { dialogueRunner.Stop(); uiManager.OpenMusicDialogueUI();});
+        dialogueRunner.AddCommandHandler("OMD", delegate {  uiManager.OpenMusicDialogueUI();});
         dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
 
         // finish mission successfully
@@ -184,7 +184,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         {
             if (dialogueView == null || dialogueView.isActiveAndEnabled == false) continue;
 
-            dialogueView.DialogueComplete();
+            //dialogueView.DialogueComplete();
             dialogueView.GetComponent<CanvasGroup>().alpha = 0;
         }
         // change input map 

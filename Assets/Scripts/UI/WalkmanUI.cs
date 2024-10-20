@@ -87,7 +87,6 @@ public class WalkmanUI : MonoBehaviour
 
     public void Open()
     {
-        Debug.Log("opening walkman panel");
         open = true;
         for (int i = 0; i < audioManager.LibrarySize; i++)
         {

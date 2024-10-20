@@ -15,13 +15,11 @@ public class InputManager : MonoBehaviour, IRegistrableService
     }
     public void ActivatePlayerMap()
     {
-        //Debug.Log("Activating player map");
         lastActiveMapName = playerInput.currentActionMap.name;
         playerInput.SwitchCurrentActionMap("Player");
     }
     public void ActivateUIMap()
     {
-        Debug.Log("Activating UI map");
         lastActiveMapName = playerInput.currentActionMap.name;  
         playerInput.SwitchCurrentActionMap("UI");
     }
