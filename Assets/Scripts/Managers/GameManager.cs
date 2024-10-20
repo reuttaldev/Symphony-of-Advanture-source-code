@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
     bool loaded = false;
 
     private void Awake()
-    {     
+    {
         ServiceLocator.Instance.Register<GameManager>(this);
         if (settings == null)
             Debug.LogError("Game manager is missing a reference to game settings");
