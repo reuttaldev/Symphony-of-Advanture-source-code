@@ -36,13 +36,13 @@ public class GameManager : MonoBehaviour, IRegistrableService
     }
     void OnDisable()
     {
-        SceneManager.Instance.OnSceneLoaded -= HandleSceneLoad;
+        if(SceneManager.Instance != null)   
+            SceneManager.Instance.OnSceneLoaded -= HandleSceneLoad;
     }
 
     // will be triggered when the scene animation is done 
     public void HandleSceneLoad(string previousSceneName)
     {
-        Debug.Log("on scene loaded");
         if(!string.IsNullOrEmpty(previousSceneName))
             PlacePlayerInScene(previousSceneName);
     }

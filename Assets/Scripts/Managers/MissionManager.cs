@@ -18,8 +18,8 @@ public class MissionManager : MonoBehaviour, IRegistrableService
     }
     void OnDisable()
     {
-        Debug.Log("ondisable");
-        SceneManager.Instance.OnSceneLoaded -= HandleSceneLoad;
+        if (SceneManager.Instance != null)
+            SceneManager.Instance.OnSceneLoaded -= HandleSceneLoad;
     }
 
     // init the all missions dictionary based on the references that were set in the editor

@@ -21,7 +21,6 @@ public class CameraShake : MonoBehaviour
     }
     public void ShakeCamera()
     {
-        Debug.Log("shake");
         impulseSource.GenerateImpulse(force);
     }
 }

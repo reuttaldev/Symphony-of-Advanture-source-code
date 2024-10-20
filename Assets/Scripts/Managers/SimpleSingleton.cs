@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public class SimpleSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
+    private static bool isQuitting = false;
+
     private static T instance;
     public static T Instance
     {
         get
         {
+            if (isQuitting)
+                return null;
             if (instance == null)
             {
                 instance = FindObjectOfType<T>();
@@ -27,6 +31,7 @@ public class SimpleSingleton<T> : MonoBehaviour where T : MonoBehaviour
     protected virtual void Awake()
 
     {
+        isQuitting = false;
         if (instance == null)
         {
             instance = gameObject.GetComponent<T>();
@@ -34,8 +39,14 @@ public class SimpleSingleton<T> : MonoBehaviour where T : MonoBehaviour
         else if(instance!=this)
         {
             Debug.Log("Duplicate instances for " + GetType().FullName + ", extra one deleted");
-            Debug.Log(instance.gameObject.name);
             Destroy(gameObject);
         }
+    }
+
+    // sometimes, on destroy of one class is called before an on disable of another class. 
+    // this is done to avoid a new instance will not be created when the application closes, in the case we request an instance in some other class on disable
+    void OnApplicationQuit()
+    {
+        isQuitting = true;  
     }
 }

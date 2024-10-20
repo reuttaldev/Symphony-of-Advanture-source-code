@@ -17,11 +17,6 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         base.Awake();
         DontDestroyOnLoad(this);
         animator = sceneTransitionPanel.GetComponent<Animator>();
-        Debug.Log(animator);
-    }
-    private void OnDestroy()
-    {
-        Debug.Log("ondestroy");
     }
 #if UNITY_EDITOR
     private void Start()

@@ -13,10 +13,9 @@ public class PlayerAppears : MonoBehaviour
     CameraShake cameraShake;
     Animator animator;
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
-        animator.Play("player_appear");
     }
     void OnEnable()
     {
@@ -24,7 +23,8 @@ public class PlayerAppears : MonoBehaviour
     }
     void OnDisable()
     {
-        SceneManager.Instance.OnSceneLoaded -= HandleSceneLoad;
+        if (SceneManager.Instance != null)
+            SceneManager.Instance.OnSceneLoaded -= HandleSceneLoad;
     }
     public void HandleSceneLoad(string previousSceneName)
     {

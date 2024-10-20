@@ -6912,7 +6912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699111121714947372, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_Name
-      value: Scene Manager (Don't destroy on load)
+      value: a
       objectReference: {fileID: 0}
     - target: {fileID: 8699111121714947372, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_IsActive
