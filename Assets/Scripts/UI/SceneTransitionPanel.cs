@@ -7,14 +7,14 @@ using UnityEngine.Rendering;
 public class SceneTransitionPanel : MonoBehaviour
 {
     private Image image;
-    public float circleSize =0;
-    private readonly int circleSizeId = Shader.PropertyToID(name: "_circleSize");
+    public float fillValue =0;
+    private readonly int parmId = Shader.PropertyToID(name: "_FillValue");
     private void Awake()
     {
         image = GetComponent<Image>();
     }
     private void Update()
     {
-        image.materialForRendering.SetFloat(circleSizeId, circleSize);
+        image.materialForRendering.SetFloat(parmId, fillValue);
     }
 }

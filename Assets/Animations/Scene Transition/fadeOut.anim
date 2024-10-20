@@ -42,7 +42,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: circleSize
+    attribute: fillValue
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 43ddade4591f2354385c958bc4652fce, type: 3}
@@ -57,7 +57,7 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 635650875
+      attribute: 794836621
       script: {fileID: 11500000, guid: 43ddade4591f2354385c958bc4652fce, type: 3}
       typeID: 114
       customType: 0
@@ -111,7 +111,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: circleSize
+    attribute: fillValue
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 43ddade4591f2354385c958bc4652fce, type: 3}
