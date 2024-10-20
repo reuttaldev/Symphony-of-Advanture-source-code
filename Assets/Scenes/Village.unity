@@ -77377,6 +77377,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 5.04
       objectReference: {fileID: 0}
+    - target: {fileID: 4831487304034823575, guid: 38e057931c138444ebcca8e807047df0, type: 3}
+      propertyPath: m_XDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831487304034823575, guid: 38e057931c138444ebcca8e807047df0, type: 3}
+      propertyPath: m_YDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831487304034823575, guid: 38e057931c138444ebcca8e807047df0, type: 3}
+      propertyPath: m_ZDamping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6881568093397326668, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_Follow
       value: 

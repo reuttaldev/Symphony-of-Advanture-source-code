@@ -1529,6 +1529,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.6177697
       objectReference: {fileID: 0}
+    - target: {fileID: 4831487304034823575, guid: 38e057931c138444ebcca8e807047df0, type: 3}
+      propertyPath: m_XDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831487304034823575, guid: 38e057931c138444ebcca8e807047df0, type: 3}
+      propertyPath: m_YDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831487304034823575, guid: 38e057931c138444ebcca8e807047df0, type: 3}
+      propertyPath: m_ZDamping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6743865315843182017, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0
