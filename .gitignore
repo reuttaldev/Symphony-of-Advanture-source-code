@@ -73,3 +73,9 @@ crashlytics-build.properties
 
 
 /[Aa]ssets/CVSData
+
+# Ignore the link.xml file in AddressableAssetsData
+/[Aa]ssets/AddressableAssetsData/link.xml
+/[Aa]ssets/AddressableAssetsData/link.xml.meta
+
+
