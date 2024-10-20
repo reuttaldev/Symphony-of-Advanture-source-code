@@ -1107,9 +1107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 4632972474567403005}
   currentMusicInteraction: {fileID: 0}
-  initMissionData: {fileID: 11400000, guid: 322021692a5e0944593760fb7fad1715, type: 2}
   playerNameData: {fileID: 11400000, guid: a6624afec1413ca44a4f906746e897d2, type: 2}
   skipDialougeButton: {fileID: 6932570671381177813, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
+  skipButtonForTesting: {fileID: -5242082257303086663, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   cannotSkipTextGroup: {fileID: 5726146342224095686}
 --- !u!1 &8356999220481864952
 GameObject:

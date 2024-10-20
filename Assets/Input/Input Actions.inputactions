@@ -310,6 +310,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Test skip",
+                    "type": "Button",
+                    "id": "1be9fbaf-4e36-4855-ab0b-7b6f9dee446f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -816,6 +825,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eff9f2da-0d08-4bee-96b5-d820f9d1a9aa",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Test skip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

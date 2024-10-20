@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using Yarn;
 using System.Collections;
+using System;
 
 // In this script I will connect to yarn all of the commands it needs to have access to
 public class DialogueManager : MonoBehaviour, IRegistrableService
@@ -25,7 +26,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     [SerializeField]
     PlayerNameData playerNameData;
     [SerializeField]
-    InputActionReference skipDialougeButton;
+    InputActionReference skipDialougeButton, skipButtonForTesting;
     [SerializeField]
     CanvasGroup cannotSkipTextGroup;
     float cannotSkipTextFadeTime = 0.2f;
@@ -38,13 +39,15 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     void OnEnable()
     {
         dialogueRunner.onDialogueComplete.AddListener(StopDialogue);
-        skipDialougeButton.action.performed += context => SkipDialogue(); 
+        skipDialougeButton.action.performed += context => SkipDialogue();
+        skipButtonForTesting.action.performed += context => SkipDialogueForTesting(); 
  
     }
     void OnDisable()
     {
         dialogueRunner.onDialogueComplete.RemoveListener(StopDialogue);
         skipDialougeButton.action.performed -= context => SkipDialogue();
+        skipButtonForTesting.action.performed -= context => SkipDialogueForTesting();
 
     }
     private void Start()
@@ -154,7 +157,12 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         StartDialogue(nextNode);
         skippingDialouge = false;   
     }
-
+    private void SkipDialogueForTesting()
+    {
+        dialogueRunner.Stop();
+        if(missionToComplete!=null)
+            missionToComplete.EndMission();
+    }
     IEnumerator ShowCannotSkipText()
     {
         noSkipTextShowing = true;

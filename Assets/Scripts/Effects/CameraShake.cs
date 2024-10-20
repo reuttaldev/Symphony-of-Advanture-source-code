@@ -16,8 +16,8 @@ public class CameraShake : MonoBehaviour
 
     public void Update()
     {
-        if (Keyboard.current.vKey.wasPressedThisFrame)
-            ShakeCamera();
+        //if (Keyboard.current.vKey.wasPressedThisFrame)
+            //ShakeCamera();
     }
     public void ShakeCamera()
     {

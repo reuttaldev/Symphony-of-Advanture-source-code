@@ -16,20 +16,6 @@ public class OfficeTransition : MonoBehaviour
     
     public void WalkToOffice()
     {
-        Debug.Log("walking to office");
-        //gameManager = ServiceLocator.Instance.Get<GameManager>();
-        //StartCoroutine(WalkToOfficeCoroutine());
         SceneManager.Instance.LoadScene("Office");
     }
-    /*
-    static IEnumerator WalkToOfficeCoroutine()
-    {
-        foreach (var item in wayToOffice)
-        {
-            yield return gameManager.WalkPlayer(item);
-
-        }
-    }*/
-
-
 }

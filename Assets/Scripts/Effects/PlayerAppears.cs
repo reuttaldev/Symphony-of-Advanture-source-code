@@ -12,6 +12,8 @@ public class PlayerAppears : MonoBehaviour
     [SerializeField]
     CameraShake cameraShake;
     Animator animator;
+    [SerializeField]
+    PlayerMovement playerMovement;
 
     private void Awake()
     {
@@ -28,7 +30,13 @@ public class PlayerAppears : MonoBehaviour
     }
     public void HandleSceneLoad(string previousSceneName)
     {
+        if (talkToAstridMission.State != MissionState.CompletedSuccessfully)
+            ShowEffect();
+    }
+    void ShowEffect()
+    {
         animator.Play("player_appear");
+        playerMovement.CantMove();
     }
     public void PlayClip()
     {
