@@ -43,7 +43,6 @@ public class PlayerAppears : MonoBehaviour
     }
     public void OnAnimationOver()
     {
-        Debug.Log("On animation over");
         talkToAstridMission.StartMission(); 
     }
 }

@@ -72,9 +72,9 @@ public class GameManager : MonoBehaviour, IRegistrableService
     }
     public void ExitGame()
     {
+        Debug.Log("exiting game");
         GameOver();
         Application.Quit();
-        Debug.Log("exiting game");
     }
 
     public void GameOver()

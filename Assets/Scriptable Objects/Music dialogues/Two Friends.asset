@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Two Friends
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-6208808e26e74cb4cba15fb459e3caa1-11400000-0
-  emotionToInvoke: nostalgic
+  saved: 1
+  targetedEmotionLabel: Nostalgic
   onCompletionNode: two_friends_after_music
   missionToComplete: {fileID: 0}
   interactionName: Two friends
+  charPronouns: Them

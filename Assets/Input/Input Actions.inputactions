@@ -11,7 +11,7 @@
                     "id": "8df946ba-3648-49c4-b5ed-63e448d1b9ef",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -222,7 +222,7 @@
                     "id": "4e468afd-9493-4cdb-b233-858b09bff9a8",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -231,7 +231,7 @@
                     "id": "e3225108-35fc-4a0d-a336-2d7901783792",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -258,7 +258,7 @@
                     "id": "5e18a7cd-8b5e-40bc-81f8-fdebbf202e55",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -330,7 +330,7 @@
                     "id": "c4656f9e-def8-4473-ae3a-b9737f213d9d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -339,7 +339,7 @@
                     "id": "1be9fbaf-4e36-4855-ab0b-7b6f9dee446f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -348,7 +348,7 @@
                     "id": "b2461fcb-dc42-4b26-94cd-af1c208fbad7",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],
@@ -850,31 +850,31 @@
                 },
                 {
                     "name": "",
-                    "id": "ddac7ca6-89bb-4979-9cfe-80fc961bc37f",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Close Walkman interface",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "19e47b48-2bc5-4b7f-a0df-0f23dee17de9",
-                    "path": "<Keyboard>/rightCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Close Walkman interface",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "1e0eed1d-8ab9-454c-b278-92db9d893b72",
                     "path": "<Keyboard>/escape",
-                    "interactions": "",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close Walkman interface",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9890f75-f8df-4448-aa27-b4c1874ab44b",
+                    "path": "<Keyboard>/c",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close Walkman interface",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6bcb307f-be5d-4b84-af63-6c8fa1ec9c3d",
+                    "path": "<Keyboard>/rightCtrl",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Close Walkman interface",
@@ -893,7 +893,7 @@
                     "id": "21940bd0-819c-4b54-a01b-c03f3f51c87e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],

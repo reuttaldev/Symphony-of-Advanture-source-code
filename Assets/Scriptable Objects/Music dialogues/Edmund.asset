@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Edmund
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-17a2f6a0c2cf7c0468c280ef242453a3-11400000-0
-  emotionToInvoke: 
-  onCompletionNode: 
+  saved: 1
+  targetedEmotionLabel: Astonished
+  onCompletionNode: edmund_heard_music
   missionToComplete: {fileID: 0}
-  interactionName: 
+  interactionName: Edmund
+  charPronouns: Him

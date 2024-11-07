@@ -15,9 +15,10 @@ public class WalkmanUI : MonoBehaviour
     DialogueManager dialogueManager;
     [SerializeField]
     private InputActionReference nextSongAction, lastSongAction, confirmAction;
-
     [SerializeField]
-    private TMP_Text emotionTxt; // this is the emotion we are asking the player get the character to feel in this specific dialogue;
+    private GameObject prompt;
+    [SerializeField]
+    private TMP_Text emotionTxt, instructionTxt; // this is the emotion we are asking the player get the character to feel in this specific dialogue;
     [SerializeField]
     Image leftArrow, rightArrow;
     [SerializeField]
@@ -37,7 +38,7 @@ public class WalkmanUI : MonoBehaviour
     {
         if (audioManager == null)
             audioManager = AudioManager.Instance;
-        audioManager.OnTrackChanged.AddListener(UpdateDisplay); 
+        audioManager.OnTrackChanged.AddListener(UpdateDisplay);
         cassetteImageIndex = 0;
     }
     private void OnDisable()
@@ -48,7 +49,7 @@ public class WalkmanUI : MonoBehaviour
 
     private void Update()
     {
-        if(lastSongAction.action.WasPressedThisFrame())
+        if (lastSongAction.action.WasPressedThisFrame())
         {
             LastWasPressed();
         }
@@ -85,7 +86,7 @@ public class WalkmanUI : MonoBehaviour
 
     }
 
-    public void Open()
+    public void Open(bool manual)
     {
         open = true;
         for (int i = 0; i < audioManager.LibrarySize; i++)
@@ -97,16 +98,31 @@ public class WalkmanUI : MonoBehaviour
         }
         EventSystem.current.SetSelectedGameObject(cassetteButtons[0].gameObject);
         audioManager.PlayCurrentTrack();
+        // update targeted emotion txt
+        if (!manual)
+        {
+            var data = ServiceLocator.Instance.Get<DialogueManager>().currentMusicInteraction;
+            if (data == null)
+            {
+                Debug.LogError("Could not write prompt bc current music interaction in dialogue manager is null");
+                return;
+            }
+            emotionTxt.text = data.targetedEmotionLabel;
+            instructionTxt.text = "Choose a snippet that will make " + data.charPronouns.ToLower() + " feel ";
+            prompt.SetActive(true);
+        }
     }
+
+
     // manual = true when we open the walkman through C key, and not through a music dialogue with one of the characters
-    public void Close(bool manual = false)
+    public void Close()
     {
         if (!open)
             return;
-
+        Debug.Log("closing walkman uI");
+        prompt.SetActive(false);
         open = false;   
-        if (manual)
-            audioManager.StopAudio();
+        audioManager.StopAudio();
         cassetteButtons = new List<Button>();
         foreach (Transform child in gridParent.transform)
         {

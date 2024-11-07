@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Tutorial Music Dialogue
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-2a85708206c89974fa0185e8b0289615-11400000-0
-  emotionToInvoke: 'sad '
+  saved: 1
+  targetedEmotionLabel: Sad
   onCompletionNode: tony_heard_music
   missionToComplete: {fileID: 0}
   interactionName: Tutorial
+  charPronouns: Him

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Artist
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-0de63ab62eb9d97469cedc1885ae8777-11400000-0
-  emotionToInvoke: ' inspired, passionate and determined '
+  targetedEmotionLabel: Inspired
   onCompletionNode: artist_badgering
   missionToComplete: {fileID: 0}
   interactionName: Artist
+  charPronouns: Her

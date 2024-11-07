@@ -40,13 +40,13 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     {
         dialogueRunner.onDialogueComplete.AddListener(StopDialogue);
         skipDialougeButton.action.performed += context => SkipDialogue();
-        skipButtonForTesting.action.performed += context => SkipDialogueForTesting(); 
- 
+        skipButtonForTesting.action.performed += context => SkipDialogueForTesting();
+
     }
     void OnDisable()
     {
         dialogueRunner.onDialogueComplete.RemoveListener(StopDialogue);
-        skipDialougeButton.action.performed -= context => SkipDialogue();
+        skipDialougeButton.action.performed  -= context => SkipDialogue();
         skipButtonForTesting.action.performed -= context => SkipDialogueForTesting();
 
     }
@@ -114,6 +114,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
 
     public void SkipDialogue()
     {
+        Debug.Log("pressed");
         if (string.IsNullOrWhiteSpace(lastNodeName))
         {
             Debug.LogError("Trying to skip dialogue but lastNodeName is null");
@@ -150,7 +151,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             return;
         }
         string nextNode = headers["nextMandatory"][0];
-        Debug.Log("skipping dialogue");
         skippingDialouge = true;
         // Call before starting a new node to finish the previous one and allow skipping.
         dialogueRunner.Stop();

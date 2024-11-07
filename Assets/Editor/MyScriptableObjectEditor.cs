@@ -7,16 +7,23 @@ public class MyScriptableObjectEditor : Editor
 {
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
+        EditorGUI.BeginChangeCheck();
         DrawDefaultInspector();
         MyScriptableObject myScriptableObject = (MyScriptableObject)target;
 
-        // check if the object has unsaved changes (i.e., is dirty)
-        bool isDirty = EditorUtility.IsDirty(myScriptableObject);
+        bool isSaved = true;
+        // Check if any changes were made
+        if (EditorGUI.EndChangeCheck())
+        {
+            myScriptableObject.saved = false;   
+        }
+
         bool playing = Application.isPlaying;
         if(playing)
-            GUI.color = isDirty ? Color.red : Color.white;
+            GUI.color = Color.red;
         else
-            GUI.color = isDirty ? Color.red : Color.green;
+            GUI.color = myScriptableObject.saved ? Color.green : Color.red;
         if (GUILayout.Button("Save"))
         {
             myScriptableObject.Save();
@@ -25,6 +32,9 @@ public class MyScriptableObjectEditor : Editor
         {
             myScriptableObject.ResetOnExitPlay();
         }
+        serializedObject.ApplyModifiedProperties();
+        Repaint();
+
     }
 }
 #endif

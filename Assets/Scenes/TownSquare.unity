@@ -4870,6 +4870,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1786630920934015601}
+    - target: {fileID: 509809197736527570, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 756305420675725942, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4950,6 +4954,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 767108183796112301, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
+      propertyPath: m_Name
+      value: Targeted emotion text
+      objectReference: {fileID: 0}
     - target: {fileID: 1656307890288149775, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4978,6 +4986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4475663743494520507, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
+      propertyPath: tryAction
+      value: 
+      objectReference: {fileID: 6314573620327956459, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
     - target: {fileID: 4475663743494520507, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
       propertyPath: extraPanel
       value: 
@@ -10468,8 +10480,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6355796427495331828, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
+      propertyPath: fillValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355796427495331828, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8605976519907169035, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -39509,6 +39525,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3899475343978070671, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
+      propertyPath: tryAction
+      value: 
+      objectReference: {fileID: 6314573620327956459, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
     - target: {fileID: 5130639069108055748, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -39934,7 +39954,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037469604088186325}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ef6b967158b6c468c434c3f3a9730b, type: 3}
   m_Name: 
@@ -39942,9 +39962,7 @@ MonoBehaviour:
   talkToAstridMission: {fileID: 11400000, guid: fa1d302f03dd61a418cbb828dfb5d1ea, type: 2}
   playerFallAudio: {fileID: 8300000, guid: ea75c5f286772e043b458c33534f0381, type: 3}
   cameraShake: {fileID: 266097303}
-  playerMovement: {fileID: 7037469604088186326}
-  astridPosition: {fileID: 1306082526}
-  astrid: {fileID: 198833539}
+  playerMovement: {fileID: 0}
 --- !u!1001 &9156779417651614043
 PrefabInstance:
   m_ObjectHideFlags: 0

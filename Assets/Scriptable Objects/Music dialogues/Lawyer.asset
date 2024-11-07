@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Lawyer
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-9484ea2648a456345ba1946aca9f93aa-11400000-0
-  emotionToInvoke: cheerful and distracted
+  saved: 1
+  targetedEmotionLabel: Cheerful and Distracted
   onCompletionNode: lawyer_after_music
   missionToComplete: {fileID: 0}
   interactionName: Lawyer
+  charPronouns: Him

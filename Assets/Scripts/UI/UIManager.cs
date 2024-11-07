@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Yarn.Unity;
@@ -10,8 +11,6 @@ public class UIManager : MonoBehaviour, IRegistrableService
 {
     [SerializeField]
     private WalkmanUI walkmanUI;
-    [SerializeField]
-    GameObject musicDialogueText;
     [SerializeField]
     public ItemInteractableView interactableView;
     [SerializeField]
@@ -38,12 +37,12 @@ public class UIManager : MonoBehaviour, IRegistrableService
         openWalkmanAction.action.performed += context => OpenWalkmanInterface();
         closeWalkmanAction.action.performed += context => CloseWalkmanInterface();
         escapeAction.action.performed += context => EscapeUI();
-
     }
+
     private void OnDisable()
     {
         openWalkmanAction.action.performed -= context => OpenWalkmanInterface();
-        closeWalkmanAction.action.performed += context => CloseWalkmanInterface();
+        closeWalkmanAction.action.performed -= context => CloseWalkmanInterface();
         escapeAction.action.performed -= context => EscapeUI();
     }
     private void Start()
@@ -68,22 +67,27 @@ public class UIManager : MonoBehaviour, IRegistrableService
         inputManager.ActivatePlayerMap();
     }
 
-    void OpenWalkmanInterface(bool manual = false)
+    void OpenWalkmanInterface()
     {
+        Debug.Log(walkmanUI.open);
+        if (walkmanUI.open)
+        {
+            CloseWalkmanInterface();
+            return;
+        }
         // open menu only if nothing else is open
         if (!SwitchUIMap())
             return;
         uiPanalOpen = true;
         walkmanUI.gameObject.SetActive(true);
-        walkmanUI.Open();
-        musicDialogueText.SetActive(false);
+        walkmanUI.Open(true);
     }
     void CloseWalkmanInterface() 
     {
         if (!walkmanUI.open)
             return;
         walkmanUI.gameObject.SetActive(false);
-        walkmanUI.Close(manual:true);
+        walkmanUI.Close();
         CloseAndSwitchUIMap();
     }
     public void OpenMusicDialogueUI()
@@ -91,13 +95,12 @@ public class UIManager : MonoBehaviour, IRegistrableService
         SwitchUIMap();
         uiPanalOpen = true;
         walkmanUI.gameObject.SetActive(true);
-        walkmanUI.Open();
-        musicDialogueText.SetActive(false);
+        walkmanUI.Open(false);
 
     }
     public void CloseMusicDialogueUI()
     {
-        walkmanUI.Close(manual:false);
+        walkmanUI.Close();
         walkmanUI.gameObject.SetActive(false);
         //musicDialogueText.SetActive(false);
 

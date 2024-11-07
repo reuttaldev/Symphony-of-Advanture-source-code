@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Old lady Music Dialogue
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-8f4d272474c3b4049ae1597f3f908476-11400000-0
-  emotionToInvoke: relaxed and calm
+  saved: 1
+  targetedEmotionLabel: Calm and Relaxed
   onCompletionNode: old_lady_heard_music
   missionToComplete: {fileID: 11400000, guid: 06a509492be24f24d83775ba0dd69501, type: 2}
-  interactionName: old lady
+  interactionName: Old Lady
+  charPronouns: Her
