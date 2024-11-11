@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3db1806ea827efa4e883bfc3e247f217, type: 3}
-  m_Name: Child
+  m_Name: Old Man
   m_EditorClassIdentifier: 
-  GlobalID: GlobalObjectId_V1-3-5d986bb9b50ce8443a699aa5ea22ffef-11400000-0
+  GlobalID: 
   saved: 1
-  targetedEmotionLabel: Amused
-  onCompletionNode: child_badgering
+  targetedEmotionLabel: Happy
+  onCompletionNode: old_man_heard_music
   missionToComplete: {fileID: 0}
-  interactionName: Child
-  charPronouns: him
+  interactionName: Old Man
+  charPronouns: Him

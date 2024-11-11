@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98caad6d26309f64c99e25c7bd543386, type: 3}
-  m_Name: Old lady
+  m_Name: Old Man
   m_EditorClassIdentifier: 
-  GlobalID: GlobalObjectId_V1-3-e41402c3b3eec9641a7428755a968f56-11400000-0
+  GlobalID: 
   saved: 1
-  nodeTitle: old_lady_intro
-  associatedMission: {fileID: 11400000, guid: 06a509492be24f24d83775ba0dd69501, type: 2}
-  interactableMoreThanOnce: 1
+  nodeTitle: old_,man_intro
+  associatedMission: {fileID: 11400000, guid: f5656e870cb0fec42bcd9a501ae409cb, type: 2}
+  interactableMoreThanOnce: 0

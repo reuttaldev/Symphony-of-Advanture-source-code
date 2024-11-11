@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
-  m_Name: Talk to Astrid for the first time
+  m_Name: Convince Astrid to talk to the girl he likes
   m_EditorClassIdentifier: 
-  GlobalID: GlobalObjectId_V1-3-fa1d302f03dd61a418cbb828dfb5d1ea-11400000-0
+  GlobalID: GlobalObjectId_V1-3-3064891108d10a844b5d5e3d9cd519d3-11400000-0
   saved: 1
-  missionName: Talk to Astrid for the first time
+  missionName: Convince Astrid to talk to the girl he likes
   mainObjective: 
   startLocation: 
   state: 3

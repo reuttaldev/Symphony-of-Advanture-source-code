@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tony
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-77d07c813836e154ca0b9ab5de43a5b9-11400000-0
+  saved: 1
   nodeTitle: tony_intro
   associatedMission: {fileID: 11400000, guid: 5341231da6f56534286de67ad8024c6a, type: 2}
   interactableMoreThanOnce: 1

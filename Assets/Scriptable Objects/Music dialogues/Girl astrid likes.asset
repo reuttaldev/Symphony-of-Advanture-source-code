@@ -15,7 +15,7 @@ MonoBehaviour:
   GlobalID: GlobalObjectId_V1-3-13f2cacc9a8626948893e52ffe8ae167-11400000-0
   saved: 1
   targetedEmotionLabel: Confident and Courageous
-  onCompletionNode: girl_after_music
+  onCompletionNode: girl_heard_music
   missionToComplete: {fileID: 11400000, guid: e58ee6d4dff90e8478b9ed6303fc100b, type: 2}
   interactionName: Girl Astrid likes
   charPronouns: Her

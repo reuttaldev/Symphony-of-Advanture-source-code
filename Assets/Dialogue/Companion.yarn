@@ -8,7 +8,6 @@ nextMandatory: companion_get_name
 <<declare $gotViolin = false>> 
 
 <<declare $astridSaidName = false>> 
-?: Hey, hey!
 ?: Are you alright? 
 ?: Gee, you must be so confused. You appeared out of thin air. 
 -> Player: Who are you?
@@ -44,9 +43,8 @@ nextMandatory: companion_go_to_mayor_shortcut
 <<else>>
     Astrid: Well, you are here now. Welcome, {$playerName}. I'm Astrid.
 <<endif>>
-Astid: I like your outfit, by the way. What’s this stylish thing on your belt? 
-// camera zooms in on walkman 
-Astrid: A walkman? What's that?
+Astrid: I like your outfit, by the way. What’s this stylish thing on your belt? 
+Astrid: *camera zooms in on the Walkman* A Walkman? What's that?
 ->Player: It's a portable cassette player.
     Astrid: Oh, neat. 
 ->Player: It's my own personal stereo.
@@ -60,7 +58,7 @@ Astrid: Wait, you don't know?
     << jump companion_story_explanation>>
 -> Player: I do.
     <<set $skipExplanation to true>>
-    Astrid: Word got around I guess. This town is more famous than I thought! 
+    Astrid: Word got around I guess.
 << jump companion_discovers_walkman_works>>
 ===
 
@@ -68,7 +66,7 @@ title: companion_story_explanation
 scene: jumped from intro if the player needs to be told the story
 nextMandatory: companion_go_to_mayor_shortcut
 ---
-Astrid: Years ago, we had the ultimate town keeper. A wise wizard. His daughter, Ingrid, took after him in her greatness. She was a prodigy, especially with the violin.  Her melodies were pure magic, leaving everyone who heard them enchanted. I mean, she could even influence people's hearts and minds- I’ve seen it myself. 
+Astrid: Years ago, we had the ultimate town keeper, a wise  and powerful wizard. His daughter, Ingrid, took after his greatness. She was a prodigy, especially with the violin.  Her melodies were pure magic, leaving everyone who heard them enchanted. I mean, she could even influence people's hearts and minds- I’ve seen it myself. 
 Astrid: But... things took a turn when she died. Her father, well, he couldn't bear it.
 Astrid: To avenge his daughter’s death, he cast a spell over the town so no melody can be heard again. He thought… nothing could compare to Ingrid's playing. So nothing else is worth hearing. 
  << jump companion_story_explanation_questions>>
@@ -93,10 +91,10 @@ nextMandatory: companion_go_to_mayor_shortcut
 title: companion_discovers_walkman_works
 nextMandatory: companion_go_to_mayor_shortcut
 ---
-Astrid: Ha! You like to fool around, don’t you? I think we will get along nicely. 
-Astrid: You’ll prove it to me…? Alright, sure bud. Let’s see. [checksOutWalkman][/checksOutWalkman]
+Astrid: What.. you're saying it works? Ha! You like to fool around, don’t you? I think we will get along nicely. 
+Astrid: You’ll prove it to me…? Alright, sure bud. Let’s see. *He takes the device and music starts* [checksOutWalkman][/checksOutWalkman]
 ///music starts in the game- the intro song. Zooming in on the walkman again *slowly*, Astrid’s expression changes to surprised, astonished, and slightly scared. 
-Astrid: t…th…this is C R A Z Y! We gotta show this to Tony, I mean the town keeper, quickly! Follow me. 
+Astrid: Impossible. We gotta show this to Tony, I mean the town keeper, quickly! Follow me. 
 <<FMS>>
 ===
 
@@ -148,7 +146,7 @@ Astrid: Welcome to my crib! What do you think?
 -> Player: Pretty cool. And big.
 -> Player: Do you live here all by yourself?
      Astrid: Ahh yeah, my parents are usually around, but they’re on a trip. 
--> Player: What might Sona be interested in from here?
+-> Player: What might Sona be interested in?
     Astrid: Alright, let’s go straight for business then.
 <<FMS>> // talking inside the house mission 
 <<jump companion_in_house_show_violin>>
@@ -157,10 +155,9 @@ Astrid: Welcome to my crib! What do you think?
 title: companion_in_house_show_violin
 mandatory: T
 ---
-Astrid: I found this old instrument. Sona got to find some value in it- let’s go show it to here! I bet she’ll get real excited!!
+Astrid: I found this old instrument. Sona got to find some value in it.I bet she’ll get real excited!!
 Astrid: You want to know where I got a violin from… em… Easy! I used to play as a kid, but I wasn’t very good. Like, at all. I wonder why my dad hasn’t sold it already. I guess it was lost in all the rubbish down in the basement. 
-Astrid: Feel free to take a rest here. Since you are my friend, and we don’t know when you’ll be going back home… I want you to feel comfortable here. My room is upstairs. 
-Once you are ready, walk out the front door and we’ll hit the road!
+Astrid: Feel free to take a rest here. My room is upstairs *no upstairs yet*. Once you are ready, walk out the front door and we’ll hit the road!
 <<set $gotViolin = true>> 
 <<FMS>>
 ===
@@ -175,20 +172,30 @@ title: companion_likes_girl
 scene: Astrid likes a character in the game but has never dared to approach and talk to her. The player convinces him to talk to her. 
 emotion: confidence/ courage 
 ---
-Astrid: Wait, we have to hide!
-Astrid: Why…? Can you see that gorgeous girl over there? I’ve always liked... but I’ve never dared to talk to her. Every time I get close, I just freeze up.
-Astrid: Help me out, will ya! Play something that will make me feel confident and courageous!
-<<OMD>>
+Astrid: Wait, we cant' go through there! 
+Astrid: Why…? Can you see that girl over there? I've been avoiding her since some kid mentioned she liked me. I mean she is cute, but I don't have time for foolish things. It's probably a lie anyways. 
+-> Player: You should talk to her. 
+    Astrid: What’s the endgame? I don’t have time for that kind of stuff right now. And she's not into me anyway.
+    -> Player: I know how to help.
+        <<OMD>>
+    -> Player: We'll ignore her. 
+        Astrid: I guess...
+        <<FMF>>
+-> Play: Pretend you don't see her. 
+    Astrid: Alright... 
+    <<FMF>>
 ===
 
-title: companion_likes_girl_after_music_good
+title: astrid_heard_music_good
 ---
-Astrid: I’m feeling it, I’m feeling it! I’m going for it! …Come with me though, will ya? 
+Astrid: That feels intense... I haven't felt so much in a long time. Maybe I can give it a try, let's go chat with her. Be warned, she is extremely shy. 
+<<FMS>>
 ===
 
-title: companion_likes_girl_after_music_bad
+title: astrid_heard_music_bad
 ---
-Astrid: Hmm…that didn’t do much. Well, I guess we could try again tomorrow. 
+Astrid: Hmm…that didn’t do much. Sorry pal. 
+<<FMF>>
 ===
 
 title: companion_got_full_map

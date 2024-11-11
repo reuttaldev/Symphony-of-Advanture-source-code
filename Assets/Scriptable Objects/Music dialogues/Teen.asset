@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-f17e1f56dd64c5043b6017b2034dbe38-11400000-0
   saved: 1
-  targetedEmotionLabel: Energized
+  targetedEmotionLabel: Agitated and Tense
   onCompletionNode: teen_after_music
   missionToComplete: {fileID: 0}
   interactionName: Teen

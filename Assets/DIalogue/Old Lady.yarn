@@ -4,14 +4,13 @@ scene: approaching after seeing her scream out for her cat.
 location: village
 emotion: relaxed and calm
 ---
-You: Hey, are you alright?
-Old lady: No, I am not alright! Whiskers, have you seen Whiskers?
-You: No... is that your cat?
-Old lady: Yes! He's not in the house, he's not in the garden... I've been looking everywhere!
+Old lady: Hello. I am looking for Whiskers, have you seen him?
+Astrid: No... isn't he a house cat?
+Old lady: Yes! But he is not in the house, he's not in the garden... and I am getting quite worried.
 -> Player: I will find him. 
-    Astrid: Yes, how about you give us some information and we will start looking?
-    Old lady: I don't know.. I can't stop thinking about him being lost and afraid! I don't know how I will live with myself if anything happened to him.
-    Astrid: Here, let us play you some music that will help you feel <color=\#ff0000>relaxed and calm</color>.
+    Astrid: Yes, how about you give us some information and we will start searching?
+    Old lady: I don't know.. I can't stop thinking about him lost and afraid! I don't know how I will live with myself if anything happened to him.
+    Astrid: Here, we have something that might help you settle down. <color=\#ff0000>relaxed and calm</color>.
 -> Player: Well... good luck.  
     [End]
 <<OMD>>
@@ -24,11 +23,10 @@ scene: talking after she's calmed down from the music
 location: village
 emotion: -
 --- 
-Old lady: Oh, what a soothing melody. Thank you, dear ones. This sure made me feel better.
-Companion: Now, how about you give us some information, and we will try to find him?
+Old lady: What a soothing melody that was. Thank you dear ones.
+Companion: Now, can you give us some information?
 -> Player: Where did you last see him?
     Old lady: At home, right before I left for my morning walk. 
-    Old lady: When I returned, he was gone!
 -> Player: Does he have a favorite spot?
     Old lady: He only ever leaves the house to chase butterflies around the neighbor's house. 
 -> Player: Has he escaped before?
@@ -48,7 +46,7 @@ Companion: Hey, let us play you some music that will help you feel <color=\#ff00
 title: old_lady_shortcut_after_music
 mandatory: T
 ---
-Old lady: Please let me know if you found my cat.
+Old lady: Please let me know if you found Whiskers.
 <<FMS>>
 ===
 
@@ -65,20 +63,19 @@ scene: bringing her cat back.
 location: village
 ---
 <<FMS>>
-Old lady: Whiskers! Thank you! How may I repay you?
--> Player: I don't need anything, I am just happy he's safe.
-    Old lady: Oh, maybe your generation is not lost after all. 
+Old lady: Whiskers you are safe! Thank you! How may I repay you?
+-> Player: I'm just happy he's safe.
+    Old lady: Oh, okay. Maybe your generation is not lost after all. 
 -> Player: I am looking for a map of a hidden castel, do you know anything about that?
     Old lady: Oh, no. Hidden castel? There is nothing like that around here. 
     Old lady: This town is very... quite.
 -> Player: Give me Whiskers.
-    Old lady: What... No! Is this why you helped me? What's wrong with you? Go away. 
+    Old lady: No! Is this why you helped me? What's wrong with you? I was going to give you some candy, but forget about it. Go away. 
 ===
 
 title: old_lady_complete_badgering
 scene: bringing her cat back.
 location: village
 ---
-
-Old lady: Thanks again.
+Old lady: Thanks again dears.
 ===

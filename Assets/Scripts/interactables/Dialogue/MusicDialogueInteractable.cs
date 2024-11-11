@@ -27,7 +27,7 @@ public class MusicDialogueInteractable : Interactable
         }
         if (string.IsNullOrEmpty(data.GlobalID))
         {
-            Debug.LogError("No interaction id");
+            Debug.LogError("No interaction id on object " +data.name);
         }
         if (string.IsNullOrEmpty(data.interactionName))
         {

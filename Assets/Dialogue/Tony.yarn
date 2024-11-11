@@ -9,20 +9,20 @@ emotion: sad. This is in the form of a tutorial so it is skippable.
 <<declare $mapFromTony = true>> 
 Tony: Hey, Astrid. No time for any of your shenanigans. Could we do this later?
 Astrid: I’ll make it worth your while, I promise. 
-// Office phone starts to ring
-Tony: "Alright, make it quick. See? They’re already looking for me. Who’s your friend?
+Tony: *office phone starts to ring* Alright, make it quick. See? They’re already looking for me. Who’s your friend?
 Astrid: This is {$playerName}. He has something special to show you.  
-Town keeper: Oh, welcome! I am Mayor Tony, but you can call me Tony. Apologies for acting rude earlier, I’m just swamped in work.  Being the youngest town keeper, everyone’s watching my every move. Filling the shoes of my predecessor isn’t easy.
+Town keeper: Oh, welcome! I am Mayor Tony
+// Apologies for acting rude earlier, I’m just swamped in work.  Being the youngest town keeper, everyone’s watching my every move. Filling the shoes of my predecessor isn’t easy.
 Have you come for a vacation in our lovely town?
 ->Player: I just woke up here. 
     Tony: You don’t say. Did you have a lot to drink yesterday?
     ->Player: No!         
     ->Player: Maybe.
 -> Player: Vacation? here? I don't think so. 
-    Tony: Hey, watch your tone. Don’t speak about *my* town like that. Sure, it could use some renovation, but I’ve done my best with the time I’ve had. It’s a work in progress.
+    Tony: Hey, watch your tone. Don’t speak about *my* town like that. Sure, it could use some renovation, it’s a work in progress.
 Tony: What was it you wanted to show me?
-Tony: Oh, look at this precious piece of junk. I saw a Walkman just like this one at the museum. It’s a pity they’re all just gathering dust there.
-Astrid: This one works! {$playerName} will prove it. Play us a... <color=\#ff0000>sad</color> song.
+Tony: *shows Walkman* Oh, look at this precious piece of junk. I saw a Walkman just like this one at the museum. It’s a pity they’re all just gathering dust there.
+Astrid: Except this one works! {$playerName} will prove it. Quick, play us a... <color=\#ff0000>sad</color> song.
 <<tutorial TutorialManager>>
 ===
 
@@ -30,17 +30,17 @@ title: tony_heard_music
 location: in his office, next to town square
 nextMandatory: tony_intro_shortcut
 ---
-Tony: Oh. I need to think about this. I didn’t have “find the only source of music left in our town” in my schedule today.
-Tony: But I will make time. This must be some sign. Is this the key to banish the curse…?
-Tony: You should try to locate the old townkeeper- Edmund. If you can do that for us and return music… Off! Huge weight off my shoulders.
+Tony: That's... something. I didn’t have “find the only source of music left in our town” on my bingo card.
+Tony: But I will make time. This has to do with lifting the curse, I’m sure of it. 
+Tony: You should try to locate the old townkeeper- Edmund. If you can do that for us and return music… I will be eternally grateful.
 ->Player: Okay
    Tony: Great!
 ->Player: I want to go home. 
-    Tony: Hey, I hear you. Being a mayor is a big deal, but I can't help with that. Only Edmund has the wisdom and power to understand what’s happening to you.
+    Tony: Hey, I hear you. I know I am big-deal mayor and all, but I can't help with that. Only Edmund has the wisdom and power to understand what’s happening to you.
     Tony: You must find him if you wish to return home. 
 
-Tony: I found this piece of paper when I first came into the office.  I had my suspicions about it, but I thought I was just losing it from all the paperwork.
-Tony: But now I know what it is. It’s a torn piece of a map—looks like a third of it. The only other person who ever had access to this room is Edmund, so I’m sure it will lead to him.
+Tony: I found this piece of paper when I first came into the office. It did seem suspicions, but I had no time to dwell. 
+Tony: I am starting to think that the previous keeper, Edmund, left it for me here before his disappearance.  It looks like... a torn piece of a map.
 /// map piece 1 mission
 <<FMS>>
 Tony: Here, take it. Finding the rest is up to you. 
@@ -67,6 +67,6 @@ scene: before leaving the office, after hearing what he has to say
 emotion: - 
 ---
 Tony: What an adventure! I wish I could come with you but, I have too much on my plate right now. Someone has to hold the fourth down. Sometimes I wonder how I got elected. Well, it was all so sudden…
-Tony: Anyway, I have big dreams for this place, I am counting on you to help me turn this place around!  
+Tony: Anyway, I have big dreams for this place, I am counting on you to do you part.  
 ===
 

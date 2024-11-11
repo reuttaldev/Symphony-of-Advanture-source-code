@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3db1806ea827efa4e883bfc3e247f217, type: 3}
-  m_Name: Child
+  m_Name: Astrid
   m_EditorClassIdentifier: 
-  GlobalID: GlobalObjectId_V1-3-5d986bb9b50ce8443a699aa5ea22ffef-11400000-0
+  GlobalID: GlobalObjectId_V1-3-975e1f9746805d549a1eff4c3d4f5ca7-11400000-0
   saved: 1
-  targetedEmotionLabel: Amused
-  onCompletionNode: child_badgering
+  targetedEmotionLabel: Affectionate and in-love
+  onCompletionNode: astrid_heard_music_good
   missionToComplete: {fileID: 0}
-  interactionName: Child
-  charPronouns: him
+  interactionName: Astrid
+  charPronouns: Him

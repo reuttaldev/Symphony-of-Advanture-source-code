@@ -4,21 +4,19 @@ emotion: anger/distress/disgust/frustration/ insulted
 Mandatory: T
 ---
 // talking on the phone
-Teen: No, dad, I’m not doing it! I’m not coming home! Goodbye! // hangs up 
+Teen: *talking on the phone* No, dad, I’m not doing it! I’m not coming home! *hangs up* 
 Astrid: Hey, what’s wrong?
 Teen: It’s my dad, he wants me to play this stupid video game, he says it’s important. Something about collecting data about emotions in music… who even cares about that stuff? 
-Teen: I have so many better things to do other playing video games. Like reading, or studying math… but he just DOESN’T GET ME! 
--> Player: Explain it to him.
+Teen: There's so many better things to do. Like reading, or studying math… but he just DOESN’T GET IT! 
+-> Player: Tell him that.
      Teen: I tried, but he never takes me seriously. I guess I am not good with confrontation.    Usually I just do what he wants to avoid it. But I am soo over it!
 -> Player: Lie and say you did it. 
-    Teen: I can’t do that. The game creator would know. And she will contact my dad. 
-Astrid: Maybe we can help you channel what you’re feeling. Then you can talk to him in a way that he'll really hear you and take you seriously!
+    Teen: I can’t do that. The game creator is everywhere... she will know. 
+Astrid: Maybe we can help you channel what you’re feeling. Then you can confront him and let him know you're serious about this.
 Teen: That would be cool, but how?
 Player: Ever hear of letting the right song do the talking?
 Teen: (confused) A song? How’s that gonna help? You’re starting to sound like my dad. 
-Astrid: It can help you tap into exactly what you’re feeling, clear all other thoughts in your head. Let’s give it a try
-, what do you say?
-Teen: Okay.
+Astrid: It can help you tap into exactly what you’re feeling, clear all other thoughts in your head. Just give it a try
 <<OMD>>
 ===
 
@@ -26,5 +24,4 @@ title: teen_after_music
 Mandatory: T
 ---
 Teen: Thanks. I can’t wait to go home and solve some equations. 
-Astrid: No worries. Sometimes, you need a push to get the emotions flowing.
 ===

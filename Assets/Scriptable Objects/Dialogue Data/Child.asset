@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Child
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-56b90a9eed93de049b7db12a2c64a715-11400000-0
+  saved: 1
   nodeTitle: child_intro
   associatedMission: {fileID: 11400000, guid: faf1bd419f7a06f46b3f9c92eba3e4d8, type: 2}
-  interactableMoreThanOnce: 0
+  interactableMoreThanOnce: 1

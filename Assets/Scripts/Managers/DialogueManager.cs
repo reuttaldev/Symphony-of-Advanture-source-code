@@ -39,15 +39,15 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     void OnEnable()
     {
         dialogueRunner.onDialogueComplete.AddListener(StopDialogue);
-        skipDialougeButton.action.performed += context => SkipDialogue();
-        skipButtonForTesting.action.performed += context => SkipDialogueForTesting();
+        skipDialougeButton.action.performed += SkipDialogue;
+        skipButtonForTesting.action.performed += SkipDialogueForTesting;
 
     }
     void OnDisable()
     {
         dialogueRunner.onDialogueComplete.RemoveListener(StopDialogue);
-        skipDialougeButton.action.performed  -= context => SkipDialogue();
-        skipButtonForTesting.action.performed -= context => SkipDialogueForTesting();
+        skipDialougeButton.action.performed  -= SkipDialogue;
+        skipButtonForTesting.action.performed -= SkipDialogueForTesting;
 
     }
     private void Start()
@@ -62,6 +62,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         dialogueRunner.AddCommandHandler("FMS", delegate { FinishDialogueMission(); });
         // finish mission failed
         dialogueRunner.AddCommandHandler("FMF", delegate { FinishDialogueMission(false); });
+        dialogueRunner.AddCommandHandler("STOP", delegate { dialogueRunner.Stop(); });
     }
     public void SetMissionToComplete(MissionData data)
     {
@@ -112,7 +113,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     }
 
 
-    public void SkipDialogue()
+    public void SkipDialogue(InputAction.CallbackContext context)
     {
         Debug.Log("pressed");
         if (string.IsNullOrWhiteSpace(lastNodeName))
@@ -157,7 +158,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         StartDialogue(nextNode);
         skippingDialouge = false;   
     }
-    private void SkipDialogueForTesting()
+    private void SkipDialogueForTesting(InputAction.CallbackContext context)
     {
         dialogueRunner.Stop();
         if(missionToComplete!=null)

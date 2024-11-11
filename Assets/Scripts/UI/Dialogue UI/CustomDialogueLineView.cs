@@ -175,15 +175,15 @@ public class CustomDialogueLineView : DialogueViewBase
     }
     private void OnEnable()
     {
-        continueAction.action.performed+=context=> UserRequestedViewAdvancement();
-        interruptAction.action.performed += context => UserRequestedViewInterrupt();
-        skipAction.action.performed += context => UserRequestedViewSkip();
+        continueAction.action.performed+= UserRequestedViewAdvancement;
+        interruptAction.action.performed += UserRequestedViewInterrupt;
+        skipAction.action.performed += UserRequestedViewSkip;
     }
     private void OnDisable()
     {
-        continueAction.action.performed -= context => UserRequestedViewAdvancement();
-        interruptAction.action.performed -= context => UserRequestedViewInterrupt();
-        skipAction.action.performed -= context => UserRequestedViewSkip();
+        continueAction.action.performed -= UserRequestedViewAdvancement;
+        interruptAction.action.performed -= UserRequestedViewInterrupt;
+        skipAction.action.performed -= UserRequestedViewSkip;
     }
 
     /// <inheritdoc/>

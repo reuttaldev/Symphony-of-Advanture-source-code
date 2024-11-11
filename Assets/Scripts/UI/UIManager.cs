@@ -34,16 +34,16 @@ public class UIManager : MonoBehaviour, IRegistrableService
     }
     private void OnEnable()
     {
-        openWalkmanAction.action.performed += context => OpenWalkmanInterface();
-        closeWalkmanAction.action.performed += context => CloseWalkmanInterface();
-        escapeAction.action.performed += context => EscapeUI();
+        openWalkmanAction.action.performed += OpenWalkmanInterface;
+        closeWalkmanAction.action.performed += CloseWalkmanInterface;
+        escapeAction.action.performed += EscapeUI;
     }
 
     private void OnDisable()
     {
-        openWalkmanAction.action.performed -= context => OpenWalkmanInterface();
-        closeWalkmanAction.action.performed -= context => CloseWalkmanInterface();
-        escapeAction.action.performed -= context => EscapeUI();
+        openWalkmanAction.action.performed -= OpenWalkmanInterface;
+        closeWalkmanAction.action.performed -= CloseWalkmanInterface;
+        escapeAction.action.performed -= EscapeUI;
     }
     private void Start()
     {
@@ -67,9 +67,9 @@ public class UIManager : MonoBehaviour, IRegistrableService
         inputManager.ActivatePlayerMap();
     }
 
-    void OpenWalkmanInterface()
+    void OpenWalkmanInterface(InputAction.CallbackContext context)
     {
-        Debug.Log(walkmanUI.open);
+        Debug.LogError("pressed 1");
         if (walkmanUI.open)
         {
             CloseWalkmanInterface();
@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
         walkmanUI.gameObject.SetActive(true);
         walkmanUI.Open(true);
     }
-    void CloseWalkmanInterface() 
+    void CloseWalkmanInterface(InputAction.CallbackContext context) 
     {
         if (!walkmanUI.open)
             return;
@@ -122,7 +122,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
         CloseAndSwitchUIMap();
         uiPanalOpen = false;
     }
-    void EscapeUI()
+    void EscapeUI(InputAction.CallbackContext context)
     {
         escapeText.text = "Hold ESC to exit";
         StopCoroutine(ShowEsccapeText());

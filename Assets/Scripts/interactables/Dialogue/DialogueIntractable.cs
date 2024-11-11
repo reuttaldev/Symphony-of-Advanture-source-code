@@ -24,6 +24,10 @@ public class DialogueIntractable : Interactable
     protected override void DisableInteraction()
     {
     }
+    public void Trigger()
+    {
+        TriggerInteraction();
+    }
     protected override void TriggerInteraction()
     {
         // start conversation
@@ -56,7 +60,7 @@ public class DialogueIntractable : Interactable
     {
         nodeData.interactableMoreThanOnce = i;
         interactableMoreThanOnce = i;
-        interactable = i; 
+        Interactable(i); 
     }
     public void ChangeAssociatedMission(MissionData newAssociatedMission) 
     {
@@ -68,6 +72,7 @@ public class DialogueIntractable : Interactable
     }
     public void Interactable(bool i)
     {
+        Debug.Log("changing interactable");
         interactable = i;
     }
     public void ChangeDireciton(Direction direction)

@@ -1,36 +1,26 @@
 ﻿title: girl_astrid_likes_intro
 scene: We run into her intown square. Astrid has gathered the courage to go speak to her and asked the player to join in on their conversation to make it less awkward. 
-Emotion:  in love/ captivated/ charmed/ Infatuated
-nextMandatory: girl_astrid_likes_intro_shortcut
----
-Girl: Hey Astrid, how are you? I’ve seen you around, but you always seem to disappear before I talk to you. 
-Astrid: Sorry about that, I’ve just been… busy. 
-Girl: No worries then! What have you been up to?
-Astrid: Oh, me? Um, I’ve been doing- wait, you haven’t met {$playerName}. They’re new to town. We’re on a secret mission. Yeah, it's super important stuff. Don’t ask about it because I can’t tell.
-Girl: Alright…
-<<jump girl_astrid_likes_intro_shortcut>>
-===
-
-
-title: girl_astrid_likes_intro_shortcut
 mandatory: T
 ---
-Astrid: I wanted to ask if, uh, you want to hang out some time together? Just us?
-Girl: Oh…
--> Player: Play a song to make her feel infatuated. 
-    <<OMD>>>
+Girl: A..Astrid. Hey? W..Who is your friend?. 
+//Astrid: This is {$playerName}, they’re new to town. We’re on a secret mission. Yeah, it's super important stuff. Don’t ask about it because I can’t tell.
+Astrid: It's not important right now. I wanted to ask if, uh, you want to hang out some time together? Just us?
+Girl: Oh… that sounds nice. But I probably shouldn't. I’m not the best person to hang out with, I'm too awkward for my own good.
+Astrid: Help me out, will ya {$playerName}? Play something that will make her feel confident and courageous!
+-> Player: Okay
+    <<OMD>>
 -> Player: Stay out of it. 
-    Girl: I’m actually busy too.
-    Astrid: Okay! See you later! // astrid runs off 
+    Girl: I... have to go. *she sprints away*
+    Astrid: Okay! See you later! 
     <<FMF>>
 ===
 
-title: girl_after_music
+
+title: girl_heard_music
 mandatory: T
 ---
-Girl: I’m overwhelmed with emotion. Sure, I would love to go out with you Astrid. 
-Astrid: Great! I remember you like ice skating, would you like to do that?
-Girl: Yeah! Come by when you can. I am there most of the time. // possible mini game
+Girl: I’'ve never felt more like my self than right now. Sure, I would love to go out with you Astrid. 
+Astrid: Great! But we're kinda on a secret mission right now. I'll come find you when I'm done. 
 <<FMS>>
 ===
 
@@ -43,5 +33,5 @@ Girl: So are you good friends with Astrid?
 -> Player: Yes
     Girl: That’s nice. He’s made himself quite the joker name in the town. But he seems nice. It’s a shame he’s so shy around me. 
 -> Player: Just colleagues. 
-    Girl: Oh, okay. I can see why- I heard quite an earful about him. I like him, though. I like to make my own opinions of people. 
+    Girl: Oh, okay. I can see why- I heard quite an earful about him. Though, I like to make my own opinions of people. 
 ===

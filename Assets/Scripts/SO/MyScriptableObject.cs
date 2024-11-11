@@ -18,8 +18,6 @@ public class MyScriptableObject : ScriptableObject
     public bool saved = true;
     virtual protected void OnEnable()
     {
-        if (GlobalID == null)
-            GlobalID = GlobalObjectId.GetGlobalObjectIdSlow(this).ToString();
         EditorApplication.playModeStateChanged += OnPlayModeChanged;
     }
 
@@ -37,6 +35,8 @@ public class MyScriptableObject : ScriptableObject
     }
     virtual public void Save()
     {
+        if (string.IsNullOrEmpty(GlobalID))
+            GlobalID = GlobalObjectId.GetGlobalObjectIdSlow(this).ToString();
         defaultStateInJson = JsonUtility.ToJson(this);
         saved = true;
     }
