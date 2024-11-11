@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98caad6d26309f64c99e25c7bd543386, type: 3}
   m_Name: Old Man
   m_EditorClassIdentifier: 
-  GlobalID: 
+  GlobalID: GlobalObjectId_V1-3-9e03b4bd6772a134cbbe4e1247015608-11400000-0
   saved: 1
-  nodeTitle: old_,man_intro
+  nodeTitle: old_man_intro
   associatedMission: {fileID: 11400000, guid: f5656e870cb0fec42bcd9a501ae409cb, type: 2}
   interactableMoreThanOnce: 0

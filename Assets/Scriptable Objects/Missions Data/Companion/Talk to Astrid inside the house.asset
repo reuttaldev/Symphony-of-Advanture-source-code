@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Talk to Astrid inside the house
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-f76d8304d7759dc4ba9ee901ba80267d-11400000-0
+  saved: 1
   missionName: Talk to Astrid inside the house
   mainObjective: 
   startLocation: 

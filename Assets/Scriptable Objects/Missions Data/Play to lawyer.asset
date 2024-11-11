@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Play to lawyer
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-5f447ba46a5143846b32a2610b722954-11400000-0
+  saved: 1
   missionName: Play to lawyer
   mainObjective: 
   startLocation: Village

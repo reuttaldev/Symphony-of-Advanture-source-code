@@ -1,0 +1,22 @@
+﻿title: old_man_intro
+---
+old man: Hello there! I've been watching you two jaunt around town, is everything alright?
+Astrid: Yes Steve, everything is great. You have nothing to worry about. How have you been?
+Steve: Kind of you to ask. I'm alright. Trying to get out of the house... gets a bit stuffy in there without Evy. 
+-> Player: Who is Evy?
+    Steve: My dearest wife. We had 50 wonderful years together. See, I am trying to focus on the positive in life. 
+    Astrid: Oh, we can help you with that! {$playerName} play him a song to make him feel Happy. 
+    <<OMD>>
+-> Do you know anything about a lost map?
+    Steve: No, sorry kid. Ever since my wife passed, everyone seem to believe I am too fragile. No one tells me anything.
+    Astrid: Oh Steve... We don't think you are weak, we just want you to be happy. Look, my friend has something special to show you.
+-> Do you know where the old town keeper is?
+    Steve: An old man like me cannot possible keep up with mighty Edmund. Good thing you have Astrid by your side- if anyone could find him, that would be him. 
+    Astrid: Haha, yes. Because... of my great detective skills! {$playerName}, why don't you play Steve a song to make him happy? It must be hard being alone after 50 years with his wife, Evy.
+    <<OMD>>
+===
+
+title: old_man_heard_music
+---
+Steve: Isn't that an uplifting tune! What a kind gesture. This melody will keep me company for the rest of my walk.  
+===

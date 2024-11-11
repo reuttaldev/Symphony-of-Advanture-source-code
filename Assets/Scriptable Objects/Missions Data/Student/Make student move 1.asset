@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Make student move 1
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-8ef42934c9ef1174c927f41e26f53c92-11400000-0
+  saved: 1
   missionName: Make student move 1
   mainObjective: 
   startLocation: 
-  state: 2
+  state: 3
   mandatory: 1
   prerequisiteIds: []

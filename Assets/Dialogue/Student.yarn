@@ -4,7 +4,7 @@ scene: The player needs to cross a bridge in Old City to get to Sona. But someth
 mandatory: t 
 ---
 -: zzzzzzzzzzzzzzz... zzzzzzzzzzzzzz…
-Astrid: Sorry, coming through.
+Astrid: Sorry, coming through. *he will be on a bridge, which you must cross to go Sona* 
  // moves a tiny bit
 Student: Oh… Let me clear the way.
 <<FMS>>

@@ -35,7 +35,7 @@ public class MissionData : MyScriptableObject
     {
         state = MissionState.OnGoing;
         ServiceLocator.Instance.Get<MissionManager>().MissionHasStarted(GlobalID);
-        Debug.Log("Started mission " + Name+". state is "+state);
+        Debug.LogError("Started mission " + Name+". state is "+state);
 
      }
     public void EndMission(bool successful = true)

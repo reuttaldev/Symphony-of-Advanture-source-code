@@ -28,9 +28,10 @@ public class MyScriptableObject : ScriptableObject
     void OnPlayModeChanged(PlayModeStateChange change)
     {
         // the order here matters, because on disable gets called before on enabled 
-        if (change == PlayModeStateChange.EnteredPlayMode)
-            Save();
-        else if (change == PlayModeStateChange.ExitingPlayMode)
+        //if (change == PlayModeStateChange.EnteredPlayMode)
+            //Save();
+        //else
+        if (change == PlayModeStateChange.ExitingPlayMode)
             ResetOnExitPlay();
     }
     virtual public void Save()

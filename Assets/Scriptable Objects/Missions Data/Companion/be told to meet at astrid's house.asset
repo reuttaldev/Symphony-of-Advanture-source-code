@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: be told to meet at astrid's house
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-3cf2722864ef9764581e93cdea50848f-11400000-0
+  saved: 1
   missionName: be told to meet at astrid's house
   mainObjective: 
   startLocation: 

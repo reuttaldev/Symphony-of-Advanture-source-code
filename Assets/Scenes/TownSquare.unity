@@ -9895,7 +9895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6824368418178334981, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.49
+      value: 4.08
       objectReference: {fileID: 0}
     - target: {fileID: 6999011459940896778, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
       propertyPath: m_Name
@@ -10529,14 +10529,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6355796427495331828, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
-      propertyPath: fillValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6355796427495331828, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8605976519907169035, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.2679715
@@ -10691,7 +10683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6824368418178334981, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.02
+      value: 2.78
       objectReference: {fileID: 0}
     - target: {fileID: 6999011459940896778, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
       propertyPath: m_Name
@@ -12428,6 +12420,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: companion_likes_girl
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 198833541}
+        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
+        m_MethodName: Interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: companion_likes_girl
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1820429967
 GameObject:
