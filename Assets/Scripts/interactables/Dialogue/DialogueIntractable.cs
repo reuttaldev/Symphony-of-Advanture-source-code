@@ -72,7 +72,6 @@ public class DialogueIntractable : Interactable
     }
     public void Interactable(bool i)
     {
-        Debug.Log("changing interactable");
         interactable = i;
     }
     public void ChangeDireciton(Direction direction)

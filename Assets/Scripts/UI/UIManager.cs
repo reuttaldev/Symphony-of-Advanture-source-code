@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
         Debug.LogError("pressed 1");
         if (walkmanUI.open)
         {
-            CloseWalkmanInterface();
+            CloseWalkmanInterface(new InputAction.CallbackContext());
             return;
         }
         // open menu only if nothing else is open
