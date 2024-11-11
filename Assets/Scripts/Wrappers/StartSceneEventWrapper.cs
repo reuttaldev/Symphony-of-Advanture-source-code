@@ -11,6 +11,7 @@ public class StartSceneEventWrapper : MonoBehaviour
     public MissionState CurrentMissionState => missionData.State;
     public MissionState targetState = MissionState.OnGoing;
     public UnityEvent onTargetState;
+    public string MissionName =>missionData.name;
     private void Start()
     {
         if (missionData == null)

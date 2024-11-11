@@ -84,6 +84,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40ac56dc199259d4ea0322d073ace79a
+    m_Address: Assets/Scriptable Objects/Dialogue Data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5447c5f2610ab4d438745d1fdbc3310b
+    m_Address: Assets/Scriptable Objects/Missions Data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df7fa256ef2f3f740b767f7062d80b90
+    m_Address: Assets/Scriptable Objects/Music dialogues
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e514c3e08c39db7478c165eec2ed4007, type: 2}
   m_SchemaSet:

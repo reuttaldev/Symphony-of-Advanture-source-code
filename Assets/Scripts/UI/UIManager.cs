@@ -69,7 +69,6 @@ public class UIManager : MonoBehaviour, IRegistrableService
 
     void OpenWalkmanInterface(InputAction.CallbackContext context)
     {
-        Debug.LogError("pressed 1");
         if (walkmanUI.open)
         {
             CloseWalkmanInterface(new InputAction.CallbackContext());
