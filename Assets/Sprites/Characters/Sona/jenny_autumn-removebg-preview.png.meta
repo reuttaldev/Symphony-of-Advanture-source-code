@@ -1,0 +1,466 @@
+fileFormatVersion: 2
+guid: f20687874ed45c240adb867f6afbc7f2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69a507ffa0bb17c4aa0a6e13ee4c9505
+      internalID: -211782216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 96
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 910b3cab8df45d348b419632e6a80e69
+      internalID: -1756672093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 96
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b826689b5c4a844800984d5be82bac
+      internalID: 1312109773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 96
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 587f17d8676dc1e4594b933f21c11c7f
+      internalID: -767915948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51f9e167cf985e2458fd6936e75cbd8f
+      internalID: -1652258718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 64
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dcf04b3bb0276d47b831641ef65bcb2
+      internalID: -754183226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 64
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc5d4739ec262d240b3a92fb1096afb4
+      internalID: 1218914579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 64
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 359a56ce2daa6f94c9176d57db70f3a9
+      internalID: -842366172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edc12ce926efbdc45b643cef79d21bf4
+      internalID: 680367354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 32
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9cb58e7e714356439a46120012acf06
+      internalID: -3283553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 32
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98a36f5ebe30cd34e89832341302a6b4
+      internalID: -655923751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 32
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 164f781c13a5b934b8d8e75706bfe12f
+      internalID: 496531483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e59de7bd04c1c34183299f1c1622651
+      internalID: 106900923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 0
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d59684a7ce6eee4792a25eef0aa9a95
+      internalID: 1200400859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d29e3cc12fc64841ae85558b3a56bd2
+      internalID: -420423054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jenny_autumn-removebg-preview_15
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 26.75
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dc8ded105485b946927306063c481d3
+      internalID: -304524567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      jenny_autumn-removebg-preview_0: -211782216
+      jenny_autumn-removebg-preview_1: -1756672093
+      jenny_autumn-removebg-preview_10: -655923751
+      jenny_autumn-removebg-preview_11: 496531483
+      jenny_autumn-removebg-preview_12: 106900923
+      jenny_autumn-removebg-preview_13: 1200400859
+      jenny_autumn-removebg-preview_14: -420423054
+      jenny_autumn-removebg-preview_15: -304524567
+      jenny_autumn-removebg-preview_2: 1312109773
+      jenny_autumn-removebg-preview_3: -767915948
+      jenny_autumn-removebg-preview_4: -1652258718
+      jenny_autumn-removebg-preview_5: -754183226
+      jenny_autumn-removebg-preview_6: 1218914579
+      jenny_autumn-removebg-preview_7: -842366172
+      jenny_autumn-removebg-preview_8: 680367354
+      jenny_autumn-removebg-preview_9: -3283553
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

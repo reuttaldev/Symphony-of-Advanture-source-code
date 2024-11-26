@@ -212,3 +212,22 @@ Astrid: {$playerName}, can you read this?
     -> Player: No. 
 -> Player: It’s on the right. 
 ===
+
+
+title: companion_obtained_map
+---
+Astrid: We did it {$playerName}! I will guide us to the map marked location. 
+-> Player: Let's go.
+<<DoorScene>>
+===
+
+title: companion_at_castel_door
+---
+Astrid: Weird. This is an old shed, used for storage I think. The door was just some piece of wood, definitely not this one.
+===
+
+title: companion_in_hallway
+---
+Astrid: Can you believe we are almost there? I'm getting kind of nervous. 
+Astrid: This interaction may just determine the future of our world. Well, my world. You'll be going home - hopfully.
+===

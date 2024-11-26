@@ -1,0 +1,466 @@
+fileFormatVersion: 2
+guid: 8070f9d3dd107084592b9338c7bf5bf9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Philipanimation_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 93.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d16cfcadc638035458b8b5bec5a3d342
+      internalID: 1410349784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 93.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee57928831854a84dbb0bf2020cfea01
+      internalID: -467175858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 93.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b47ddfe54ed38004eb76aa40e507107b
+      internalID: -487324541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 93.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97edd0ea0d6873f4194fddb7d98a7606
+      internalID: -783333379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 62.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a07af3d0c87a63244af8dc68d01008c1
+      internalID: 76626407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_5
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 62.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e08212d915cbcce4a916fafc0db1ef84
+      internalID: -599205763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_6
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 62.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbccad6c932e85549a0ea62bb115225f
+      internalID: 222405088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_7
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 62.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a4f4bbd12e4f80418ed225ae3899752
+      internalID: 2022783219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a4f2304cb9bf7a42bddd7a33768b869
+      internalID: -581919654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_9
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 31.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98236c433d486824ea90dfee5d71b422
+      internalID: -810914795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_10
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 31.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c54853b62b05dae45b02db2a2f2a8c3b
+      internalID: -1541044763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_11
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 31.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24545d6481ddce6448522c2a0beb6a41
+      internalID: -1317728266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce249dc7f45f6054b8759b56aaf9ced9
+      internalID: 2068303046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_13
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 0.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f25a6b142c1b5664f994e46d2d06b0aa
+      internalID: -562352424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_14
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f255cfe9a47d3842b9b77be7961099a
+      internalID: -2104955521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Philipanimation_15
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0.75
+        width: 17.5
+        height: 31.25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c671a8848ef0d67418ca65cc25d52628
+      internalID: 774917267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Philipanimation_0: 1410349784
+      Philipanimation_1: -467175858
+      Philipanimation_10: -1541044763
+      Philipanimation_11: -1317728266
+      Philipanimation_12: 2068303046
+      Philipanimation_13: -562352424
+      Philipanimation_14: -2104955521
+      Philipanimation_15: 774917267
+      Philipanimation_2: -487324541
+      Philipanimation_3: -783333379
+      Philipanimation_4: 76626407
+      Philipanimation_5: -599205763
+      Philipanimation_6: 222405088
+      Philipanimation_7: 2022783219
+      Philipanimation_8: -581919654
+      Philipanimation_9: -810914795
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour, IRegistrableService
     [SerializeField]
     Transform leftOfPlayer, rightOfPlayer, downOfPlayer, upOfPlayer;
     bool loaded = false;
+    public event Action OnPlayerPlaced;
+
 
     private void Awake()
     {
@@ -83,6 +86,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
         exportManager.SendCSVByEmail();
     }
 
+
     #region COMPANION AND PLAYER POSITION CONTROLLER METHODS
 
     // each scene trigger exit also has a return point child, which shows us where to place the player and companion
@@ -114,6 +118,12 @@ public class GameManager : MonoBehaviour, IRegistrableService
         {
             Debug.LogError("No entry point for scene: " + previousSceneName+" or you forget to add a reference to it in game manger.");
         }
+        PlacePlayer(returnPoint);
+        OnPlayerPlaced?.Invoke();
+    }
+    public void PlacePlayer(ReturnPoint returnPoint)
+    {
+        Debug.Log(returnPoint.whenComingFrom);
         player.transform.position = returnPoint.transform.position;
         Direction lookAtDirection = returnPoint.lookAt;
         CharacterLookAt(player, lookAtDirection);
@@ -122,6 +132,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
             PlaceNextToPlayer(companion, returnPoint.companionAtSideOfPlayer);
             CharacterLookAt(companion, lookAtDirection);
         }
+
     }
 
     void PlaceNextToPlayer(GameObject character, Direction direction)

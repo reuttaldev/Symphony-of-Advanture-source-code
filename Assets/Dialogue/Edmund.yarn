@@ -1,4 +1,62 @@
 title: edmund_intro
 ---
-Edmund: It is I, Edmund.
+<<declare $musicBack = false>> 
+Edmund: *tending to something in the room with his back turned.* What is that noise?
+Edmund *slowly turns around. taken back* 
+Edmund: Oh. Someone has found me. 
+Edmund: Astrid, is that you? What nerve you have to come here!
+Edmund: No, I apologize. Seeing you- or anyone for that matter was not on my bingo card today. How did you find me? I know you did not succeed this journey on your own. I specifically designed it to surpass your skill set. 
+Astrid: Hey... dad. {$playerName} helped me get here, they're something real special. They need your help. And I wanted to see you and... apologize.
+-> Player: What is going on?
+    <<jump edmund_going_on>>
+-> Player: Bring music back.
+    <<set $musicBack = true>> 
+    <<jump edmund_before_music>>
+-> Player: Take me home. 
+    <<jump edmund_before_music>>
 ===
+
+
+title: edmund_going_on
+---
+Astrid: Sorry {$playerName}, but I didn't tell you everything. I was afraid you wouldn't help me if you knew. I promise I meant no harm!
+Edmund: No harm? After what you've done to your sister? 
+Astrid: Dad I promise, it was an accident. I did not mean for any of this to happen. 
+Edmund: An accident?
+Astrid: Yes! I swear. We were fighting about something, I can't remember what it was. I tried to take away her violin, just to tease her. But she clenched to it so hard. Then, everything happened so fast. And you were gone before I could even explain myself.
+// Edmund: No, I’m not falling for it. I know you wanted to hurt her. You were deathly jealous of her.
+Edmund: I did disappear quite hastily. And I never understood why would you do something so awful. I knew you two had your problems, but this simply struck me wrong.   
+Edmund: It was my job to protect you both, to protect this town, and I failed. I can't say I've been the best dad to you. And, I abandoned my position as Town Keeper and hid here like a coward.
+Edmund: Of course, I hadn't told a soul. Only that she is gone and that I must go. I don’t know what came over me, though I had an irresistible urge to leave the map behind.
+Edmund: Though I wanted to stay hidden, I knew that someday, someone will need me. Why are you here, {$playerName}?
+-> Player: I want to bring music back.
+    <<set $musicBack = true>> 
+    <<jump edmund_before_music>>
+-> Player: I want to go home. 
+    <<jump edmund_before_music>>
+===
+
+title: edmund_before_music
+---
+Edmund: Listen kid, I'm certain you went through quite an adventure to get here. But I do not know who you are, nor your intentions. Why should I help you?
+Astrid: This is your chance! Use your abilities to prove you earned your way here and deserve his help.  Play a song to make him feel astonished.
+<<OMD>>
+===
+
+title: edmund_heard_music
+---
+<<if $musicBack>>
+    Edmund: The curse... how impulsive of me. To deny life's pleasures from the innocent. All due to my own faults.You know ($playerName), my oldest child Ingrid had a gift. She could manipulate people's feelings through music, similarly to what you just did. You remind me of her. 
+    Edmund: Once she had gone, I knew nothing and no one could compare to her talent. So I selfishly took it all away. 
+    Edmund: You showed me that talent still exist, and to stay determined. This town will not suffer another day without music. And you, you get to go home.
+    Edmund: It is kind of you to care, {$playerName}. Thank you for doing this. 
+    <<ExitGame>>
+<<else>>
+    Edmund: I knew something was going on recently. I could feel a shift in the town. As if someone is trying to make a difference, make this place better. Cheer people up. 
+    Edmund: Thank you {$playerName}, for keeping my town safe. 
+    // Edmund: and I am sorry for my son/ thank you for keeping my son safe. 
+    Edmund: You will be on your way swiftly. Close your eyes, and think about home. Think about your safe place. If you truly focus, when you open your eyes, this journey will be over. 
+    <<ExitGame>>
+<<endif>>
+===
+

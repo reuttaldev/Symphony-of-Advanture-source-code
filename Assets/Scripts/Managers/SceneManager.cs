@@ -44,7 +44,7 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         if (fadingIn) // if asked to switch scene before the fade in animation had a chance to finish
             StopCoroutine(FadeIn());
 
-        previousSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        previousSceneName = GetActiveScene();
         StartCoroutine(LoadSceneWithAnimation(sceneToLoadName));
     }
 
@@ -92,5 +92,10 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     {
         yield return StartCoroutine(LoadAndFadeOut(sceneName));
         yield return StartCoroutine(FadeIn());
+    }
+
+    internal static string GetActiveScene()
+    {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
     }
 }

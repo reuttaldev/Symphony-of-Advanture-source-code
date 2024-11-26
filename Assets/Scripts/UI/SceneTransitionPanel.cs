@@ -17,4 +17,8 @@ public class SceneTransitionPanel : MonoBehaviour
     {
         image.materialForRendering.SetFloat(parmId, fillValue);
     }
+    private void OnDisable()
+    {
+        fillValue = 1;
+    }
 }

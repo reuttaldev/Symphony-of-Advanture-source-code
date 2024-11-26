@@ -54,7 +54,6 @@ Sona: Yeah, yes. This will do. Are you certain?
 Astrid: Yes, yes. We're sure.
 Sona: Alright. The map is yours. 
 /// map piece 2 
-<<FMS>>
 Sona: Why do you need it anyway?
     Sona: You're weird, kid. Well, good luck.
 -> Player: I am going to bring back harmony. 
@@ -62,6 +61,7 @@ Sona: Why do you need it anyway?
     Sona: Oh. Astrid, I'm so proud of you for finally looking for him.
 -> Player: One step closer to getting home. 
     Sona: You're weird, kid. Well, good luck.
+<<FMS>>
 ===
 
 title: collector_after_map_badgering

@@ -1,5 +1,138 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &431673920815739055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1999095623889835959}
+  - component: {fileID: 7299603942573243205}
+  m_Layer: 0
+  m_Name: Portrait Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1999095623889835959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431673920815739055}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 338.036, y: 172.0119, z: 1.3812578}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6123501402885875492}
+  m_Father: {fileID: 5884827807941426177}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7299603942573243205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431673920815739055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925020e65a3cdcb4186215ded89169f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portrait: {fileID: 3873111274079995947}
+  portraitsData:
+  - charName: Sona
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 56752116, guid: 5d1700692c85764408bae8438f3db71a, type: 3}
+    - emotion: 1
+      sprite: {fileID: 1929364660, guid: 5d1700692c85764408bae8438f3db71a, type: 3}
+    - emotion: 12
+      sprite: {fileID: 385172163, guid: 5d1700692c85764408bae8438f3db71a, type: 3}
+  - charName: Demi
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 516435997, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+    - emotion: 1
+      sprite: {fileID: -830481828, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+    - emotion: 12
+      sprite: {fileID: -1760784829, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+    - emotion: 13
+      sprite: {fileID: -1470955553, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+    - emotion: 9
+      sprite: {fileID: -53437578, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+  - charName: Tony
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -1777887030, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+    - emotion: 1
+      sprite: {fileID: -543225521, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+    - emotion: 14
+      sprite: {fileID: -1224676317, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+    - emotion: 8
+      sprite: {fileID: -386956483, guid: 5565331b5cadadf46a7610f1f630e0bc, type: 3}
+    - emotion: 12
+      sprite: {fileID: -543225521, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+  - charName: Teen
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 740ea47586a913349b4f9f71b9598b9d, type: 3}
+  - charName: Student
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: fc3e3fa1d99c4a243bd9c7652de3fd6f, type: 3}
+    - emotion: 1
+      sprite: {fileID: 21300000, guid: dfbd205c1090554408117f9283e9182b, type: 3}
+    - emotion: 13
+      sprite: {fileID: 21300000, guid: 017cd3938ef6a3948ad9e0d2f2f2bb11, type: 3}
+    - emotion: 14
+      sprite: {fileID: 21300000, guid: 7cddb30ac0af85a4384f978994f140c6, type: 3}
+  - charName: Old Woman
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 465af428265ab164399d79121b6cc960, type: 3}
+  - charName: Steve
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: cc8ebcdbd5f08224e9a928681fd88c5f, type: 3}
+  - charName: Man
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 85b7df3995a8d5345ac5cd76f702e728, type: 3}
+  - charName: Child
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 41aae9e9468836a40adff27192839138, type: 3}
+  - charName: Girl
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 3fb290dda0ac9064690d2e5236303147, type: 3}
+    - emotion: 1
+      sprite: {fileID: 21300000, guid: 18bf2ad9661605a4fa9e44b02a4a07ec, type: 3}
+    - emotion: 14
+      sprite: {fileID: 21300000, guid: 6c96cdd1474edfc43b55a6c8143d4b2b, type: 3}
+    - emotion: 13
+      sprite: {fileID: 21300000, guid: 85d02d0854c9ba34f992272327fa33bd, type: 3}
+  - charName: Astrid
+    portraits: []
+  - charName: Dude 1
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: e79a3694ab0ae0346bd2e2a3cbb8cc4d, type: 3}
+  - charName: Dude 2
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 623ceaaf5c349a4418a15705ce1dabd2, type: 3}
+  - charName: Edmund
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 54ae79f8fcab2e5499c34421d6ecab08, type: 3}
 --- !u!1 &502916556369672265
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +165,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8661301711948823308}
-  - {fileID: 1317163318244027409}
   - {fileID: 3112767168597551061}
   m_Father: {fileID: 5884827807941426177}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -139,12 +271,12 @@ RectTransform:
   - {fileID: 6693867923967549393}
   - {fileID: 8236189313300654857}
   - {fileID: 6664640321361350490}
-  m_Father: {fileID: 5198415337426125533}
+  m_Father: {fileID: 3112767168597551061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 80}
-  m_SizeDelta: {x: -400.00003, y: 0}
+  m_AnchoredPosition: {x: 0, y: -131.06317}
+  m_SizeDelta: {x: 1123.4417, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2580442956210092378
 MonoBehaviour:
@@ -1185,6 +1317,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5198415337426125533}
+  - {fileID: 1999095623889835959}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4632972474567403005
@@ -1289,7 +1422,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1317163318244027409}
   m_Father: {fileID: 5198415337426125533}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1406,3 +1540,78 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &8708990362145126748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6123501402885875492}
+  - component: {fileID: 4819835430664141013}
+  - component: {fileID: 3873111274079995947}
+  m_Layer: 0
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6123501402885875492
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8708990362145126748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1999095623889835959}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 295, y: -110}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4819835430664141013
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8708990362145126748}
+  m_CullTransparentMesh: 1
+--- !u!114 &3873111274079995947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8708990362145126748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1

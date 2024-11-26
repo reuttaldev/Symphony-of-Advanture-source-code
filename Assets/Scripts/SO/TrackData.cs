@@ -1,20 +1,6 @@
 using System;
 using UnityEngine;
 
-public enum Emotions
-{
-    Happy,
-    Sad,
-    Calm,
-    Energetic,
-    Motivational,
-    Angry,
-    Inspiring,
-    Romantic,
-    Sexy,
-    Mysterious
-
-}
 [CreateAssetMenu(fileName = "Track Data", menuName = "Scriptable Objects/ Track Data")]
 [Serializable]
 public class TrackData : MyScriptableObject
