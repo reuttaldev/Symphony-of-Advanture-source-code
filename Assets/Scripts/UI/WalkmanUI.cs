@@ -34,7 +34,8 @@ public class WalkmanUI : MonoBehaviour
     List<CassetteUI> cassettes = new List<CassetteUI>();
     public bool open = false;
     [SerializeField]
-    public static float radius=2, rotationSpeed=2;
+    public static float radius=2.5f, rotationSpeed=2;
+    private bool runningAnimation =false;
     private void OnEnable()
     {
         if (audioManager == null)
@@ -94,7 +95,7 @@ public class WalkmanUI : MonoBehaviour
     {
         open = true;
         float angle = 360 / (audioManager.LibrarySize -1);
-        for (int i = 1; i < audioManager.LibrarySize; i++)
+        for (int i = 0; i < audioManager.LibrarySize; i++)
         {
             GameObject cassette = Instantiate(cassettePrefab, cassetteParent.transform);
             CassetteUI cassetteUI = cassette.GetComponent<CassetteUI>();

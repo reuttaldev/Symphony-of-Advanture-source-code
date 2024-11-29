@@ -5086,6 +5086,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2470780065063161143, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470780065063161143, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470780065063161143, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 2864163567865908013, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
       propertyPath: m_Name
       value: Canvas
