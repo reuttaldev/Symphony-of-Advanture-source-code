@@ -8,6 +8,7 @@ using System;
 using Yarn;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 public class WalkmanUI : MonoBehaviour
 {
@@ -27,19 +28,19 @@ public class WalkmanUI : MonoBehaviour
     Sprite selectorOn, selectorOff;
     [SerializeField]
     Sprite[] cassetteImages;
+    int cassetteIndex = 0;
     [SerializeField]
-    Image cassetteTapeLocation;
-    int cassetteImageIndex = 0;
-    [SerializeField]
-    GameObject cassettePrefab, gridParent;
-    List<Button> cassetteButtons = new List<Button>();
+    GameObject cassettePrefab, cassetteParent;
+    List<CassetteUI> cassettes = new List<CassetteUI>();
     public bool open = false;
+    [SerializeField]
+    public static float radius=2, rotationSpeed=2;
     private void OnEnable()
     {
         if (audioManager == null)
             audioManager = AudioManager.Instance;
         audioManager.OnTrackChanged.AddListener(UpdateDisplay);
-        cassetteImageIndex = 0;
+        cassetteIndex = 0;
     }
     private void OnDisable()
     {
@@ -64,19 +65,15 @@ public class WalkmanUI : MonoBehaviour
     }
     public void NextWasPressed()
     {
-        cassetteImageIndex = (cassetteImageIndex + 1) % (cassetteImages.Length - 1);
-        audioManager.PlayLastTrack();
-        StartCoroutine(HighlightArrow(rightArrow));
-
+        MoveCassettesInCircle(true);
+        cassetteIndex = (cassetteIndex + 1) % cassettes.Count;
+        audioManager.PlayNextTrack();
     }
     public void LastWasPressed()
     {
-        audioManager.PlayNextTrack();
-        StartCoroutine(HighlightArrow(leftArrow));
-        if (cassetteImageIndex == 0)
-            cassetteImageIndex = cassetteImages.Length - 1;
-        else
-            cassetteImageIndex--;
+        MoveCassettesInCircle(false);
+        cassetteIndex = (cassetteIndex - 1) % cassettes.Count;
+        audioManager.PlayLastTrack();
     }
     IEnumerator HighlightArrow(Image arrow)
     {
@@ -85,18 +82,28 @@ public class WalkmanUI : MonoBehaviour
         arrow.sprite = selectorOff;
 
     }
-
+    public void MoveCassettesInCircle(bool forward)
+    {
+        float degreesToMove = 360 / cassettes.Count;
+        foreach (var cassette in cassettes)
+        {
+            cassette.MoveInCircle(forward, degreesToMove);
+        }
+    }
     public void Open(bool manual)
     {
         open = true;
-        for (int i = 0; i < audioManager.LibrarySize; i++)
+        float angle = 360 / (audioManager.LibrarySize -1);
+        for (int i = 1; i < audioManager.LibrarySize; i++)
         {
-            GameObject cassette = Instantiate(cassettePrefab, gridParent.transform);
+            GameObject cassette = Instantiate(cassettePrefab, cassetteParent.transform);
             CassetteUI cassetteUI = cassette.GetComponent<CassetteUI>();
-            cassetteUI.image.sprite = cassetteImages[i];
-            cassetteButtons.Add(cassette.GetComponent<Button>());
+            cassetteUI.image.sprite = cassetteImages[i % cassetteImages.Length];
+            var cassettUI = cassette.GetComponent<CassetteUI>();
+            cassettes.Add(cassettUI);
+            cassetteUI.PlaceAroundCircle(angle *i);
         }
-        EventSystem.current.SetSelectedGameObject(cassetteButtons[0].gameObject);
+        EventSystem.current.SetSelectedGameObject(cassettes[0].gameObject);
         audioManager.PlayCurrentTrack();
         // update targeted emotion txt
         if (!manual)
@@ -123,8 +130,8 @@ public class WalkmanUI : MonoBehaviour
         prompt.SetActive(false);
         open = false;   
         audioManager.StopAudio();
-        cassetteButtons = new List<Button>();
-        foreach (Transform child in gridParent.transform)
+        cassettes.Clear();
+        foreach (Transform child in cassetteParent.transform)
         {
             Destroy(child.gameObject);
         }
