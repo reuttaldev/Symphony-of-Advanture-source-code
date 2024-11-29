@@ -8,7 +8,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName ="Data Migration Settings", menuName ="Data Migration/Data Migration Settings")]
 [Serializable]
-public class DataMigrationSettings : MyScriptableObject
+public class DataMigrationSettings : ScriptableObject
 {
     [SerializeField]
     public string spreadsheetID;// the ID where both import/export tables are found

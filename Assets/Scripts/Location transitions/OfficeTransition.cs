@@ -16,6 +16,7 @@ public class OfficeTransition : MonoBehaviour
     
     public void WalkToOffice()
     {
+        Debug.Log("walking to office");
         SceneManager.Instance.LoadScene("Office");
     }
 }

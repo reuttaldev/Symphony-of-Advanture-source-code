@@ -21,6 +21,8 @@ public class EnterNameManager : MonoBehaviour
     private void Awake()
     {
         panel.SetActive(false);
+        talkToAstridMission = talkToAstridMission.GetRuntimeInstance<MissionData>();
+
     }
     [YarnCommand("EnterName")]
     public void EnterNamePanel()

@@ -10,7 +10,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 #endif
 [CreateAssetMenu(fileName = "Game Settings", menuName = "Scriptable Objects/Game Settings")]
 [Serializable]
-public class GameSettings : MyScriptableObject
+public class GameSettings : ScriptableObject
 {
     public const int minTrackLibrarySize = 5;
     public const int minCollectibleTracks =2;

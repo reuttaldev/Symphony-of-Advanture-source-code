@@ -15,6 +15,7 @@ public class PlayerAppears : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        talkToAstridMission = talkToAstridMission.GetRuntimeInstance<MissionData>();   
     }
     void OnEnable()
     {

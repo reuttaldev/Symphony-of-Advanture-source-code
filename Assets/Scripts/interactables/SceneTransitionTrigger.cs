@@ -17,7 +17,21 @@ public class SceneTransitionTrigger : Interactable
     bool andCondition = false; // specifying if one of the activeOnlyDuring condition is enough to open the door, or if all of them must be satisfied  
     public string GoesTo => transitionTo;
 
-
+    public void Awake()
+    {
+        for (int i = 0; i < activeOnlyDuring.Length; i++)
+        {
+            activeOnlyDuring[i] = activeOnlyDuring[i].GetRuntimeInstance<MissionData>();
+        }
+        for (int i = 0; i < activeOnlyAfterSuccess.Length; i++)
+        {
+            activeOnlyAfterSuccess[i] = activeOnlyAfterSuccess[i].GetRuntimeInstance<MissionData>();
+        }
+        for (int i = 0; i < inactiveDuring.Length; i++)
+        {
+            inactiveDuring[i] = inactiveDuring[i].GetRuntimeInstance<MissionData>();
+        }
+    }
     protected override void TriggerInteraction()
     {
         foreach (var mission in inactiveDuring)

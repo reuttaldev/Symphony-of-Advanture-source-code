@@ -13,6 +13,7 @@ public class DialogueIntractable : Interactable
     Direction companionPosition = Direction.none, playerDirection = Direction.none;
     private void Start()
     {
+        nodeData = nodeData.GetRuntimeInstance<DialogueNodeData>();
         if (nodeData == null)
             Debug.LogError("Forgot to set DialogueStartNodeData to DialogueIntractable " + name);
         if (nodeData != null && string.IsNullOrWhiteSpace(nodeData.nodeTitle))
@@ -68,7 +69,7 @@ public class DialogueIntractable : Interactable
         {
             Debug.LogError("node data is null");
         }
-        nodeData.associatedMission = newAssociatedMission;
+        nodeData.associatedMission = newAssociatedMission.GetRuntimeInstance<MissionData>();
     }
     public void Interactable(bool i)
     {

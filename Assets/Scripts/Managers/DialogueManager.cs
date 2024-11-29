@@ -20,8 +20,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     //[HideInInspector]
     // the mission that is associatedMission with the currently open dialogue
     MissionData missionToComplete;
-    [HideInInspector]
-    MissionData missionToStart;
     UIManager uiManager;
     [SerializeField]
     PlayerNameData playerNameData;
@@ -85,7 +83,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             return;
         }
         Debug.Log("mission to complete is set to " + data.Name+" by dialogue interactable");
-        missionToComplete = data;
+        missionToComplete = data.GetRuntimeInstance<MissionData>();
     }
 
     private void FinishDialogueMission(bool sucessful = true)
@@ -108,11 +106,11 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             Debug.LogError("Current interaction is null. Who is calling open music dialogue? Need interaction ID");
             return;
         }
-        if (string.IsNullOrEmpty(currentMusicInteraction.GlobalID))
-        {
-            Debug.LogError("No interaction id");
-            return;
-        }
+        //if (string.IsNullOrEmpty(currentMusicInteraction.GlobalID))
+        //{
+         //   Debug.LogError("No interaction id");
+          //  return;
+        //}
         if (string.IsNullOrEmpty(currentMusicInteraction.interactionName))
         {
             Debug.LogError("No interaction name");
@@ -142,8 +140,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         dialogueRunner.StartDialogue(nodeToStart);
         uiManager.OpenDialogueUI();
         lastNodeName = nodeToStart;
-        if (missionToStart != null)
-            missionToStart.StartMission();
     }
     private void SkipDialogue(InputAction.CallbackContext context)
     {

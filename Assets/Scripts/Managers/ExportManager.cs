@@ -98,7 +98,7 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
 
     public void ExportData(TrackData trackData, MusicDialogueData dialogueData,string lastDialogueNode)
     {
-        List<object> dataToExport = CollectAndCheckData(trackData, dialogueData.GlobalID,dialogueData.interactionName, dialogueData.targetedEmotionLabel.ToString(), lastDialogueNode);
+        List<object> dataToExport = CollectAndCheckData(trackData, "0",dialogueData.interactionName, dialogueData.targetedEmotionLabel.ToString(), lastDialogueNode);
         if (dataToExport.Count != dataMigrationSettings.newSheetProperties.columnTitles.Length) // the data we have collected does not match what we require for the spreadsheet
             return;
         pendingPushData = dataToExport;

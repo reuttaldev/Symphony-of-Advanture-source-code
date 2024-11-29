@@ -13,6 +13,10 @@ public class InventoryManager : MonoBehaviour, IRegistrableService
     void Awake()
     {
         ServiceLocator.Instance.Register<InventoryManager>(this);
+        for (int i = 0; i < mapMissionData.Length; i++)
+        {
+            mapMissionData[i] = mapMissionData[i].GetRuntimeInstance<MissionData>();     
+        }
     }
     public void ShowMapIcons()
     {

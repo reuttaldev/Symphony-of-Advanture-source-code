@@ -29,7 +29,6 @@ public class MissionManager : MonoBehaviour, IRegistrableService
                 return;
             }
             // trigger on scene start events, if the associated missions are active
-
             missionWrappers[wrapper.MissionDataID] = wrapper;
         }
     }

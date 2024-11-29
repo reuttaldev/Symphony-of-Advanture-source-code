@@ -133,6 +133,10 @@ MonoBehaviour:
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: 54ae79f8fcab2e5499c34421d6ecab08, type: 3}
+  - charName: Astrid
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 98b920d1f0052204c9507273aafe8ef7, type: 3}
 --- !u!1 &502916556369672265
 GameObject:
   m_ObjectHideFlags: 0

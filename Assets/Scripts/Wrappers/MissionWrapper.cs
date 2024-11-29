@@ -16,6 +16,11 @@ public class MissionWrapper : MonoBehaviour
     public string MissionDataID => missionData.GlobalID;
     public string Name => missionData.Name;
 
+    public void Awake()
+    {
+        missionData = missionData.GetRuntimeInstance<MissionData>();
+    }
+
     public bool IsMissionDone()
     {
         return missionData.State == MissionState.CompletedUnSuccessfully || missionData.State == MissionState.CompletedSuccessfully;

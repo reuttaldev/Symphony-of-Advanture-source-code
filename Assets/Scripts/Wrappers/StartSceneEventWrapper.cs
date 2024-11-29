@@ -16,5 +16,6 @@ public class StartSceneEventWrapper : MonoBehaviour
     {
         if (missionData == null)
             Debug.LogError("forgot to set mission data on " + name);
+        missionData = missionData.GetRuntimeInstance<MissionData>();    
     }
 }

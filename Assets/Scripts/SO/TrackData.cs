@@ -3,7 +3,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Track Data", menuName = "Scriptable Objects/ Track Data")]
 [Serializable]
-public class TrackData : MyScriptableObject
+public class TrackData : ScriptableObject
 {
     public AudioClip audioClip;
     public string trackID;

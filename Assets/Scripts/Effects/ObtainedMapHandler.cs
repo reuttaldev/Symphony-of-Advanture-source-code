@@ -34,6 +34,9 @@ public class ObtainedMapHandler : MonoBehaviour
     {
         if(dialogueRunner != null)
             dialogueRunner.AddCommandHandler("DoorScene", GetToDoorScene);
+        map1 = map1.GetRuntimeInstance<MissionData>();
+        map2 = map2.GetRuntimeInstance<MissionData>();
+        map3 = map3.GetRuntimeInstance<MissionData>();
     }
     public static void GetToDoorScene()
     {

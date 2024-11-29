@@ -8,7 +8,7 @@ public class MapCollectable : Interactable
     MissionData mapMissionData;
     protected override void TriggerInteraction()
     {
-        mapMissionData.EndMission();    
+        mapMissionData.GetRuntimeInstance<MissionData>().EndMission();    
         gameObject.transform.parent.gameObject.SetActive(false);
     }
 }

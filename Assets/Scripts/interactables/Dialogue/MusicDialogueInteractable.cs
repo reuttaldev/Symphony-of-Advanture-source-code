@@ -25,10 +25,10 @@ public class MusicDialogueInteractable : Interactable
             Debug.LogError(gameObject.name + "'s music dialogue data is not set! ");
             return;
         }
-        if (string.IsNullOrEmpty(data.GlobalID))
-        {
-            Debug.LogError("No interaction id on object " +data.name);
-        }
+        //if (string.IsNullOrEmpty(data.GlobalID))
+        //{
+        //    Debug.LogError("No interaction id on object " +data.name);
+        //}
         if (string.IsNullOrEmpty(data.interactionName))
         {
             Debug.LogError("No interaction name");
