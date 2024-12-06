@@ -3,7 +3,6 @@ scene: The player approaches the artifact collector for the first time. She sugg
 location: old city, in her shop
 nextMandatory: collector_shortcut_before_map
 ---
-<<FMS>>
 Sona: Hey Astrid. Have you done something useful and brought me a new customer?  
 Astrid: Haha, funny, No. This is my new buddy {$playerName} and we're looking for something... that resembles a map segment. 
 Sona: You're always up to something aren't you? Let me check. 
@@ -18,6 +17,7 @@ Sona: Not so quick! What's in it for me?
 -> Player: Please, I'm on a mission. 
     Sona: And? I'm also on a mission, to pay rent. 
 Sona: Come back when you have something useful. And forget about the cassette tapes that are lying around town, I’ve got stacks of ‘em collecting dust.
+<<FMS>>
 ===
 
 title: collector_shortcut_before_map

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Map 3
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-d225d3740533a624e8e3ffce2217cfb2-11400000-0
-  saved: 1
   missionName: Map 3
   mainObjective: Find the map piece in the belonging of the cheating wift
   startLocation: Village, in the yard of the cheated man
-  state: 0
+  state: 2
   mandatory: 1
   prerequisiteIds: []

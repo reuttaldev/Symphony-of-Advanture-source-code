@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 [CreateAssetMenu(fileName = "Mission Data", menuName = "Scriptable Objects/ Mission Data")]
@@ -14,8 +15,7 @@ public class MissionData : MyScriptableObject
     private string mainObjective;
     [SerializeField]
     private string startLocation;
-    [SerializeField]
-    private MissionState state = MissionState.NotStarted;
+    public MissionState state = MissionState.NotStarted;
     public MissionState State=> state;
     [SerializeField]
     private bool mandatory = true;
@@ -24,35 +24,30 @@ public class MissionData : MyScriptableObject
     private List<string> prerequisiteIds; // list of ids that must be completed before this one can be started 
     public List<string> GetPrerequsite() => prerequisiteIds;
 
-#if UNITY_EDITOR
-    override protected void OnEnable()
-    {
-        base.OnEnable();
-        missionName = name;
-    }
-#endif
     public void StartMission()
     {
-        state = MissionState.OnGoing;
+        var clone = this.GetRuntimeInstance<MissionData>(); 
+        clone.state = MissionState.OnGoing;
         ServiceLocator.Instance.Get<MissionManager>().MissionHasStarted(GlobalID);
-        Debug.Log("Started mission " + Name+". state is "+state);
+        //Debug.LogError("Mission " + clone.name + " has been started");
 
-     }
+    }
     public void EndMission(bool successful = true)
     {
-        if ( state == MissionState.NotStarted)
+        var clone = this.GetRuntimeInstance<MissionData>();
+        if ( clone.state == MissionState.NotStarted)
         {
             Debug.LogError("Trying to complete a mission that has not been started. Mission name is: " + missionName);
             //return;
         }
-        if (state == MissionState.CompletedUnSuccessfully || state == MissionState.CompletedSuccessfully)
+        if (clone.state == MissionState.CompletedUnSuccessfully || state == MissionState.CompletedSuccessfully)
         {
             Debug.LogWarning("Trying to complete a mission that was already completed.");
             return;
         }
-        state = successful ? MissionState.CompletedSuccessfully : MissionState.CompletedUnSuccessfully;
+        clone.state = successful ? MissionState.CompletedSuccessfully : MissionState.CompletedUnSuccessfully;
         ServiceLocator.Instance.Get<MissionManager>().MissionHasEnded(GlobalID, successful);
-        Debug.Log("Mission " + Name + " has been marked as completed");
+        Debug.Log("Mission " + clone.name + " has been marked as completed");
     }
 
 }
