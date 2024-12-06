@@ -30,6 +30,7 @@ public class PlayerAppears : MonoBehaviour
     {
         if (talkToAstridMission.State == MissionState.CompletedSuccessfully)
             return;
+        ServiceLocator.Instance.Get<InputManager>().ActivatePausedUIMap();
         animator.Play("player_appear");
         playerMovement.CantMove();
     }

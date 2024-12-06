@@ -19,7 +19,7 @@ public class WalkmanUI : MonoBehaviour
     [SerializeField]
     private GameObject prompt;
     [SerializeField]
-    private TMP_Text emotionTxt, instructionTxt; // this is the emotion we are asking the player get the character to feel in this specific dialogue;
+    private TMP_Text emotionTxt, instructionTxt, cuurentIndexText, outOfTotalText;
     [SerializeField]
     Image leftArrow, rightArrow;
     [SerializeField]
@@ -33,21 +33,27 @@ public class WalkmanUI : MonoBehaviour
     GameObject cassettePrefab, cassetteParent;
     List<CassetteUI> cassettes = new List<CassetteUI>();
     public bool open = false;
+    public static float radius = 100, frontRotationSpeed = 4f, backRotationSpeed = 6f, frontRotation = -90,backRotation =130 ; // when x is rotated to -90, the cassetee appears in front of the screen
     [SerializeField]
-    public static float radius=2.5f, rotationSpeed=2;
-    private bool runningAnimation =false;
+    private RectTransform rectTransform;
+    public static Vector3 centerPoint;
+
+
     private void OnEnable()
     {
         if (audioManager == null)
             audioManager = AudioManager.Instance;
         audioManager.OnTrackChanged.AddListener(UpdateDisplay);
-        cassetteIndex = 0;
     }
     private void OnDisable()
     {
         audioManager.OnTrackChanged.RemoveListener(UpdateDisplay);
     }
-
+    private void Awake()
+    {
+        // world position of the rectTransform
+        centerPoint = rectTransform.TransformPoint(rectTransform.anchoredPosition);
+    }
 
     private void Update()
     {
@@ -66,15 +72,20 @@ public class WalkmanUI : MonoBehaviour
     }
     public void NextWasPressed()
     {
-        MoveCassettesInCircle(true);
         cassetteIndex = (cassetteIndex + 1) % cassettes.Count;
+        MoveCassettesInCircle(true);
+        Debug.Log(cassetteIndex);
         audioManager.PlayNextTrack();
+        cuurentIndexText.text = (cassetteIndex+1).ToString();
+
     }
     public void LastWasPressed()
     {
+        cassetteIndex = (cassetteIndex - 1 + cassettes.Count) % cassettes.Count;
         MoveCassettesInCircle(false);
-        cassetteIndex = (cassetteIndex - 1) % cassettes.Count;
+        Debug.Log(cassetteIndex);
         audioManager.PlayLastTrack();
+        cuurentIndexText.text = (cassetteIndex+1).ToString();
     }
     IEnumerator HighlightArrow(Image arrow)
     {
@@ -86,24 +97,31 @@ public class WalkmanUI : MonoBehaviour
     public void MoveCassettesInCircle(bool forward)
     {
         float degreesToMove = 360 / cassettes.Count;
-        foreach (var cassette in cassettes)
+        for (int i = 0; i < cassettes.Count; i++)
         {
-            cassette.MoveInCircle(forward, degreesToMove);
+            var cas = cassettes[i];
+            if (i == cassetteIndex)
+                cas.MoveToFront(forward);
+            else
+                cas.MoveToBack(forward);
         }
     }
     public void Open(bool manual)
     {
         open = true;
-        float angle = 360 / (audioManager.LibrarySize -1);
+        cassetteIndex = 0;
+        cuurentIndexText.text = "1";
+        outOfTotalText.text = audioManager.LibrarySize.ToString();
         for (int i = 0; i < audioManager.LibrarySize; i++)
         {
             GameObject cassette = Instantiate(cassettePrefab, cassetteParent.transform);
+            cassette.name = i.ToString();
             CassetteUI cassetteUI = cassette.GetComponent<CassetteUI>();
             cassetteUI.image.sprite = cassetteImages[i % cassetteImages.Length];
             var cassettUI = cassette.GetComponent<CassetteUI>();
             cassettes.Add(cassettUI);
-            cassetteUI.PlaceAroundCircle(angle *i);
         }
+        MoveCassettesInCircle(true);
         EventSystem.current.SetSelectedGameObject(cassettes[0].gameObject);
         audioManager.PlayCurrentTrack();
         // update targeted emotion txt
@@ -118,6 +136,10 @@ public class WalkmanUI : MonoBehaviour
             emotionTxt.text = data.targetedEmotionLabel;
             instructionTxt.text = "Choose a snippet that will make " + data.charPronouns.ToLower() + " feel ";
             prompt.SetActive(true);
+        }
+        else
+        {
+            prompt.SetActive(false);
         }
     }
 

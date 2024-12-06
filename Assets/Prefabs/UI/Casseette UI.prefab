@@ -331,7 +331,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 180, y: 180}
+  m_SizeDelta: {x: 170, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8398391519605937953
 MonoBehaviour:
@@ -389,10 +389,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f470118c2b966a74d81287a167a33456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trackNameText: {fileID: 0}
   image: {fileID: 7475532152522665190}
-  radius: 2
-  angle: 0
-  speed: 1
+  radAngle: 0
+  radTargetAngle: 0
 --- !u!222 &5932889435037290877
 CanvasRenderer:
   m_ObjectHideFlags: 0
