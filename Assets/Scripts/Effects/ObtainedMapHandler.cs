@@ -30,13 +30,18 @@ public class ObtainedMapHandler : MonoBehaviour
         if (gameManger != null)
             gameManger.OnPlayerPlaced += PlaceNextToDoor;
     }
+
+    private void Awake()
+    {
+        map1 = map1.GetRuntimeInstance<MissionData>();
+        map2 = map2.GetRuntimeInstance<MissionData>();
+        map3 = map3.GetRuntimeInstance<MissionData>();
+        
+    }
     void Start()
     {
         if(dialogueRunner != null)
             dialogueRunner.AddCommandHandler("DoorScene", GetToDoorScene);
-        map1 = map1.GetRuntimeInstance<MissionData>();
-        map2 = map2.GetRuntimeInstance<MissionData>();
-        map3 = map3.GetRuntimeInstance<MissionData>();
     }
     public static void GetToDoorScene()
     {
@@ -58,9 +63,6 @@ public class ObtainedMapHandler : MonoBehaviour
     }
     private bool CheckIfObtainedMap()
     {
-        Debug.Log(map1);
-        Debug.Log(map2);
-        Debug.Log(map3);
         return (map1.State == MissionState.CompletedSuccessfully && map2.State == MissionState.CompletedSuccessfully && map3.State == MissionState.CompletedSuccessfully);
     }
 

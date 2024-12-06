@@ -100,7 +100,6 @@ public class GameManager : MonoBehaviour, IRegistrableService
         }
         if (previousSceneName == "MainMenu")
             return;
-        Debug.Log("placing player and companion in scene");
         if(returnPoints == null || returnPoints.Count ==0)
         {
             Debug.Log("You forgot to set return points list in game manager");
@@ -123,7 +122,6 @@ public class GameManager : MonoBehaviour, IRegistrableService
     }
     public void PlacePlayer(ReturnPoint returnPoint)
     {
-        Debug.Log(returnPoint.whenComingFrom);
         player.transform.position = returnPoint.transform.position;
         Direction lookAtDirection = returnPoint.lookAt;
         CharacterLookAt(player, lookAtDirection);

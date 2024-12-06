@@ -29,6 +29,12 @@ public class CatController : MonoBehaviour
     bool escapeFromPlayer, meow;
     // Timer variable to track elapsed time
     private float timer = 0f;
+
+    private void Awake()
+    {
+        findMission = findMission.GetRuntimeInstance<MissionData>();
+        returnMission = returnMission.GetRuntimeInstance<MissionData>();
+    }
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -37,8 +43,6 @@ public class CatController : MonoBehaviour
         escapeFromPlayer = false;
         meow = true;
         walkTo = teasePlayerPosition;
-        findMission = findMission.GetRuntimeInstance<MissionData>();
-        returnMission = returnMission.GetRuntimeInstance<MissionData>();
 
     }
 

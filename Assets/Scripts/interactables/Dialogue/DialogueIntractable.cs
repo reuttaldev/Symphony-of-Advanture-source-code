@@ -11,9 +11,13 @@ public class DialogueIntractable : Interactable
     [SerializeField]
     // where to place the companion in comparison to the player once the dialogue (with someone who is not the companion) has started
     Direction companionPosition = Direction.none, playerDirection = Direction.none;
+
+    private void Awake()
+    {      
+        nodeData = nodeData.GetRuntimeInstance<DialogueNodeData>();
+    }
     private void Start()
     {
-        nodeData = nodeData.GetRuntimeInstance<DialogueNodeData>();
         if (nodeData == null)
             Debug.LogError("Forgot to set DialogueStartNodeData to DialogueIntractable " + name);
         if (nodeData != null && string.IsNullOrWhiteSpace(nodeData.nodeTitle))
@@ -55,7 +59,7 @@ public class DialogueIntractable : Interactable
         nodeData.nodeTitle = nodeName;
         // make the trigger interactble again
         interactable = true;
-        Debug.Log("Changing dialogue node to be " + nodeName + " on npc " + transform.root.name);
+        Debug.Log("Changing dialogue node to be " + nodeName + " on npc " + nodeData.name);
     }
     public void InteractableMoreThanOnce(bool i)
     {

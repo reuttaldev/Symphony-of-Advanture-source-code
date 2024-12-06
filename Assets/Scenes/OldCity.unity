@@ -29062,19 +29062,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5851397542403215832, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_Size.x
-      value: 14.267608
+      value: 1.7927647
       objectReference: {fileID: 0}
     - target: {fileID: 5851397542403215832, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_Size.y
-      value: 12.77818
+      value: 12.457355
       objectReference: {fileID: 0}
     - target: {fileID: 5851397542403215832, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_Offset.x
-      value: -0.28185827
+      value: 0.1954937
       objectReference: {fileID: 0}
     - target: {fileID: 5851397542403215832, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_Offset.y
-      value: 0.44976
+      value: -0.45536676
       objectReference: {fileID: 0}
     - target: {fileID: 7210769603776619197, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: visible
@@ -30005,6 +30005,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: move_3
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1047787996}
+        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
+        m_MethodName: InteractableMoreThanOnce
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: move_3
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1047787996}
+        m_TargetAssemblyTypeName: DialogueIntractable, Assembly-CSharp
+        m_MethodName: ChangeConversationStartNode
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: student_after_music_shortcut
+          m_BoolArgument: 1
         m_CallState: 2
   onMissionFail:
     m_PersistentCalls:
