@@ -16,6 +16,6 @@ MonoBehaviour:
   missionName: Talk to old lady
   mainObjective: talk to the old lady about her cat, and make her feel relaxed
   startLocation: village
-  state: 2
+  state: 3
   mandatory: 1
   prerequisiteIds: []

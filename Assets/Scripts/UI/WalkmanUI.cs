@@ -3,12 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections;
-using UnityEngine.Events;
-using System;
-using Yarn;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
+
 
 public class WalkmanUI : MonoBehaviour
 {

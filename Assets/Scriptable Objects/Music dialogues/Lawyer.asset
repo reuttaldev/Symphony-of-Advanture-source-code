@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db1806ea827efa4e883bfc3e247f217, type: 3}
   m_Name: Lawyer
   m_EditorClassIdentifier: 
-  GlobalID: GlobalObjectId_V1-3-9484ea2648a456345ba1946aca9f93aa-11400000-0
-  saved: 1
-  targetedEmotionLabel: Cheerful and Distracted
-  onCompletionNode: lawyer_intro
+  targetedEmotionLabel: Joyful and Stimulated
+  onCompletionNode: lawyer_heard_music
   missionToComplete: {fileID: 0}
   interactionName: Lawyer
   charPronouns: Him

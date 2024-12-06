@@ -4,6 +4,8 @@ scene: approaching after seeing her scream out for her cat.
 location: village
 emotion: relaxed and calm
 ---
+// this is here bc it trigger the cat tease
+<<FMS>>
 Old lady: Hello. I am looking for Whiskers, have you seen him?
 Astrid: No... isn't he a house cat?
 Old lady: Yes! But he is not in the house, he's not in the garden... and I am getting quite worried.
