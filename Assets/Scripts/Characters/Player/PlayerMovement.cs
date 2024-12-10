@@ -7,9 +7,9 @@ using UnityEngine.TextCore.Text;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    float speed;
+    float speed, runMultiplier = 4f;
     [SerializeField]
-    InputActionReference moveAction;
+    InputActionReference moveAction,runAction;
     [SerializeField]
     AudioClip grassFootsteps, gravelFootsteps, floorFootsteps;
     Rigidbody2D rb;
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         input = moveAction.action.ReadValue<Vector2>();
         if (input.x != 0 || input.y != 0)
         {
-            Move();
+            Move(runAction.action.IsPressed());
             lastInput = input;
         }
         else
@@ -56,10 +56,13 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-    void Move()
+    void Move(bool run)
     {
         Moving = true;
-        rb.velocity = input * speed;
+        if (run)
+            rb.velocity = input * speed *runMultiplier;
+        else
+            rb.velocity = input * speed;
         animator.SetFloat("x", input.x);
         animator.SetFloat("y", input.y);
         animator.SetBool("Moving", true);

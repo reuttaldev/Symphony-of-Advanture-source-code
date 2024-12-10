@@ -182,10 +182,8 @@ public class CatController : MonoBehaviour
     }
     public void PlayerReturnedUs()
     {
-        Debug.Log("Player returned cat");
         transform.SetParent(null);
         transform.position = afterReturnPosition.position;
-        //returnMission.EndMission(); done after conversation 
     }
 
     // need rigit body on the collision object for this to trigger

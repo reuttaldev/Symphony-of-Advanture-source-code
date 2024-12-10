@@ -329,7 +329,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  runMultiplier: 1.5
   moveAction: {fileID: -3616807016952365935, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
+  runAction: {fileID: -2224111166387759600, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   grassFootsteps: {fileID: 8300000, guid: 0198dd406347171418660bd1171b059e, type: 3}
   gravelFootsteps: {fileID: 8300000, guid: 6261dd0c80420f24dae96e9573ffdaa1, type: 3}
   floorFootsteps: {fileID: 8300000, guid: d90e6879d0a797b4191ac31a7fa27e73, type: 3}
@@ -347,13 +349,13 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7640398946451007349}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:

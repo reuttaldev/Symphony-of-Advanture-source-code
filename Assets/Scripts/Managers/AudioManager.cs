@@ -14,7 +14,12 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
 {
     [SerializeField]
     GameSettings settings;
-    AudioSource audioSource;
+    [SerializeField]
+    AudioSource tracksAudioSource;
+    [SerializeField]
+    AudioSource ambienceAudioSource;
+    [SerializeField]
+    AudioClip[] ambienceOptions; 
     [SerializeField]
     public UnityEvent OnTrackChanged;
     private Dictionary<string, TrackData> loadedTracks = new Dictionary<string, TrackData>(); // our currently available library of tracks, the key is the id
@@ -159,12 +164,25 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     {
         base.Awake();
         DontDestroyOnLoad(this);
-        audioSource = GetComponent<AudioSource>();
+        tracksAudioSource = GetComponent<AudioSource>();
         if (settings == null)
             Debug.LogError("Audio manager is missing a reference to game settings");
-        audioSource = GetComponent<AudioSource>();
+        tracksAudioSource = GetComponent<AudioSource>();
         ServiceLocator.Instance.Register<AudioManager>(this);
+        PlayAmbienceMusic();
 
+    }
+
+    void PlayAmbienceMusic()
+    {
+        if (ambienceOptions.Length == 0)
+        {
+            Debug.LogError("Audio manager says: no ambience options");
+            return;
+        }
+        var clip = ambienceOptions[UnityEngine.Random.Range(0, ambienceOptions.Length)];
+        ambienceAudioSource.clip = clip;
+        ambienceAudioSource.Play();
     }
     void Start()
     {
@@ -172,14 +190,14 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     }
     public void PlayClip(AudioClip clip)
     {
-        audioSource.PlayOneShot(clip);
+        tracksAudioSource.PlayOneShot(clip);
     }
     public void PlayCurrentTrack()
     {
         OnTrackChanged.Invoke();
         string idToPlay = library[index];
-        audioSource.clip = loadedTracks[idToPlay].audioClip;
-        audioSource.Play();
+        tracksAudioSource.clip = loadedTracks[idToPlay].audioClip;
+        tracksAudioSource.Play();
     }
     public void SetCurrentTrack(string id)
     {
@@ -252,17 +270,17 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     }
     public IEnumerator FadeOut()
     {
-        float startVolume = audioSource.volume;
+        float startVolume = tracksAudioSource.volume;
 
-        while (audioSource.volume > 0)
+        while (tracksAudioSource.volume > 0)
         {
-            audioSource.volume -= startVolume * Time.deltaTime /fadeOutDuration;
+            tracksAudioSource.volume -= startVolume * Time.deltaTime /fadeOutDuration;
 
             yield return null;
         }
 
-        audioSource.Stop();
-        audioSource.volume = startVolume;
+        tracksAudioSource.Stop();
+        tracksAudioSource.volume = startVolume;
     }
 
 }

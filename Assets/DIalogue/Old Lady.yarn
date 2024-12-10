@@ -5,7 +5,6 @@ location: village
 emotion: relaxed and calm
 ---
 // this is here bc it trigger the cat tease
-<<FMS>>
 Old lady: Hello. I am looking for Whiskers, have you seen him?
 Astrid: No... isn't he a house cat?
 Old lady: Yes! But he is not in the house, he's not in the garden... and I am getting quite worried.
@@ -64,6 +63,7 @@ title: old_lady_complete
 scene: bringing her cat back.
 location: village
 ---
+<<declare $rudeToLady = false>> 
 <<FMS>>
 Old lady: Whiskers you are safe! Thank you! How may I repay you?
 -> Player: I'm just happy he's safe.
@@ -72,6 +72,7 @@ Old lady: Whiskers you are safe! Thank you! How may I repay you?
     Old lady: Oh, no. Hidden castel? There is nothing like that around here. 
     Old lady: This town is very... quite.
 -> Player: Give me Whiskers.
+    <<set $rudeToLady = true>> 
     Old lady: No! Is this why you helped me? What's wrong with you? I was going to give you some candy, but forget about it. Go away. 
 ===
 
@@ -79,5 +80,10 @@ title: old_lady_complete_badgering
 scene: bringing her cat back.
 location: village
 ---
-Old lady: Thanks again dears.
+<<if $rudeToLady>>
+    Old lady: Go away. 
+    <<EnterName EnterNameManager>>
+<<else>>
+    Old lady: Thanks again dears.
+<<endif>>
 ===

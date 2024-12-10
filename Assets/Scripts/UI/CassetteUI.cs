@@ -1,19 +1,20 @@
 using Google.Apis.Sheets.v4.Data;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CassetteUI : MonoBehaviour
 {
     [SerializeField]
-    public Text trackNameText;
-    public Image image;
+    TMP_Text[] trackNameTexts;
+    [SerializeField]
+    Image[] images;
     [SerializeField]
     float radAngle, radTargetAngle;
     Vector3 centerPoint;
     bool forward;
-    const float TwoPi = Mathf.PI * 2;
-    private const float RotationThreshold = 0.1f;
+    const float RotationThreshold = 0.1f;
     /*public void MoveInCircle(bool f, float degreesToMove)
     {
         forward = f;
@@ -35,21 +36,45 @@ public class CassetteUI : MonoBehaviour
         SetPosition();
     }*/
 
-    public void MoveToFront(bool f)
+    public void SetImage(Sprite sprite)
     {
-        Debug.Log(name +  "is moving forwards");
+        foreach (var item in images)
+        {
+            item.sprite = sprite;
+        }
+    }
+    public void SetText(string t)
+    {
+        foreach (var item in trackNameTexts)
+        {
+            item.text = t;
+        }
+    }
+    public void MoveToFrontWithAnim(bool f)
+    {
         forward = f;
         StopAllCoroutines();
-        radTargetAngle = NormalizeAngle(WalkmanUI.frontRotation * Mathf.Deg2Rad);
+        radTargetAngle = WalkmanUI.radFrontRotation;
         StartCoroutine(MoveInCircleCoroutine(WalkmanUI.frontRotationSpeed));
     }
 
-    public void MoveToBack(bool f)
+    public void MoveToBackWithAnim(bool f)
     {
         forward = f;
         StopAllCoroutines();
-        radTargetAngle = NormalizeAngle(WalkmanUI.backRotation * Mathf.Deg2Rad);
+        radTargetAngle = WalkmanUI.radBackRotation;
         StartCoroutine(MoveInCircleCoroutine(WalkmanUI.backRotationSpeed));
+    }
+
+    public void PlaceAtFrontTarget()
+    {
+        radAngle = WalkmanUI.radFrontRotation;
+        SetPosition();
+    }
+    public void PlaceAtBackTarget()
+    {
+        radAngle = WalkmanUI.radBackRotation;
+        SetPosition();
     }
     private IEnumerator MoveInCircleCoroutine(float speed)
     {
@@ -57,7 +82,7 @@ public class CassetteUI : MonoBehaviour
         {
             float step = speed * Time.deltaTime;
             radAngle += forward ? step : -step;
-            radAngle = NormalizeAngle(radAngle);
+            radAngle = WalkmanUI.NormalizeAngle(radAngle);
             SetPosition();
             yield return new WaitForEndOfFrame();
         }
@@ -72,10 +97,5 @@ public class CassetteUI : MonoBehaviour
       
         transform.rotation = Quaternion.Euler(radAngle* Mathf.Rad2Deg, 0, 0);  // Set the rotation
     }
-    private float NormalizeAngle(float angle)
-    {
-        while (angle < 0) angle += TwoPi;
-        while (angle >= TwoPi) angle -= TwoPi;
-        return angle;
-    }
+
 }

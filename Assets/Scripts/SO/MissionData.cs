@@ -27,6 +27,8 @@ public class MissionData : MyScriptableObject
     public void StartMission()
     {
         var clone = this.GetRuntimeInstance<MissionData>(); 
+        if (clone.State != MissionState.NotStarted)
+            return;
         clone.state = MissionState.OnGoing;
         ServiceLocator.Instance.Get<MissionManager>().MissionHasStarted(GlobalID);
         //Debug.LogError("Mission " + clone.name + " has been started");

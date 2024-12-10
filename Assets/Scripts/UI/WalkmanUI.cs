@@ -30,7 +30,9 @@ public class WalkmanUI : MonoBehaviour
     GameObject cassettePrefab, cassetteParent;
     List<CassetteUI> cassettes = new List<CassetteUI>();
     public bool open = false;
-    public static float radius = 100, frontRotationSpeed = 4f, backRotationSpeed = 6f, frontRotation = -90,backRotation =130 ; // when x is rotated to -90, the cassetee appears in front of the screen
+    [SerializeField]
+    private static float frontRotation = -90, backRotation = 170;
+    public static float radius = 180, frontRotationSpeed = 4f, backRotationSpeed = 5, radFrontRotation = NormalizeAngle(frontRotation * Mathf.Deg2Rad),radBackRotation = NormalizeAngle(backRotation * Mathf.Deg2Rad); // when x is rotated to -90, the cassetee appears in front of the screen
     [SerializeField]
     private RectTransform rectTransform;
     public static Vector3 centerPoint;
@@ -71,7 +73,6 @@ public class WalkmanUI : MonoBehaviour
     {
         cassetteIndex = (cassetteIndex + 1) % cassettes.Count;
         MoveCassettesInCircle(true);
-        Debug.Log(cassetteIndex);
         audioManager.PlayNextTrack();
         cuurentIndexText.text = (cassetteIndex+1).ToString();
 
@@ -80,7 +81,6 @@ public class WalkmanUI : MonoBehaviour
     {
         cassetteIndex = (cassetteIndex - 1 + cassettes.Count) % cassettes.Count;
         MoveCassettesInCircle(false);
-        Debug.Log(cassetteIndex);
         audioManager.PlayLastTrack();
         cuurentIndexText.text = (cassetteIndex+1).ToString();
     }
@@ -93,15 +93,30 @@ public class WalkmanUI : MonoBehaviour
     }
     public void MoveCassettesInCircle(bool forward)
     {
-        float degreesToMove = 360 / cassettes.Count;
         for (int i = 0; i < cassettes.Count; i++)
         {
             var cas = cassettes[i];
             if (i == cassetteIndex)
-                cas.MoveToFront(forward);
+                cas.MoveToFrontWithAnim(forward);
             else
-                cas.MoveToBack(forward);
+                cas.MoveToBackWithAnim(forward);
         }
+    }
+    public void PlaceCassettes()
+    {
+        cassettes[0].PlaceAtFrontTarget();
+        for (int i = 1; i < cassettes.Count; i++)
+        {
+            var cas = cassettes[i];
+            cas.PlaceAtBackTarget();
+        }
+    }
+    public static float NormalizeAngle(float angle)
+    {
+        float TwoPi = Mathf.PI * 2;
+        while (angle < 0) angle += TwoPi;
+        while (angle >= TwoPi) angle -= TwoPi;
+        return angle;
     }
     public void Open(bool manual)
     {
@@ -114,11 +129,11 @@ public class WalkmanUI : MonoBehaviour
             GameObject cassette = Instantiate(cassettePrefab, cassetteParent.transform);
             cassette.name = i.ToString();
             CassetteUI cassetteUI = cassette.GetComponent<CassetteUI>();
-            cassetteUI.image.sprite = cassetteImages[i % cassetteImages.Length];
+            cassetteUI.SetImage(cassetteImages[i % cassetteImages.Length]);
             var cassettUI = cassette.GetComponent<CassetteUI>();
             cassettes.Add(cassettUI);
         }
-        MoveCassettesInCircle(true);
+        PlaceCassettes();
         EventSystem.current.SetSelectedGameObject(cassettes[0].gameObject);
         audioManager.PlayCurrentTrack();
         // update targeted emotion txt

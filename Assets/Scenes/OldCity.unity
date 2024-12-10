@@ -4261,11 +4261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e439fa9e3a2804db3e675a52d10599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &767535990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3927457659675622170, guid: 38e057931c138444ebcca8e807047df0, type: 3}
-  m_PrefabInstance: {fileID: 9156779417651614043}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &798508308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4397,7 +4392,7 @@ PrefabInstance:
     - target: {fileID: 5829975806782958586, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 1980674958}
+      objectReference: {fileID: 1574710972}
     - target: {fileID: 8865177627543667683, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -28651,6 +28646,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9028894527766054475, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
   m_PrefabInstance: {fileID: 798508308}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &1574710972 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5238074714317962647, guid: 38e057931c138444ebcca8e807047df0, type: 3}
+  m_PrefabInstance: {fileID: 9156779417651614043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1585661094
 GameObject:
   m_ObjectHideFlags: 0
@@ -30073,50 +30073,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 6743865315843182017, guid: 38e057931c138444ebcca8e807047df0, type: 3}
   m_PrefabInstance: {fileID: 9156779417651614043}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1980674962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767535990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
-  m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
 --- !u!1001 &2121460481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30803,13 +30759,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 728550210325381056, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
+      propertyPath: ambienceOptions.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 728550210325381056, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
+      propertyPath: ambienceOptions.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 36d890328176dfd4ab7e7f8838581c78, type: 3}
+    - target: {fileID: 728550210325381056, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
+      propertyPath: ambienceOptions.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: a5026f157f0a57e4d9388192eefd70ba, type: 3}
+    - target: {fileID: 728550210325381056, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
+      propertyPath: ambienceOptions.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: efbba7c5e98eeb84bb75724be2b64c6f, type: 3}
+    - target: {fileID: 728550210325381056, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
+      propertyPath: ambienceOptions.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f61946cf55e93847b65ec32832c2364, type: 3}
     - target: {fileID: 4199261634973810547, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: m_Name
       value: Audio Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4199261634973810547, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7657828497608798411, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31085,6 +31057,14 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
       value: 10.996184
       objectReference: {fileID: 0}
+    - target: {fileID: 3547232892509976016, guid: 38e057931c138444ebcca8e807047df0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547232892509976016, guid: 38e057931c138444ebcca8e807047df0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3745334148783140453, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -31272,10 +31252,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3927457659675622170, guid: 38e057931c138444ebcca8e807047df0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1980674962}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38e057931c138444ebcca8e807047df0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
