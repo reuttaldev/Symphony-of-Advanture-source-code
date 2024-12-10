@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0a2ec539bf67749976ebc2cee71460, type: 3}
+  m_Name: Portraits Data
+  m_EditorClassIdentifier: 
+  portraits:
+  - charName: Sona
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 56752116, guid: 5d1700692c85764408bae8438f3db71a, type: 3}
+    - emotion: 1
+      sprite: {fileID: 1929364660, guid: 5d1700692c85764408bae8438f3db71a, type: 3}
+    - emotion: 12
+      sprite: {fileID: 385172163, guid: 5d1700692c85764408bae8438f3db71a, type: 3}
+  - charName: Demi
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 516435997, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+    - emotion: 1
+      sprite: {fileID: -830481828, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+    - emotion: 12
+      sprite: {fileID: -1760784829, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+    - emotion: 13
+      sprite: {fileID: -1470955553, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+    - emotion: 9
+      sprite: {fileID: -53437578, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+  - charName: Tony
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -1777887030, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+    - emotion: 1
+      sprite: {fileID: -543225521, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+    - emotion: 14
+      sprite: {fileID: -1224676317, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+    - emotion: 8
+      sprite: {fileID: -386956483, guid: 5565331b5cadadf46a7610f1f630e0bc, type: 3}
+    - emotion: 12
+      sprite: {fileID: -543225521, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+  - charName: Teen
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 740ea47586a913349b4f9f71b9598b9d, type: 3}
+  - charName: Student
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: fc3e3fa1d99c4a243bd9c7652de3fd6f, type: 3}
+    - emotion: 1
+      sprite: {fileID: 21300000, guid: dfbd205c1090554408117f9283e9182b, type: 3}
+    - emotion: 13
+      sprite: {fileID: 21300000, guid: 017cd3938ef6a3948ad9e0d2f2f2bb11, type: 3}
+    - emotion: 14
+      sprite: {fileID: 21300000, guid: 7cddb30ac0af85a4384f978994f140c6, type: 3}
+  - charName: Old Lady
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 465af428265ab164399d79121b6cc960, type: 3}
+  - charName: Steve
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: cc8ebcdbd5f08224e9a928681fd88c5f, type: 3}
+  - charName: Man
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 85b7df3995a8d5345ac5cd76f702e728, type: 3}
+  - charName: Child
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 41aae9e9468836a40adff27192839138, type: 3}
+  - charName: Girl
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 3fb290dda0ac9064690d2e5236303147, type: 3}
+    - emotion: 1
+      sprite: {fileID: 21300000, guid: 18bf2ad9661605a4fa9e44b02a4a07ec, type: 3}
+    - emotion: 14
+      sprite: {fileID: 21300000, guid: 3fb290dda0ac9064690d2e5236303147, type: 3}
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 6c96cdd1474edfc43b55a6c8143d4b2b, type: 3}
+    - emotion: 13
+      sprite: {fileID: 21300000, guid: 85d02d0854c9ba34f992272327fa33bd, type: 3}
+  - charName: Astrid
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 98b920d1f0052204c9507273aafe8ef7, type: 3}
+  - charName: Dude 1
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: e79a3694ab0ae0346bd2e2a3cbb8cc4d, type: 3}
+  - charName: Dude 2
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 623ceaaf5c349a4418a15705ce1dabd2, type: 3}
+  - charName: Edmund
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 21300000, guid: 54ae79f8fcab2e5499c34421d6ecab08, type: 3}

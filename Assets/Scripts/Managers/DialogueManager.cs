@@ -226,9 +226,10 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         // hide the views on the canvas 
         foreach (var dialogueView in dialogueRunner.dialogueViews)
         {
-            if (dialogueView == null || dialogueView.isActiveAndEnabled == false) continue;
+            if (dialogueView == null || dialogueView.isActiveAndEnabled == false) 
+                continue;
 
-            //dialogueView.DialogueComplete();
+            dialogueView.DialogueComplete();
             dialogueView.GetComponent<CanvasGroup>().alpha = 0;
         }
         // change input map 

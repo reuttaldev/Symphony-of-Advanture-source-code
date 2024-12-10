@@ -177,7 +177,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     {
         if (ambienceOptions.Length == 0)
         {
-            Debug.LogError("Audio manager says: no ambience options");
+            //Debug.LogError("Audio manager says: no ambience options");
             return;
         }
         var clip = ambienceOptions[UnityEngine.Random.Range(0, ambienceOptions.Length)];

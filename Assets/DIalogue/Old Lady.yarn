@@ -5,6 +5,7 @@ location: village
 emotion: relaxed and calm
 ---
 // this is here bc it trigger the cat tease
+<<ChangePortrait Happy>>
 Old lady: Hello. I am looking for Whiskers, have you seen him?
 Astrid: No... isn't he a house cat?
 Old lady: Yes! But he is not in the house, he's not in the garden... and I am getting quite worried.
@@ -25,14 +26,14 @@ location: village
 emotion: -
 --- 
 Old lady: What a soothing melody that was. Thank you dear ones.
-Companion: Now, can you give us some information?
+Astrid: Now, can you give us some information?
 -> Player: Where did you last see him?
     Old lady: At home, right before I left for my morning walk. 
 -> Player: Does he have a favorite spot?
     Old lady: He only ever leaves the house to chase butterflies around the neighbor's house. 
 -> Player: Has he escaped before?
     Old lady: No, he never stays far from home. That is why I'm so worried.
-Companion: Don't worry. We're going to find him.
+Astrid: Don't worry. We're going to find him.
 Old lady: Okay. I will stay right here. Maybe by some miracle he will wander back home.
 <<FMS>>
 ===
