@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-062162071b4f2e147935a64a648530f7-11400000-0
   missionName: Get violin to sona
-  mainObjective: 
+  mainObjective: Bring the violin back to Sona in the Old City
   startLocation: Astrid's house
   state: 3
   mandatory: 1
-  prerequisiteIds: []

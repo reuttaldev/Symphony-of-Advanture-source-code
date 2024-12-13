@@ -8,7 +8,7 @@ using System.Net.Http;
 
 // I am making it a singleton because otherwise each time we load a scene and we reach start, the csv file will be reset.
 // I need the CSV file to be created and reset only ONCE at the very start of the game
-public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
+public class ExportManager : SimpleSingleton<ExportManager>
 {
     [SerializeField]
     GameSettings gameSettings;
@@ -27,7 +27,6 @@ public class ExportManager : SimpleSingleton<ExportManager>, IRegistrableService
     {
         base.Awake();
         DontDestroyOnLoad(this);
-        ServiceLocator.Instance.Register<ExportManager>(this);
     }
     void Start()
     {

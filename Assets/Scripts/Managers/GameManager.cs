@@ -82,8 +82,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
 
     public void GameOver()
     {
-        ExportManager exportManager = ServiceLocator.Instance.Get<ExportManager>();
-        exportManager.SendCSVByEmail();
+        ExportManager.Instance.SendCSVByEmail();
     }
 
 

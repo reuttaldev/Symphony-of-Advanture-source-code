@@ -5088,17 +5088,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
---- !u!114 &90680298 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9027101890511156962, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
-  m_PrefabInstance: {fileID: 90680297}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5f744976067bf4ca26405857ee91c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &174639687 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6083925708877260285, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
@@ -10381,11 +10370,11 @@ PrefabInstance:
     - target: {fileID: 8330753797495558901, guid: 760278e82614e134a875173a63b47e6c, type: 3}
       propertyPath: uiManager
       value: 
-      objectReference: {fileID: 90680298}
+      objectReference: {fileID: 0}
     - target: {fileID: 8330753797495558901, guid: 760278e82614e134a875173a63b47e6c, type: 3}
       propertyPath: inventoryUI
       value: 
-      objectReference: {fileID: 90680298}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39157,14 +39146,6 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
       value: 13.673749
       objectReference: {fileID: 0}
-    - target: {fileID: 3547232892509976016, guid: 38e057931c138444ebcca8e807047df0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3547232892509976016, guid: 38e057931c138444ebcca8e807047df0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.16
-      objectReference: {fileID: 0}
     - target: {fileID: 3745334148783140453, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -39204,14 +39185,6 @@ PrefabInstance:
     - target: {fileID: 3745334148783140453, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4395286051017317371, guid: 38e057931c138444ebcca8e807047df0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4395286051017317371, guid: 38e057931c138444ebcca8e807047df0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 4624660946382667037, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_MaxWindowSize

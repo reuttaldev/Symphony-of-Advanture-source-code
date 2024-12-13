@@ -203,7 +203,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             StartDialogue(nextNode);
 
         }
-        ServiceLocator.Instance.Get<ExportManager>().ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastNodeName);
+        ExportManager.Instance.ExportData(AudioManager.Instance.GetCurrentTrack(), currentMusicInteraction, lastNodeName);
         currentMusicInteraction = null;
     }
     #endregion

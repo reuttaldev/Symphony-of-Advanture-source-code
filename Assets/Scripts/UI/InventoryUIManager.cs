@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUIManager : MonoBehaviour, IRegistrableService
 {
     [SerializeField]
     CanvasGroup mapIconParent;
@@ -19,6 +19,7 @@ public class InventoryUI : MonoBehaviour
 
     private void Awake()
     {
+        ServiceLocator.Instance.Register<InventoryUIManager>(this); 
         addItemText = addItemTextGroup.gameObject.GetComponent<TMP_Text>();
     }
     public void ShowMapIcons(bool[] showPieceAtIndex)

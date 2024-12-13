@@ -47,7 +47,7 @@ public class InternetConnectionManager : MonoBehaviour, IRegistrableService
         noInternetPanel.SetActive(false);
         ServiceLocator.Instance.Get<GameManager>().UnpauseGame();
         // if some data was left unpushed due to lack of connection, re-push it now the connection is renewed 
-        ServiceLocator.Instance.Get<ExportManager>().ExportPendingData();
+        ExportManager.Instance.ExportPendingData();
     }
     public void NoConnectionDetected()
     {

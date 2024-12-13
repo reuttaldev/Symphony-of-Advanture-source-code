@@ -7,8 +7,6 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour, IRegistrableService
 {
     [SerializeField]
-    InventoryUI inventoryUI;
-    [SerializeField]
     MissionData[] mapMissionData; 
     void Awake()
     {
@@ -21,12 +19,12 @@ public class InventoryManager : MonoBehaviour, IRegistrableService
         {
             mapMissionData[i] = mapMissionData[i].GetRuntimeInstance<MissionData>();
         }
-        inventoryUI.ShowMapIcons(mapMissionData.Select(map=> map.State == MissionState.CompletedSuccessfully).ToArray());
+        ServiceLocator.Instance.Get<InventoryUIManager>().ShowMapIcons(mapMissionData.Select(map=> map.State == MissionState.CompletedSuccessfully).ToArray());
     }
 
     public void AddTrackCollectable(TrackData cassetteData)
     {
-        inventoryUI.AddTrackCollectableUI();
+        ServiceLocator.Instance.Get<InventoryUIManager>().AddTrackCollectableUI();
         ServiceLocator.Instance.Get<AudioManager>().AddToLibrary(cassetteData.trackID);
     }
 }

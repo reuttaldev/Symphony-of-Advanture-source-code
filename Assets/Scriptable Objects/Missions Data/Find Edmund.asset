@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-dc389ed18d00caf409b51055b726281f-11400000-0
   missionName: Find Edmund
-  mainObjective: 
+  mainObjective: Meet Edmund
   startLocation: 
   state: 3
   mandatory: 1
-  prerequisiteIds: []
+  description: 

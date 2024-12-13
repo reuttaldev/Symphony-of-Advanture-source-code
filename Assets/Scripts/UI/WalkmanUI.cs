@@ -161,7 +161,6 @@ public class WalkmanUI : MonoBehaviour
     {
         if (!open)
             return;
-        Debug.Log("closing walkman uI");
         prompt.SetActive(false);
         open = false;   
         audioManager.StopAudio();

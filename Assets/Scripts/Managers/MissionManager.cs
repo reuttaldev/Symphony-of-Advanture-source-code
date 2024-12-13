@@ -65,6 +65,7 @@ public class MissionManager : MonoBehaviour, IRegistrableService
         if (missionWrappers.ContainsKey(missionID))
         {
             missionWrappers[missionID].onMissionStart.Invoke();
+
         }
     }
     public void MissionHasEnded(string missionID, bool successful = true)

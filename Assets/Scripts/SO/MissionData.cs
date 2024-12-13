@@ -12,17 +12,16 @@ public class MissionData : MyScriptableObject
     private string missionName;
     public string Name => missionName;
     [SerializeField]
-    private string mainObjective;
+    public string mainObjective; // used in a prompt to remind the players what they should do to solve this mission
     [SerializeField]
     private string startLocation;
     public MissionState state = MissionState.NotStarted;
     public MissionState State=> state;
     [SerializeField]
     private bool mandatory = true;
-    public bool Mandatory=>mandatory;
     [SerializeField]
-    private List<string> prerequisiteIds; // list of ids that must be completed before this one can be started 
-    public List<string> GetPrerequsite() => prerequisiteIds;
+    public bool Mandatory=>mandatory;
+    //private List<string> prerequisiteIds; // list of ids that must be completed before this one can be started 
 
     public void StartMission()
     {
@@ -31,7 +30,8 @@ public class MissionData : MyScriptableObject
             return;
         clone.state = MissionState.OnGoing;
         ServiceLocator.Instance.Get<MissionManager>().MissionHasStarted(GlobalID);
-        //Debug.LogError("Mission " + clone.name + " has been started");
+        if(mandatory && !String.IsNullOrWhiteSpace(mainObjective))
+            MissionUIManager.Instance.ShowMissionUI(GlobalID, mainObjective);
 
     }
     public void EndMission(bool successful = true)
@@ -49,7 +49,8 @@ public class MissionData : MyScriptableObject
         }
         clone.state = successful ? MissionState.CompletedSuccessfully : MissionState.CompletedUnSuccessfully;
         ServiceLocator.Instance.Get<MissionManager>().MissionHasEnded(GlobalID, successful);
-        Debug.Log("Mission " + clone.name + " has been marked as completed");
+        if (mandatory)
+            MissionUIManager.Instance.HideMissionUI(GlobalID);
     }
 
 }
