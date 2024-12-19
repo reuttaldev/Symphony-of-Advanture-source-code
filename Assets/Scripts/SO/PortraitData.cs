@@ -16,6 +16,7 @@ public class PortraitsData: ScriptableObject
         {
             foreach (var data in portraits)
             {
+                Debug.Log(data.charName.ToLower());
                 spritesDictionary[data.charName.ToLower()] = data;
             }
         }

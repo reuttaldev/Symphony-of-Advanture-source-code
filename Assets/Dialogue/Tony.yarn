@@ -11,7 +11,7 @@ Tony: Hey, Astrid. No time for any of your shenanigans. Could we do this later?
 Astrid: I’ll make it worth your while, I promise. 
 Tony: *office phone starts to ring* Alright, make it quick. See? They’re already looking for me. Who’s your friend?
 Astrid: This is {$playerName}. He has something special to show you.  
-Town keeper: Oh, welcome! I am Mayor Tony
+Tony: Oh, welcome! I am Mayor Tony
 // Apologies for acting rude earlier, I’m just swamped in work.  Being the youngest town keeper, everyone’s watching my every move. Filling the shoes of my predecessor isn’t easy.
 Have you come for a vacation in our lovely town?
 ->Player: I just woke up here. 

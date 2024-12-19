@@ -29,7 +29,7 @@ mandatory: T
     Astrid: Say, what's your name? 
     <<EnterName EnterNameManager>>
 <<else>>
-    -: What's your name? 
+    ?: What's your name? 
     <<EnterName EnterNameManager>>
 <<endif>>
 ===
