@@ -60,9 +60,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Moving = true;
         if (run)
-            rb.velocity = input * speed *runMultiplier;
+            rb.linearVelocity = input * speed *runMultiplier;
         else
-            rb.velocity = input * speed;
+            rb.linearVelocity = input * speed;
         animator.SetFloat("x", input.x);
         animator.SetFloat("y", input.y);
         animator.SetBool("Moving", true);
@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         if (Moving)
         {
             Moving = false;
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             animator.SetBool("Moving", false);
         }
     }
