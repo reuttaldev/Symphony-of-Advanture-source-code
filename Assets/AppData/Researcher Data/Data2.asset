@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131dbd8b8ec8a604eb3d09384eaf4008, type: 3}
   m_Name: Data2
   m_EditorClassIdentifier: 
-  clientPreference: 0681e3e13892c4c07fa8ffd87b4e639d17d75949f6380aeb52ce5065a1fb948a
+  clientPreference: e38c6da9cffb23ac347bcd059748e1cd8b8703662f5c5f4d081adff3e50e128c

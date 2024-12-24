@@ -8,9 +8,14 @@ using UnityEngine;
 [Serializable]
 public class NewSheetProperties
 {
-    [SerializeField]
-    public string[] columnTitles;
-    
+    [HideInInspector]
+    public string[] columnTitles = new string[]
+{
+    "CET Time stamp", "Export Event ID", "Track ID", "Annotation", "Interaction ID",
+    "Interaction Name", "User Name", "Device ID", "Game Session", "Configuration ID",
+    "Build ID", "Time of Day"
+};
+
     [SerializeField]
     Color m_HeaderForegroundColor = new Color(0.8941177f, 0.8941177f, 0.8941177f);
 

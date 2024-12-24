@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db1806ea827efa4e883bfc3e247f217, type: 3}
   m_Name: Girl astrid likes
   m_EditorClassIdentifier: 
-  targetedEmotionLabel: Strong and Fiery
+  targetedEmotionLabel: Strong and Powerful
   onCompletionNode: girl_heard_music
   missionToComplete: {fileID: 11400000, guid: e58ee6d4dff90e8478b9ed6303fc100b, type: 2}
   interactionName: Girl Astrid likes

@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db1806ea827efa4e883bfc3e247f217, type: 3}
   m_Name: Child
   m_EditorClassIdentifier: 
-  GlobalID: GlobalObjectId_V1-3-5d986bb9b50ce8443a699aa5ea22ffef-11400000-0
-  saved: 1
-  targetedEmotionLabel: Amused
+  targetedEmotionLabel: Amused and Interested
   onCompletionNode: child_badgering
   missionToComplete: {fileID: 0}
   interactionName: Child

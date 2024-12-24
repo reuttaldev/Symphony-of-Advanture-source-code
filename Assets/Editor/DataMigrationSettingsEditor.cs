@@ -50,6 +50,8 @@ public class DataMigrationSettingsEditor : Editor
             var file = EditorUtility.OpenFilePanel("Load the credentials from a json file", "", "json");
             ProcessServiceAccountKey(file);
         }
+        HandleHelpBoxes();
+
         // display only if json credentials were already loaded
         using (new EditorGUI.DisabledGroupScope(((DataMigrationSettings)target).researcherData == null))
         {
@@ -78,7 +80,6 @@ public class DataMigrationSettingsEditor : Editor
 
                 EditorGUILayout.Space();
                 EditorGUILayout.Space();
-                HandleHelpBoxes();
                 EditorGUILayout.Space();
                 EditorGUILayout.Space();
                 #region EXPORT
@@ -202,7 +203,7 @@ public class DataMigrationSettingsEditor : Editor
         try
         {
 
-            GameSettings gameSettings = AssetDatabase.LoadAssetAtPath<GameSettings>("Assets/Game Settings.asset");
+            GameSettings gameSettings = AssetDatabase.LoadAssetAtPath<GameSettings>("Assets/Scriptable Objects/Game Settings.asset");
             if (gameSettings == null)
             {
                 UpdateHelpBoxMessage("Game Settings asset is missing",true);

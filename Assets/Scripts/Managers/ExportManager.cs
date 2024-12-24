@@ -72,10 +72,10 @@ public class ExportManager : SimpleSingleton<ExportManager>
                 case ("User Name"):
                     data.Add(gameSettings.playerName);
                     break;
-                case ("User ID"):
-                    data.Add(gameSettings.playerId);
+                case ("Device ID"):
+                    data.Add(gameSettings.deviceID);
                     break;
-                case ("Game Session Index"):
+                case ("Game Session"):
                     data.Add(gameSettings.gameSessionIndex.ToString());
                     break;
                 case ("Build ID"):
@@ -231,16 +231,16 @@ public class ExportManager : SimpleSingleton<ExportManager>
         Guid randomGuid = Guid.NewGuid();
         string randomGuidString = randomGuid.ToString();
         string formattedDateTime = exportTime.ToString("yyyy:MM:dd:HH:mm:ss");
-        return formattedDateTime + "_" + gameSettings.playerId + "_" + gameSettings.gameSessionIndex + "_" + randomGuidString;
+        return formattedDateTime + "_" + gameSettings.deviceID + "_" + gameSettings.gameSessionIndex + "_" + randomGuidString;
     }
     string GetExperimentID()
     {
-        return gameSettings.configurationID + "_" + gameSettings.playerId + "_" + gameSettings.gameSessionIndex + "_" + Application.version;
+        return gameSettings.configurationID + "_" + gameSettings.deviceID + "_" + gameSettings.gameSessionIndex + "_" + Application.version;
     }
 
     Dictionary<string, string> GetExperimentData()
     {
-        Dictionary<string, string> data = new Dictionary<string, string> { { "Configuration ID" , gameSettings.configurationID }, {"Application Version" , Application.version },{ "User Name", gameSettings.playerName} ,{ "User ID", gameSettings.playerId }, { "Game Session Index" , gameSettings.gameSessionIndex.ToString() } };
+        Dictionary<string, string> data = new Dictionary<string, string> { { "Configuration ID" , gameSettings.configurationID }, {"Application Version" , Application.version },{ "User Name", gameSettings.playerName} ,{ "User ID", gameSettings.deviceID }, { "Game Session Index" , gameSettings.gameSessionIndex.ToString() } };
         return data;
     }
     DateTime GetCETTime()

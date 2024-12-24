@@ -56,7 +56,8 @@ public static class GoogleSheets
         if (requests.Count > 0)
             SendBatchUpdateRequest(service,spreadSheetId, requests);
         // add titles 
-        List<IList<object>> titiles = new List<IList<object>>();  titiles.Add(newSheetProperties.columnTitles);
+        List<IList<object>> titiles = new List<IList<object>>();  
+        titiles.Add(newSheetProperties.columnTitles);
         PushData(service, spreadSheetId,titiles, sheetName+"!A1");
     }
     // make a simple request to verify we have a connection with a sheet

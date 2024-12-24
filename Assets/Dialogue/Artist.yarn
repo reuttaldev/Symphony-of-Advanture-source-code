@@ -5,10 +5,10 @@ scene: old city
 Astrid: Demi,  how’s it going?
 Demi: I’m alright. What about you?
 Astrid: I’m doing great, actually- on a special mission right now. But I’ve got a minute. Can I check out your new painting?
-Demi (Artist): No, it’s not finished yet. And you know how I get when people look at my work before it’s done. Especially strangers...
+Demi: No, it’s not finished yet. And you know how I get when people look at my work before it’s done. Especially strangers...
 Astrid: Who, {$playerName}? They’re no stranger.
 Demi: Alright... see? It's horrendous. I’ve lost my creative spark… since my muse broke up with me.
-Artist: I used to do 12 paintings a week, easy! Now, I can barely get one done. And the worst part? I don’t know how to fix it. I think I'll just quit.
+Demi: I used to do 12 paintings a week, easy! Now, I can barely get one done. And the worst part? I don’t know how to fix it. I think I'll just quit.
 ->Player: Comfort
 ->Player: Give advice
   Astrid: You’ve created some incredible pieces before. You just need to find that spark again. Maybe this will get you the push you need.

@@ -12,11 +12,10 @@ public class PortraitsData: ScriptableObject
 
     private void OnEnable()
     {
-        //if (spritesDictionary.Count != portraits.Length) 
+        if (spritesDictionary.Count != portraits.Length) 
         {
             foreach (var data in portraits)
             {
-                Debug.Log(data.charName.ToLower());
                 spritesDictionary[data.charName.ToLower()] = data;
             }
         }

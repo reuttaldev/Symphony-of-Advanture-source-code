@@ -13,16 +13,14 @@ using System.Drawing.Printing;
 
 public static class GenerateTracksData 
 {
-    static string[] mandatoryColumnTitles = { "Track ID", "Track Name", "Artist" };
-    static string[] optionalColumnTitles = { "Source", "License" };
+    static string[] mandatoryColumnTitles = { "Track ID", "Track Name" };
+    static string[] optionalColumnTitles = { };
     public static bool GenerateData( IList<Dictionary<string, string>> table,DataMigrationSettings dataMigrationSetting,GameSettings gameSettings)
     {
-        //syntax check
-        if(!CheckRequiredColumns(dataMigrationSetting.columnsToRead))
-            return false;
         CreateFolder(dataMigrationSetting.GetTracksDataLocation());
         gameSettings.trackDataReferences = new List<TrackDataReference>();
         gameSettings.trackDataKeys = new List<string>();
+        gameSettings.initTrackLibrary = new List<string>();
         int rowNumber = 2;
         int trackIndex = 0;
         foreach (Dictionary<string, string> row in table)
@@ -42,6 +40,7 @@ public static class GenerateTracksData
             AssetDatabase.CreateAsset(track, saveToPath);
             gameSettings.trackDataReferences.Add(GetTrackDataReference(saveToPath));
             gameSettings.trackDataKeys.Add(trackID);
+            gameSettings.initTrackLibrary.Add(trackID);
             // make sure changes are saved
             EditorUtility.SetDirty(gameSettings);
             AssetDatabase.SaveAssets();
@@ -53,18 +52,6 @@ public static class GenerateTracksData
         return true;
     }
     #region SYNTAX CHECKS
-    static bool CheckRequiredColumns(int columnsToRead)
-    {
-
-        // check if the columns we want to load are all in the sheet
-        if (mandatoryColumnTitles.Length + optionalColumnTitles.Length != columnsToRead)
-        {
-            Debug.LogError("Column count failed");
-            Debug.LogError("Saving track data failed.");
-            return false;
-        }
-        return true;
-    }
     static List<string> CheckMandatoryValues( Dictionary<string, string> row, int rowNumber)
     {
         // check all mandatory columns are filled out with values for each line
@@ -79,6 +66,9 @@ public static class GenerateTracksData
             }
             rowValues.Add(row[key]);
         }
+        if(optionalColumnTitles.Length == 0)
+            return rowValues;
+
         // add optional values, if found
         if (row.ContainsKey(optionalColumnTitles[0]))
         {
@@ -108,11 +98,6 @@ public static class GenerateTracksData
         TrackData track = ScriptableObject.CreateInstance<TrackData>();
         track.trackID = values[0];
         track.trackName = values[1];
-        track.artistName = values[2];
-        if(values.Count > 3)
-            track.source = values[3];
-        if(values.Count > 4)
-        track.license = values[4];
         track.index = index;
         return track;
     }
@@ -120,11 +105,6 @@ public static class GenerateTracksData
     static AudioClip GetAudioClipByID(string id, string lookInFolder)
     {
         var guids = AssetDatabase.FindAssets(id,new[] { lookInFolder });
-        if(guids.Length ==0)
-        {
-            Debug.LogError("Saving track data failed. Bad GUID");
-            return null;
-        }
         try
         {
             var assetPath = AssetDatabase.GUIDToAssetPath(guids[0]);
@@ -135,44 +115,6 @@ public static class GenerateTracksData
             Debug.LogError($"There is no audio file that matches track id {id} in {lookInFolder}. Please make sure there is an audio file for every entry in the metadata spreadsheed. The name of the audio file should be the track id.");
             return null;
         }
-    }
-    static void SetTracksReference()
-    {
-        /*try
-        {
-            // load all TrackData assets. loading all (addressable assets) with certain tag
-            AsyncOperationHandle loadHandle;
-            loadHandle = Addressables.LoadAssetsAsync<TrackData>("Track Data", null);
-            loadHandle.Completed += foundAssets =>
-            {
-                List<TrackData> allTracks = (List<TrackData>)foundAssets.Result;
-                if (allTracks.Count < minCollectibleTracks + minTrackLibrarySize)
-                {
-                    throw new Exception("Not enough songs were imported. Please ensure to include at least " + minCollectibleTracks + minTrackLibrarySize + "tracks.");
-                }
-                for (int i = 0; i < minCollectibleTracks + minTrackLibrarySize; i++)
-                {
-                    // find them by the index, so the order remains as it was in the meta data spreadsheet 
-                    TrackData track = allTracks.Find(t => t.index == i);
-                    // cast the track data to track data reference, so it will not be loaded automatically and only when we tell it to.
-                    if (i < minTrackLibrarySize)
-                        initTrackLibrary[i] = GetTrackDataReference(track);
-                    else
-                        collectibleTracks[i - minTrackLibrarySize] = GetTrackDataReference(track);
-                }
-                Debug.Log("Loaded default tracks to game settings successfully.");
-            };
-            Addressables.Release(loadHandle);
-            startingTrack = initTrackLibrary[0];
-            // make sure changes are saved
-            EditorUtility.SetDirty(this);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-        }
-        catch (Exception e)
-        {
-            Debug.LogError("Could not load default tracks to game settings. Error: " + e.Message);
-        }*/
     }
     static TrackDataReference GetTrackDataReference(string assetPath)
     {

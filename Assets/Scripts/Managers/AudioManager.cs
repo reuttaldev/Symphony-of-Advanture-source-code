@@ -32,22 +32,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     float fadeOutDuration = 1;
     #region ASSET LOADING
     Dictionary<TrackDataReference, AsyncOperationHandle> loadHandles = new Dictionary<TrackDataReference, AsyncOperationHandle>();
-    void LoadStartingTrack()
-    {
-        if (!string.IsNullOrWhiteSpace(settings.startingTrack))
-        {
-            var refToLoad = GetAdressableReferenceByID(settings.startingTrack);
-            if(refToLoad != null ) 
-            {
-                LoadAdressable(refToLoad, true,true);
-                //Debug.Log("Loaded to library the starting track");
-                return;
-            }
-        }
-        // if we got here it means refToLoad is null and we should load by default
-        //Debug.LogWarning("Could not find requested first track, loaded default.");
-        LoadAdressable(GetAdressableReferenceByIndex(0), true,true);
-    }
+
     TrackDataReference GetAdressableReferenceByID(string id)
     {
         int i = settings.trackDataKeys.IndexOf(id);
@@ -94,12 +79,12 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
             }
         };
     }
-    void LoadAdressables(string [] loadFrom,int startDefaultAt, int minSize, bool playOnLoad = false, bool addKeyToList = true)
+    void LoadAdressables(List<string> loadFrom,int startDefaultAt, int minSize, bool playOnLoad = false, bool addKeyToList = true)
     {
         bool fromSettingFailed = false;
         // keep references that you might load. if something goes wrong when looking for the assets, the list will be reset to the default
         List<TrackDataReference> references = new List<TrackDataReference>();
-        for (int i = 0; i < loadFrom.Length; i++)
+        for (int i = 0; i < loadFrom.Count; i++)
         {
             if (string.IsNullOrWhiteSpace(loadFrom[i]))
             {
@@ -142,9 +127,9 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     public void LoadTracksFromAddressable()
     {
         // if something in the settings fail, they will load the defualt tracks (the first minimum amount as they appear in the google sheets)
-        LoadStartingTrack();
-        LoadAdressables(settings.initTrackLibrary, 1, GameSettings.minTrackLibrarySize - 1); // -1 bc first track is already loaded.
-        LoadAdressables(settings.collectibleTracks, GameSettings.minTrackLibrarySize+1, GameSettings.minCollectibleTracks, false, false);
+
+        LoadAdressables(settings.initTrackLibrary, 0, GameSettings.minTrackLibrarySize - 1); // -1 bc first track is already loaded.
+        //LoadAdressables(settings.collectibleTracks, GameSettings.minTrackLibrarySize+1, GameSettings.minCollectibleTracks, false, false);
     }
     public void UnloadAdressables()
     {

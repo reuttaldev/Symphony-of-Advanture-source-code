@@ -118,11 +118,8 @@ public class ConfigurationFileManager : MonoBehaviour
         dataMigrationSettings.exportSheetID = int.Parse(config.ExportSheetID);
         gameSettings.configurationID = config.ConfigurationID;
         if (config.InitialTrackLibrary.Count != 0)
-            gameSettings.initTrackLibrary = config.InitialTrackLibrary.ToArray();
+            gameSettings.initTrackLibrary = config.InitialTrackLibrary;
         if (config.CollectibleTracks.Count != 0)
             gameSettings.collectibleTracks = config.CollectibleTracks.ToArray();
-        if (!string.IsNullOrEmpty(config.StartingTrack) || config.StartingTrack !="" || config.StartingTrack != "default"|| config.StartingTrack != "Default")
-            gameSettings.startingTrack = config.StartingTrack;
-
     }
 }

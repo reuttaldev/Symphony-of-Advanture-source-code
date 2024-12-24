@@ -19,20 +19,18 @@ public class DataMigrationSettings : ScriptableObject
     public int exportSheetID; // the id at the end of the URL of the sheet we need to import to
     [SerializeField]
     public string exportSheetName = "Collected Data";
-    [ReadOnly]
     [SerializeField]
+    [ReadOnly]
     string saveSOToPath = @"Assets\Scriptable Objects\Tracks Data";
-    [ReadOnly]
     [SerializeField]
-    string loadAudioPath = @"Assets\Audio\Tracks Audio";
     [ReadOnly]
+    string loadAudioPath = @"Assets\Audio\Tracks";
     [SerializeField]
-    public int columnsToRead=5;
+    public int columnsToRead=2;
     [SerializeField]
     public bool sentResultByEmail = false;
     [SerializeField]
     public string researchersEmail;
-    [SerializeField]
     public NewSheetProperties newSheetProperties = new NewSheetProperties();
     public ResearcherData researcherData;
     public ClientData clientData;

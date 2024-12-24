@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e879ed8655687ad458548870c488b03d, type: 3}
   m_Name: Player Name
   m_EditorClassIdentifier: 
-  GlobalID: GlobalObjectId_V1-3-a6624afec1413ca44a4f906746e897d2-11400000-0
-  PlayerName: DFD
+  PlayerName: 
