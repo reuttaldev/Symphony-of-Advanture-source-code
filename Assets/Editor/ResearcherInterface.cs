@@ -8,7 +8,7 @@ using Google;
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(DataMigrationSettings))]
-public class DataMigrationSettingsEditor : Editor
+public class ResearcherInterface : Editor
 {
     public SerializedProperty spreadsheetID;
     public SerializedProperty importSheetID;
