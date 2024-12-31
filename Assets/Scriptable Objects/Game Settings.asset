@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumLibrarySize: 14
   minimumCollectibleTracks: 0
-  initTrackLibrary:
+  libraryKeys:
   - 501300
   - 1009600
   - 1028900
@@ -34,9 +34,11 @@ MonoBehaviour:
   - 1198196
   - 31207
   - 387430
+  - 702500
+  - 759300-game
   collectibleTracks: []
-  configurationID: Default
-  configFileLoaded: 0
+  configurationID: 0001
+  configFileLoaded: 1
   buildID: 1
   trackDataReferences:
   - m_AssetGUID: 5653b396c1c90af4d988b69537a615bb
@@ -44,96 +46,127 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 501300
   - m_AssetGUID: 7904530f55d37544692ffbc89a5163ba
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 1009600
   - m_AssetGUID: f867f6a050e68cd4eab88f98a96584d3
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 1028900
   - m_AssetGUID: 79979e8c857c23446b064e25b6dfc357
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 1420700
   - m_AssetGUID: 63c9191d4bdcd8e4eafc2f9713e2641b
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 1163000
   - m_AssetGUID: 93cf01e7bedda474ea7d982aa5c62606
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 74000
   - m_AssetGUID: 46a8011a5eae8ea419dd5f7a24810cde
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 21502
   - m_AssetGUID: fb701e70af746744b85dfb797aaf21ed
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 387421
   - m_AssetGUID: 1816f4066838122438e11cb2c4fc25b9
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 257172
   - m_AssetGUID: 4b5f3d60040ce654abfa0d52eb458f0b
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 133600
   - m_AssetGUID: a03a586706c10204fb4e00ba82bb3c65
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 17490
   - m_AssetGUID: 31dd8b4002bcc754e973b6be226fc8f0
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 1185651
   - m_AssetGUID: 0cea56e13275ecb4d8725df348bc1024
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 172326
   - m_AssetGUID: b57f2bcb9bf5c5a4685a79ed00bf7757
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 307388
   - m_AssetGUID: 4a666b66502a5814c891e08fd640746a
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 671173
   - m_AssetGUID: 4708d81154d17d64a90a5011cf0837b7
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 1110057
   - m_AssetGUID: 3f1213bf9e355ab4cbaccf7b8580ae04
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 1198196
   - m_AssetGUID: 7e974bb6504f77a41a98e2f9d44677db
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 31207
   - m_AssetGUID: 4cf450029435bfd4c82c601d880e035f
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+    ID: 387430
+  - m_AssetGUID: ccc6941c1eb99324a8ee0a0024d6a1c9
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+    ID: 702500
+  - m_AssetGUID: 9af210cb1612a7848aeaeb62138e5a33
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+    ID: 759300-game
   trackDataKeys:
   - 501300
   - 1009600
@@ -154,4 +187,6 @@ MonoBehaviour:
   - 1198196
   - 31207
   - 387430
+  - 702500
+  - 759300-game
   playerNameData: {fileID: 11400000, guid: a6624afec1413ca44a4f906746e897d2, type: 2}

@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
             Debug.LogWarning("previous scene name is null - cannot place player in scene");
             return;
         }
-        if (previousSceneName == "MainMenu")
+        if (previousSceneName == "StartMenu")
             return;
         if(returnPoints == null || returnPoints.Count ==0)
         {

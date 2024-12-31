@@ -5,7 +5,7 @@ using SimpleFileBrowser;
 using UnityEngine.UIElements;
 using System;
 
-public class MainMenuUI : MonoBehaviour
+public class StartMenuUI : MonoBehaviour
 {
     [SerializeField] ConfigurationFileManager configManager;
 

@@ -175,7 +175,7 @@ public class ResearcherInterface : Editor
         {
             EditorGUILayout.HelpBox(errorMessage.stringValue, MessageType.Error);
         }
-        // only show warning and sucess if there are no errors
+        // only show warning if there are no errors
         else if (tempExportName.stringValue != "")
         {
             if (tempExportName.stringValue != exportSheetName.stringValue)

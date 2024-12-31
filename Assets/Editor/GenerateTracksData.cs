@@ -8,8 +8,6 @@ using System.Text.RegularExpressions;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.AddressableAssets;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using System.Drawing.Printing;
 
 public static class GenerateTracksData 
 {
@@ -20,7 +18,7 @@ public static class GenerateTracksData
         CreateFolder(dataMigrationSetting.GetTracksDataLocation());
         gameSettings.trackDataReferences = new List<TrackDataReference>();
         gameSettings.trackDataKeys = new List<string>();
-        gameSettings.initTrackLibrary = new List<string>();
+        gameSettings.libraryKeys = new List<string>();
         int rowNumber = 2;
         int trackIndex = 0;
         foreach (Dictionary<string, string> row in table)
@@ -31,16 +29,16 @@ public static class GenerateTracksData
             string trackID = rowValues[0];
             if (CheckForDuplicateIDs(gameSettings.trackDataKeys, trackID,rowNumber))
                 return false ;
-            TrackData track = CreateTrackData(rowValues, trackIndex);
             AudioClip clip = GetAudioClipByID( trackID, dataMigrationSetting.GetTracksLocation());
             if(clip == null) 
                 return false;
+            TrackData track = CreateTrackData(rowValues, trackIndex);
             track.audioClip = clip;
             string saveToPath = Path.Combine(dataMigrationSetting.GetTracksDataLocation(), RemoveForbiddenPathCharacters(track.trackID)+ ".asset");
             AssetDatabase.CreateAsset(track, saveToPath);
-            gameSettings.trackDataReferences.Add(GetTrackDataReference(saveToPath));
+            gameSettings.trackDataReferences.Add(GetTrackDataReference(saveToPath, trackID));
             gameSettings.trackDataKeys.Add(trackID);
-            gameSettings.initTrackLibrary.Add(trackID);
+            gameSettings.libraryKeys.Add(trackID);
             // make sure changes are saved
             EditorUtility.SetDirty(gameSettings);
             AssetDatabase.SaveAssets();
@@ -116,7 +114,7 @@ public static class GenerateTracksData
             return null;
         }
     }
-    static TrackDataReference GetTrackDataReference(string assetPath)
+    static TrackDataReference GetTrackDataReference(string assetPath,string id)
     {
         AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
         string assetGUID = AssetDatabase.AssetPathToGUID(assetPath);
@@ -124,7 +122,7 @@ public static class GenerateTracksData
         AssetReference reference = settings.CreateAssetReference(assetGUID);
         if (reference == null)
             throw new Exception("reference is null");
-        return new TrackDataReference(assetGUID);
+        return new TrackDataReference(assetGUID,id);
     }
     static void CreateFolder(string folderPath)
     {

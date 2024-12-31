@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menus/MainMenu.unity
+    path: Assets/Scenes/Menus/StartMenu.unity
     guid: c1ee73e66febf9241bc11431414bcb07
   - enabled: 1
     path: Assets/Scenes/TownSquare.unity
@@ -32,3 +32,4 @@ EditorBuildSettings:
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: eb22aafd18cfdbf43af9db33a24f6eba, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 66e7d28f4730063409aeda1270df977d, type: 2}
+  m_UseUCBPForAssetBundles: 0

@@ -26,7 +26,7 @@ public class GameSettings : ScriptableObject
     // we can keep a list of  the default songs, but they will not be loaded into memory until we confirm the configuration file does not specify other songs.
     // this way we avoid loading unused audio clips into memory.
     [HideInInspector]
-    public List<string> initTrackLibrary; // the tracks here will be loaded onto the walkman at the start of them game 
+    public List<string> libraryKeys; // the tracks here will be loaded onto the walkman at the start of them game 
     public string[] collectibleTracks = new string[minCollectibleTracks]; // list of tracks the player will be able to pick up throughout the game
 
     [Header("Player Settings")]
@@ -37,17 +37,17 @@ public class GameSettings : ScriptableObject
     [Header("Build Settings")]
     [HideInInspector]
     public string configurationID = "Default";
-    [HideInInspector]
+    //[HideInInspector]
     public bool configFileLoaded = false;
     [SerializeField]
     public string buildID = "1";
 
     [Header("Asset Settings")]
-    [HideInInspector]
+    //[HideInInspector]
     // keep an adressable reference to all possible tracks so we can just grab the needed ones at loading time
     public List<TrackDataReference> trackDataReferences;
     // so that I can also know the order of insertion of the references
-    [HideInInspector]
+    //[HideInInspector]
     public List<string> trackDataKeys;
     [SerializeField]
     private PlayerNameData playerNameData;

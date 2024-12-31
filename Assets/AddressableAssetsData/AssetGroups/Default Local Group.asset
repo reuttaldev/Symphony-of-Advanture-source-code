@@ -100,6 +100,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9af210cb1612a7848aeaeb62138e5a33
+    m_Address: Assets/Scriptable Objects/Tracks Data/759300-game.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9f09ea1edd7008940aa3cc1eaa3de898
     m_Address: Assets/Scriptable Objects/Tracks Data
     m_ReadOnly: 0
@@ -116,6 +121,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccc6941c1eb99324a8ee0a0024d6a1c9
+    m_Address: Assets/Scriptable Objects/Tracks Data/702500.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df7fa256ef2f3f740b767f7062d80b90
     m_Address: Assets/Scriptable Objects/Music dialogues
     m_ReadOnly: 0
@@ -123,6 +133,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f867f6a050e68cd4eab88f98a96584d3
     m_Address: Assets/Scriptable Objects/Tracks Data/1028900.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa4e9cb1ef5dca7418c48d9a34932a27
+    m_Address: Assets/Audio/Tracks
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

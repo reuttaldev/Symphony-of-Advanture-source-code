@@ -25,7 +25,7 @@ public class DataMigrationSettings : ScriptableObject
     [SerializeField]
     [ReadOnly]
     string loadAudioPath = @"Assets\Audio\Tracks";
-    [SerializeField]
+    [ReadOnly]
     public int columnsToRead=2;
     [SerializeField]
     public bool sentResultByEmail = false;

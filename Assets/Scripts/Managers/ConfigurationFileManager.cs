@@ -10,8 +10,6 @@ using UnityEngine.Events;
 public class GameConfiguration
 {
     public List<string> InitialTrackLibrary;
-    public List<string> CollectibleTracks;
-    public string StartingTrack;
     public string ExportSheetID;
     public string ConfigurationID;
 }
@@ -59,8 +57,6 @@ public class ConfigurationFileManager : MonoBehaviour
         // check all given track IDs are valid, and that we have enough of them in th list 
         if (!CheckSyntaxLibraryList())
             return false;
-        if (!CheckSyntaxCollectibleList())
-            return false;
         if (!ValidateExportSheetID())
             return false;
 
@@ -76,20 +72,11 @@ public class ConfigurationFileManager : MonoBehaviour
         SheetsService service = SheetsServiceProvider.ConnectWithServiceAccountKey(dataMigrationSettings);
         return GoogleSheets.ValidateSheetConnection(service, dataMigrationSettings.spreadsheetID, exportSheetID);
     }
-    bool CheckSyntaxCollectibleList()
+    bool CheckSyntaxLibraryList()
     {
         if(config.InitialTrackLibrary.Count < GameSettings.minTrackLibrarySize)
         {
-            errorText.text = "Not enough tracks specified in Track Library. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.";
-            return false;
-        }
-        return true;
-    }
-    bool CheckSyntaxLibraryList()
-    {
-        if (config.CollectibleTracks.Count < GameSettings.minCollectibleTracks)
-        {
-            errorText.text = "Not enough tracks specified in Collectible Track. You need a minimum of " + GameSettings.minCollectibleTracks + " tracks.";
+            errorText.text = "Not enough tracks specified in Track Library. You need a minimum of " + GameSettings.minTrackLibrarySize + " tracks.";
             return false;
         }
         return true;
@@ -118,8 +105,6 @@ public class ConfigurationFileManager : MonoBehaviour
         dataMigrationSettings.exportSheetID = int.Parse(config.ExportSheetID);
         gameSettings.configurationID = config.ConfigurationID;
         if (config.InitialTrackLibrary.Count != 0)
-            gameSettings.initTrackLibrary = config.InitialTrackLibrary;
-        if (config.CollectibleTracks.Count != 0)
-            gameSettings.collectibleTracks = config.CollectibleTracks.ToArray();
+            gameSettings.libraryKeys = config.InitialTrackLibrary;
     }
 }
