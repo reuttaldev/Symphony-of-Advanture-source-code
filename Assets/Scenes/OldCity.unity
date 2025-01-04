@@ -30421,6 +30421,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6258513379299797861, guid: a6e606dcf2868f24baf00fe8de8cdad2, type: 3}
+      propertyPath: noInternetPanel
+      value: 
+      objectReference: {fileID: 1523264212}
     - target: {fileID: 7066336290686722935, guid: a6e606dcf2868f24baf00fe8de8cdad2, type: 3}
       propertyPath: noInternetPanel
       value: 

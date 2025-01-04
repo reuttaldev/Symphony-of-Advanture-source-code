@@ -231,7 +231,6 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     public void SetTrackEmotion(string trackID, Emotions emotion)
     {
         loadedTracks[trackID].SetUserResponse(emotion);
-        RemoveFromLibrary(trackID);
     }
     public void StopAudio()
     {

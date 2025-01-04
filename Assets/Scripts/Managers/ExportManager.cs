@@ -6,9 +6,7 @@ using Google.Apis.Sheets.v4;
 using Google;
 using System.Net.Http;
 
-// I am making it a singleton because otherwise each time we load a scene and we reach start, the csv file will be reset.
-// I need the CSV file to be created and reset only ONCE at the very start of the game
-public class ExportManager : SimpleSingleton<ExportManager>
+public class ExportManager : MonoBehaviour, IRegistrableService
 {
     [SerializeField]
     GameSettings gameSettings;
@@ -22,15 +20,12 @@ public class ExportManager : SimpleSingleton<ExportManager>
     string CSVDirectory = Path.Combine(Application.dataPath,"CVSData");
     const char CSVseparator = ',';
     const string CSVExtension = ".csv";
-
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-        DontDestroyOnLoad(this);
+        ServiceLocator.Instance.Register<ExportManager>(this);
     }
-    void Start()
+        void Start()
     {
-
         gameSettings = ServiceLocator.Instance.Get<GameManager>().settings;
         dataMigrationSettings = ServiceLocator.Instance.Get<GameManager>().dataMigrationSettings;
         // do these at start to avoid delay on the first export call

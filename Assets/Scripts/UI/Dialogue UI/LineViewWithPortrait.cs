@@ -32,8 +32,11 @@ public class LineViewWithPortrait : LineView
 
     public override void RunLine(LocalizedLine dialogueLine, System.Action onDialogueLineFinished)
     {
-        currentCharName = dialogueLine.CharacterName.ToLower();
-        portraitImage.sprite = data.GetSprite(currentCharName,emotionToDisplay);
+        if (dialogueLine.CharacterName != null)
+        {
+            currentCharName = dialogueLine.CharacterName.ToLower();
+            portraitImage.sprite = data.GetSprite(currentCharName, emotionToDisplay);
+        }
         base.RunLine(dialogueLine, onDialogueLineFinished); 
     }
 }

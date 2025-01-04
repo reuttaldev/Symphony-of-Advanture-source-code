@@ -10432,6 +10432,11 @@ Transform:
   - {fileID: 89799919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1559204051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9028894527766054475, guid: bec69ddc49b591044b74fc5b550dcf46, type: 3}
+  m_PrefabInstance: {fileID: 90680297}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1576308851
 GameObject:
   m_ObjectHideFlags: 0
@@ -38233,6 +38238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Export Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6258513379299797861, guid: a6e606dcf2868f24baf00fe8de8cdad2, type: 3}
+      propertyPath: noInternetPanel
+      value: 
+      objectReference: {fileID: 1559204051}
     - target: {fileID: 7806254208784879048, guid: a6e606dcf2868f24baf00fe8de8cdad2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.792921

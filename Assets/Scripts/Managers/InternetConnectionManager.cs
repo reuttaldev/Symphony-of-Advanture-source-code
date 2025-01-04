@@ -3,14 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-
+using UnityEngine.InputSystem;
 public class InternetConnectionManager : MonoBehaviour, IRegistrableService
 {
     [SerializeField]
     GameObject noInternetPanel;
+    [SerializeField]
+    InputActionReference tryAgainKey;
     private void Awake()
     {
         ServiceLocator.Instance.Register<InternetConnectionManager>(this);
+    }
+    private void OnEnable()
+    {
+        tryAgainKey.action.performed += TryAgain;
+    }
+    private void OnDisable()
+    {
+        tryAgainKey.action.performed -= TryAgain;
     }
     public  IEnumerator CheckInternetConnection(Action<bool> action)
     {
@@ -32,7 +42,7 @@ public class InternetConnectionManager : MonoBehaviour, IRegistrableService
 
 
     // the key press connected to this is set up on the Input Manager object under unity events for Pause UI action map
-    public void TryAgain()
+    public void TryAgain(InputAction.CallbackContext a)
     {
         StartCoroutine(CheckInternetConnection(isConnected =>
         {
@@ -47,7 +57,7 @@ public class InternetConnectionManager : MonoBehaviour, IRegistrableService
         noInternetPanel.SetActive(false);
         ServiceLocator.Instance.Get<GameManager>().UnpauseGame();
         // if some data was left unpushed due to lack of connection, re-push it now the connection is renewed 
-        ExportManager.Instance.ExportPendingData();
+        ServiceLocator.Instance.Get<ExportManager>().ExportPendingData();
     }
     public void NoConnectionDetected()
     {

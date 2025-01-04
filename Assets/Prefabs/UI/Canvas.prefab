@@ -4149,7 +4149,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "You are not connected to the internet! \nPlease ensure you have an active
-    connection and Press Enter to continue playing."
+    connection and press Enter to confirm. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -15,7 +15,7 @@ public class TempExportSceneTrigger : MonoBehaviour
     {
         if(interctable)
         {
-            bool sucess = ExportManager.Instance.SendCSVByEmail();
+            bool sucess = ServiceLocator.Instance.Get<ExportManager>().SendCSVByEmail();
             interctable = false;
             if(sucess)
                 spriteRenderer.color = Color.green;
