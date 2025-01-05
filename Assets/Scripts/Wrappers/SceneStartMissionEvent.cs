@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 // if the associated mission is in the requested state when the scene starts, do the events that are specified 
 
-public class StartSceneEventWrapper : MonoBehaviour
+public class SceneStartMissionEvent : MonoBehaviour
 {
     [SerializeField]
     MissionData missionData;

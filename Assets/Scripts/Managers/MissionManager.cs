@@ -35,8 +35,8 @@ public class MissionManager : MonoBehaviour, IRegistrableService
     public void TriggerOnSceneStartEvents()
     {
 
-        var children = GetComponentsInChildren<StartSceneEventWrapper>(); 
-        foreach (StartSceneEventWrapper wrapper in children)
+        var children = GetComponentsInChildren<SceneStartMissionEvent>(); 
+        foreach (SceneStartMissionEvent wrapper in children)
         {
             // only get components that are active
             if (wrapper.isActiveAndEnabled)
