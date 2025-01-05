@@ -12,10 +12,6 @@ public class MissionManager : MonoBehaviour, IRegistrableService
         ServiceLocator.Instance.Register<MissionManager>(this);
         LoadMissionWrappers();
     }
-    void Start()
-    {
-        TriggerOnSceneStartEvents();
-    }
 
     // init the all missions dictionary based on the references that were set in the editor
     private void LoadMissionWrappers()
@@ -30,25 +26,6 @@ public class MissionManager : MonoBehaviour, IRegistrableService
             }
             // trigger on scene start events, if the associated missions are active
             missionWrappers[wrapper.MissionDataID] = wrapper;
-        }
-    }
-    public void TriggerOnSceneStartEvents()
-    {
-
-        var children = GetComponentsInChildren<SceneStartMissionEvent>(); 
-        foreach (SceneStartMissionEvent wrapper in children)
-        {
-            // only get components that are active
-            if (wrapper.isActiveAndEnabled)
-            {
-                // trigger on scene start events, if the associated missions are active
-                // these missions will often be completed through the dialouge yarn script
-                // or one of the events we are triggering here will be to complete the mission
-                if (wrapper.CurrentMissionState == wrapper.targetState)
-                {
-                    wrapper.onTargetState.Invoke();
-                }
-            }
         }
     }
     void PrintAllMission()

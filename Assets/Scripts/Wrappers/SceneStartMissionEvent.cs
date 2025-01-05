@@ -12,10 +12,13 @@ public class SceneStartMissionEvent : MonoBehaviour
     public MissionState targetState = MissionState.OnGoing;
     public UnityEvent onTargetState;
     public string MissionName =>missionData.name;
-    private void Awake()
+
+    private void Start()
     {
         if (missionData == null)
             Debug.LogError("forgot to set mission data on " + name);
-        missionData = missionData.GetRuntimeInstance<MissionData>();
+        if (missionData.GetRuntimeInstance<MissionData>().State == targetState)
+            onTargetState.Invoke();
+
     }
 }
