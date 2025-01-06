@@ -87,7 +87,6 @@ public class CassetteUI : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
-
     private void SetPosition()
     {
         GetComponent<RectTransform>().anchoredPosition3D =  new Vector3(0, 

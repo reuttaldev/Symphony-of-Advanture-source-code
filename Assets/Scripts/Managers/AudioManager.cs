@@ -250,6 +250,10 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
         tracksAudioSource.Stop();
         tracksAudioSource.volume = startVolume;
     }
+    public string[] GetTracksNames()
+    {
+        return loadedTracks.Values.Select(track => track.trackName).ToArray();
+    }
 
 }
 

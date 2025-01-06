@@ -2,7 +2,7 @@
 using UnityEngine;
 using Yarn.Unity.Example;
 
-public class InteractableItem : Interactable
+public class InteractableText : Interactable
 {
     [SerializeField]
     string text;

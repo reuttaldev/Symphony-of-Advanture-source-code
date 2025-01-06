@@ -2,18 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
-using Yarn;
-using Yarn.Unity;
 
 public class GameManager : MonoBehaviour, IRegistrableService
 {
     public GameSettings settings;
     public DataMigrationSettings dataMigrationSettings;
     public static bool paused = false;
-    string playerName;
     [SerializeField]
     List<ReturnPoint> returnPoints;
     [SerializeField] 
@@ -42,12 +36,6 @@ public class GameManager : MonoBehaviour, IRegistrableService
     {
         if(SceneManager.Instance != null)   
             SceneManager.Instance.OnSceneLoaded -= PlacePlayerInScene;
-    }
-    public void SetPlayerName(string playerName)
-    {
-        // set player name in yarn
-        var nameVariableStorage = GameObject.FindObjectOfType<InMemoryVariableStorage>();
-        nameVariableStorage.SetValue("$playerName", playerName);
     }
     public void SwitchScene(string name)
     {
@@ -103,20 +91,20 @@ public class GameManager : MonoBehaviour, IRegistrableService
         {
             Debug.Log("You forgot to set return points list in game manager");
         }
-        ReturnPoint returnPoint = null;
-        foreach(var item in returnPoints)
+        ReturnPoint correctReturnPoint = null;
+        foreach(var returnPoint in returnPoints)
         {
-            if(item.whenComingFrom ==  previousSceneName) 
+            if(returnPoint.whenComingFrom ==  previousSceneName) 
             { 
-                returnPoint = item;
+                correctReturnPoint = returnPoint;
                 break;
             }
         }
-        if (returnPoint == null)
+        if (correctReturnPoint == null)
         {
             Debug.LogError("No entry point for scene: " + previousSceneName+" or you forget to add a reference to it in game manger.");
         }
-        PlacePlayer(returnPoint);
+        PlacePlayer(correctReturnPoint);
         OnPlayerPlaced?.Invoke();
     }
     public void PlacePlayer(ReturnPoint returnPoint)
@@ -131,7 +119,6 @@ public class GameManager : MonoBehaviour, IRegistrableService
         }
 
     }
-
     void PlaceNextToPlayer(GameObject character, Direction direction)
     {
         character.transform.position = GetNextToPlayerPos(direction).position;

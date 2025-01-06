@@ -15,6 +15,6 @@ MonoBehaviour:
   GlobalID: GlobalObjectId_V1-3-2002abb2ca671db4d81c93bbdc21d041-11400000-0
   missionName: meet astrid outside house
   mainObjective: Meet Astrid at his house in the Village
-  startLocation: 
+  startLocation: Old City
   state: 3
   mandatory: 1

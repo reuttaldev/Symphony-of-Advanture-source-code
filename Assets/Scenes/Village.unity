@@ -129,8 +129,8 @@ GameObject:
   m_Component:
   - component: {fileID: 60717739}
   - component: {fileID: 60717738}
-  - component: {fileID: 60717741}
   - component: {fileID: 60717740}
+  - component: {fileID: 60717741}
   m_Layer: 0
   m_Name: Old lady animation trigger
   m_TagString: Untagged
@@ -209,7 +209,7 @@ Animator:
   m_GameObject: {fileID: 60717736}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f4200430de2df524c8581e27f6098b6c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1a39121c5e8f6a74aa64ba032ae6570f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -230,13 +230,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 60717736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d49f1d950b80ae43a2c10218f8e3666, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c7f7c3ce7aebb746af2425baa84b9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: 1
   interactableMoreThanOnce: 1
-  animator: {fileID: 1969985678}
-  parameter: Look
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 60717740}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Look
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &60919472 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3899475343978070671, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
@@ -4846,22 +4859,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3878345624313713372, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
   m_PrefabInstance: {fileID: 1969985670}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &266965645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266965640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d49f1d950b80ae43a2c10218f8e3666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactable: 1
-  interactableMoreThanOnce: 1
-  animator: {fileID: 1969985678}
-  parameter: Idle
 --- !u!114 &266965647 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7210769603776619197, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
@@ -4900,6 +4897,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1969985678}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Idle
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &284584085
@@ -13995,7 +14004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 978554402}
   - component: {fileID: 978554404}
-  - component: {fileID: 978554403}
+  - component: {fileID: 978554405}
   m_Layer: 0
   m_Name: Interactable
   m_TagString: Untagged
@@ -14018,21 +14027,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1959872828}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &978554403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 978554401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0daedc6f27a0f654093b9be51730153e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactable: 1
-  interactableMoreThanOnce: 1
-  mapMissionData: {fileID: 11400000, guid: d225d3740533a624e8e3ffce2217cfb2, type: 2}
 --- !u!61 &978554404
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14079,6 +14073,47 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.6041946, y: 2.2454844}
   m_EdgeRadius: 0
+--- !u!114 &978554405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978554401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7f7c3ce7aebb746af2425baa84b9e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: 1
+  interactableMoreThanOnce: 1
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: d225d3740533a624e8e3ffce2217cfb2, type: 2}
+        m_TargetAssemblyTypeName: MissionData, Assembly-CSharp
+        m_MethodName: EndMission
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1959872825}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &988592605
 GameObject:
   m_ObjectHideFlags: 0
@@ -75586,9 +75621,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 85419147}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3878345624313713372, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 266965645}
     - targetCorrespondingSourceObject: {fileID: 3878345624313713372, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 266965648}

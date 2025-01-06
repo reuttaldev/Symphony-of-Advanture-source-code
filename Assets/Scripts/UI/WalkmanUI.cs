@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 
 public class WalkmanUI : MonoBehaviour
@@ -124,12 +125,14 @@ public class WalkmanUI : MonoBehaviour
         cassetteIndex = 0;
         cuurentIndexText.text = "1";
         outOfTotalText.text = audioManager.LibrarySize.ToString();
+        var trackNames = audioManager.GetTracksNames();
         for (int i = 0; i < audioManager.LibrarySize; i++)
         {
             GameObject cassette = Instantiate(cassettePrefab, cassetteParent.transform);
             cassette.name = i.ToString();
             CassetteUI cassetteUI = cassette.GetComponent<CassetteUI>();
             cassetteUI.SetImage(cassetteImages[i % cassetteImages.Length]);
+            cassetteUI.SetText(trackNames[i]);
             var cassettUI = cassette.GetComponent<CassetteUI>();
             cassettes.Add(cassettUI);
         }
@@ -146,7 +149,7 @@ public class WalkmanUI : MonoBehaviour
                 return;
             }
             emotionTxt.text = data.targetedEmotionLabel;
-            instructionTxt.text = "Choose a snippet that will make " + data.charPronouns.ToLower() + " feel ";
+            instructionTxt.text = "Choose music to make " + data.charPronouns.ToLower() + " feel ";
             prompt.SetActive(true);
         }
         else
