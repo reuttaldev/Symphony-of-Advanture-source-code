@@ -19,11 +19,9 @@ public class WalkmanUI : MonoBehaviour
     [SerializeField]
     private TMP_Text emotionTxt, instructionTxt, cuurentIndexText, outOfTotalText;
     [SerializeField]
-    Image leftArrow, rightArrow;
+    GameObject lastArrow, nextArrow;
     [SerializeField]
     float hightlightArrowDuration = 0.3f;
-    [SerializeField]
-    Sprite selectorOn, selectorOff;
     [SerializeField]
     Sprite[] cassetteImages;
     int cassetteIndex = 0;
@@ -72,6 +70,7 @@ public class WalkmanUI : MonoBehaviour
     }
     public void NextWasPressed()
     {
+        StartCoroutine(HighlightButton(nextArrow));
         cassetteIndex = (cassetteIndex + 1) % cassettes.Count;
         MoveCassettesInCircle(true);
         audioManager.PlayNextTrack();
@@ -80,17 +79,17 @@ public class WalkmanUI : MonoBehaviour
     }
     public void LastWasPressed()
     {
+        StartCoroutine(HighlightButton(lastArrow));
         cassetteIndex = (cassetteIndex - 1 + cassettes.Count) % cassettes.Count;
         MoveCassettesInCircle(false);
         audioManager.PlayLastTrack();
         cuurentIndexText.text = (cassetteIndex+1).ToString();
     }
-    IEnumerator HighlightArrow(Image arrow)
+    IEnumerator HighlightButton(GameObject arrow)
     {
-        arrow.sprite = selectorOn;
+        EventSystem.current.SetSelectedGameObject(arrow);
         yield return new WaitForSeconds(hightlightArrowDuration);
-        arrow.sprite = selectorOff;
-
+        EventSystem.current.SetSelectedGameObject(null);
     }
     public void MoveCassettesInCircle(bool forward)
     {
