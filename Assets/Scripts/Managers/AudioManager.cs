@@ -29,7 +29,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     int index=0;// currently playing index
     public int LibrarySize => library.Count;
     [SerializeField]
-    float fadeOutDuration = 1;
+    float fadeOutDuration = 2;
     #region ASSET LOADING
     Dictionary<string, AsyncOperationHandle> loadHandles = new Dictionary<string, AsyncOperationHandle>();
 
