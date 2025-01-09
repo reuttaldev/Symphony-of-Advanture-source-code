@@ -25,7 +25,6 @@ public class GameSettings : ScriptableObject
 
     // we can keep a list of  the default songs, but they will not be loaded into memory until we confirm the configuration file does not specify other songs.
     // this way we avoid loading unused audio clips into memory.
-    [HideInInspector]
     public List<string> libraryKeys; // the tracks here will be loaded onto the walkman at the start of them game 
     public string[] collectibleTracks = new string[minCollectibleTracks]; // list of tracks the player will be able to pick up throughout the game
 

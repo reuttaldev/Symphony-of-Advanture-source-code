@@ -16,7 +16,6 @@ MonoBehaviour:
   minimumCollectibleTracks: 0
   libraryKeys:
   - 501300
-  - 1009600
   - 1028900
   - 1420700
   - 1163000
@@ -31,11 +30,6 @@ MonoBehaviour:
   - 307388
   - 671173
   - 1110057
-  - 1198196
-  - 31207
-  - 387430
-  - 702500
-  - 759300-game
   collectibleTracks: []
   configurationID: 0001
   configFileLoaded: 1

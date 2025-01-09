@@ -75906,6 +75906,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cassette collectable
       objectReference: {fileID: 0}
+    - target: {fileID: 239707726450575949, guid: 7bbf400f2b4c5974fa87becfc8fe8d63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1343518760049099146, guid: 7bbf400f2b4c5974fa87becfc8fe8d63, type: 3}
       propertyPath: data
       value: 
