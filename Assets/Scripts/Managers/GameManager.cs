@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
         bool wasFollowing = character.FollowingPlayer;
         if(wasFollowing) 
             character.StopFollowingPlayer();
-        while (Vector2.Distance(walkTo.position, character.transform.position) > 0.2)
+        while (Vector2.Distance(walkTo.position, character.transform.position) > 0.05)
         {
             character.Move(walkTo);
             yield return new WaitForFixedUpdate();

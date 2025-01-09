@@ -30198,7 +30198,7 @@ MonoBehaviour:
   map1: {fileID: 11400000, guid: 5341231da6f56534286de67ad8024c6a, type: 2}
   map2: {fileID: 11400000, guid: eec36df9bd9ae384ea7919dde1f58b7e, type: 2}
   map3: {fileID: 11400000, guid: d225d3740533a624e8e3ffce2217cfb2, type: 2}
-  outsideDoorPos: {fileID: 0}
+  outsideDoorPos: {fileID: 1468446694}
   castelDoor: {fileID: 1096643265}
 --- !u!1001 &1786630920934015598
 PrefabInstance:

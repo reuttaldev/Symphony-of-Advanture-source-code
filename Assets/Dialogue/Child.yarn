@@ -7,14 +7,13 @@ Child: My mommy told me not to talk to strangers.
      Astrid: But I am not a stranger, am I?
      Child: She also told me specifically not to talk to you.
      Astrid: Ugh...
-     -> Player: We don’t have to talk. We could just play. (potential mini game here)
+     -> Player: We don’t have to talk. We could just play.
      -> Player: Never mind.        
           [End]
 ->  Player: But I just want to play. 
 Child: Hm, that would be nice. See, I’m an only child, so often I just play with the wall. 
-Child: You could be the wall.  (potential mini game here)
-// Enter a ball-kicking minigame? 
-Child: Well, this is boring. 
+Child: You could be the wall. 
+Child: I'm just kidding.
 Astrid: How about some music to change things up? 
 <<OMD>> 
 ===
