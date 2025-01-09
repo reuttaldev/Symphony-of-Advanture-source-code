@@ -10422,19 +10422,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.19
       objectReference: {fileID: 0}
     - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.31
+      value: -14.1
       objectReference: {fileID: 0}
     - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.59
+      value: -3.08
       objectReference: {fileID: 0}
     - target: {fileID: 3524377742429031824, guid: e0520a909c02d7744866c39106d6a0f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -38960,7 +38960,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037469604088186325}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ef6b967158b6c468c434c3f3a9730b, type: 3}
   m_Name: 
@@ -39091,7 +39091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4624660946382667037, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_MaxWindowSize
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5238074714317962647, guid: 38e057931c138444ebcca8e807047df0, type: 3}
       propertyPath: m_ClearFlags
