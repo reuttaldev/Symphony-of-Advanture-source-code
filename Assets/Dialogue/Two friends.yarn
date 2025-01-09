@@ -10,13 +10,10 @@ Dude 1: It started off as a joke, then…it just spiraled.
 Dude 2: Yeah, then you started calling my playlist trash.
 		Dude 2: Well, all you have on it is Britney Spears bro. And you always do it, let me have a go!
 		Astrid: It seems like you two, bros, have forgotten what really matters. Let us help you remember. 
-		<<OMD>>
 	-> Player: I can help.
 		Dude 1: Oh yeah? Do you have the fighting antidote?
 		Player: Kinda. 
-		<<OMD>>
-	-> Sorry to bother you.
-
+<<OMD>>
 ===
 
 title: two_friends_after_music

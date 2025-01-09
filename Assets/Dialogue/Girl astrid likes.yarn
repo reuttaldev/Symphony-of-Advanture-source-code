@@ -15,6 +15,14 @@ Astrid: Help me out, will ya {$playerName}? Play something that will make her fe
     <<FMF>>
 ===
 
+title: girl_astrid_likes_ignore
+mandatory: T
+---
+Girl: Hey, Astrid! How have you been?
+Astrid: Good! Great! But I'm on a secret mission right now, can't talk!
+Girl: Ughh, okay. 
+<<FMS>>
+===
 
 title: girl_heard_music
 mandatory: T

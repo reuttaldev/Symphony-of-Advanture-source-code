@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Convince Astrid to talk to the girl he likes
   m_EditorClassIdentifier: 
   GlobalID: GlobalObjectId_V1-3-3064891108d10a844b5d5e3d9cd519d3-11400000-0
-  saved: 1
   missionName: Convince Astrid to talk to the girl he likes
   mainObjective: 
   startLocation: 
   state: 3
   mandatory: 1
-  prerequisiteIds: []

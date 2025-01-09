@@ -177,15 +177,19 @@ Astrid: Why…? Can you see that girl over there? I've been avoiding her since s
 -> Player: You should talk to her. 
     Astrid: What’s the endgame? I don’t have time for that kind of stuff right now. And she's not into me anyway.
     -> Player: I know how to help.
-        <<OMD>>
+        <<jump trying_omd>>
     -> Player: We'll ignore her. 
         Astrid: I guess...
-        <<FMF>>
 -> Play: Pretend you don't see her. 
     Astrid: Alright... 
-    <<FMF>>
+<<FMF>>
 ===
 
+title: trying_omd
+---
+<<OMD>>
+
+===
 title: astrid_heard_music_good
 ---
 Astrid: That feels intense... I haven't felt so much in a long time. Maybe I can give it a try, let's go chat with her. Be warned, she is extremely shy. 
