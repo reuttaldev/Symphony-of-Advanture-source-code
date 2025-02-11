@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mala Strana C.unity
     guid: 895d140cc70c65042828ad3bc18c8c33
+  - enabled: 1
+    path: Assets/Scenes/House.unity
+    guid: 39d538da7e86828499f8d3d37413ab65
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: eb22aafd18cfdbf43af9db33a24f6eba, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 66e7d28f4730063409aeda1270df977d, type: 2}

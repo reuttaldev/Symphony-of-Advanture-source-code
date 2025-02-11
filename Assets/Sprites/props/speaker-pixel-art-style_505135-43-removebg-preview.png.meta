@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      speaker-pixel-art-style_505135-43-removebg-preview_0: -6078305940253597894
+      speaker-pixel-art-style_505135-43-removebg-preview_1: 3238176384431024487
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

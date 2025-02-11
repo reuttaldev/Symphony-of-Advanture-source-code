@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 32700a336f4838c4e9d261dab0dbb5ad
+guid: d9bc6961a0315284ea3d8d1f3d3bc188
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8681189898789237498
-    second: streets tiles 2_0
+      213: -7653675946434752324
+    second: Reut's poster draft 2_page-0001_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,45 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: streets tiles 2_0
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 245
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 60d45fe28c7368780800000000000000
-      internalID: -8681189898789237498
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: streets tiles 2_1
+      name: Reut's poster draft 2_page-0001_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 247
-        width: 24
-        height: 3
+        y: 0
+        width: 4967
+        height: 7022
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 277fc6e28957b634b900376b23244929
-      internalID: -1713553073
+      spriteID: cb01ec2174ea8c590800000000000000
+      internalID: -7653675946434752324
       vertices: []
       indices: 
       edges: []
@@ -147,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c0e91c0b1a33bf845a2c20eb01899e17
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -156,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      streets tiles 2_1: -1713553073
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
