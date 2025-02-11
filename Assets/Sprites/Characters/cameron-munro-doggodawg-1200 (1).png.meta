@@ -1,0 +1,1287 @@
+fileFormatVersion: 2
+guid: 9eab94baf331f3843a6cf099b0ec0d11
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8575828399643357466
+    second: cameron-munro-doggodawg-1200 (1)_0
+  - first:
+      213: 6130331700646473040
+    second: cameron-munro-doggodawg-1200 (1)_1
+  - first:
+      213: -4030361356595157903
+    second: cameron-munro-doggodawg-1200 (1)_2
+  - first:
+      213: 4566229062939843183
+    second: cameron-munro-doggodawg-1200 (1)_3
+  - first:
+      213: -8470701417622003459
+    second: cameron-munro-doggodawg-1200 (1)_4
+  - first:
+      213: -6841852477671774257
+    second: cameron-munro-doggodawg-1200 (1)_5
+  - first:
+      213: 1754814848061685799
+    second: cameron-munro-doggodawg-1200 (1)_6
+  - first:
+      213: 130136917493892243
+    second: cameron-munro-doggodawg-1200 (1)_7
+  - first:
+      213: 6461091262978569708
+    second: cameron-munro-doggodawg-1200 (1)_8
+  - first:
+      213: 7042055096409304520
+    second: cameron-munro-doggodawg-1200 (1)_9
+  - first:
+      213: 5193486447358992083
+    second: cameron-munro-doggodawg-1200 (1)_10
+  - first:
+      213: 1958136551112212682
+    second: cameron-munro-doggodawg-1200 (1)_11
+  - first:
+      213: 8177220076426613858
+    second: cameron-munro-doggodawg-1200 (1)_12
+  - first:
+      213: -241115263924046379
+    second: cameron-munro-doggodawg-1200 (1)_13
+  - first:
+      213: 7878541299143706107
+    second: cameron-munro-doggodawg-1200 (1)_14
+  - first:
+      213: 6854520014132513751
+    second: cameron-munro-doggodawg-1200 (1)_15
+  - first:
+      213: -8069269126810592143
+    second: cameron-munro-doggodawg-1200 (1)_16
+  - first:
+      213: -8347041819887101492
+    second: cameron-munro-doggodawg-1200 (1)_17
+  - first:
+      213: 1506748548654874074
+    second: cameron-munro-doggodawg-1200 (1)_18
+  - first:
+      213: 3826906474449478650
+    second: cameron-munro-doggodawg-1200 (1)_19
+  - first:
+      213: 7125985747547404027
+    second: cameron-munro-doggodawg-1200 (1)_20
+  - first:
+      213: -8229698644703768886
+    second: cameron-munro-doggodawg-1200 (1)_21
+  - first:
+      213: 6099284933836522461
+    second: cameron-munro-doggodawg-1200 (1)_22
+  - first:
+      213: 3149512035112055471
+    second: cameron-munro-doggodawg-1200 (1)_23
+  - first:
+      213: -3580285110840493952
+    second: cameron-munro-doggodawg-1200 (1)_24
+  - first:
+      213: 3990704596938432199
+    second: cameron-munro-doggodawg-1200 (1)_25
+  - first:
+      213: -5709313364261642152
+    second: cameron-munro-doggodawg-1200 (1)_26
+  - first:
+      213: 7586307585867383350
+    second: cameron-munro-doggodawg-1200 (1)_27
+  - first:
+      213: -172197620149476308
+    second: cameron-munro-doggodawg-1200 (1)_28
+  - first:
+      213: 5366892874364164842
+    second: cameron-munro-doggodawg-1200 (1)_29
+  - first:
+      213: 8546800408893637487
+    second: cameron-munro-doggodawg-1200 (1)_30
+  - first:
+      213: -889139766753689196
+    second: cameron-munro-doggodawg-1200 (1)_31
+  - first:
+      213: -4401321729613976195
+    second: cameron-munro-doggodawg-1200 (1)_32
+  - first:
+      213: -3478967262376595914
+    second: cameron-munro-doggodawg-1200 (1)_33
+  - first:
+      213: 8795845771288209358
+    second: cameron-munro-doggodawg-1200 (1)_34
+  - first:
+      213: 1724188321351499783
+    second: cameron-munro-doggodawg-1200 (1)_35
+  - first:
+      213: 2156525255852615711
+    second: cameron-munro-doggodawg-1200 (1)_36
+  - first:
+      213: -1195102736448899703
+    second: cameron-munro-doggodawg-1200 (1)_37
+  - first:
+      213: -3422220447378035188
+    second: cameron-munro-doggodawg-1200 (1)_38
+  - first:
+      213: 4166375669885342590
+    second: cameron-munro-doggodawg-1200 (1)_39
+  - first:
+      213: -2605983198988682412
+    second: cameron-munro-doggodawg-1200 (1)_40
+  - first:
+      213: -4608548269071932564
+    second: cameron-munro-doggodawg-1200 (1)_41
+  - first:
+      213: -7149824908204374028
+    second: cameron-munro-doggodawg-1200 (1)_42
+  - first:
+      213: -3477407264657868803
+    second: cameron-munro-doggodawg-1200 (1)_43
+  - first:
+      213: -97053639847600934
+    second: cameron-munro-doggodawg-1200 (1)_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_0
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 5948
+        width: 1220
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ee0d88d1898cf880800000000000000
+      internalID: -8575828399643357466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_1
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 5948
+        width: 1224
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05d695ca330531550800000000000000
+      internalID: 6130331700646473040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_2
+      rect:
+        serializedVersion: 2
+        x: 2718
+        y: 5948
+        width: 1219
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1742faf23b74118c0800000000000000
+      internalID: -4030361356595157903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_3
+      rect:
+        serializedVersion: 2
+        x: 4027
+        y: 5948
+        width: 1193
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6a189bc3218e5f30800000000000000
+      internalID: 4566229062939843183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_4
+      rect:
+        serializedVersion: 2
+        x: 5341
+        y: 5948
+        width: 1193
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df02e3cb0f5027a80800000000000000
+      internalID: -8470701417622003459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_5
+      rect:
+        serializedVersion: 2
+        x: 6650
+        y: 5948
+        width: 1193
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc76fb6db6bdc01a0800000000000000
+      internalID: -6841852477671774257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_6
+      rect:
+        serializedVersion: 2
+        x: 7964
+        y: 5948
+        width: 1220
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7204c419eca5a5810800000000000000
+      internalID: 1754814848061685799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_7
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 4957
+        width: 1220
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 394436346d65ec100800000000000000
+      internalID: 130136917493892243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_8
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 4957
+        width: 1224
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce5b73775486aa950800000000000000
+      internalID: 6461091262978569708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_9
+      rect:
+        serializedVersion: 2
+        x: 2718
+        y: 4957
+        width: 1188
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cda43ebcc76ab160800000000000000
+      internalID: 7042055096409304520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_10
+      rect:
+        serializedVersion: 2
+        x: 4027
+        y: 4957
+        width: 1193
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3de53a85868f21840800000000000000
+      internalID: 5193486447358992083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_11
+      rect:
+        serializedVersion: 2
+        x: 5341
+        y: 4957
+        width: 1193
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac080ce81d2bc2b10800000000000000
+      internalID: 1958136551112212682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_12
+      rect:
+        serializedVersion: 2
+        x: 6650
+        y: 4957
+        width: 1225
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 264d991b5525b7170800000000000000
+      internalID: 8177220076426613858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_13
+      rect:
+        serializedVersion: 2
+        x: 7964
+        y: 4957
+        width: 1220
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d5f1e7e1f267acf0800000000000000
+      internalID: -241115263924046379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_14
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 3965
+        width: 1220
+        height: 965
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf584bbb193365d60800000000000000
+      internalID: 7878541299143706107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_15
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 3005
+        width: 1287
+        height: 1893
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7db8c24d2a5202f50800000000000000
+      internalID: 6854520014132513751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_16
+      rect:
+        serializedVersion: 2
+        x: 2619
+        y: 3005
+        width: 1287
+        height: 1893
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17c9d636b72340090800000000000000
+      internalID: -8069269126810592143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_17
+      rect:
+        serializedVersion: 2
+        x: 3933
+        y: 3005
+        width: 1287
+        height: 1893
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc99c4870b9592c80800000000000000
+      internalID: -8347041819887101492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_18
+      rect:
+        serializedVersion: 2
+        x: 5628
+        y: 3997
+        width: 583
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: addb86862db09e410800000000000000
+      internalID: 1506748548654874074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_19
+      rect:
+        serializedVersion: 2
+        x: 6556
+        y: 3997
+        width: 1193
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af32436a927eb1530800000000000000
+      internalID: 3826906474449478650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_20
+      rect:
+        serializedVersion: 2
+        x: 7870
+        y: 3997
+        width: 1188
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf63f05484694e260800000000000000
+      internalID: 7125985747547404027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3005
+        width: 1188
+        height: 934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ace0be97fac3acd80800000000000000
+      internalID: -8229698644703768886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_22
+      rect:
+        serializedVersion: 2
+        x: 5247
+        y: 3005
+        width: 1188
+        height: 934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd3c739f45305a450800000000000000
+      internalID: 6099284933836522461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_23
+      rect:
+        serializedVersion: 2
+        x: 6556
+        y: 3005
+        width: 1193
+        height: 934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2fba4528055bb20800000000000000
+      internalID: 3149512035112055471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_24
+      rect:
+        serializedVersion: 2
+        x: 7870
+        y: 3005
+        width: 1188
+        height: 934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0887bbd29a5405ec0800000000000000
+      internalID: -3580285110840493952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2014
+        width: 1188
+        height: 965
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ce9800ffa4d16730800000000000000
+      internalID: 3990704596938432199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_26
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 2014
+        width: 1189
+        height: 965
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8506bc39eb174c0b0800000000000000
+      internalID: -5709313364261642152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_27
+      rect:
+        serializedVersion: 2
+        x: 2619
+        y: 2014
+        width: 1193
+        height: 965
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6320a7c2e8af74960800000000000000
+      internalID: 7586307585867383350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_28
+      rect:
+        serializedVersion: 2
+        x: 3933
+        y: 2014
+        width: 1188
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c24a2d34d2b3c9df0800000000000000
+      internalID: -172197620149476308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_29
+      rect:
+        serializedVersion: 2
+        x: 4924
+        y: 2014
+        width: 233
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aea1d0c52a80b7a40800000000000000
+      internalID: 5366892874364164842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_30
+      rect:
+        serializedVersion: 2
+        x: 5247
+        y: 2014
+        width: 1188
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f63c44260b55c9670800000000000000
+      internalID: 8546800408893637487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_31
+      rect:
+        serializedVersion: 2
+        x: 6238
+        y: 2014
+        width: 228
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49109fec71429a3f0800000000000000
+      internalID: -889139766753689196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_32
+      rect:
+        serializedVersion: 2
+        x: 6556
+        y: 2014
+        width: 1193
+        height: 933
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7da624c43d5be2c0800000000000000
+      internalID: -4401321729613976195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_33
+      rect:
+        serializedVersion: 2
+        x: 7547
+        y: 2014
+        width: 233
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63e64dc05b938bfc0800000000000000
+      internalID: -3478967262376595914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_34
+      rect:
+        serializedVersion: 2
+        x: 7870
+        y: 2014
+        width: 1188
+        height: 965
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec761c8602f111a70800000000000000
+      internalID: 8795845771288209358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_35
+      rect:
+        serializedVersion: 2
+        x: 8861
+        y: 2014
+        width: 229
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7008804a42c8de710800000000000000
+      internalID: 1724188321351499783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1018
+        width: 1188
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f18e0406b448ded10800000000000000
+      internalID: 2156525255852615711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_37
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 1018
+        width: 1189
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 985bdd3a4642a6fe0800000000000000
+      internalID: -1195102736448899703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_38
+      rect:
+        serializedVersion: 2
+        x: 2619
+        y: 1018
+        width: 1193
+        height: 938
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0e24f282a4d180d0800000000000000
+      internalID: -3422220447378035188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_39
+      rect:
+        serializedVersion: 2
+        x: 3933
+        y: 1018
+        width: 1188
+        height: 938
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e73985ce890f1d930800000000000000
+      internalID: 4166375669885342590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_40
+      rect:
+        serializedVersion: 2
+        x: 5247
+        y: 1018
+        width: 1188
+        height: 938
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45bb4ad6610b5dbd0800000000000000
+      internalID: -2605983198988682412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_41
+      rect:
+        serializedVersion: 2
+        x: 6556
+        y: 1018
+        width: 1193
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c63e9b334c52b00c0800000000000000
+      internalID: -4608548269071932564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_42
+      rect:
+        serializedVersion: 2
+        x: 7870
+        y: 1018
+        width: 1188
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f70d3c9028b6cc90800000000000000
+      internalID: -7149824908204374028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 27
+        width: 1188
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df774b25484cdbfc0800000000000000
+      internalID: -3477407264657868803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameron-munro-doggodawg-1200 (1)_44
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 0
+        width: 7875
+        height: 996
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adc99b09a3237aef0800000000000000
+      internalID: -97053639847600934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9382a07be71031b46b7ab81c25e0029f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cameron-munro-doggodawg-1200 (1)_0: -8575828399643357466
+      cameron-munro-doggodawg-1200 (1)_1: 6130331700646473040
+      cameron-munro-doggodawg-1200 (1)_10: 5193486447358992083
+      cameron-munro-doggodawg-1200 (1)_11: 1958136551112212682
+      cameron-munro-doggodawg-1200 (1)_12: 8177220076426613858
+      cameron-munro-doggodawg-1200 (1)_13: -241115263924046379
+      cameron-munro-doggodawg-1200 (1)_14: 7878541299143706107
+      cameron-munro-doggodawg-1200 (1)_15: 6854520014132513751
+      cameron-munro-doggodawg-1200 (1)_16: -8069269126810592143
+      cameron-munro-doggodawg-1200 (1)_17: -8347041819887101492
+      cameron-munro-doggodawg-1200 (1)_18: 1506748548654874074
+      cameron-munro-doggodawg-1200 (1)_19: 3826906474449478650
+      cameron-munro-doggodawg-1200 (1)_2: -4030361356595157903
+      cameron-munro-doggodawg-1200 (1)_20: 7125985747547404027
+      cameron-munro-doggodawg-1200 (1)_21: -8229698644703768886
+      cameron-munro-doggodawg-1200 (1)_22: 6099284933836522461
+      cameron-munro-doggodawg-1200 (1)_23: 3149512035112055471
+      cameron-munro-doggodawg-1200 (1)_24: -3580285110840493952
+      cameron-munro-doggodawg-1200 (1)_25: 3990704596938432199
+      cameron-munro-doggodawg-1200 (1)_26: -5709313364261642152
+      cameron-munro-doggodawg-1200 (1)_27: 7586307585867383350
+      cameron-munro-doggodawg-1200 (1)_28: -172197620149476308
+      cameron-munro-doggodawg-1200 (1)_29: 5366892874364164842
+      cameron-munro-doggodawg-1200 (1)_3: 4566229062939843183
+      cameron-munro-doggodawg-1200 (1)_30: 8546800408893637487
+      cameron-munro-doggodawg-1200 (1)_31: -889139766753689196
+      cameron-munro-doggodawg-1200 (1)_32: -4401321729613976195
+      cameron-munro-doggodawg-1200 (1)_33: -3478967262376595914
+      cameron-munro-doggodawg-1200 (1)_34: 8795845771288209358
+      cameron-munro-doggodawg-1200 (1)_35: 1724188321351499783
+      cameron-munro-doggodawg-1200 (1)_36: 2156525255852615711
+      cameron-munro-doggodawg-1200 (1)_37: -1195102736448899703
+      cameron-munro-doggodawg-1200 (1)_38: -3422220447378035188
+      cameron-munro-doggodawg-1200 (1)_39: 4166375669885342590
+      cameron-munro-doggodawg-1200 (1)_4: -8470701417622003459
+      cameron-munro-doggodawg-1200 (1)_40: -2605983198988682412
+      cameron-munro-doggodawg-1200 (1)_41: -4608548269071932564
+      cameron-munro-doggodawg-1200 (1)_42: -7149824908204374028
+      cameron-munro-doggodawg-1200 (1)_43: -3477407264657868803
+      cameron-munro-doggodawg-1200 (1)_44: -97053639847600934
+      cameron-munro-doggodawg-1200 (1)_5: -6841852477671774257
+      cameron-munro-doggodawg-1200 (1)_6: 1754814848061685799
+      cameron-munro-doggodawg-1200 (1)_7: 130136917493892243
+      cameron-munro-doggodawg-1200 (1)_8: 6461091262978569708
+      cameron-munro-doggodawg-1200 (1)_9: 7042055096409304520
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
