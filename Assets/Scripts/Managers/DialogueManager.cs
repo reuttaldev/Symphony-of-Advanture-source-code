@@ -71,6 +71,9 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         dialogueRunner.AddCommandHandler("STOP", delegate { dialogueRunner.Stop(); });
         dialogueRunner.AddCommandHandler("Normal", delegate { SetDialogueView(false); });
         dialogueRunner.AddCommandHandler("Bubble", delegate { SetDialogueView(true); });
+        dialogueRunner.AddCommandHandler("EventA", delegate { transition.eventA.Invoke(); });
+        dialogueRunner.AddCommandHandler("EventB", delegate { transition.eventB.Invoke(); });
+        dialogueRunner.AddCommandHandler("EventC", delegate { transition.eventC.Invoke(); });
         dialogueRunner.AddCommandHandler("Transition", delegate { transition.TransitionScene(); });
     }
     public void SetDialogueView(bool useAlternative)

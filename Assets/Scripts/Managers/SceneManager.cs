@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to be shown during scene changes, therefore it cannot be a scene object and must be a don't destroy on load singleton
 {
     bool loadingScene = false, fadingIn = false;
-    float animTimeInSec = 1;
+    [SerializeField]
+    float animTimeInSec = 1,showTextTime=1;
     [SerializeField]
     SceneTransitionPanel sceneTransitionPanel;
+    [SerializeField]
+    TMP_Text dateText;
     private Animator animator;
     string previousSceneName;
     public event Action<string> OnSceneLoaded;
@@ -29,6 +33,25 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         DontDestroyOnLoad(this);
         animator = sceneTransitionPanel.GetComponent<Animator>();
     }
+    public void LoadScene(string sceneToLoadName,string date)
+    {
+        if (string.IsNullOrEmpty(sceneToLoadName))
+        {
+            Debug.LogError("scene to load  name is empty", this);
+            return;
+        }
+        if (loadingScene)
+        {
+            Debug.LogError("Scene is already loading");
+            return;
+        }
+        if (fadingIn) // if asked to switch scene before the fade in animation had a chance to finish
+            StopCoroutine(FadeIn());
+
+        previousSceneName = GetActiveScene();
+        StartCoroutine(LoadSceneWithAnimationAndDate(sceneToLoadName,date));
+    }
+
     public void LoadScene(string sceneToLoadName)
     {
         if (string.IsNullOrEmpty(sceneToLoadName))
@@ -91,6 +114,15 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     private IEnumerator LoadSceneWithAnimation(string sceneName)
     {
         yield return StartCoroutine(LoadAndFadeOut(sceneName));
+        yield return StartCoroutine(FadeIn());
+    }
+    private IEnumerator LoadSceneWithAnimationAndDate(string sceneName,string date)
+    {
+        yield return StartCoroutine(LoadAndFadeOut(sceneName));
+        dateText.gameObject.SetActive(true);
+        dateText.text = date;
+        yield return new WaitForSeconds(showTextTime);
+        dateText.gameObject.SetActive(false);
         yield return StartCoroutine(FadeIn());
     }
 

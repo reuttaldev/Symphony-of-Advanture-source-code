@@ -140,7 +140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 861, y: 30.674973}
+  m_AnchoredPosition: {x: 843, y: 30.674973}
   m_SizeDelta: {x: 0, y: 100.99999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6151524260602454785
@@ -1371,7 +1371,7 @@ MonoBehaviour:
   onPauseEnded:
     m_PersistentCalls:
       m_Calls: []
-  typewriterEffectSpeed: 50
+  typewriterEffectSpeed: 40
   continueButton: {fileID: 0}
   holdTime: 1
   autoAdvance: 0
@@ -1764,7 +1764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2.1905, y: 6.138}
+  m_AnchoredPosition: {x: -2.74, y: 6.138}
   m_SizeDelta: {x: 314.6027, y: 162.4786}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &6464427487798324848

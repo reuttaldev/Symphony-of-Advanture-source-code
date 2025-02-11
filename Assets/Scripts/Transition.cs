@@ -8,10 +8,11 @@ public class Transition : MonoBehaviour
     public string sceneName;
     public string date;
     private DialogueManager dialogueManager;
-    public UnityEvent betweenDefaultToBubble, betweenBubbleToDefault;
+    public UnityEvent betweenDefaultToBubble, betweenBubbleToDefault,eventA, eventB,eventC;
 
     public void Start()
     {
+        if(ServiceLocator.Instance != null)    
         dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
 
         if (atStart)
@@ -22,6 +23,6 @@ public class Transition : MonoBehaviour
     }
     public void TransitionScene()
     {
-        SceneManager.Instance.LoadScene(sceneName);
+        SceneManager.Instance.LoadScene(sceneName,date);
     }
 }

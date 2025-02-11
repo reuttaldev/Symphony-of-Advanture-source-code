@@ -1,30 +1,41 @@
 title: intro
 date: 16.03.2023
-mandatory: T
 ---
-Reut: It is chilly, here, at the entrance to my apartment's building. I hope the delivery guy will pick up my broken laptop for the repair lab quickly!
+<<Bubble>>
+Reut: It is chilly here, at the entrance to my apartment building. I hope the delivery guy will pick up my broken laptop for the repair lab quickly!
+<<EventA>>
+===
+
+title: delivery
+---
+<<Normal>>
 Delivery Guy: Dobrý den, nemohu to vyzvednout. Notebook je potřeba zabalit do speciálního obalu.
 Reut: Sorry, I don't speak Czech -- let me open Google Translate. 
 Delivery Guy: ŽÁDNÝ! TO NEMŮŽU VYZVEDNOUT! NEZABALIL JSTE TO SPRÁVNĚ
 Reut: Why are you screaming at me? I don't understand what you're saying!
+<<EventC>>
+=== 
 
+title: delivery2
+---
 Passer-by: Hey, is everything okay? Let me help. He says you need to pack it differently. He will come back later.
+<<EventB>>
 Reut: Oh... sorry, I didn't know. Thanks for the help. 
-Reut: Wait, Professor Pacovský, is that you? What are the chances? 
+Reut: Wait, Professor Pacovský, is that you?
 Prof. Pacovský: Yes, it is me. What a surprise! How are you?
-Reut: Forgetting the embarrassment of a professor seeing me in my pajamas, I'm okay. I'm quite stressed. I've been looking for an advisor for my individual software. I've explored many options, but none seem suitable. There's only one month until the selection deadline. 
+Reut: Forgetting the embarrassment of a professor seeing me in my pajamas, I'm okay. Somewhat stressed. I've been looking for an advisor for my individual software. I've explored many options, but none seem suitable. There's only one month until the selection deadline. 
 Prof. Pacovský: What is the project about?
-Reut: I'm not entirely sure yet. I love music and video games, so I am thinking about something related to those.
-Prof. Pacovský: Oh, well, we can work together on the ISP, but I won't be available as an advisor for the bachelor's thesis. Since you mentioned the project is about music, and you want it to continue for a thesis, Mgr. Jan Hajič, Ph.D. (bold) comes to mind. 
-Reut: Oh, I haven't seen him during my search. I will check the option out. Thank you for the suggestion, and the free translation services!
-Prof. Pacovský: No worries. I will see you in C practicals next 
+Reut: I'm not entirely sure yet. I would like to do something related to music and video games, I love both of those.
+Prof. Pacovský: Oh, well, we can work together on the ISP, but I won't be available as an advisor for the bachelor's thesis. Since you mentioned the project is about music, MgA. <b>Jan Hajič</b> comes to mind. 
+Reut: Oh, I haven't heard about him before, I'll explore this option. Thank you for the suggestion, and the free translation services!
+Prof. Pacovský: No worries. I will see you in C \# practicals. 
 Reut: Bye until then. 
+<<Transition>>
 === 
 
 
 title: first_meeting
 date: 10.10.2023
-mandatory: T
 ---
 Reut: Hello, it is nice to meet you here, on the 4th floor of Malá Strana faculty. 
 Jan: You too! So we've been meeting on Zoom over the summer, and you wrote the game design document. 
@@ -32,6 +43,7 @@ Reut: Yes, thanks again for taking on the project, and improving on my initial i
 Reut: Well, here is the game. There is a capsule, and it can move... and you can talk to the other capsule! And when you enter this box, it will send data to Google Sheets. This feature was super easy to implement- it didn't take long at all!
 Jan: That's great! While you work on adding characters, we need to do some research to make sure the data points are significant. They should follow an emotional model (or three). I'll share some literature. 
 Reut: Emotion models? What are those?
+<<Transition>>
 === 
 
 
@@ -39,24 +51,28 @@ title: no_progress_meeting
 date: 11.04.2024
 mandatory: T
 ---
-Reut: I didn't really make any progress this week... I had [blank] going on. I am sorry.
+Reut: I didn't make any progress this week... I had \[blank\] going on. I am sorry.
 Jan: It is okay -- sometimes that happens. Let's think about the next steps. 
-Reut: I have a characters in the game that I am struggling to come up with a story for. In what situation would we want to make someone more upset then they were to begin with?
-Jan: I know! Make it so their parents are forcing them play a video game, for some data collection purposes... and they need to confront them. That would be funny!
+Reut: I have a character in the game that I am struggling to come up with a story for. In what situation would we want to make someone more upset than they were, to begin with?
+Jan: I know! Make it so their parents are forcing them to play a video game, for some data collection purposes... and they need to confront them. That would be funny!
 Reut: That's hilarious, I will do that. 
 Jan: By the way, I am organizing a workshop where you can showcase your work, if you are interested. 
 Reut: Me, presenting? In front... people? I'm not sure if I can do that.
 Jan: I think you can! Practice presenting to your pillow. Or a watermelon.
 Reut: Okay, I'll give it a try. Talk to you next week. 
 <<Bubble>>
-Reut: I am so thankful he is understanding and patient. It really makes this process so much more comfortable. 
+Reut: I am so thankful he is understanding and patient. It makes this process so much more comfortable. 
 Reut: He also had great suggestions! I'm not sure about the watermelon though.  
+<<Transition>>
 ===
 
 title: practicing_to_teddy
 data: 17.04.2024
 ---
-Reut: Hello, my name is Reut Tal and I am developing a video game called Symphony of Adventure. 
+<<Bubble>>
+Reut: Okay Teddy, I need to practice my presentation. Be nice. 
+Reut: Hello, my name is Reut Tal and I am developing a video game called Symphony of Adventure...
+<<Transition>>
 ===
 
 title: scared_meeting
@@ -67,7 +83,7 @@ Jan: So how is it going?
 Reut: I'm really nervous about starting to write. We've been building this concept for so long and it feels intimidating. 
 Jan: I understand. Do it first thing in the morning and last thing in the day before you go to sleep. At first, it will feel like a wall, but it will get better. The more you do it, you get in better shape, and the less scary it becomes. 
 Reut: I'm also really nervous about showing the game to anyone. I don't know why I am making such a big deal out of this. 
-Jan: It is okay. It doesn't have to be perfect. What is important that you get people to see if and receive feedback.
+Jan: It is okay. It doesn't have to be perfect. What is important is that you get people to see if and receive feedback.
 Reut: You are right about both, thank you. I will keep trying.  
 <<Bubble>>
 Reut: Okay, let's do this. 
@@ -78,7 +94,7 @@ Liat: Of course, send it over.
 Liat: You did this? Wow! Sure, there are some problems, but I like the concept. Will you let me know when the next version is ready?
 Reut: Really? Sure! I'm sending over a form. Thank you for the feedback. 
 <<Bubble>>
-Having someone else be interested in the project is so motivating! And the feedback is helpful, the positive and negative. I'm glad I did this.  
+Having someone else be interested in the project is so motivating! And the feedback is helpful, both positive and negative. I'm glad I did this.  
 <<Transition>>
 ===
 
@@ -86,10 +102,16 @@ Having someone else be interested in the project is so motivating! And the feedb
 
 title: submission
 date: 09.01.2025
-time: 23:00
-mandatory: T
+time: 23:59
 ---
-The night of submitting, meantion the word you said wrong 
+<<Bubble>>
+Reut: And... it is submitted!
+<<Normal>>
+Reut: Jan, thank you! Your help was detrimental to my success!
+<<Bubble>>
+<<EventA>>
+Jan: Huh? She must have meant something else.
+<<Transition>>
 ===
 
 
@@ -97,7 +119,11 @@ title: defense
 date: 10.02.2025
 mandatory: T
 ---
-// Thank heavens I already practice presenting twice before due to Jan's events. Otherwise I would be a hundred times more stressed out right now. 
-Jan: Congratuation on getting your bachelor!
-Reut: Thank you! For everything! 
+<<Bubble>>
+Reut: Thank heavens I already practiced presenting twice before in PMCG. Otherwise, I would've been a hundred times more nervous. 
+<<Normal>>
+Jan: Congratulations on getting your bachelor!
+Reut: Thank you! You were the best advisor I could have asked for. 
+<<Transition>>
+<<ExitGame>>
 ===

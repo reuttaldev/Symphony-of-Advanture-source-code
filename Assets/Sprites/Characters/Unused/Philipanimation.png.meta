@@ -82,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -509,7 +509,23 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Philipanimation_0: 2974629941713002417
+      Philipanimation_1: -437340745801330418
+      Philipanimation_10: -3250137850442473555
+      Philipanimation_11: 3741476516747869033
+      Philipanimation_12: 5158343247351630249
+      Philipanimation_13: -7801416480752342290
+      Philipanimation_14: -3771091048123432746
+      Philipanimation_15: -7424762840795746792
+      Philipanimation_2: 6281555279836232267
+      Philipanimation_3: 1660999103346686943
+      Philipanimation_4: 3254067340979250711
+      Philipanimation_5: -8823839640371451765
+      Philipanimation_6: -5308130129259973616
+      Philipanimation_7: 3289679212980386170
+      Philipanimation_8: 5454631604083190817
+      Philipanimation_9: -8563183546118583985
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

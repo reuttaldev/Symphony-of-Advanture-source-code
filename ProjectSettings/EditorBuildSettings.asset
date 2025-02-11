@@ -9,26 +9,23 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/StartMenu.unity
     guid: c1ee73e66febf9241bc11431414bcb07
   - enabled: 1
-    path: Assets/Scenes/Mala Strana.unity
+    path: Assets/Scenes/Mala Strana A.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/OldCity.unity
-    guid: 7efd787d9e0fe644eba5ad6d03e2cf22
+    path: Assets/Scenes/Livingroom Prague.unity
+    guid: 2644b824e28bccf4f98cbfb81bf1ac9d
   - enabled: 1
-    path: Assets/Scenes/Village.unity
-    guid: d1ea2946694201f4e92f3f65be517d39
+    path: Assets/Scenes/Bedroom Isreal.unity
+    guid: 3ca7285608c2a5c428c5c81b78fb91a3
   - enabled: 1
-    path: Assets/Scenes/Rooms/SonaShop.unity
-    guid: a0b1755cd9d4fb844af4719d2438f838
+    path: Assets/Scenes/Mala Strana B.unity
+    guid: 38bca90849ee70e45bc57a1584449bc6
   - enabled: 1
-    path: Assets/Scenes/Rooms/Office.unity
-    guid: 082e2338aca666b499edd5268fbb5242
+    path: Assets/Scenes/Street.unity
+    guid: 7c8a2f036790be247ba62c4a9bd119e7
   - enabled: 1
-    path: Assets/Scenes/Rooms/AstridHouse.unity
-    guid: 0ed10aab8977075479aac3ca7113464b
-  - enabled: 1
-    path: Assets/Scenes/Rooms/EdmundRoom.unity
-    guid: 9bc3efe1bcad22241952df16f410524d
+    path: Assets/Scenes/Mala Strana C.unity
+    guid: 895d140cc70c65042828ad3bc18c8c33
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: eb22aafd18cfdbf43af9db33a24f6eba, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 66e7d28f4730063409aeda1270df977d, type: 2}

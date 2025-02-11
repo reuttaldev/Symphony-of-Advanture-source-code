@@ -21,3 +21,19 @@ MonoBehaviour:
     portraits:
     - emotion: 0
       sprite: {fileID: -4358385425028275941, guid: ecb92ddce30098049bdfef8322ae0e1a, type: 3}
+  - charName: Liat
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -531091553, guid: 8785b7b9927e43747b146124649408b8, type: 3}
+  - charName: Delivery Guy
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 1421388657, guid: 88a6e35b2afdf6e43a0bc30e1ef6e18f, type: 3}
+  - charName: Passer-by
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -702489626523931144, guid: 40c5e14846c888148881f5ba094ec90d, type: 3}
+  - charName: "Prof. Pacovsk\xFD"
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -702489626523931144, guid: 40c5e14846c888148881f5ba094ec90d, type: 3}
