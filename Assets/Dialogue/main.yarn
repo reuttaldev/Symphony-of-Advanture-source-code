@@ -1,5 +1,6 @@
 title: intro
-dateL 16.03.2023
+date: 16.03.2023
+mandatory: T
 ---
 Reut: It is chilly, here, at the entrance to my apartment's building. I hope the delivery guy will pick up my broken laptop for the repair lab quickly!
 Delivery Guy: Dobrý den, nemohu to vyzvednout. Notebook je potřeba zabalit do speciálního obalu.
@@ -16,13 +17,14 @@ Prof. Pacovský: What is the project about?
 Reut: I'm not entirely sure yet. I love music and video games, so I am thinking about something related to those.
 Prof. Pacovský: Oh, well, we can work together on the ISP, but I won't be available as an advisor for the bachelor's thesis. Since you mentioned the project is about music, and you want it to continue for a thesis, Mgr. Jan Hajič, Ph.D. (bold) comes to mind. 
 Reut: Oh, I haven't seen him during my search. I will check the option out. Thank you for the suggestion, and the free translation services!
-Prof. Pacovský: No worries. I will see you in C# practicals next 
+Prof. Pacovský: No worries. I will see you in C practicals next 
 Reut: Bye until then. 
 === 
 
 
 title: first_meeting
 date: 10.10.2023
+mandatory: T
 ---
 Reut: Hello, it is nice to meet you here, on the 4th floor of Malá Strana faculty. 
 Jan: You too! So we've been meeting on Zoom over the summer, and you wrote the game design document. 
@@ -35,6 +37,7 @@ Reut: Emotion models? What are those?
 
 title: no_progress_meeting
 date: 11.04.2024
+mandatory: T
 ---
 Reut: I didn't really make any progress this week... I had [blank] going on. I am sorry.
 Jan: It is okay -- sometimes that happens. Let's think about the next steps. 
@@ -44,18 +47,21 @@ Reut: That's hilarious, I will do that.
 Jan: By the way, I am organizing a workshop where you can showcase your work, if you are interested. 
 Reut: Me, presenting? In front... people? I'm not sure if I can do that.
 Jan: I think you can! Practice presenting to your pillow. Or a watermelon.
-Reut: Okay, I'll give it a try. 
-//I am so thankful he is understanding and patient. It really makes this process so much more comfortable. 
-//He also had great suggestions! I'm not sure about the watermelon though.  
+Reut: Okay, I'll give it a try. Talk to you next week. 
+<<Bubble>>
+Reut: I am so thankful he is understanding and patient. It really makes this process so much more comfortable. 
+Reut: He also had great suggestions! I'm not sure about the watermelon though.  
 ===
 
 title: practicing_to_teddy
 data: 17.04.2024
+---
 Reut: Hello, my name is Reut Tal and I am developing a video game called Symphony of Adventure. 
 ===
 
 title: scared_meeting
 date:
+mandatory: T
 ---
 Jan: So how is it going?  
 Reut: I'm really nervous about starting to write. We've been building this concept for so long and it feels intimidating. 
@@ -63,27 +69,33 @@ Jan: I understand. Do it first thing in the morning and last thing in the day be
 Reut: I'm also really nervous about showing the game to anyone. I don't know why I am making such a big deal out of this. 
 Jan: It is okay. It doesn't have to be perfect. What is important that you get people to see if and receive feedback.
 Reut: You are right about both, thank you. I will keep trying.  
+<<Bubble>>
+Reut: Okay, let's do this. 
+<<Normal>>
+Reut: Hey Liat, could you test my game?
+Liat: Of course, send it over.
+-: ...
+Liat: You did this? Wow! Sure, there are some problems, but I like the concept. Will you let me know when the next version is ready?
+Reut: Really? Sure! I'm sending over a form. Thank you for the feedback. 
+<<Bubble>>
+Having someone else be interested in the project is so motivating! And the feedback is helpful, the positive and negative. I'm glad I did this.  
+<<Transition>>
 ===
-
-Okay, so I will let you play some game and then answer a quick quesitonare. 
-Tester: You did this? Wow! Sure, there are some problems, but I like the concept. I think it's really cool!
-Tester: Will you send me over the next version when it is ready?
-Reut: Really...? Thanks for saying that. I sure will, I appriciate your feedback!
-thought bubble: Having someome else be interested in the project is so motivating, and their feedback, the good and especi' the bad is helpful! I'm glad I did this.  
-
 
 
 
 title: submission
 date: 09.01.2025
 time: 23:00
+mandatory: T
 ---
+The night of submitting, meantion the word you said wrong 
 ===
 
-The night of submitting, meantion the word you said wrong 
 
 title: defense
 date: 10.02.2025
+mandatory: T
 ---
 // Thank heavens I already practice presenting twice before due to Jan's events. Otherwise I would be a hundred times more stressed out right now. 
 Jan: Congratuation on getting your bachelor!

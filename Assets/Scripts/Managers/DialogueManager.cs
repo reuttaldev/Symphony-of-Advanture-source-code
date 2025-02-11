@@ -7,6 +7,7 @@ using TMPro;
 using Yarn;
 using System.Collections;
 using System;
+using System.Net.Mail;
 
 // In this script I will connect to yarn all of the commands it needs to have access to
 public class DialogueManager : MonoBehaviour, IRegistrableService
@@ -32,17 +33,19 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     float cannotSkipTextFadeTime = 0.2f;
     bool skippingDialouge= false, noSkipTextShowing = false, addedCommand = false;
     string lastNodeName = "init";
+    private bool useAlternativeView = false;
+    public GameObject defaultView, alternativeView;
+    public Transition transition;
     void Awake()
     {
         ServiceLocator.Instance.Register<DialogueManager>(this);
+        transition = FindAnyObjectByType<Transition>();
     }
     void OnEnable()
     {
         dialogueRunner.onDialogueComplete.AddListener(StopDialogue);
         continueButton.action.performed += ContinueDialouge;
         interuptButton.action.performed += InterruptDialouge;
-        skipButton.action.performed += SkipDialogue;
-        skipForTesting.action.performed += SkipDialogueForTesting;
 
     }
     void OnDisable()
@@ -50,10 +53,9 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         dialogueRunner.onDialogueComplete.RemoveListener(StopDialogue);
         continueButton.action.performed -= ContinueDialouge;
         interuptButton.action.performed -= InterruptDialouge;
-        skipButton.action.performed -= SkipDialogue;
-        skipForTesting.action.performed -= SkipDialogueForTesting;
 
     }
+
     private void Start()
     {
         yarnProject = dialogueRunner.yarnProject;
@@ -67,8 +69,33 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         // finish mission failed
         dialogueRunner.AddCommandHandler("FMF", delegate { FinishDialogueMission(false); });
         dialogueRunner.AddCommandHandler("STOP", delegate { dialogueRunner.Stop(); });
+        dialogueRunner.AddCommandHandler("Normal", delegate { SetDialogueView(false); });
+        dialogueRunner.AddCommandHandler("Bubble", delegate { SetDialogueView(true); });
+        dialogueRunner.AddCommandHandler("Transition", delegate { transition.TransitionScene(); });
+    }
+    public void SetDialogueView(bool useAlternative)
+    {
+        useAlternativeView = useAlternative;
+        UpdateDialogueView();
     }
 
+    private void UpdateDialogueView()
+    {
+        if (useAlternativeView)
+        {
+            Debug.Log(" to bubble");
+            transition.betweenDefaultToBubble.Invoke();
+            defaultView.gameObject.SetActive(false);
+            alternativeView.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.Log(" to normal");
+            transition.betweenBubbleToDefault.Invoke();
+            defaultView.gameObject.SetActive(true);
+            alternativeView.gameObject.SetActive(false);
+        }
+    }
     #region MISSION CONTROLS
     public void SetMissionToComplete(MissionData data)
     {
@@ -138,7 +165,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             return;
         }
         dialogueRunner.StartDialogue(nodeToStart);
-        uiManager.OpenDialogueUI();
+        //uiManager.OpenDialogueUI();
         lastNodeName = nodeToStart;
     }
     private void SkipDialogue(InputAction.CallbackContext context)
