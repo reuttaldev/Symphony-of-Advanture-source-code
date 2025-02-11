@@ -1,0 +1,1417 @@
+fileFormatVersion: 2
+guid: b7d9b48308b3fc94bb973702b94708c3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5813866448205294223
+    second: isometric living room furniture png_0
+  - first:
+      213: 7950316650245108045
+    second: isometric living room furniture png_1
+  - first:
+      213: -933246967321252741
+    second: isometric living room furniture png_2
+  - first:
+      213: 3633793596454325828
+    second: isometric living room furniture png_3
+  - first:
+      213: 1858626161073751409
+    second: isometric living room furniture png_4
+  - first:
+      213: 7274931407739552661
+    second: isometric living room furniture png_5
+  - first:
+      213: 3703527430739114379
+    second: isometric living room furniture png_6
+  - first:
+      213: 2782217235701931710
+    second: isometric living room furniture png_7
+  - first:
+      213: -4853495029455724109
+    second: isometric living room furniture png_8
+  - first:
+      213: -3469781426202358028
+    second: isometric living room furniture png_9
+  - first:
+      213: -7963449674543589021
+    second: isometric living room furniture png_10
+  - first:
+      213: -392401330773382461
+    second: isometric living room furniture png_11
+  - first:
+      213: 2025586220773852809
+    second: isometric living room furniture png_12
+  - first:
+      213: -8842109521047772155
+    second: isometric living room furniture png_13
+  - first:
+      213: 2570130860500523017
+    second: isometric living room furniture png_14
+  - first:
+      213: -3931089325880031706
+    second: isometric living room furniture png_15
+  - first:
+      213: -5462204386151355107
+    second: isometric living room furniture png_16
+  - first:
+      213: 356326721501962610
+    second: isometric living room furniture png_17
+  - first:
+      213: -3820839063925525715
+    second: isometric living room furniture png_18
+  - first:
+      213: 314235835249596463
+    second: isometric living room furniture png_19
+  - first:
+      213: -8097030926406502389
+    second: isometric living room furniture png_20
+  - first:
+      213: -4005555392564451377
+    second: isometric living room furniture png_21
+  - first:
+      213: 2186025843891492765
+    second: isometric living room furniture png_22
+  - first:
+      213: -1289159740501489239
+    second: isometric living room furniture png_23
+  - first:
+      213: 2677998661737965796
+    second: isometric living room furniture png_24
+  - first:
+      213: -6609886076713170944
+    second: isometric living room furniture png_25
+  - first:
+      213: -6730904394864883104
+    second: isometric living room furniture png_26
+  - first:
+      213: -8623042952404436167
+    second: isometric living room furniture png_27
+  - first:
+      213: 7503117803448805154
+    second: isometric living room furniture png_28
+  - first:
+      213: -6105473716323976817
+    second: isometric living room furniture png_29
+  - first:
+      213: 5391543900081537223
+    second: isometric living room furniture png_30
+  - first:
+      213: -4550071269497509272
+    second: isometric living room furniture png_31
+  - first:
+      213: 9095355531681847067
+    second: isometric living room furniture png_32
+  - first:
+      213: -976757900389908887
+    second: isometric living room furniture png_33
+  - first:
+      213: 7997363102901541994
+    second: isometric living room furniture png_34
+  - first:
+      213: 5734981392117490256
+    second: isometric living room furniture png_35
+  - first:
+      213: 721239364021934076
+    second: isometric living room furniture png_36
+  - first:
+      213: 7764385595936885935
+    second: isometric living room furniture png_37
+  - first:
+      213: 5385704713391417775
+    second: isometric living room furniture png_38
+  - first:
+      213: 3192062094721435157
+    second: isometric living room furniture png_39
+  - first:
+      213: 8213347908494646130
+    second: isometric living room furniture png_40
+  - first:
+      213: -7706625299555054523
+    second: isometric living room furniture png_41
+  - first:
+      213: 3699626371029591191
+    second: isometric living room furniture png_42
+  - first:
+      213: 4774534004160419769
+    second: isometric living room furniture png_43
+  - first:
+      213: 7652021801692540443
+    second: isometric living room furniture png_44
+  - first:
+      213: -3588713974380434337
+    second: isometric living room furniture png_45
+  - first:
+      213: -3018189224785072406
+    second: isometric living room furniture png_46
+  - first:
+      213: 3936305047341175606
+    second: isometric living room furniture png_47
+  - first:
+      213: 3801879314329954492
+    second: isometric living room furniture png_48
+  - first:
+      213: -8827358737595657403
+    second: isometric living room furniture png_49
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: isometric living room furniture png_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 368
+        width: 276
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8aa6d04bb00fa050800000000000000
+      internalID: 5813866448205294223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_1
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 525
+        width: 54
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d41bbbdeed2355e60800000000000000
+      internalID: 7950316650245108045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_2
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 514
+        width: 76
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7c2b19e3d07c03f0800000000000000
+      internalID: -933246967321252741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_3
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 517
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ecfb7f504dd6230800000000000000
+      internalID: 3633793596454325828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_4
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 447
+        width: 52
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1758c0565aa2bc910800000000000000
+      internalID: 1858626161073751409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_5
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 430
+        width: 76
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59306a3329fb5f460800000000000000
+      internalID: 7274931407739552661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_6
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 301
+        width: 130
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b89be1d7392956330800000000000000
+      internalID: 3703527430739114379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_7
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 354
+        width: 54
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe9bf5c5db6c9620800000000000000
+      internalID: 2782217235701931710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_8
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 339
+        width: 76
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b1ea225cfbe4acb0800000000000000
+      internalID: -4853495029455724109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_9
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 266
+        width: 130
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fec5f23d2cd8dfc0800000000000000
+      internalID: -3469781426202358028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_10
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 284
+        width: 52
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 369112296b42c7190800000000000000
+      internalID: -7963449674543589021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_11
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 264
+        width: 76
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3caacd59119ed8af0800000000000000
+      internalID: -392401330773382461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_12
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 219
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 986c62f8fe35c1c10800000000000000
+      internalID: 2025586220773852809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_13
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 214
+        width: 130
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50429d4fc348a4580800000000000000
+      internalID: -8842109521047772155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_14
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 182
+        width: 54
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90817668660faa320800000000000000
+      internalID: 2570130860500523017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_15
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 161
+        width: 76
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 626479ef517f179c0800000000000000
+      internalID: -3931089325880031706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 140
+        width: 44
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1d2ed00d0a5234b0800000000000000
+      internalID: -5462204386151355107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_17
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 134
+        width: 44
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 271aa1be34de1f400800000000000000
+      internalID: 356326721501962610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_18
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 112
+        width: 44
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2378c27d17a9fac0800000000000000
+      internalID: -3820839063925525715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_19
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 149
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2810c7c3d36c5400800000000000000
+      internalID: 314235835249596463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_20
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 156
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b083038b54191af80800000000000000
+      internalID: -8097030926406502389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_21
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 163
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc7ab02c7986968c0800000000000000
+      internalID: -4005555392564451377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_22
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 117
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d97d9f64ce2565e10800000000000000
+      internalID: 2186025843891492765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_23
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 132
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a98ca8db0cfb1ee0800000000000000
+      internalID: -1289159740501489239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_24
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 138
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e8ecdd18992a2520800000000000000
+      internalID: 2677998661737965796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_25
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 106
+        width: 52
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00806b742a7f444a0800000000000000
+      internalID: -6609886076713170944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_26
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 88
+        width: 76
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a86fe5d160792a0800000000000000
+      internalID: -6730904394864883104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_27
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 95
+        width: 44
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93b7ff22f1cc45880800000000000000
+      internalID: -8623042952404436167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_28
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 88
+        width: 44
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 227a97693ed602860800000000000000
+      internalID: 7503117803448805154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_29
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 62
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f897601d000054ba0800000000000000
+      internalID: -6105473716323976817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_30
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 88
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c0c84b8c9c92da40800000000000000
+      internalID: 5391543900081537223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_31
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 87
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86ae3e6a946ead0c0800000000000000
+      internalID: -4550071269497509272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_32
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 94
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b17d7c3baa1393e70800000000000000
+      internalID: 9095355531681847067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_33
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 86
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ef3bb5ddbd172f0800000000000000
+      internalID: -976757900389908887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_34
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 61
+        width: 29
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6c1348ce575cfe60800000000000000
+      internalID: 7997363102901541994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_35
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 64
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05263aed03fb69f40800000000000000
+      internalID: 5734981392117490256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_36
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 49
+        width: 40
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf75e8a516b520a00800000000000000
+      internalID: 721239364021934076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_37
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 44
+        width: 40
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fac4af0ef83a0cb60800000000000000
+      internalID: 7764385595936885935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_38
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 64
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa9a7d2f6edddba40800000000000000
+      internalID: 5385704713391417775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_39
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 66
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5164cd8109b7c4c20800000000000000
+      internalID: 3192062094721435157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_40
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 66
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27b5586186cabf170800000000000000
+      internalID: 8213347908494646130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_41
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 6
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54c8bfa1f119c0590800000000000000
+      internalID: -7706625299555054523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_42
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 3
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 794e2ee3596b75330800000000000000
+      internalID: 3699626371029591191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_43
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 3
+        width: 26
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b75106516d824240800000000000000
+      internalID: 4774534004160419769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_44
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 9
+        width: 12
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1ead675941713a60800000000000000
+      internalID: 7652021801692540443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_45
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 9
+        width: 12
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5ce29477a3523ec0800000000000000
+      internalID: -3588713974380434337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_46
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 9
+        width: 12
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aee26cf14ec3d16d0800000000000000
+      internalID: -3018189224785072406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_47
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 10
+        width: 12
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 633195ac59090a630800000000000000
+      internalID: 3936305047341175606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_48
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 4
+        width: 21
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb8ea89d71df2c430800000000000000
+      internalID: 3801879314329954492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isometric living room furniture png_49
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 4
+        width: 25
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5439bac5ffbee7580800000000000000
+      internalID: -8827358737595657403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      isometric living room furniture png_0: 5813866448205294223
+      isometric living room furniture png_1: 7950316650245108045
+      isometric living room furniture png_10: -7963449674543589021
+      isometric living room furniture png_11: -392401330773382461
+      isometric living room furniture png_12: 2025586220773852809
+      isometric living room furniture png_13: -8842109521047772155
+      isometric living room furniture png_14: 2570130860500523017
+      isometric living room furniture png_15: -3931089325880031706
+      isometric living room furniture png_16: -5462204386151355107
+      isometric living room furniture png_17: 356326721501962610
+      isometric living room furniture png_18: -3820839063925525715
+      isometric living room furniture png_19: 314235835249596463
+      isometric living room furniture png_2: -933246967321252741
+      isometric living room furniture png_20: -8097030926406502389
+      isometric living room furniture png_21: -4005555392564451377
+      isometric living room furniture png_22: 2186025843891492765
+      isometric living room furniture png_23: -1289159740501489239
+      isometric living room furniture png_24: 2677998661737965796
+      isometric living room furniture png_25: -6609886076713170944
+      isometric living room furniture png_26: -6730904394864883104
+      isometric living room furniture png_27: -8623042952404436167
+      isometric living room furniture png_28: 7503117803448805154
+      isometric living room furniture png_29: -6105473716323976817
+      isometric living room furniture png_3: 3633793596454325828
+      isometric living room furniture png_30: 5391543900081537223
+      isometric living room furniture png_31: -4550071269497509272
+      isometric living room furniture png_32: 9095355531681847067
+      isometric living room furniture png_33: -976757900389908887
+      isometric living room furniture png_34: 7997363102901541994
+      isometric living room furniture png_35: 5734981392117490256
+      isometric living room furniture png_36: 721239364021934076
+      isometric living room furniture png_37: 7764385595936885935
+      isometric living room furniture png_38: 5385704713391417775
+      isometric living room furniture png_39: 3192062094721435157
+      isometric living room furniture png_4: 1858626161073751409
+      isometric living room furniture png_40: 8213347908494646130
+      isometric living room furniture png_41: -7706625299555054523
+      isometric living room furniture png_42: 3699626371029591191
+      isometric living room furniture png_43: 4774534004160419769
+      isometric living room furniture png_44: 7652021801692540443
+      isometric living room furniture png_45: -3588713974380434337
+      isometric living room furniture png_46: -3018189224785072406
+      isometric living room furniture png_47: 3936305047341175606
+      isometric living room furniture png_48: 3801879314329954492
+      isometric living room furniture png_49: -8827358737595657403
+      isometric living room furniture png_5: 7274931407739552661
+      isometric living room furniture png_6: 3703527430739114379
+      isometric living room furniture png_7: 2782217235701931710
+      isometric living room furniture png_8: -4853495029455724109
+      isometric living room furniture png_9: -3469781426202358028
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

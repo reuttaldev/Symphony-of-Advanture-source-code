@@ -1,0 +1,1079 @@
+fileFormatVersion: 2
+guid: 2e3cb6666dc405341bd347b2e8a3a350
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2218848621673186547
+    second: top down living room 1  1_0
+  - first:
+      213: -5298771681738224621
+    second: top down living room 1  1_1
+  - first:
+      213: -8211894474467226971
+    second: top down living room 1  1_2
+  - first:
+      213: 3804723460847374997
+    second: top down living room 1  1_3
+  - first:
+      213: 7161749002930583994
+    second: top down living room 1  1_4
+  - first:
+      213: -1753376403770146786
+    second: top down living room 1  1_5
+  - first:
+      213: 2865316354706353937
+    second: top down living room 1  1_6
+  - first:
+      213: 7844668463441280093
+    second: top down living room 1  1_7
+  - first:
+      213: -1942600651262304596
+    second: top down living room 1  1_8
+  - first:
+      213: -5239302764220916501
+    second: top down living room 1  1_9
+  - first:
+      213: 5780896964313740009
+    second: top down living room 1  1_10
+  - first:
+      213: -3752725289775695652
+    second: top down living room 1  1_11
+  - first:
+      213: -3537125096781284585
+    second: top down living room 1  1_12
+  - first:
+      213: -4638203861791848585
+    second: top down living room 1  1_13
+  - first:
+      213: -6489944909582175285
+    second: top down living room 1  1_14
+  - first:
+      213: 7896883615539645874
+    second: top down living room 1  1_15
+  - first:
+      213: 7458721851770826891
+    second: top down living room 1  1_16
+  - first:
+      213: -4696162814173364719
+    second: top down living room 1  1_17
+  - first:
+      213: -645426844708136008
+    second: top down living room 1  1_18
+  - first:
+      213: 5493058683000753500
+    second: top down living room 1  1_19
+  - first:
+      213: -6864792669808063811
+    second: top down living room 1  1_20
+  - first:
+      213: 6703138203471344111
+    second: top down living room 1  1_21
+  - first:
+      213: 7798381146589229732
+    second: top down living room 1  1_22
+  - first:
+      213: -8199460248155040605
+    second: top down living room 1  1_23
+  - first:
+      213: -2991297705527942727
+    second: top down living room 1  1_24
+  - first:
+      213: -5844226364389109358
+    second: top down living room 1  1_25
+  - first:
+      213: -3021383924031785682
+    second: top down living room 1  1_26
+  - first:
+      213: -4074897478579183741
+    second: top down living room 1  1_27
+  - first:
+      213: -7926354535566011331
+    second: top down living room 1  1_28
+  - first:
+      213: 7207584442959723073
+    second: top down living room 1  1_29
+  - first:
+      213: 8621117493934393535
+    second: top down living room 1  1_30
+  - first:
+      213: -2110438652606569325
+    second: top down living room 1  1_31
+  - first:
+      213: 137122691722978395
+    second: top down living room 1  1_32
+  - first:
+      213: -1068730118529791830
+    second: top down living room 1  1_33
+  - first:
+      213: 2380669173007596380
+    second: top down living room 1  1_34
+  - first:
+      213: -8175210523960943748
+    second: top down living room 1  1_35
+  - first:
+      213: -8308509938903839711
+    second: top down living room 1  1_36
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: top down living room 1  1_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 351
+        width: 12
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13356df11fd3371439174b4e467fda93
+      internalID: -1358836697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_1
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 351
+        width: 26
+        height: 24
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4553f72b3770d640bbb60546220fde0
+      internalID: -602767325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 351
+        width: 26
+        height: 24
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19a45eecb18d8f940bfb6669669b735e
+      internalID: -1060601408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 349
+        width: 31
+        height: 28
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3816214d25b47d941abf314423d66a01
+      internalID: -952360798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_4
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 355
+        width: 39
+        height: 24
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec3ee3a169ff35d46b2de87757c50e11
+      internalID: 212199851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_5
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 355
+        width: 39
+        height: 28
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24bc729ba03519b49a8884c768886026
+      internalID: 1909739619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 297
+        width: 12
+        height: 35
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1124f012039e92a4aa27c212c2322b41
+      internalID: 541536235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_7
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 297
+        width: 36
+        height: 14
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 110262ba03cce39419705ec5e374b82e
+      internalID: 302861446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_8
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 297
+        width: 36
+        height: 14
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0246364800b5557408f48002da1de14e
+      internalID: 1497900173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_9
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 281
+        width: 31
+        height: 28
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17af2dc626cc22445950b502bf4d81d3
+      internalID: 1295019253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_10
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 269
+        width: 20
+        height: 43
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58b321a89f9f6c04ea9f4d6a60eca0f9
+      internalID: -1158669448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_11
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 269
+        width: 20
+        height: 43
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 247fabcb815777b4f8d84316e8278820
+      internalID: -989034529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_12
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 246
+        width: 11
+        height: 22
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84d62814cd33cbe44bc1dd3790171223
+      internalID: -348032231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_13
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 246
+        width: 16
+        height: 16
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a1b2ba0644cc6a4fac39ed66feb7ec9
+      internalID: -1859482633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_14
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 246
+        width: 16
+        height: 16
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74eb91aa379d1264da74601e2c09b0b2
+      internalID: 275242211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_15
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 205
+        width: 11
+        height: 22
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c07f352525ef4249b53ca31b47ed314
+      internalID: 134289228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_16
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 205
+        width: 16
+        height: 16
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fa413c69c0c6e443b25f7a218f4cdf3
+      internalID: 813322245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_17
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 205
+        width: 16
+        height: 16
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71c8c2d62b9fab749b0e0577ce7c436c
+      internalID: 946029472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_18
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 191
+        width: 5
+        height: 33
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698775286e3ba464da1b057127bae19a
+      internalID: -1448553533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_19
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 190
+        width: 18
+        height: 17
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fd941b9b9f2a8a4eb70553a358d8b0f
+      internalID: -1977308018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_20
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 190
+        width: 18
+        height: 34
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64cddd5f3062a7b4db85bea4ea5c3b18
+      internalID: 471650986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_21
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 127
+        width: 8
+        height: 11
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb1c2516edfe2ed4681ca89041972eb4
+      internalID: -1798883160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_22
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 127
+        width: 8
+        height: 11
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c430ec25d15eb4542be2dbac0b42c46d
+      internalID: 888591811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_23
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 132
+        width: 7
+        height: 9
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abe4760e9361f9f439f0e0fc644df9fe
+      internalID: -471613334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_24
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 133
+        width: 6
+        height: 7
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3a3cc407d1d5e48945b8ed553bf1c4
+      internalID: 533449155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_25
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 123
+        width: 4
+        height: 22
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2793627a653018d4095e9cc1edf9d8c3
+      internalID: -1534181998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_26
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 123
+        width: 4
+        height: 22
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c159ba572859cca42a24c74ac0ebb55f
+      internalID: -192301784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_27
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 115
+        width: 24
+        height: 28
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bc4ab19616ce064b9e1c86f3e648b2c
+      internalID: 1682836487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_28
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 115
+        width: 27
+        height: 24
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d3c9d88e5ca4404babd301c2e2c153f
+      internalID: -1131120578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_29
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 109
+        width: 8
+        height: 11
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb4f30357d5c1994c9f3f282a2660ee0
+      internalID: 1796491074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_30
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 119
+        width: 5
+        height: 6
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 883afdf9f35b03348bead92d53922b14
+      internalID: 531098370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_31
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 119
+        width: 5
+        height: 6
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12c72500c99962540a36571e5080c94b
+      internalID: 985535932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_32
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 107
+        width: 4
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c03f0cce6a6433046b884b44743856c2
+      internalID: 1352044083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_33
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 105
+        width: 20
+        height: 7
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0892678cf20a084a9d16c4fdf66f437
+      internalID: -1622282959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_34
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 13
+        width: 44
+        height: 56
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f81f074dc2a36d64eb4e17481971ac25
+      internalID: 300236136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_35
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 61
+        width: 18
+        height: 19
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da1c803da45ddc141b1be93846928421
+      internalID: -1637296518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top down living room 1  1_36
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 16
+        width: 56
+        height: 44
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3403d0971034593469ca93eaa93759a5
+      internalID: -1423460030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e87dd6fbc230cb04d888571474b2943a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      top down living room 1  1_0: -1358836697
+      top down living room 1  1_1: -602767325
+      top down living room 1  1_10: -1158669448
+      top down living room 1  1_11: -989034529
+      top down living room 1  1_12: -348032231
+      top down living room 1  1_13: -1859482633
+      top down living room 1  1_14: 275242211
+      top down living room 1  1_15: 134289228
+      top down living room 1  1_16: 813322245
+      top down living room 1  1_17: 946029472
+      top down living room 1  1_18: -1448553533
+      top down living room 1  1_19: -1977308018
+      top down living room 1  1_2: -1060601408
+      top down living room 1  1_20: 471650986
+      top down living room 1  1_21: -1798883160
+      top down living room 1  1_22: 888591811
+      top down living room 1  1_23: -471613334
+      top down living room 1  1_24: 533449155
+      top down living room 1  1_25: -1534181998
+      top down living room 1  1_26: -192301784
+      top down living room 1  1_27: 1682836487
+      top down living room 1  1_28: -1131120578
+      top down living room 1  1_29: 1796491074
+      top down living room 1  1_3: -952360798
+      top down living room 1  1_30: 531098370
+      top down living room 1  1_31: 985535932
+      top down living room 1  1_32: 1352044083
+      top down living room 1  1_33: -1622282959
+      top down living room 1  1_34: 300236136
+      top down living room 1  1_35: -1637296518
+      top down living room 1  1_36: -1423460030
+      top down living room 1  1_4: 212199851
+      top down living room 1  1_5: 1909739619
+      top down living room 1  1_6: 541536235
+      top down living room 1  1_7: 302861446
+      top down living room 1  1_8: 1497900173
+      top down living room 1  1_9: 1295019253
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
