@@ -80,7 +80,6 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         animator.SetTrigger("FadeOut");
         // ensure showing black screen animation has finished, before we we allow to switch scene
         yield return new WaitForSeconds(animTimeInSec); 
-        asyncLoad.allowSceneActivation = true;
 
         //  Unity triggers scene activation at asyncLoad.progress 90%.
         //  actual scene switch is at the end of this loop
@@ -95,6 +94,7 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
             yield return new WaitForEndOfFrame();
         }
         loadingScene = false;
+        asyncLoad.allowSceneActivation = true;
         // awakes (of other classes) were called for sure
         OnSceneLoaded?.Invoke(previousSceneName);
 

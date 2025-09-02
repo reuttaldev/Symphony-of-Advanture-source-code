@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12aa77b9cca680458d00c1f8685c08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animTimeInSec: 3
+  animTimeInSec: 3.3
   showTextTime: 2.45
   sceneTransitionPanel: {fileID: 6355796427495331828}
   dateText: {fileID: 4486714231772896803}
