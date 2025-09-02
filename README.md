@@ -1,4 +1,4 @@
-To play the game on Windows, download the build from the following link https://drive.google.com/file/d/1h7_fXaKFbuCcESGDcEZEZxFkthGllk-l/view?usp=sharing
+To play the game on Windows, download the build from the following link https://drive.google.com/file/d/1o8bdNqonUznJFGkuGv85X8naWhFEN2Gr/view?usp=sharing
 
  Please email reutgaming@gmail.com for a platform-specific build. 
  
