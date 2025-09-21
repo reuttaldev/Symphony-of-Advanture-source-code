@@ -50,13 +50,13 @@ title: edmund_heard_music
     Edmund: Once she had gone, I knew nothing and no one could compare to her talent. So I selfishly took it all away. 
     Edmund: You showed me that talent still exist, and to stay determined. This town will not suffer another day without music. And you, you get to go home.
     Edmund: It is kind of you to care, {$playerName}. Thank you for doing this. 
-    <<ExitGame>>
+    <<FMS>>
 <<else>>
     Edmund: I knew something was going on recently. I could feel a shift in the town. As if someone is trying to make a difference, make this place better. Cheer people up. 
     Edmund: Thank you {$playerName}, for keeping my town safe. 
     // Edmund: and I am sorry for my son/ thank you for keeping my son safe. 
     Edmund: You will be on your way swiftly. Close your eyes, and think about home. Think about your safe place. If you truly focus, when you open your eyes, this journey will be over. 
-    <<ExitGame>>
+    <<FMS>>
 <<endif>>
 ===
 
