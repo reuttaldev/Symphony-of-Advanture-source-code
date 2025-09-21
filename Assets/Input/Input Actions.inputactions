@@ -359,7 +359,7 @@
                     "name": "Skip",
                     "type": "Button",
                     "id": "c4656f9e-def8-4473-ae3a-b9737f213d9d",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
@@ -368,7 +368,7 @@
                     "name": "Test skip",
                     "type": "Button",
                     "id": "1be9fbaf-4e36-4855-ab0b-7b6f9dee446f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false

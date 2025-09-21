@@ -18,4 +18,3 @@ MonoBehaviour:
   startLocation: village
   state: 3
   mandatory: 1
-  prerequisiteIds: []

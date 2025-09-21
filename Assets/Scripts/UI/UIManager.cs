@@ -123,7 +123,6 @@ public class UIManager : MonoBehaviour, IRegistrableService
     }
     void EscapeUI(InputAction.CallbackContext context)
     {
-        escapeText.text = "Hold ESC to exit";
         StopCoroutine(ShowEsccapeText());
         StartCoroutine(ShowEsccapeText());
     }
@@ -138,7 +137,7 @@ public class UIManager : MonoBehaviour, IRegistrableService
             if (elapsedTime >= holdDurationToEsc)
                 ServiceLocator.Instance.Get<GameManager>().ExitGame();
             int i = Mathf.FloorToInt(elapsedTime / showDotInterval) % 4; // Cycle through 0-3
-            escapeText.text = "Exiting" + new string('.', i); // Append dots based on the index
+            escapeText.text = "Hold ESC to exit" + new string('.', i); // Append dots based on the index
             yield return null;
         }
         escapeText.text = "";

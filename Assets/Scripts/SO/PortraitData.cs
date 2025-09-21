@@ -32,7 +32,7 @@ public class PortraitsData: ScriptableObject
             if (portrait.emotion == emotion)
                 return portrait.sprite;
         }
-        Debug.LogError("Emotion " + emotion + " was not found for " + charName);
+        Debug.Log("Emotion " + emotion + " was not found for " + charName);
         return spritesDictionary[charName].portraits[0].sprite;
     }
 }

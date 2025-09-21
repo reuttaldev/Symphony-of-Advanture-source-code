@@ -18,4 +18,3 @@ MonoBehaviour:
   startLocation: 
   state: 3
   mandatory: 1
-  prerequisiteIds: []
