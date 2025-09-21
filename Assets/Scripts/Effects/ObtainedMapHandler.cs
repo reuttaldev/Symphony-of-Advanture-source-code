@@ -72,11 +72,16 @@ public class ObtainedMapHandler : MonoBehaviour
     {
         if(CheckIfObtainedMap())
         {
-
-            dialogueRunner.Stop();
-            companionInteractable.Interactable(true);
-            companionInteractable.ChangeConversationStartNode("companion_obtained_map");
-            companionInteractable.Trigger();
+            StartCoroutine(ObtainedMap());
         }
+    }
+
+    public IEnumerator ObtainedMap()
+    {
+        yield return new WaitForSeconds(4);
+        dialogueRunner.Stop();
+        companionInteractable.Interactable(true);
+        companionInteractable.ChangeConversationStartNode("companion_obtained_map");
+        companionInteractable.Trigger();
     }
 }
