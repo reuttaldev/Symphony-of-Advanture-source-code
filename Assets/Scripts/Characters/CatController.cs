@@ -26,7 +26,7 @@ public class CatController : MonoBehaviour
     GameManager gameManager;
     // where we are currently walking to 
     Transform walkTo;
-    bool escapeFromPlayer, meow;
+    bool escapeFromPlayer = false, meow;
     // Timer variable to track elapsed time
     private float timer = 0f;
 
@@ -34,13 +34,12 @@ public class CatController : MonoBehaviour
     {
         findMission = findMission.GetRuntimeInstance<MissionData>();
         returnMission = returnMission.GetRuntimeInstance<MissionData>();
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         gameManager = ServiceLocator.Instance.Get<GameManager>();
-        animator = GetComponent<Animator>();
-        escapeFromPlayer = false;
         meow = true;
         walkTo = teasePlayerPosition;
 
@@ -117,6 +116,11 @@ public class CatController : MonoBehaviour
         escapeFromPlayer = false;
 
     }
+    public void AfterTeasePosition()
+    {
+        transform.position = way[0].position;
+        escapeFromPlayer = true;
+    }
     private void StopMovingAnimation()
     {
         animator.SetBool("Moving", false);
@@ -155,11 +159,13 @@ public class CatController : MonoBehaviour
         StopMovingAnimation();
     }
 
-    void ReachedPoint()
+    public void ReachedPoint()
     {
+        findMission.EndMission();
         StopMovingAnimation();
         escapeFromPlayer = false;
         animator.SetTrigger("Resting");
+        transform.position = way[way.Length - 1].position;
     }
 
     bool HasReachedEnd()
@@ -168,10 +174,7 @@ public class CatController : MonoBehaviour
         return ((int)lastPos.x == (int)transform.position.x && (int)lastPos.y == (int)transform.position.y);
 
     }
-    public void SetAtEndPosition()
-    {
-        transform.position = way[way.Length - 1].position;
-    }
+
     public void PlayerCatchedUs()
     {
         StopMovingAnimation() ;  
@@ -191,7 +194,7 @@ public class CatController : MonoBehaviour
     {
         if (collision.gameObject == player && HasReachedEnd())
         {
-            if(findMission.State != MissionState.CompletedSuccessfully)
+            if(findMission.State == MissionState.CompletedSuccessfully)
                 PlayerCatchedUs();
         }
         if (collision.gameObject == oldLady)
