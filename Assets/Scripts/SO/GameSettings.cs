@@ -44,7 +44,6 @@ public class GameSettings : ScriptableObject
     [Header("Asset Settings")]
     //[HideInInspector]
     // keep an adressable reference to all possible tracks so we can just grab the needed ones at loading time
-    public List<TrackDataReference> trackDataReferences;
     // so that I can also know the order of insertion of the references
     //[HideInInspector]
     public List<string> trackDataKeys;

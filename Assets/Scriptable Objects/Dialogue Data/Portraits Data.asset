@@ -37,3 +37,7 @@ MonoBehaviour:
     portraits:
     - emotion: 0
       sprite: {fileID: -702489626523931144, guid: 40c5e14846c888148881f5ba094ec90d, type: 3}
+  - charName: Dr. House
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 3573036208370857778, guid: 0ef9d07ca2c538c4d936a8c9f6089298, type: 3}

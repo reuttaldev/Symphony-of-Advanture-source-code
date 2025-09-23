@@ -157,6 +157,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     #region LOGIC CONTROLS
     public void StartDialogue(string nodeToStart)
     {
+        Debug.Log("starting dial");
         if (string.IsNullOrEmpty(nodeToStart))
         {
             Debug.LogError("conversationStartNode is null");

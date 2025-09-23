@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      talking on phone_0: -6688468594681462176
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -10,7 +10,7 @@ public class PortraitsData: ScriptableObject
     [SerializeField]
     private CharacterPortrait[] portraits;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         if (spritesDictionary.Count != portraits.Length) 
         {

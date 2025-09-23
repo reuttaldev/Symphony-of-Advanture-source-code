@@ -1,6 +1,7 @@
-﻿title: dr_house_hey
+﻿title: dr_house_intro
 ---
-Dr. House: Hey Jan. 
+Dr. House: Hey Jan. Thanks for inviting me to the PMCG birthday party last February
+
 ===
 
 title: dr_house_fall
@@ -8,13 +9,13 @@ title: dr_house_fall
 Dr. House: Ugh crap! Seems like Wilson got to my cane again. 
 ===
 
-title: dr_house_intro
+title: dr_house_anyways
 mandatory: T
 ---
-Dr. House: Anyways, thanks for inviting me to the PMCG birthday party. It was great fun. 
-===
+Dr. House: Anyway, you might not remember me being there since it was a while ago, but I definitely was. It was great fun.
 
 title: dr_house_leaving
 ---
+Dr. House: Duty calls. 
 Dr. House: Cameron? Start the patient on Cyclophosphamide. It's Lupus.  
 ===

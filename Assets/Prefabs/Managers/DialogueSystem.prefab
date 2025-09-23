@@ -1378,7 +1378,7 @@ MonoBehaviour:
   palette: {fileID: 0}
   dialogueRunner: {fileID: 4632972474567403005}
   portraitImage: {fileID: 554040331686285396}
-  data: {fileID: 11400000, guid: 4833a8cc6b4729740bdb6617674cdbd2, type: 2}
+  data: {fileID: 11400000, guid: ee63a081768c6f6419ef30d2e2bb31c4, type: 2}
 --- !u!225 &7334590137145787261
 CanvasGroup:
   m_ObjectHideFlags: 0
