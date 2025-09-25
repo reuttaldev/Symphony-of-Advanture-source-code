@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afddd974954dbd64aa0dfbebb2fcedd8, type: 3}
+  m_Name: House Fall
+  m_EditorClassIdentifier: 
+  GlobalID: GlobalObjectId_V1-3-108941e0e1f71d645bd6f4c62d565a94-11400000-0
+  missionName: 
+  mainObjective: 
+  startLocation: 
+  state: 3
+  mandatory: 1

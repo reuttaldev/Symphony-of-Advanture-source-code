@@ -1,21 +1,25 @@
 ﻿title: dr_house_intro
 ---
-Dr. House: Hey Jan. Thanks for inviting me to the PMCG birthday party last February
-
+Dr. House: Hey Jan. Thanks for inviting me to the PMCG birthday party last February.
+<<FMS>>
 ===
 
 title: dr_house_fall
----
-Dr. House: Ugh crap! Seems like Wilson got to my cane again. 
-===
-
-title: dr_house_anyways
 mandatory: T
 ---
+Dr. House: Ugh crap! Wilson got to my cane again. 
 Dr. House: Anyway, you might not remember me being there since it was a while ago, but I definitely was. It was great fun.
+<<FMS>>
+===
 
-title: dr_house_leaving
+
+title: dr_house_duty_calls
 ---
 Dr. House: Duty calls. 
-Dr. House: Cameron? Start the patient on Cyclophosphamide. It's Lupus.  
+<<FMS>>
+Dr. House: No Cameron, it’s never lupus.
+<<FMS>>
+Dr. House: I need to go Jan. can't leave the Scooby gang alone for one minute without them killing someone. Or bringing them back to life.  
+<<FMS>>
 ===
+

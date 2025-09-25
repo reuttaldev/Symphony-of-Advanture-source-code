@@ -1,4 +1,5 @@
 using Google.Apis.Sheets.v4.Data;
+using System.Collections;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
@@ -11,19 +12,27 @@ public class HousrSoundEffects : MonoBehaviour
     [SerializeField]
     float speed = 5;
     bool move = false;
-
+    [SerializeField]
+    GameObject answerPhone;
+    [SerializeField]
+    Sprite onCall;
+    SpriteRenderer spriteRenderer;
+    DialogueManager dialogueManager;
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
-    void Start()
+
+    private void Start()
     {
-        MoveTowards();
+        dialogueManager = ServiceLocator.Instance.Get<DialogueManager>();
     }
 
     public void MoveTowards()
     {
+        animator.Play("house_walk");
         move = true; 
     }
     void Update()
@@ -37,13 +46,12 @@ public class HousrSoundEffects : MonoBehaviour
     {
         move = false;
         animator.StopPlayback();
-        Debug.Log("stoping");
 
     }
     public void Fall()
     {
         move = false;
-        animator.SetTrigger("Fall");
+        animator.Play("house falling");
 
     }
     public void FootStep()
@@ -54,6 +62,7 @@ public class HousrSoundEffects : MonoBehaviour
     public void Phone()
     {
         audioSource.PlayOneShot(phoneRinging);
+        StartCoroutine(AfterPhone());
 
     }
 
@@ -61,4 +70,24 @@ public class HousrSoundEffects : MonoBehaviour
     {
         audioSource.PlayOneShot(caneBreaking);
     }
+
+    public void AfterFallText()
+    {
+        dialogueManager.StartDialogue("dr_house_fall");
+    }
+
+    IEnumerator AfterPhone()
+    {
+        yield return new WaitForSeconds(3);
+       dialogueManager.StartDialogue("dr_house_duty_calls");
+    }
+
+    public void OnCall()
+    {
+        audioSource.Stop();
+        answerPhone.GetComponent<SpriteRenderer>().sprite = onCall;
+
+    }
+
+
 }
