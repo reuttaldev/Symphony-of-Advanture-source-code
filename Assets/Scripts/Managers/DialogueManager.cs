@@ -34,7 +34,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     bool skippingDialouge= false, noSkipTextShowing = false, addedCommand = false;
     string lastNodeName = "init";
     private bool useAlternativeView = false;
-    public GameObject defaultView, alternativeView;
+    public GameObject defaultView,portraitImage, alternativeView;
     public Transition transition;
     void Awake()
     {
@@ -88,15 +88,17 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         {
             Debug.Log(" to bubble");
             transition.betweenDefaultToBubble.Invoke();
-            defaultView.gameObject.SetActive(false);
-            alternativeView.gameObject.SetActive(true);
+            defaultView.SetActive(false);
+            portraitImage.SetActive(false);
+            alternativeView.SetActive(true);
         }
         else
         {
             Debug.Log(" to normal");
             transition.betweenBubbleToDefault.Invoke();
-            defaultView.gameObject.SetActive(true);
-            alternativeView.gameObject.SetActive(false);
+            defaultView.SetActive(true);
+            portraitImage.SetActive(true);
+            alternativeView.SetActive(false);
         }
     }
     #region MISSION CONTROLS
