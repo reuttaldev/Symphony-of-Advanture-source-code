@@ -13041,7 +13041,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 728550210325381056, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: ambienceOptions.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 728550210325381056, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: 'ambienceOptions.Array.data[0]'

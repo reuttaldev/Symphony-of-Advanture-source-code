@@ -657,7 +657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5234067b3e29b914580c8a8084f302b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 0.4
 --- !u!1 &324754542 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8287065659152303422, guid: 6673a0adeab49554c917c6dd664d506b, type: 3}
@@ -2447,9 +2446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f3781a1e2f5f44793fed6169aaaeff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: 1
-  interactableMoreThanOnce: 0
-  data: {fileID: 11400000, guid: 975e1f9746805d549a1eff4c3d4f5ca7, type: 2}
 --- !u!1 &1619152396
 GameObject:
   m_ObjectHideFlags: 0
@@ -3922,12 +3918,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 728550210325381056, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: ambienceOptions.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 728550210325381056, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: 'ambienceOptions.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 161c0c48d43bf7546b1cc8ab7b7bb429, type: 3}
+      objectReference: {fileID: 8300000, guid: 56e369c39062c9b42ba4471c55ac7c81, type: 3}
     - target: {fileID: 728550210325381056, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: 'ambienceOptions.Array.data[1]'
       value: 

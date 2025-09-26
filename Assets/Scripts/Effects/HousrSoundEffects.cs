@@ -1,7 +1,6 @@
 using Google.Apis.Sheets.v4.Data;
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class HousrSoundEffects : MonoBehaviour
 {

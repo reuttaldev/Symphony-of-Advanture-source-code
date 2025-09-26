@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to be shown during scene changes, therefore it cannot be a scene object and must be a don't destroy on load singleton
 {
     bool loadingScene = false, fadingIn = false;
-    [SerializeField]
-    float animTimeInSec = 1,showTextTime=1;
+    float showTextTime=2;
     [SerializeField]
     SceneTransitionPanel sceneTransitionPanel;
     [SerializeField]
@@ -71,33 +71,25 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         StartCoroutine(LoadSceneWithAnimation(sceneToLoadName));
     }
 
+
     private IEnumerator LoadAndFadeOut(string sceneName)
     {
         loadingScene = true;
         var asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
         asyncLoad.allowSceneActivation = false;
-        //start animation
-        animator.SetTrigger("FadeOut");
-        // ensure showing black screen animation has finished, before we we allow to switch scene
-        yield return new WaitForSeconds(animTimeInSec);
-        asyncLoad.allowSceneActivation = true;
 
-        //  Unity triggers scene activation at asyncLoad.progress 90%.
-        //  actual scene switch is at the end of this loop
-        while (asyncLoad.progress < 0.9f)
+        animator.SetTrigger("FadeOut");
+
+        // wait until the asynchronous scene fully loads, and anim is done
+        while (asyncLoad.progress < 0.9f || sceneTransitionPanel.fillValue > 0)
         {
             yield return new WaitForEndOfFrame();
         }
-        // wait until the asynchronous scene fully loads
         // awkaes are called somewhere here 
-        while (!asyncLoad.isDone)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        asyncLoad.allowSceneActivation = true;
         loadingScene = false;
         // awakes (of other classes) were called for sure
         OnSceneLoaded?.Invoke(previousSceneName);
-
     }
     private IEnumerator FadeIn()
     {
@@ -105,8 +97,10 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         // start the hide black screen animation 
         animator.SetTrigger("FadeIn");
         // wait until fade out animation has finished 
-        yield return new WaitForSeconds(animTimeInSec);
-        //invoke an event to let other scripts know that we are done with the load animation 
+        while (sceneTransitionPanel.fillValue < 1)
+        {
+            yield return new WaitForEndOfFrame();
+        }        //invoke an event to let other scripts know that we are done with the load animation 
         fadingIn = false;
         OnFadeInFinish?.Invoke();
     }
@@ -118,14 +112,12 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     }
     private IEnumerator LoadSceneWithAnimationAndDate(string sceneName,string date)
     {
-        Debug.Log("Switch scene coroutine");
         yield return StartCoroutine(LoadAndFadeOut(sceneName));
-        dateText.gameObject.SetActive(true);
         dateText.text = date;
-        yield return new WaitForSeconds(showTextTime);
-        dateText.gameObject.SetActive(false);
+        Debug.Log("waiting for date");
+        yield return new WaitForSecondsRealtime(showTextTime);
+        dateText.text = "";
         yield return StartCoroutine(FadeIn());
-        Debug.Log("Switch scene coroutine end");
     }
 
     internal static string GetActiveScene()
