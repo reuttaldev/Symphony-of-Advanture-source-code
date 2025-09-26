@@ -22,7 +22,6 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     AudioClip[] ambienceOptions;
     [SerializeField]
     public UnityEvent OnTrackChanged;
-    private Dictionary<string, TrackData> loadedTracks = new Dictionary<string, TrackData>(); // our currently available library of tracks, the key is the id
     [SerializeField]
     // our current library, what we make available for the player out of the loaded tracks. Contains the keys for the loaded tracks that are stored in the dictionary above 
     private List<string> library = new List<string>();   // I need this list so I can iterate over the library dictionary by order of insertion of the keys
@@ -61,70 +60,7 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     {
         tracksAudioSource.PlayOneShot(clip);
     }
-    public void PlayCurrentTrack()
-    {
-        OnTrackChanged.Invoke();
-        string idToPlay = library[index];
-        tracksAudioSource.clip = loadedTracks[idToPlay].audioClip;
-        tracksAudioSource.Play();
-    }
-    public void SetCurrentTrack(string id)
-    {
-        int position = library.IndexOf(id);
-        if (index < 0)
-        {
-            Debug.LogError("Could not set current track to be id: " + id + "since it is not present in the library");
-            return;
-        }
-        index = position;
-        PlayCurrentTrack();
-    }
-    public void PlayNextTrack()
-    {
-        index = (index + 1) % (library.Count - 1);
-        PlayCurrentTrack();
-    }
-    public void PlayLastTrack()
-    {
-        if (index == 0)
-            index = library.Count - 1;
-        else
-            index--;
-        PlayCurrentTrack();
-    }
-    public void AddToLibrary(string id) // add track with id to the currently avaialble for playing music library
-    {
-        Debug.Log("adding to library track with id " + id);
-        if (!loadedTracks.ContainsKey(id))
-        {
-            Debug.LogError("Trying to add track with id " + id + " but it is has no reference loaded");
-            return;
-        }
-        // I want it to be the now first track in the library
-        library.Insert(0, id);
-    }
 
-    public void RemoveFromLibrary(string id)
-    {
-        if (!library.Contains(id))
-        {
-
-            Debug.LogError("Track is not found in the current available tracks library");
-            return;
-        }
-        loadedTracks.Remove(id);
-        library.Remove(id);
-    }
-    public TrackData GetCurrentTrack()
-    {
-        string id = library[index];
-        return loadedTracks[id];
-
-    }
-    public void SetTrackEmotion(string trackID, Emotions emotion)
-    {
-        loadedTracks[trackID].SetUserResponse(emotion);
-    }
     public void StopAudio()
     {
         StartCoroutine(FadeOut());
@@ -142,10 +78,6 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
 
         tracksAudioSource.Stop();
         tracksAudioSource.volume = startVolume;
-    }
-    public string[] GetTracksNames()
-    {
-        return loadedTracks.Values.Select(track => track.trackName).ToArray();
     }
 
 }

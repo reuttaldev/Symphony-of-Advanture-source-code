@@ -10,8 +10,6 @@ using Yarn.Unity.Example;
 public class UIManager : MonoBehaviour, IRegistrableService
 {
     [SerializeField]
-    private WalkmanUI walkmanUI;
-    [SerializeField]
     public ItemInteractableView interactableView;
     [SerializeField]
     private InputActionReference openWalkmanAction;
@@ -34,21 +32,16 @@ public class UIManager : MonoBehaviour, IRegistrableService
     }
     private void OnEnable()
     {
-        openWalkmanAction.action.performed += OpenWalkmanInterface;
-        closeWalkmanAction.action.performed += CloseWalkmanInterface;
         escapeAction.action.performed += EscapeUI;
     }
 
     private void OnDisable()
     {
-        openWalkmanAction.action.performed -= OpenWalkmanInterface;
-        closeWalkmanAction.action.performed -= CloseWalkmanInterface;
         escapeAction.action.performed -= EscapeUI;
     }
     private void Start()
     {
         inputManager = ServiceLocator.Instance.Get<InputManager>();
-        walkmanUI.gameObject.SetActive(false);
     }
 
     public bool SwitchUIMap()
@@ -67,57 +60,14 @@ public class UIManager : MonoBehaviour, IRegistrableService
         inputManager.ActivatePlayerMap();
     }
 
-    void OpenWalkmanInterface(InputAction.CallbackContext context)
-    {
-        if (walkmanUI.open)
-        {
-            CloseWalkmanInterface(new InputAction.CallbackContext());
-            return;
-        }
-        // open menu only if nothing else is open
-        if (!SwitchUIMap())
-            return;
-        uiPanalOpen = true;
-        walkmanUI.gameObject.SetActive(true);
-        walkmanUI.Open(true);
-    }
-    void CloseWalkmanInterface(InputAction.CallbackContext context) 
-    {
-        if (!walkmanUI.open)
-            return;
-        walkmanUI.gameObject.SetActive(false);
-        walkmanUI.Close();
-        CloseAndSwitchUIMap();
-    }
-    public void OpenMusicDialogueUI()
-    {
-        SwitchUIMap();
-        uiPanalOpen = true;
-        walkmanUI.gameObject.SetActive(true);
-        walkmanUI.Open(false);
-
-    }
-    public void CloseMusicDialogueUI()
-    {
-        walkmanUI.Close();
-        walkmanUI.gameObject.SetActive(false);
-        //musicDialogueText.SetActive(false);
-
-        CloseAndSwitchUIMap();
-    }
-
+    
     public void OpenDialogueUI()
     {
         uiPanalOpen = SwitchUIMap();
     }
     public void CloseDialogueUI()
     {
-        // if we have opened the music dialogue UI though a yarn script, don't close
-        if (walkmanUI.gameObject.activeInHierarchy || (extraPanel != null && extraPanel.gameObject.activeInHierarchy))
-        {
-            Debug.Log("Not closing dialouge UI because something else is open");
-            return;
-        }
+
         CloseAndSwitchUIMap();
         uiPanalOpen = false;
     }

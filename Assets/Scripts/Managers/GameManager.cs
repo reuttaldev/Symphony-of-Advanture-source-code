@@ -6,7 +6,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour, IRegistrableService
 {
     public GameSettings settings;
-    public DataMigrationSettings dataMigrationSettings;
     public static bool paused = false;
     [SerializeField]
     List<ReturnPoint> returnPoints;
@@ -23,8 +22,6 @@ public class GameManager : MonoBehaviour, IRegistrableService
         ServiceLocator.Instance.Register<GameManager>(this);
         if (settings == null)
             Debug.LogError("Game manager is missing a reference to game settings");
-        if(dataMigrationSettings == null)
-            Debug.LogError("Game manager is missing a reference to data migration settings");
         if (returnPoints.Count == 0)
             Debug.LogWarning("Forgot to drag in scene exits to game manager");
     }
@@ -64,13 +61,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
     public void ExitGame()
     {
         Debug.Log("exiting game");
-        GameOver();
         Application.Quit();
-    }
-
-    public void GameOver()
-    {
-        ServiceLocator.Instance.Get<ExportManager>().SendCSVByEmail();
     }
 
 

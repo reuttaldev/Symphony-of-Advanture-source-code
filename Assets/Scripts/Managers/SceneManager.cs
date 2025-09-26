@@ -79,7 +79,8 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         //start animation
         animator.SetTrigger("FadeOut");
         // ensure showing black screen animation has finished, before we we allow to switch scene
-        yield return new WaitForSeconds(animTimeInSec); 
+        yield return new WaitForSeconds(animTimeInSec);
+        asyncLoad.allowSceneActivation = true;
 
         //  Unity triggers scene activation at asyncLoad.progress 90%.
         //  actual scene switch is at the end of this loop
@@ -94,7 +95,6 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
             yield return new WaitForEndOfFrame();
         }
         loadingScene = false;
-        asyncLoad.allowSceneActivation = true;
         // awakes (of other classes) were called for sure
         OnSceneLoaded?.Invoke(previousSceneName);
 
@@ -118,12 +118,14 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     }
     private IEnumerator LoadSceneWithAnimationAndDate(string sceneName,string date)
     {
+        Debug.Log("Switch scene coroutine");
         yield return StartCoroutine(LoadAndFadeOut(sceneName));
         dateText.gameObject.SetActive(true);
         dateText.text = date;
         yield return new WaitForSeconds(showTextTime);
         dateText.gameObject.SetActive(false);
         yield return StartCoroutine(FadeIn());
+        Debug.Log("Switch scene coroutine end");
     }
 
     internal static string GetActiveScene()

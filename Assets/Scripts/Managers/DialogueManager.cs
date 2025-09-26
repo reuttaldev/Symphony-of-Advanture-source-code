@@ -16,9 +16,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     DialogueRunner dialogueRunner;
     YarnProject yarnProject;
     // / keep a reference to the interaction that called to open the interface so that we can have it's id and the associated label
-    [HideInInspector]
-    public MusicDialogueData currentMusicInteraction;
-    //[HideInInspector]
     // the mission that is associatedMission with the currently open dialogue
     MissionData missionToComplete;
     UIManager uiManager;
@@ -61,7 +58,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         yarnProject = dialogueRunner.yarnProject;
         dialogueRunner.VariableStorage.SetValue("$playerName", playerNameData.PlayerName);
         uiManager = ServiceLocator.Instance.Get<UIManager>();
-        dialogueRunner.AddCommandHandler("OMD", delegate {  uiManager.OpenMusicDialogueUI();});
         dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
 
         // finish mission successfully
@@ -86,7 +82,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     {
         if (useAlternativeView)
         {
-            Debug.Log(" to bubble");
             transition.betweenDefaultToBubble.Invoke();
             defaultView.SetActive(false);
             portraitImage.SetActive(false);
@@ -94,7 +89,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         }
         else
         {
-            Debug.Log(" to normal");
             transition.betweenBubbleToDefault.Invoke();
             defaultView.SetActive(true);
             portraitImage.SetActive(true);
@@ -127,39 +121,12 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         }
         missionToComplete.EndMission(sucessful);
     }
-    public void SetMusicInteraction(MusicDialogueData data)
-    {
-        currentMusicInteraction = data;
-    }
-    public void PlayerLabeledTrack() // this will be called by a unity event on Music Dialogue UI, don't forget to set that this will be called on the inspector on music dialogue UI
-    {
-        if (currentMusicInteraction == null)
-        {
-            Debug.LogError("Current interaction is null. Who is calling open music dialogue? Need interaction ID");
-            return;
-        }
-        //if (string.IsNullOrEmpty(currentMusicInteraction.GlobalID))
-        //{
-         //   Debug.LogError("No interaction id");
-          //  return;
-        //}
-        if (string.IsNullOrEmpty(currentMusicInteraction.interactionName))
-        {
-            Debug.LogError("No interaction name");
-            return;
-        }
-        if (string.IsNullOrEmpty(lastNodeName))
-        {
-            Debug.LogError("last seen dialogue node is undefined ");
-            return;
-        }
-        FinishMusicDialogue();
-    }
+
+
     #endregion
     #region LOGIC CONTROLS
     public void StartDialogue(string nodeToStart)
     {
-        Debug.Log("starting dial");
         if (string.IsNullOrEmpty(nodeToStart))
         {
             Debug.LogError("conversationStartNode is null");
@@ -171,7 +138,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
             return;
         }
         dialogueRunner.StartDialogue(nodeToStart);
-        //uiManager.OpenDialogueUI();
         lastNodeName = nodeToStart;
     }
     private void SkipDialogue(InputAction.CallbackContext context)
@@ -225,22 +191,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         if (missionToComplete != null)
             missionToComplete.EndMission();
     }
-    void FinishMusicDialogue()
-    {
-        string nextNode = currentMusicInteraction.onCompletionNode;
-        uiManager.CloseMusicDialogueUI();
-        if (!string.IsNullOrEmpty(nextNode))
-        {
-            if (currentMusicInteraction.missionToComplete != null)
-                missionToComplete = currentMusicInteraction.missionToComplete;
-            StartDialogue(nextNode);
 
-        }
-        var currentTrack = AudioManager.Instance.GetCurrentTrack();
-        ServiceLocator.Instance.Get<ExportManager>().ExportData(currentTrack, currentMusicInteraction, lastNodeName);
-        AudioManager.Instance.RemoveFromLibrary(currentTrack.trackID);
-        currentMusicInteraction = null;
-    }
     #endregion
     #region UI CONTROLS
     private void ContinueDialouge(InputAction.CallbackContext context)

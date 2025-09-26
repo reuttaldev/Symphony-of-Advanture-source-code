@@ -23,13 +23,13 @@ Passer-by: Hey, is everything okay? Let me help. He says you need to pack it dif
 Reut: Oh... sorry, I didn't know. Thanks for the help. 
 Reut: Wait, Professor Pacovský, is that you?
 Prof. Pacovský: Yes, it is me. What a surprise! How are you?
-Reut: Forgetting the embarrassment of a professor seeing me in my pajamas, I'm okay. Somewhat stressed. I've been looking for an advisor for my individual software. I've explored many options, but none seem suitable. There's only one month until the selection deadline. 
+Reut: Ignoting the embarrassment of a professor seeing me in my pajamas, I'm okay. A little bit stressed - I've been looking for an advisor for my individual software project. I've explored many options, but none seem suitable. There's only a month until I need to make a decision. 
 Prof. Pacovský: What is the project about?
-Reut: I'm not entirely sure yet. I would like to do something related to music and video games, I love both of those.
-Prof. Pacovský: Oh, well, we can work together on the ISP, but I won't be available as an advisor for the bachelor's thesis. Since you mentioned the project is about music, MgA. <b>Jan Hajič</b> comes to mind. 
-Reut: Oh, I haven't heard about him before, I'll explore this option. Thank you for the suggestion, and the free translation services!
+Reut: I'm not sure yet. I would like to do something related to music and video games, as I love both.
+Prof. Pacovský: Oh, well, we can work together on the ISP, but I won't be available as an advisor for the bachelor's thesis. Since you mentioned the project is about music, <color=blue><b>MgA. Jan Hajič</b></color> comes to mind. 
+Reut: Oh, I haven't heard about him before, I'll take a look. Thank you for the suggestion, and the free translation services!
 Prof. Pacovský: No worries. I will see you in C \# practicals. 
-Reut: Bye until then. 
+Reut: See you later. 
 <<Transition>>
 === 
 
