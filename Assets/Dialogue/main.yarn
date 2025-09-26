@@ -55,13 +55,18 @@ Reut: I didn't make any progress this week... I had \[blank\] going on. I am sor
 Jan: It is okay -- sometimes that happens. Let's think about the next steps. 
 Reut: I have a character in the game that I am struggling to come up with a story for. In what situation would we want to make someone more upset than they were, to begin with?
 Jan: I know! Make it so their parents are forcing them to play a video game, for some data collection purposes... and they need to confront them. That would be funny!
-Reut: That's hilarious, I will do that. 
+Reut: That is hilarious, I will do that. 
 Jan: By the way, I am organizing a workshop where you can showcase your work, if you are interested. 
 Reut: Me, presenting? In front... people? I'm not sure if I can do that.
 Jan: I think you can! Practice presenting to your pillow. Or a watermelon.
 Reut: Okay, I'll give it a try. Talk to you next week. 
+<<EventA>>
+===
+
+title: no_progress_meeting_bubble
+---
 <<Bubble>>
-Reut: I am so thankful he is understanding and patient. It makes this process so much more comfortable. 
+Reut: I am so thankful he is understanding and patient. It makes this process so much better! 
 Reut: He also had great suggestions! I'm not sure about the watermelon though.  
 <<Transition>>
 ===
@@ -80,18 +85,18 @@ date:
 mandatory: T
 ---
 Jan: So how is it going?  
-Reut: I'm really nervous about starting to write. We've been building this concept for so long and it feels intimidating. 
+Reut: I'm really nervous about starting to write -- we've been building this concept for so long, it feels intimidating. 
 Jan: I understand. Do it first thing in the morning and last thing in the day before you go to sleep. At first, it will feel like a wall, but it will get better. The more you do it, you get in better shape, and the less scary it becomes. 
 Reut: I'm also really nervous about showing the game to anyone. I don't know why I am making such a big deal out of this. 
-Jan: It is okay. It doesn't have to be perfect. What is important is that you get people to see if and receive feedback.
+Jan: It is okay. It doesn't have to be perfect. What is important is that you get feedback -- there is only room for improvements.
 Reut: You are right about both, thank you. I will keep trying.  
 <<Bubble>>
 Reut: Okay, let's do this. 
 <<Normal>>
 Reut: Hey Liat, could you test my game?
 Liat: Of course, send it over.
--: ...
-Liat: You did this? Wow! Sure, there are some problems, but I like the concept. Will you let me know when the next version is ready?
+Reut: ...
+Liat: You did this? Wow! Sure, there are some problems, but I really like the concept. Will you let me know when the next version is ready?
 Reut: Really? Sure! I'm sending over a form. Thank you for the feedback. 
 <<Bubble>>
 Having someone else be interested in the project is so motivating! And the feedback is helpful, both positive and negative. I'm glad I did this.  

@@ -20,8 +20,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     MissionData missionToComplete;
     UIManager uiManager;
     [SerializeField]
-    PlayerNameData playerNameData;
-    [SerializeField]
     InputActionReference continueButton,interuptButton,skipButton, skipForTesting;
     [SerializeField]
     LineView lineView;
@@ -56,7 +54,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     private void Start()
     {
         yarnProject = dialogueRunner.yarnProject;
-        dialogueRunner.VariableStorage.SetValue("$playerName", playerNameData.PlayerName);
         uiManager = ServiceLocator.Instance.Get<UIManager>();
         dialogueRunner.AddCommandHandler("ExitGame", ServiceLocator.Instance.Get<GameManager>().ExitGame);
 

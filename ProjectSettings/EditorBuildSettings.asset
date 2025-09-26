@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/EndMenu.unity
     guid: c960cf23a9ff1c145b3fe6f16876a840
+  - enabled: 1
+    path: Assets/Scenes/Bedroom Isreal 1.unity
+    guid: 8f1c2e3b3c186c04e8a0d6cd8e759b2c
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: eb22aafd18cfdbf43af9db33a24f6eba, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 66e7d28f4730063409aeda1270df977d, type: 2}

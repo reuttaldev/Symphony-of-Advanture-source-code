@@ -13,10 +13,6 @@ using System.Collections;
 public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
 {
     [SerializeField]
-    GameSettings settings;
-    [SerializeField]
-    AudioSource tracksAudioSource;
-    [SerializeField]
     AudioSource ambienceAudioSource;
     [SerializeField]
     AudioClip[] ambienceOptions;
@@ -35,10 +31,6 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
     {
         base.Awake();
         DontDestroyOnLoad(this);
-        tracksAudioSource = GetComponent<AudioSource>();
-        if (settings == null)
-            Debug.LogError("Audio manager is missing a reference to game settings");
-        tracksAudioSource = GetComponent<AudioSource>();
         ServiceLocator.Instance.Register<AudioManager>(this);
         PlayAmbienceMusic();
 
@@ -54,30 +46,6 @@ public class AudioManager : SimpleSingleton<AudioManager>, IRegistrableService
         var clip = ambienceOptions[UnityEngine.Random.Range(0, ambienceOptions.Length)];
         ambienceAudioSource.clip = clip;
         ambienceAudioSource.Play();
-    }
-
-    public void PlayClip(AudioClip clip)
-    {
-        tracksAudioSource.PlayOneShot(clip);
-    }
-
-    public void StopAudio()
-    {
-        StartCoroutine(FadeOut());
-    }
-    public IEnumerator FadeOut()
-    {
-        float startVolume = tracksAudioSource.volume;
-
-        while (tracksAudioSource.volume > 0)
-        {
-            tracksAudioSource.volume -= startVolume * Time.deltaTime / fadeOutDuration;
-
-            yield return null;
-        }
-
-        tracksAudioSource.Stop();
-        tracksAudioSource.volume = startVolume;
     }
 
 }
