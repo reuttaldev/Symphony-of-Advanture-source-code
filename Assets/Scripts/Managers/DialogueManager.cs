@@ -1,13 +1,7 @@
 using Yarn.Unity;
 using UnityEngine;
-using UnityEngine.Events;
-using Unity.VisualScripting;
 using UnityEngine.InputSystem;
-using TMPro;
-using Yarn;
 using System.Collections;
-using System;
-using System.Net.Mail;
 
 // In this script I will connect to yarn all of the commands it needs to have access to
 public class DialogueManager : MonoBehaviour, IRegistrableService
@@ -22,32 +16,31 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     [SerializeField]
     InputActionReference continueButton,interuptButton,skipButton, skipForTesting;
     [SerializeField]
-    LineView lineView;
+    LineView lineView, alternativeView;
     [SerializeField]
     CanvasGroup cannotSkipTextGroup;
     float cannotSkipTextFadeTime = 0.2f;
     bool skippingDialouge= false, noSkipTextShowing = false, addedCommand = false;
     string lastNodeName = "init";
-    private bool useAlternativeView = false;
-    public GameObject defaultView,portraitImage, alternativeView;
     public Transition transition;
     void Awake()
     {
         ServiceLocator.Instance.Register<DialogueManager>(this);
         transition = FindAnyObjectByType<Transition>();
+        ChangeView();
     }
     void OnEnable()
     {
         dialogueRunner.onDialogueComplete.AddListener(StopDialogue);
         continueButton.action.performed += ContinueDialouge;
-        interuptButton.action.performed += InterruptDialouge;
+        interuptButton.action.performed += ContinueDialouge;
 
     }
     void OnDisable()
     {
         dialogueRunner.onDialogueComplete.RemoveListener(StopDialogue);
         continueButton.action.performed -= ContinueDialouge;
-        interuptButton.action.performed -= InterruptDialouge;
+        interuptButton.action.performed -= ContinueDialouge;
 
     }
 
@@ -62,36 +55,30 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         // finish mission failed
         dialogueRunner.AddCommandHandler("FMF", delegate { FinishDialogueMission(false); });
         dialogueRunner.AddCommandHandler("STOP", delegate { dialogueRunner.Stop(); });
-        dialogueRunner.AddCommandHandler("Normal", delegate { SetDialogueView(false); });
-        dialogueRunner.AddCommandHandler("Bubble", delegate { SetDialogueView(true); });
+        dialogueRunner.AddCommandHandler("Normal", delegate { ChangeView(); });
+        dialogueRunner.AddCommandHandler("Bubble", delegate { ChangeView(true); });
         dialogueRunner.AddCommandHandler("EventA", delegate { transition.eventA.Invoke(); });
         dialogueRunner.AddCommandHandler("EventB", delegate { transition.eventB.Invoke(); });
         dialogueRunner.AddCommandHandler("EventC", delegate { transition.eventC.Invoke(); });
         dialogueRunner.AddCommandHandler("Transition", delegate { transition.TransitionScene(); });
     }
-    public void SetDialogueView(bool useAlternative)
-    {
-        useAlternativeView = useAlternative;
-        UpdateDialogueView();
-    }
 
-    private void UpdateDialogueView()
+    private void ChangeView(bool alternative = false)
     {
-        if (useAlternativeView)
+        if (alternative)
         {
-            transition.betweenDefaultToBubble.Invoke();
-            defaultView.SetActive(false);
-            portraitImage.SetActive(false);
-            alternativeView.SetActive(true);
+            dialogueRunner.SetDialogueViews(new[] { alternativeView });
+            lineView.gameObject.SetActive(false);
+            alternativeView.gameObject.SetActive(true);
         }
         else
         {
-            transition.betweenBubbleToDefault.Invoke();
-            defaultView.SetActive(true);
-            portraitImage.SetActive(true);
-            alternativeView.SetActive(false);
+            dialogueRunner.SetDialogueViews(new[] { lineView });
+            lineView.gameObject.SetActive(true);
+            alternativeView.gameObject.SetActive(false);
         }
     }
+
     #region MISSION CONTROLS
     public void SetMissionToComplete(MissionData data)
     {
@@ -193,12 +180,11 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     #region UI CONTROLS
     private void ContinueDialouge(InputAction.CallbackContext context)
     {
-        lineView.UserRequestedViewAdvancement();
+
+        // even if I call it on one view only, dialogue runner will call it on all views for some reason
+        dialogueRunner.dialogueViews[0].UserRequestedViewAdvancement();
     }
-    private void InterruptDialouge(InputAction.CallbackContext context)
-    {
-        lineView.UserRequestedViewAdvancement();
-    }
+
     // called by dialogueRunner.Stop()
     void StopDialogue()
     {

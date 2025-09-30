@@ -1264,7 +1264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3960192724836158656
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1336,6 +1336,7 @@ GameObject:
   - component: {fileID: 7334590137145787261}
   - component: {fileID: 8186685044092409872}
   - component: {fileID: 4692625168313300976}
+  - component: {fileID: 3144970870410513303}
   m_Layer: 5
   m_Name: Line View
   m_TagString: Untagged
@@ -1387,7 +1388,19 @@ MonoBehaviour:
   useTypewriterEffect: 1
   onCharacterTyped:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 155540998231615242}
+        m_TargetAssemblyTypeName: LineViewWithPortraitAndSound, Assembly-CSharp
+        m_MethodName: OnCharacterTyped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onPauseStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -1402,6 +1415,36 @@ MonoBehaviour:
   dialogueRunner: {fileID: 4632972474567403005}
   portraitImage: {fileID: 554040331686285396}
   data: {fileID: 11400000, guid: ee63a081768c6f6419ef30d2e2bb31c4, type: 2}
+  letterToPitch:
+  - 1.1853254
+  - 1.001148
+  - 1.1152089
+  - 1.0774026
+  - 1.1441389
+  - 1.1028674
+  - 1.013282
+  - 1.1218213
+  - 1.1975837
+  - 1.0279379
+  - 1.0211325
+  - 1.1992244
+  - 1.0655242
+  - 1.1098702
+  - 1.1908358
+  - 1.0359889
+  - 1.1683923
+  - 1.0053139
+  - 1.0656942
+  - 1.108831
+  - 1.1847506
+  - 1.1250253
+  - 1.0965164
+  - 1.0313973
+  - 1.0916369
+  - 1.1489515
+  minPitch: 0
+  maxPitch: 0
+  lineTMP: {fileID: 4259109617001803057}
 --- !u!225 &7334590137145787261
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1454,6 +1497,103 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!82 &3144970870410513303
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7595560087266482501}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 6950124582497684920, guid: bbd487731299d9c4aafa800daee2a09a, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7990141929347120784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,17 +1769,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 4632972474567403005}
-  currentMusicInteraction: {fileID: 0}
-  playerNameData: {fileID: 11400000, guid: a6624afec1413ca44a4f906746e897d2, type: 2}
   continueButton: {fileID: -4462085463790603261, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   interuptButton: {fileID: 8631025337802188502, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   skipButton: {fileID: 6932570671381177813, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   skipForTesting: {fileID: -5242082257303086663, guid: 4d1feeb844654c54aaead33563b4f157, type: 3}
   lineView: {fileID: 155540998231615242}
+  alternativeView: {fileID: 559710312582038613}
   cannotSkipTextGroup: {fileID: 5726146342224095686}
-  defaultView: {fileID: 3048822068367807672}
-  portraitImage: {fileID: 600691251415463007}
-  alternativeView: {fileID: 5965832326167932156}
   transition: {fileID: 0}
 --- !u!1 &8356999220481864952
 GameObject:
@@ -1906,7 +2042,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8681664846826646441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e9a16a3982d5f54e89a9d6b51596f5b, type: 3}
+  m_Script: {fileID: 11500000, guid: ddcdd604a328c4ab296f048eb7b3a925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 6464427487798324848}
@@ -1917,7 +2053,7 @@ MonoBehaviour:
   showCharacterNameInLineView: 0
   characterNameText: {fileID: 0}
   characterNameContainer: {fileID: 0}
-  useTypewriterEffect: 0
+  useTypewriterEffect: 1
   onCharacterTyped:
     m_PersistentCalls:
       m_Calls: []
@@ -1927,7 +2063,7 @@ MonoBehaviour:
   onPauseEnded:
     m_PersistentCalls:
       m_Calls: []
-  typewriterEffectSpeed: 50
+  typewriterEffectSpeed: 0
   continueButton: {fileID: 0}
   holdTime: 1
   autoAdvance: 0

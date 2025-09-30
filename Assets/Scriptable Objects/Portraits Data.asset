@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0a2ec539bf67749976ebc2cee71460, type: 3}
+  m_Name: Portraits Data
+  m_EditorClassIdentifier: 
+  portraits:
+  - charName: Reut
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -4358385425028275941, guid: 90346204692044d49b84485507f26925, type: 3}
+      frequency: 3
+      pitchMultiplier: 0.8
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 9b6591be27ffa2d4d820b9ea6d27c5ce, type: 3}
+      - {fileID: 8300000, guid: 5903bc11b4d73c84d845d03195b729ee, type: 3}
+      - {fileID: 8300000, guid: a01c65f245559ca419e76ecfe6f81117, type: 3}
+  - charName: Jan
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -4358385425028275941, guid: ecb92ddce30098049bdfef8322ae0e1a, type: 3}
+      frequency: 3
+      pitchMultiplier: 0.8
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 6e503f640eaca5b488a42d0001b983f0, type: 3}
+      - {fileID: 8300000, guid: b06e8f3935c66d44b829dd56e6ed850f, type: 3}
+      - {fileID: 8300000, guid: c7a502130ef61ac4c9de2c2d4af73b6d, type: 3}
+  - charName: Liat
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -531091553, guid: 8785b7b9927e43747b146124649408b8, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: a01c65f245559ca419e76ecfe6f81117, type: 3}
+      - {fileID: 8300000, guid: 48193e141aa8d394cb4c99a2f4393694, type: 3}
+      - {fileID: 8300000, guid: 7770f2af67a526346b447a272c5907d1, type: 3}
+  - charName: Delivery Guy
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 1421388657, guid: 88a6e35b2afdf6e43a0bc30e1ef6e18f, type: 3}
+      frequency: 3
+      pitchMultiplier: 0.9
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 5d4b518f39ea5f4418501cc924be1d67, type: 3}
+      - {fileID: 8300000, guid: 2743542352c400746b605532f6923e6c, type: 3}
+      - {fileID: 8300000, guid: 56dfac722df089541a0266014750e052, type: 3}
+  - charName: Passer-by
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -702489626523931144, guid: 40c5e14846c888148881f5ba094ec90d, type: 3}
+      frequency: 0
+      pitchMultiplier: 1
+      dialogueAudioClip: []
+  - charName: "Prof. Pacovsk\xFD"
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -702489626523931144, guid: 40c5e14846c888148881f5ba094ec90d, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 889d778f40fa0744080af800d3032309, type: 3}
+      - {fileID: 8300000, guid: eb21540d98ff0fa4fa8d3a81a2c55fea, type: 3}
+      - {fileID: 8300000, guid: ad89ad72f6551ac4c956032ad2e2d7d7, type: 3}
+  - charName: Passer-by
+    portraits:
+    - emotion: 0
+      sprite: {fileID: -702489626523931144, guid: 40c5e14846c888148881f5ba094ec90d, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 889d778f40fa0744080af800d3032309, type: 3}
+      - {fileID: 8300000, guid: eb21540d98ff0fa4fa8d3a81a2c55fea, type: 3}
+      - {fileID: 8300000, guid: ad89ad72f6551ac4c956032ad2e2d7d7, type: 3}
+  - charName: Dr. House
+    portraits:
+    - emotion: 0
+      sprite: {fileID: 3573036208370857778, guid: 0ef9d07ca2c538c4d936a8c9f6089298, type: 3}
+      frequency: 3
+      pitchMultiplier: 0.7
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: ff2d1621cb14ed0499708e34fea720ac, type: 3}
+      - {fileID: 8300000, guid: 7f27b4ebf398458448cd6ae350140beb, type: 3}
+      - {fileID: 8300000, guid: d17ca870e0d0811449e40e3c1014e34d, type: 3}

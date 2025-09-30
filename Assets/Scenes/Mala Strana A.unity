@@ -430,9 +430,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f3781a1e2f5f44793fed6169aaaeff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: 1
-  interactableMoreThanOnce: 0
-  data: {fileID: 11400000, guid: 975e1f9746805d549a1eff4c3d4f5ca7, type: 2}
 --- !u!95 &198833547
 Animator:
   serializedVersion: 7
@@ -554,7 +551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5234067b3e29b914580c8a8084f302b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 0.4
 --- !u!1 &305884220
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,11 +720,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &368668761 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5238074714317962647, guid: 38e057931c138444ebcca8e807047df0, type: 3}
-  m_PrefabInstance: {fileID: 9156779417651614043}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &443945030
 GameObject:
   m_ObjectHideFlags: 0
@@ -12458,15 +12449,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1726792969238954726, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 640.8345
+      value: 640.8343
       objectReference: {fileID: 0}
     - target: {fileID: 1726792969238954726, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -133.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222874203968237567, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 2.51
       objectReference: {fileID: 0}
     - target: {fileID: 5884827807941426177, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12506,10 +12493,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5884827807941426177, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5965832326167932156, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5990664120940217423, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
@@ -12592,10 +12575,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9145585911018460697, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 368668761}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

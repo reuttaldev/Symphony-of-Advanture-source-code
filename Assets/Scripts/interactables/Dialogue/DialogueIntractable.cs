@@ -46,11 +46,6 @@ public class DialogueIntractable : Interactable
             Debug.LogWarning("Triggering interaction without setting associated mission (it is null). Node is " + nodeData.name);
 
         }
-        if (playerDirection != Direction.none)
-            gameManager.FacePosition(playerDirection, transform.position);
-        if (companionPosition != Direction.none)
-            gameManager.CompanionWalkToPlayer(companionPosition, false);
-
         dialogueManager.StartDialogue(nodeData.nodeTitle);
     }
 

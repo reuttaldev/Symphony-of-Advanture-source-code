@@ -374,7 +374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 419872611704506622, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
       propertyPath: playerDirection
-      value: 1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 419872611704506622, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
+      propertyPath: companionPosition
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4671915133068630814, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
       propertyPath: playerMovement
@@ -2282,7 +2286,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 419872611704506622, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
       propertyPath: playerDirection
-      value: 1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 419872611704506622, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
+      propertyPath: companionPosition
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 974344153742074099, guid: f1fb5a9bc9d944943b7ad97454a69788, type: 3}
       propertyPath: m_Size.y
@@ -3943,11 +3951,11 @@ PrefabInstance:
     - target: {fileID: 2429325406793952179, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: ccf42ade86740584eaa9f67a1043184b, type: 3}
+      objectReference: {fileID: 8300000, guid: 56e369c39062c9b42ba4471c55ac7c81, type: 3}
     - target: {fileID: 2429325406793952179, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ccf42ade86740584eaa9f67a1043184b, type: 3}
+      objectReference: {fileID: 8300000, guid: 56e369c39062c9b42ba4471c55ac7c81, type: 3}
     - target: {fileID: 4199261634973810547, guid: ad0accb6ab3f4734aa27ff829ccbad61, type: 3}
       propertyPath: m_Name
       value: Audio Manager

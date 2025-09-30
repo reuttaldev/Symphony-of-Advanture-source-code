@@ -5639,6 +5639,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 155540998231615242, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
+      propertyPath: maxPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 155540998231615242, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
+      propertyPath: minPitch
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1041165859888083480, guid: 2b1f229b6150f904f9fe30b08f6f7240, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
