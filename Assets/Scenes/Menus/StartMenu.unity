@@ -275,6 +275,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3136284629095243778, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8605976519907169035, guid: 8337b5a320cc04c498917b92da668a44, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.2679715
@@ -357,7 +361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e910b6e99c79b914c843737ed86d9964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configManager: {fileID: 0}
 --- !u!225 &881291447
 CanvasGroup:
   m_ObjectHideFlags: 0

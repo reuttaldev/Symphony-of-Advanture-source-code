@@ -1234,7 +1234,7 @@ MonoBehaviour:
   dialogueNodeName: defense
   atStart: 1
   sceneName: House
-  date: 
+  date: 1.10.25
   betweenDefaultToBubble:
     m_PersistentCalls:
       m_Calls: []

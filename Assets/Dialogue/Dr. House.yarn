@@ -7,7 +7,7 @@ Dr. House: Hey Jan. Thanks for inviting me to the PMCG birthday party last Febru
 title: dr_house_fall
 mandatory: T
 ---
-Dr. House: Ugh crap! Wilson got to my cane again. 
+Dr. House: Ugh crap! Seems like Wilson got to my cane again. What a prankster!
 Dr. House: Anyway, you might not remember me being there since it was a while ago, but I definitely was. It was great fun.
 <<FMS>>
 ===
@@ -17,9 +17,10 @@ title: dr_house_duty_calls
 ---
 Dr. House: Duty calls. 
 <<FMS>>
-Dr. House: No Cameron, it’s never lupus.
+Dr. House: No Cameron, It’s NEVER Lupus.
+Dr. House: ...Except that one time.
 <<FMS>>
-Dr. House: I need to go Jan. can't leave the Scooby gang alone for one minute without them killing someone. Or bringing them back to life.  
+Dr. House: I need to go Jan. can't leave the Scooby gang alone for one minute without them killing someone.  
 <<FMS>>
 ===
 

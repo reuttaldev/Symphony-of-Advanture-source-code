@@ -22,15 +22,7 @@ public class GameManager : MonoBehaviour, IRegistrableService
         if (returnPoints.Count == 0)
             Debug.LogWarning("Forgot to drag in scene exits to game manager");
     }
-    void OnEnable()
-    {
-       // SceneManager.Instance.OnSceneLoaded += PlacePlayerInScene;
-    }
-    void OnDisable()
-    {
-        //if(SceneManager.Instance != null)   
-           // SceneManager.Instance.OnSceneLoaded -= PlacePlayerInScene;
-    }
+
     public void SwitchScene(string name)
     {
         SceneManager.Instance.LoadScene(name);  

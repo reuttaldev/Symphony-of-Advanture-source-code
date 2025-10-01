@@ -27,7 +27,6 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
     {
         ServiceLocator.Instance.Register<DialogueManager>(this);
         transition = FindAnyObjectByType<Transition>();
-        ChangeView();
     }
     void OnEnable()
     {
@@ -55,24 +54,28 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         // finish mission failed
         dialogueRunner.AddCommandHandler("FMF", delegate { FinishDialogueMission(false); });
         dialogueRunner.AddCommandHandler("STOP", delegate { dialogueRunner.Stop(); });
-        dialogueRunner.AddCommandHandler("Normal", delegate { ChangeView(); });
-        dialogueRunner.AddCommandHandler("Bubble", delegate { ChangeView(true); });
+        dialogueRunner.AddCommandHandler("Normal", delegate { SetView(); });
+        dialogueRunner.AddCommandHandler("Bubble", delegate { SetView(true); });
         dialogueRunner.AddCommandHandler("EventA", delegate { transition.eventA.Invoke(); });
         dialogueRunner.AddCommandHandler("EventB", delegate { transition.eventB.Invoke(); });
         dialogueRunner.AddCommandHandler("EventC", delegate { transition.eventC.Invoke(); });
         dialogueRunner.AddCommandHandler("Transition", delegate { transition.TransitionScene(); });
     }
 
-    private void ChangeView(bool alternative = false)
+    public void SetView(bool alternative = false, bool set = true)
     {
         if (alternative)
         {
+            if(set)
+                ServiceLocator.Instance.Get<Transition>().betweenDefaultToBubble?.Invoke();
             dialogueRunner.SetDialogueViews(new[] { alternativeView });
             lineView.gameObject.SetActive(false);
             alternativeView.gameObject.SetActive(true);
         }
         else
         {
+            if (set)
+                ServiceLocator.Instance.Get<Transition>().betweenBubbleToDefault?.Invoke();
             dialogueRunner.SetDialogueViews(new[] { lineView });
             lineView.gameObject.SetActive(true);
             alternativeView.gameObject.SetActive(false);

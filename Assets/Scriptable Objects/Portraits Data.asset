@@ -83,7 +83,7 @@ MonoBehaviour:
   - charName: Dr. House
     portraits:
     - emotion: 0
-      sprite: {fileID: 3573036208370857778, guid: 0ef9d07ca2c538c4d936a8c9f6089298, type: 3}
+      sprite: {fileID: 21300000, guid: 0ef9d07ca2c538c4d936a8c9f6089298, type: 3}
       frequency: 3
       pitchMultiplier: 0.7
       dialogueAudioClip:

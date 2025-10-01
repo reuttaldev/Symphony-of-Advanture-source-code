@@ -6,7 +6,7 @@ using UnityEngine;
 public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to be shown during scene changes, therefore it cannot be a scene object and must be a don't destroy on load singleton
 {
     bool loadingScene = false, fadingIn = false;
-    float showTextTime=2;
+    float showTextTime=4;
     [SerializeField]
     SceneTransitionPanel sceneTransitionPanel;
     [SerializeField]
@@ -15,6 +15,8 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     string previousSceneName;
     public event Action<string> OnSceneLoaded;
     public event Action OnFadeInFinish;
+    [SerializeField]
+    GameObject blackCover;
 
 #if UNITY_EDITOR
     private void Start()
@@ -85,6 +87,8 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         {
             yield return new WaitForEndOfFrame();
         }
+        // when allow scene is set to true for some reason the scene flashes. I put a black screen on top of everything to prevent that
+        blackCover.SetActive(true);
         // awkaes are called somewhere here 
         asyncLoad.allowSceneActivation = true;
         loadingScene = false;
@@ -96,6 +100,7 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
         fadingIn = true;
         // start the hide black screen animation 
         animator.SetTrigger("FadeIn");
+        blackCover.SetActive(false);
         // wait until fade out animation has finished 
         while (sceneTransitionPanel.fillValue < 1)
         {
@@ -113,10 +118,11 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
     private IEnumerator LoadSceneWithAnimationAndDate(string sceneName,string date)
     {
         yield return StartCoroutine(LoadAndFadeOut(sceneName));
+        dateText.gameObject.SetActive(true);
         dateText.text = date;
         Debug.Log("waiting for date");
         yield return new WaitForSecondsRealtime(showTextTime);
-        dateText.text = "";
+        dateText.gameObject.SetActive(false);
         yield return StartCoroutine(FadeIn());
     }
 
