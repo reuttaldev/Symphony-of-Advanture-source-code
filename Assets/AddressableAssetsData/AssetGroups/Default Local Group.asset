@@ -14,12 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
   m_GUID: d31d7abc8177d5340b4a1c3461d0a546
-  m_SerializeEntries:
-  - m_GUID: fa4e9cb1ef5dca7418c48d9a34932a27
-    m_Address: Assets/Audio/Tracks
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e514c3e08c39db7478c165eec2ed4007, type: 2}
   m_SchemaSet:
