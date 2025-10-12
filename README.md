@@ -9,6 +9,9 @@ The data collected classifies music based on emotional content and can serve as 
 ## Play it now!
 You can play it by downloading the [Windows build](Symphony%20of%20advanture%20--%20Windows.zip). Please email reutgaming@gmail.com for a platform-specific build. 
  
+## Game trailer
+[![Watch the demo on Google Drive](https://drive.google.com/thumbnail?id=14-7tpvtfEaERYlkVXgFeJ7rBPNc9F_nH&sz=w1200)](https://drive.google.com/file/d/14-7tpvtfEaERYlkVXgFeJ7rBPNc9F_nH/view)
+
 ## Technologies 
 The project was developed in C# using the Unity engine. For narrative design, I used Yarn Spinner.  
 To manage collected data and maximize the usability of this tool for the layman, I integrated the Google Sheets API. This enables researchers to import metadata and automatically export players’ responses in real time. I added this so the data is organized and ready for analysis.  
@@ -19,8 +22,3 @@ The thesis text that accompanies this project can be found [here](https://github
 
 ## Presentation poster
 ![Project Overview](./Thesis_Poster___Reut_Tal_page-0001.jpg)
-
-## Game trailer
-[![Watch the demo on Google Drive](https://drive.google.com/thumbnail?id=14-7tpvtfEaERYlkVXgFeJ7rBPNc9F_nH&sz=w1200)](https://drive.google.com/file/d/14-7tpvtfEaERYlkVXgFeJ7rBPNc9F_nH/view)
-
-
