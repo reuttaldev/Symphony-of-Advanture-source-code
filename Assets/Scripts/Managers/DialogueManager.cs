@@ -1,12 +1,13 @@
-using Yarn.Unity;
+using System;
+using System.Collections;
+using System.Net.Mail;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using Unity.VisualScripting;
 using UnityEngine.InputSystem;
-using TMPro;
 using Yarn;
-using System.Collections;
-using System;
+using Yarn.Unity;
 
 // In this script I will connect to yarn all of the commands it needs to have access to
 public class DialogueManager : MonoBehaviour, IRegistrableService
@@ -68,6 +69,7 @@ public class DialogueManager : MonoBehaviour, IRegistrableService
         dialogueRunner.AddCommandHandler("FMF", delegate { FinishDialogueMission(false); });
         dialogueRunner.AddCommandHandler("STOP", delegate { dialogueRunner.Stop(); });
     }
+
 
     #region MISSION CONTROLS
     public void SetMissionToComplete(MissionData data)

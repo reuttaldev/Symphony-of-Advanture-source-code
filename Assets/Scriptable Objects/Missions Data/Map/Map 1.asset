@@ -16,5 +16,5 @@ MonoBehaviour:
   missionName: Map 1
   mainObjective: 
   startLocation: 
-  state: 0
+  state: 3
   mandatory: 1

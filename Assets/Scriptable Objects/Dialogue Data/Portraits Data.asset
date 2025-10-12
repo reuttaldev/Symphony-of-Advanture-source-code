@@ -17,93 +17,263 @@ MonoBehaviour:
     portraits:
     - emotion: 0
       sprite: {fileID: 56752116, guid: 5d1700692c85764408bae8438f3db71a, type: 3}
+      frequency: 3
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 86c21c1964e73e74aa6c3fe73da51a22, type: 3}
+      - {fileID: 8300000, guid: 2dfdd1a1210cf184e9bd583108c5f20f, type: 3}
+      - {fileID: 8300000, guid: 92562bfd85e36dd4aabc204f87d5dd0a, type: 3}
     - emotion: 1
       sprite: {fileID: 1929364660, guid: 5d1700692c85764408bae8438f3db71a, type: 3}
+      frequency: 3
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 86c21c1964e73e74aa6c3fe73da51a22, type: 3}
+      - {fileID: 8300000, guid: 2dfdd1a1210cf184e9bd583108c5f20f, type: 3}
+      - {fileID: 8300000, guid: 92562bfd85e36dd4aabc204f87d5dd0a, type: 3}
     - emotion: 12
       sprite: {fileID: 385172163, guid: 5d1700692c85764408bae8438f3db71a, type: 3}
+      frequency: 3
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 86c21c1964e73e74aa6c3fe73da51a22, type: 3}
+      - {fileID: 8300000, guid: 2dfdd1a1210cf184e9bd583108c5f20f, type: 3}
+      - {fileID: 8300000, guid: 92562bfd85e36dd4aabc204f87d5dd0a, type: 3}
   - charName: Demi
     portraits:
     - emotion: 0
       sprite: {fileID: 516435997, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip: []
     - emotion: 1
       sprite: {fileID: -830481828, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 02c0d3445dbf80545addca166f2e2fe2, type: 3}
+      - {fileID: 8300000, guid: 860e1c39d0b1ec145aeb10a979aa938d, type: 3}
     - emotion: 12
       sprite: {fileID: -1760784829, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 02c0d3445dbf80545addca166f2e2fe2, type: 3}
+      - {fileID: 8300000, guid: 860e1c39d0b1ec145aeb10a979aa938d, type: 3}
     - emotion: 13
       sprite: {fileID: -1470955553, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 02c0d3445dbf80545addca166f2e2fe2, type: 3}
+      - {fileID: 8300000, guid: 860e1c39d0b1ec145aeb10a979aa938d, type: 3}
     - emotion: 9
       sprite: {fileID: -53437578, guid: 3cbf0584eadf50f47a47ce767b0edf6a, type: 3}
+      frequency: 1
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 02c0d3445dbf80545addca166f2e2fe2, type: 3}
+      - {fileID: 8300000, guid: 860e1c39d0b1ec145aeb10a979aa938d, type: 3}
   - charName: Tony
     portraits:
     - emotion: 0
       sprite: {fileID: -1777887030, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+      frequency: 3
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 40c38e7b50b3b7f4092a0934a50041a5, type: 3}
+      - {fileID: 8300000, guid: c93bafb799ff8a9498f641883c4bf38c, type: 3}
+      - {fileID: 8300000, guid: 40c38e7b50b3b7f4092a0934a50041a5, type: 3}
     - emotion: 1
       sprite: {fileID: -543225521, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+      frequency: 3
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 40c38e7b50b3b7f4092a0934a50041a5, type: 3}
+      - {fileID: 8300000, guid: c93bafb799ff8a9498f641883c4bf38c, type: 3}
+      - {fileID: 8300000, guid: 40c38e7b50b3b7f4092a0934a50041a5, type: 3}
     - emotion: 14
       sprite: {fileID: -1224676317, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+      frequency: 3
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 40c38e7b50b3b7f4092a0934a50041a5, type: 3}
+      - {fileID: 8300000, guid: c93bafb799ff8a9498f641883c4bf38c, type: 3}
+      - {fileID: 8300000, guid: 40c38e7b50b3b7f4092a0934a50041a5, type: 3}
     - emotion: 8
       sprite: {fileID: -386956483, guid: 5565331b5cadadf46a7610f1f630e0bc, type: 3}
+      frequency: 3
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 40c38e7b50b3b7f4092a0934a50041a5, type: 3}
+      - {fileID: 8300000, guid: c93bafb799ff8a9498f641883c4bf38c, type: 3}
+      - {fileID: 8300000, guid: 40c38e7b50b3b7f4092a0934a50041a5, type: 3}
     - emotion: 12
       sprite: {fileID: -543225521, guid: 7ef7671047eab884f9732aae693b8ab4, type: 3}
+      frequency: 3
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 40c38e7b50b3b7f4092a0934a50041a5, type: 3}
+      - {fileID: 8300000, guid: c93bafb799ff8a9498f641883c4bf38c, type: 3}
+      - {fileID: 8300000, guid: 40c38e7b50b3b7f4092a0934a50041a5, type: 3}
   - charName: Teen
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: 740ea47586a913349b4f9f71b9598b9d, type: 3}
+      frequency: 3
+      pitchMultiplier: 0.9
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 3a77ffcb44a04304d9ac5e7c9cb0ffe0, type: 3}
+      - {fileID: 8300000, guid: 945e0fea845119a428c86e739ef83d55, type: 3}
+      - {fileID: 8300000, guid: ff2d1621cb14ed0499708e34fea720ac, type: 3}
   - charName: Student
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: fc3e3fa1d99c4a243bd9c7652de3fd6f, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip: []
     - emotion: 1
       sprite: {fileID: 21300000, guid: dfbd205c1090554408117f9283e9182b, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip: []
     - emotion: 13
       sprite: {fileID: 21300000, guid: 017cd3938ef6a3948ad9e0d2f2f2bb11, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip: []
     - emotion: 14
       sprite: {fileID: 21300000, guid: 7cddb30ac0af85a4384f978994f140c6, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip: []
   - charName: Old Lady
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: 465af428265ab164399d79121b6cc960, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: d846c9f17a937004a9b1b5ec128e686d, type: 3}
+      - {fileID: 8300000, guid: d30b5374d4b767c40a6da87c1bd3d045, type: 3}
+      - {fileID: 8300000, guid: 2ea92f81263b83740bf6443e5a9931bb, type: 3}
   - charName: Steve
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: cc8ebcdbd5f08224e9a928681fd88c5f, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 62046a2411b6eef4686fa50d65c64f6b, type: 3}
+      - {fileID: 8300000, guid: dfda4a2afd92e1e438b11e8a91233e57, type: 3}
+      - {fileID: 8300000, guid: 2743542352c400746b605532f6923e6c, type: 3}
   - charName: Man
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: 85b7df3995a8d5345ac5cd76f702e728, type: 3}
+      frequency: 4
+      pitchMultiplier: 0.7
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: ad89ad72f6551ac4c956032ad2e2d7d7, type: 3}
+      - {fileID: 8300000, guid: 3d4d85921d276404196e7e020d662cb7, type: 3}
+      - {fileID: 8300000, guid: ef053ff18ef6b0247867ce43c28863d9, type: 3}
   - charName: Child
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: 41aae9e9468836a40adff27192839138, type: 3}
+      frequency: 1
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: a01c65f245559ca419e76ecfe6f81117, type: 3}
+      - {fileID: 8300000, guid: cc12129f0509c5d4d8a67bdb81598b24, type: 3}
+      - {fileID: 8300000, guid: 1af24c12de914e3499ec0d6683e698c1, type: 3}
   - charName: Girl
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: 3fb290dda0ac9064690d2e5236303147, type: 3}
+      frequency: 1
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 9b6591be27ffa2d4d820b9ea6d27c5ce, type: 3}
+      - {fileID: 8300000, guid: e5867ea8ec5a47a459f98c7188381b9e, type: 3}
+      - {fileID: 8300000, guid: 4a9e2f578e0d1bb499bcf1baccef0ddf, type: 3}
     - emotion: 1
       sprite: {fileID: 21300000, guid: 18bf2ad9661605a4fa9e44b02a4a07ec, type: 3}
+      frequency: 1
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 9b6591be27ffa2d4d820b9ea6d27c5ce, type: 3}
+      - {fileID: 8300000, guid: e5867ea8ec5a47a459f98c7188381b9e, type: 3}
+      - {fileID: 8300000, guid: 4a9e2f578e0d1bb499bcf1baccef0ddf, type: 3}
     - emotion: 14
       sprite: {fileID: 21300000, guid: 3fb290dda0ac9064690d2e5236303147, type: 3}
+      frequency: 1
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 9b6591be27ffa2d4d820b9ea6d27c5ce, type: 3}
+      - {fileID: 8300000, guid: e5867ea8ec5a47a459f98c7188381b9e, type: 3}
+      - {fileID: 8300000, guid: 4a9e2f578e0d1bb499bcf1baccef0ddf, type: 3}
     - emotion: 0
       sprite: {fileID: 21300000, guid: 6c96cdd1474edfc43b55a6c8143d4b2b, type: 3}
+      frequency: 1
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 9b6591be27ffa2d4d820b9ea6d27c5ce, type: 3}
+      - {fileID: 8300000, guid: e5867ea8ec5a47a459f98c7188381b9e, type: 3}
+      - {fileID: 8300000, guid: 4a9e2f578e0d1bb499bcf1baccef0ddf, type: 3}
     - emotion: 13
       sprite: {fileID: 21300000, guid: 85d02d0854c9ba34f992272327fa33bd, type: 3}
+      frequency: 1
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 9b6591be27ffa2d4d820b9ea6d27c5ce, type: 3}
+      - {fileID: 8300000, guid: e5867ea8ec5a47a459f98c7188381b9e, type: 3}
+      - {fileID: 8300000, guid: 4a9e2f578e0d1bb499bcf1baccef0ddf, type: 3}
   - charName: Astrid
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: 98b920d1f0052204c9507273aafe8ef7, type: 3}
+      frequency: 3
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 34c518dab39ae9c4d99c267b11c88ffb, type: 3}
+      - {fileID: 8300000, guid: 10b10ce12294f7a4a9618138b4cde61a, type: 3}
+      - {fileID: 8300000, guid: e5e1e8ab380550c44b552d6f7c54d656, type: 3}
   - charName: Dude 1
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: e79a3694ab0ae0346bd2e2a3cbb8cc4d, type: 3}
+      frequency: 2
+      pitchMultiplier: 1.3
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 7d1860d4ad8126046aadc816d973ef7f, type: 3}
+      - {fileID: 8300000, guid: ad89ad72f6551ac4c956032ad2e2d7d7, type: 3}
   - charName: Dude 2
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: 623ceaaf5c349a4418a15705ce1dabd2, type: 3}
+      frequency: 2
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 7d1860d4ad8126046aadc816d973ef7f, type: 3}
+      - {fileID: 8300000, guid: ad89ad72f6551ac4c956032ad2e2d7d7, type: 3}
   - charName: Edmund
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: 54ae79f8fcab2e5499c34421d6ecab08, type: 3}
+      frequency: 3
+      pitchMultiplier: 0.8
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: e5e1e8ab380550c44b552d6f7c54d656, type: 3}
+      - {fileID: 8300000, guid: 62046a2411b6eef4686fa50d65c64f6b, type: 3}
   - charName: '?'
     portraits:
     - emotion: 0
       sprite: {fileID: 21300000, guid: 98b920d1f0052204c9507273aafe8ef7, type: 3}
+      frequency: 3
+      pitchMultiplier: 1
+      dialogueAudioClip:
+      - {fileID: 8300000, guid: 34c518dab39ae9c4d99c267b11c88ffb, type: 3}
+      - {fileID: 8300000, guid: 10b10ce12294f7a4a9618138b4cde61a, type: 3}
+      - {fileID: 8300000, guid: e5e1e8ab380550c44b552d6f7c54d656, type: 3}

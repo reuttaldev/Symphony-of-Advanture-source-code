@@ -1,16 +1,20 @@
 using System;
 using System.Collections;
+using System.Threading;
+using TMPro;
 using UnityEngine;
 public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to be shown during scene changes, therefore it cannot be a scene object and must be a don't destroy on load singleton
 {
     bool loadingScene = false, fadingIn = false;
-    float animTimeInSec = 1;
+    float showTextTime=4;
     [SerializeField]
     SceneTransitionPanel sceneTransitionPanel;
     private Animator animator;
     string previousSceneName;
     public event Action<string> OnSceneLoaded;
     public event Action OnFadeInFinish;
+    [SerializeField]
+    GameObject blackCover;
 
 #if UNITY_EDITOR
     private void Start()
@@ -50,50 +54,49 @@ public class SceneManager : SimpleSingleton<SceneManager> // the canvas needs to
 
     private IEnumerator LoadAndFadeOut(string sceneName)
     {
+        animator.SetTrigger("FadeOut");
         loadingScene = true;
         var asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
         asyncLoad.allowSceneActivation = false;
-        //start animation
-        animator.SetTrigger("FadeOut");
-        // ensure showing black screen animation has finished, before we we allow to switch scene
-        yield return new WaitForSeconds(animTimeInSec); 
-        asyncLoad.allowSceneActivation = true;
 
-        //  Unity triggers scene activation at asyncLoad.progress 90%.
-        //  actual scene switch is at the end of this loop
-        while (asyncLoad.progress < 0.9f)
+
+        // wait until the asynchronous scene fully loads, and anim is done
+        while (asyncLoad.progress < 0.9f || sceneTransitionPanel.fillValue > 0)
         {
             yield return new WaitForEndOfFrame();
         }
-        // wait until the asynchronous scene fully loads
+        // when allow scene is set to true for some reason the scene flashes. I put a black screen on top of everything to prevent that
+        blackCover.SetActive(true);
         // awkaes are called somewhere here 
-        while (!asyncLoad.isDone)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        asyncLoad.allowSceneActivation = true;
         loadingScene = false;
+        yield return new WaitForEndOfFrame();
         // awakes (of other classes) were called for sure
         OnSceneLoaded?.Invoke(previousSceneName);
-
     }
     private IEnumerator FadeIn()
     {
         fadingIn = true;
         // start the hide black screen animation 
         animator.SetTrigger("FadeIn");
+        blackCover.SetActive(false);
         // wait until fade out animation has finished 
-        yield return new WaitForSeconds(animTimeInSec);
-        //invoke an event to let other scripts know that we are done with the load animation 
+        while (sceneTransitionPanel.fillValue < 1)
+        {
+            yield return new WaitForEndOfFrame();
+        }        //invoke an event to let other scripts know that we are done with the load animation 
         fadingIn = false;
         OnFadeInFinish?.Invoke();
     }
 
     private IEnumerator LoadSceneWithAnimation(string sceneName)
     {
+        ServiceLocator.Instance.Get<InputManager>().ActivatePausedUIMap();
         yield return StartCoroutine(LoadAndFadeOut(sceneName));
         yield return StartCoroutine(FadeIn());
-    }
+        ServiceLocator.Instance.Get<InputManager>().ActivatePlayerMap();
 
+    }
     internal static string GetActiveScene()
     {
         return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;

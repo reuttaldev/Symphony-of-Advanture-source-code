@@ -16,5 +16,5 @@ MonoBehaviour:
   missionName: Map 2
   mainObjective: exchange the violin in return to the second map piece
   startLocation: Sona's office
-  state: 0
+  state: 3
   mandatory: 1

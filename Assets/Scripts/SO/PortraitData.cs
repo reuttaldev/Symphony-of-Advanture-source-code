@@ -10,17 +10,14 @@ public class PortraitsData: ScriptableObject
     [SerializeField]
     private CharacterPortrait[] portraits;
 
-    private void OnEnable()
+    public void OnEnable()
     {
-        if (spritesDictionary.Count != portraits.Length) 
+        foreach (var data in portraits)
         {
-            foreach (var data in portraits)
-            {
-                spritesDictionary[data.charName.ToLower()] = data;
-            }
+            spritesDictionary[data.charName.ToLower()] = data;
         }
     }
-    public Sprite GetSprite(string charName, Emotions emotion = Emotions.Neutral)
+    public Portrait GetPortrait(string charName, Emotions emotion = Emotions.Neutral)
     {
         if (!spritesDictionary.ContainsKey(charName))
         {
@@ -30,11 +27,12 @@ public class PortraitsData: ScriptableObject
         foreach (Portrait portrait in spritesDictionary[charName].portraits)
         {
             if (portrait.emotion == emotion)
-                return portrait.sprite;
+                return portrait;
         }
         Debug.Log("Emotion " + emotion + " was not found for " + charName);
-        return spritesDictionary[charName].portraits[0].sprite;
+        return spritesDictionary[charName].portraits[0];
     }
+    
 }
 [Serializable]
 public class CharacterPortrait
@@ -48,5 +46,8 @@ public class Portrait
 {
     public Emotions emotion;
     public Sprite sprite;
+    public int frequency=1;
+    public float pitchMultiplier = 1;
+    public AudioClip[] dialogueAudioClip;
 
 }
