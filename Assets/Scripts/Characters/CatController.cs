@@ -185,6 +185,7 @@ public class CatController : MonoBehaviour
     }
     public void PlayerReturnedUs()
     {
+        Debug.Log("player returned us");
         transform.SetParent(null);
         transform.position = afterReturnPosition.position;
     }
